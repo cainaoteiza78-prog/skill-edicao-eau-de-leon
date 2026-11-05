@@ -115,7 +115,7 @@ def palavras_inteiras(video):
         if op == 'replace':
             # grafia diferente do Whisper ("saia" x "saiba", "audeleon") não é corte.
             # Corte é pedaço de palavra: "dos" no lugar de "todos", "perfu" de "perfumes".
-            pedaco = any(h != x and len(h) < len(x) and (x.endswith(h) or x.startswith(h))
+            pedaco = any(h != x and 2 <= len(h) < len(x) and (x.endswith(h) or x.startswith(h))
                          for x in falt for h in ouv)
             parecido = difflib.SequenceMatcher(a=''.join(falt), b=''.join(ouv)).ratio() >= 0.5
             if parecido and not pedaco:
@@ -139,7 +139,7 @@ def pausas(video):
     if not n:
         return
     db = 20 * np.log10(np.sqrt((x[:n * j].reshape(n, j) ** 2).mean(1) + 1e-9) / 32768 + 1e-9)
-    fraco = db < np.percentile(db, 90) - 18
+    fraco = db < np.percentile(db, 90) - 24  # abaixo disso é respiro/silêncio (fim de palavra decai até ~-20)
     achou, i = [], 0
     while i < n:
         if fraco[i]:

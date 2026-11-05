@@ -51,11 +51,15 @@ ESTILO = {
     'legenda': {'max_palavras': 4, 'max_chars': 24},
     'perfume': {'altura': 300, 'altura_grande': 460, 'base_y': 1420, 'largura_linha': 940, 'slot_max': 250},
     'zoom_corte': 1.12,
+    # pacing (treinamento/10): mudança visual no máximo a cada ~2,5 s
+    'max_sem_mudanca': 2.6,   # pedaço maior que isso ganha punch (troca de enquadramento)
+    'punch_cada': 2.4,
+    'zoom_enfase': 0.08,      # palavra-chave 3D: a câmera "chega perto" 8% e volta
     # SEM cartão final com logo (decisão do dono, 05/11/2026). O logo aparece só
     # como marca d'água pequena, centralizada na borda de baixo, o vídeo todo.
     'marca_dagua': {'largura': 180, 'margem_baixo': 70, 'opacidade': 0.9},
     'cauda': 0.35,  # sobra parada no fim (o anúncio do Meta come os últimos quadros)
-    'musica_volume': 0.18,   # trilha (normalizada ~-12 LUFS) fica ~13 dB abaixo da voz
+    'musica_volume': 0.171,   # trilha (normalizada ~-12 LUFS) fica ~13 dB abaixo da voz
     'whip': 0.10,
 }
 
@@ -88,7 +92,8 @@ def montar_segmentos(plano, trans, energias):
             zoom = tr.get('zoom') or (ESTILO['zoom_corte'] if i % 2 == 1 else 1.0)
             segs.append({'take': k, 'a': a, 'b': b, 'cena': cena, 'abre': primeiro,
                          'transicao': tr.get('transicao', 'corte') if primeiro else 'corte',
-                         'zoom': zoom, 'foco_x': tr.get('foco_x', 0.5), 'foco_y': tr.get('foco_y', 0.5)})
+                         'zoom': zoom, 'foco_x': tr.get('foco_x', 0.5), 'foco_y': tr.get('foco_y', 0.5),
+                         'fixo': tr.get('fixo', False)})
             primeiro = False
     # nunca repetir o mesmo trecho da take (trechos do plano encostados)
     for i in range(1, len(segs)):
@@ -118,13 +123,25 @@ def mapear(segs, take, t, depois=True):
     return None
 
 
-def filtro_video(s, prox_whip):
-    z = s['zoom']
-    par = lambda v: int(math.ceil(v / 2) * 2)
-    w, h = par(W * z), par(H * z)
-    x = f"(iw-{W})*{s['foco_x']}"
-    y = f"(ih-{H})*{s['foco_y']}"
-    f = [f'scale={w}:{h}:force_original_aspect_ratio=increase', f'crop={W}:{H}:{x}:{y}', 'setsar=1', f'fps={FPS}']
+def _expr_zoom(s, punches, enfases):
+    """z(t) do pedaço: zoom base (alterna 1,00/1,12 a cada punch) + ênfase suave nas palavras-chave."""
+    z0 = s['zoom']
+    z1 = ESTILO['zoom_corte'] if z0 <= 1.0 else 1.0
+    base = f'{z0}'
+    if punches:
+        conta = '+'.join(f'gte(t,{p:.3f})' for p in punches)
+        base = f'({z0}+({z1 - z0:.3f})*mod({conta},2))'
+    enf = ''.join(f'+{ESTILO["zoom_enfase"]}*clip((t-{a:.3f})/0.18,0,1)*clip(({b:.3f}-t)/0.30,0,1)' for a, b in enfases)
+    return base + enf
+
+
+def filtro_video(s, prox_whip, punches=(), enfases=()):
+    f = [f'scale={W}:{H}:force_original_aspect_ratio=increase',
+         f"crop={W}:{H}:(iw-{W})*{s['foco_x']}:(ih-{H})*{s['foco_y']}", 'setsar=1', f'fps={FPS}']
+    z = _expr_zoom(s, punches, enfases)
+    if z != '1.0':
+        f.append(f"scale=w='ceil({W}*({z})/2)*2':h='ceil({H}*({z})/2)*2':eval=frame")
+        f.append(f"crop={W}:{H}:'(iw-{W})*{s['foco_x']}':'(ih-{H})*{s['foco_y']}'")
     d = s['b'] - s['a']
     wp = ESTILO['whip']
     if s['abre'] and s['transicao'] == 'whip':
@@ -138,6 +155,28 @@ def filtro_video(s, prox_whip):
         f.append(f"avgblur=sizeX=60:sizeY=1:enable='gte(t,{max(0, d - 0.04):.3f})'")
     f.append('format=yuv420p')
     return ','.join(f)
+
+
+def ritmo(s, palavras_take, enfases_finais):
+    """Pacing: punches (troca de enquadramento sem cortar fala) a cada ~2,4 s nos pedaços
+    longos, sempre num respiro entre palavras, e as janelas de ênfase locais do pedaço."""
+    dur = s['b'] - s['a']
+    punches = []
+    if dur > ESTILO['max_sem_mudanca'] and not s.get('fixo'):
+        inicios = [w['ini'] - s['a'] for w in palavras_take if s['a'] + 0.6 < w['ini'] < s['b'] - 0.6]
+        ultimo = 0.0
+        for x in inicios:
+            if x - ultimo >= ESTILO['punch_cada']:
+                punches.append(x - 0.02)
+                ultimo = x
+    enfases = []
+    for a, b in enfases_finais:
+        la, lb = a - s['dst'], b - s['dst']
+        if lb > 0 and la < dur:
+            enfases.append((la, lb))
+    # não dar punch colado numa ênfase (um evento de cada vez)
+    punches = [p for p in punches if all(abs(p - a) > 0.5 for a, _ in enfases)]
+    return punches, enfases
 
 
 # ── 3. legenda ──────────────────────────────────────────────────────────────
@@ -195,6 +234,33 @@ def limpar(tok):
     return t
 
 
+def _tokens(s):
+    return set(norm(s).split())
+
+
+def sem_redundancia(words, textos):
+    """A mesma informação nunca aparece duas vezes: palavra falada enquanto um texto
+    grande (impacto/destaque) está na tela some da legenda, e as palavras logo
+    depois dele que só repetem o texto grande também (ex.: "PROMOÇÃO 10.10" e
+    depois a legenda "10.10 da Eau de Leon" → fica só "da Eau de Leon")."""
+    grandes = [t for t in textos if t['estilo'] in ('impacto', 'destaque')]
+    fora = set()
+    for t in grandes:
+        tok = _tokens(t['texto'] + ' ' + t.get('sub', ''))
+        for k, w in enumerate(words):
+            meio = (w['ini'] + w['fim']) / 2
+            if t['ini'] - 0.05 <= meio <= t['fim']:
+                fora.add(k)
+        depois = [k for k, w in enumerate(words) if w['ini'] >= t['fim'] - 0.05]
+        for k in depois[:6]:
+            wt = _tokens(words[k]['p'])
+            if wt and wt <= tok:
+                fora.add(k)
+            else:
+                break
+    return [w for k, w in enumerate(words) if k not in fora]
+
+
 def blocos_legenda(plano, words):
     modo = plano.get('legenda', 'frase')
     if modo == 'nenhuma':
@@ -227,6 +293,17 @@ def blocos_legenda(plano, words):
         b = plano['_map'](d['take'], d['fim'], False)
         if a is not None and b is not None:
             dest.append((a - 0.02, b + 0.02, est))
+
+    # CTA de clique ("saiba mais", "link na bio"...) vira SEMPRE botão, mesmo se o plano esquecer
+    for k in range(len(words)):
+        for n in (3, 2, 1):
+            grupo = words[k:k + n]
+            if len(grupo) == n and letreiros.eh_cta_botao(' '.join(w['p'] for w in grupo)) \
+                    and norm(' '.join(w['p'] for w in grupo)) in letreiros.CTA_BOTAO:
+                a, b = grupo[0]['ini'] - 0.02, grupo[-1]['fim'] + 0.02
+                dest[:] = [d for d in dest if d[1] < a or d[0] > b]
+                dest.append((a, b, 'botao'))
+                break
 
     def em_destaque(w):
         meio = (w['ini'] + w['fim']) / 2
@@ -269,6 +346,8 @@ def blocos_legenda(plano, words):
             bloco['destaque'] = ' '.join(x['t'] for x in destq).upper()
             bloco['ini_destaque'] = destq[0]['ini']
             bloco['estilo_destaque'] = dest[destq[0]['em']][2]
+            if letreiros.eh_cta_botao(bloco['destaque']):
+                bloco['estilo_destaque'] = 'botao'
         out.append(bloco)
     return out
 
@@ -404,22 +483,6 @@ def main():
         y_legenda, rostos = altura_legenda(segs, trans['takes'])
     print(f'legenda em y={y_legenda} ({len(rostos)} rosto(s) detectado(s))', flush=True)
 
-    preset = 'ultrafast' if a.rapido else 'veryfast'
-    lista = []
-    for i, s in enumerate(segs):
-        prox_whip = i + 1 < len(segs) and segs[i + 1]['abre'] and segs[i + 1]['transicao'] == 'whip'
-        arq = os.path.join(tmp, f'seg{i:03d}.mkv')
-        d = s['b'] - s['a']
-        fade_out = max(0, d - 0.03)
-        ff(['-ss', f"{s['a']:.3f}", '-i', trans['takes'][s['take'] - 1]['arquivo'], '-t', f'{d:.3f}',
-            '-filter_complex', f"[0:v]{filtro_video(s, prox_whip)}[v];[0:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.02,afade=t=out:st={fade_out:.3f}:d=0.03[a]",
-            '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '14', '-c:a', 'pcm_s16le', arq], tmp)
-        lista.append(f"file '{os.path.basename(arq)}'")
-        print(f'  pedaço {i + 1}/{len(segs)}', flush=True)
-    with open(os.path.join(tmp, 'lista.txt'), 'w') as f:
-        f.write('\n'.join(lista))
-    ff(['-f', 'concat', '-safe', '0', '-i', 'lista.txt', '-c', 'copy', 'junto.mkv'], tmp)
-
     # textos de tela (tempo final)
     textos = []
     for t in plano.get('textos', []):
@@ -429,7 +492,7 @@ def main():
             continue
         textos.append(t | {'ini': A, 'fim': max(B, A + 0.6)})
     words = palavras_finais(plano, trans, segs)
-    legendas = blocos_legenda(plano, words)
+    legendas = blocos_legenda(plano, sem_redundancia(words, textos))
     # legenda some enquanto texto de impacto/destaque está na tela
     bloqueios = [(t['ini'], t['fim']) for t in textos if t['estilo'] in ('impacto', 'destaque')]
     leg_ok = []
@@ -437,13 +500,39 @@ def main():
         for a0, b0 in bloqueios:  # começou durante o texto grande: espera ele sair
             if a0 - 0.05 <= l['ini'] < b0:
                 l['ini'] = b0 + 0.02
+                l['ini_destaque'] = max(l.get('ini_destaque', 0), l['ini'])
         for a0, b0 in bloqueios:
             if l['ini'] < a0 < l['fim']:
                 l['fim'] = a0
         if l['fim'] - l['ini'] >= 0.15:
             leg_ok.append(l)
+    enfases = [(l['ini_destaque'], l['ini_destaque'] + 0.9) for l in leg_ok
+               if l.get('destaque') and l.get('estilo_destaque') == '3d']
+    enfases += [(t_['ini'], t_['ini'] + 0.9) for t_ in textos if t_['estilo'] in ('impacto', 'destaque')]
+    preset = 'ultrafast' if a.rapido else 'veryfast'
+    lista = []
+    n_punch = 0
+    for i, s in enumerate(segs):
+        punches, enf_local = ritmo(s, trans['takes'][s['take'] - 1]['palavras'], enfases)
+        n_punch += len(punches)
+        prox_whip = i + 1 < len(segs) and segs[i + 1]['abre'] and segs[i + 1]['transicao'] == 'whip'
+        arq = os.path.join(tmp, f'seg{i:03d}.mkv')
+        d = s['b'] - s['a']
+        fade_out = max(0, d - 0.03)
+        ff(['-ss', f"{s['a']:.3f}", '-i', trans['takes'][s['take'] - 1]['arquivo'], '-t', f'{d:.3f}',
+            '-filter_complex', f"[0:v]{filtro_video(s, prox_whip, punches, enf_local)}[v];[0:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.02,afade=t=out:st={fade_out:.3f}:d=0.03[a]",
+            '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '14', '-c:a', 'pcm_s16le', arq], tmp)
+        lista.append(f"file '{os.path.basename(arq)}'")
+        print(f'  pedaço {i + 1}/{len(segs)}', flush=True)
+    with open(os.path.join(tmp, 'lista.txt'), 'w') as f:
+        f.write('\n'.join(lista))
+    ff(['-f', 'concat', '-safe', '0', '-i', 'lista.txt', '-c', 'copy', 'junto.mkv'], tmp)
+    print(f'pacing: {n_punch} punch(es) de enquadramento, {len(enfases)} zoom(s) de ênfase', flush=True)
+
     with open(os.path.join(tmp, 'legenda.ass'), 'w', encoding='utf8') as f:
-        f.write(montar_ass(leg_ok, textos, y_legenda))
+        fala_ps = len(words) / max(total, 1)                 # palavras por segundo
+        periodo = min(1.3, max(0.8, 2.6 / max(fala_ps, 0.5)))  # 1 pulso a cada ~2-3 palavras
+        f.write(montar_ass(leg_ok, textos, y_legenda, total + ESTILO['cauda'], periodo))
     with open(os.path.join(trabalho, 'legenda.srt'), 'w', encoding='utf8') as f:
         for i, l in enumerate(leg_ok, 1):
             ts = lambda x: f'{int(x // 3600):02d}:{int(x % 3600 // 60):02d}:{int(x % 60):02d},{int(round(x % 1 * 1000)) % 1000:03d}'
@@ -566,7 +655,8 @@ def main():
         'perfumes': [{'png': os.path.basename(p['png']), 'ini': round(p['A'], 2), 'fim': round(p['B'], 2)} for p in perfumes],
         'broll': [{'arquivo': os.path.basename(b['arq']), 'ini': round(b['A'], 2), 'fim': round(b['B'], 2)} for b in brolls],
         'cortes': [round(s['dst'], 2) for s in segs],
-        'palavras': [{'p': w['p'], 'ini': round(w['ini'], 2)} for w in words],
+        # sem as correções de grafia: é o que o conferir.py compara com o que ouvir no vídeo final
+        'palavras': [{'p': w['p'], 'ini': round(w['ini'], 2)} for w in palavras_finais(plano | {'correcoes': []}, trans, segs)],
         'legenda_y': y_legenda, 'rostos': rostos,
         'destaques': [{'texto': l['destaque'], 'ini': round(l['ini_destaque'], 2)} for l in leg_ok if l.get('destaque')],
         'bastidor_removido': bastidor,

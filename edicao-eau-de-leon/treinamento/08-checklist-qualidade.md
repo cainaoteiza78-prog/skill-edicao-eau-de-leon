@@ -19,7 +19,10 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Sem ponto/vírgula; ? e ! preservados; começo de frase minúsculo; marcas com maiúscula.
 - [ ] Modo certo: `frase` (leo) ou `palavra` (creator).
 - [ ] Legenda não aparece junto com texto de impacto.
-- [ ] 2 a 4 **letreiros** de palavra-chave (CTA, oferta, adjetivo forte), cada um de um estilo diferente do anterior, logo abaixo da frase, entrando na hora da palavra. Nome de perfume em CAIXA ALTA (`caps`).
+- [ ] Toda fala da oferta tem 3D em **QUANTO / EM QUÊ / ATÉ QUANDO**, entrando na hora da palavra, com cor e entrada variando. Nome de perfume em CAIXA ALTA (`caps`).
+- [ ] "SAIBA MAIS" é um **botão 3D** branco, maior que os outros textos, pulsando devagar até o fim.
+- [ ] **Nenhuma redundância:** nada do que um texto grande mostrou reaparece na legenda logo depois (leia o `legenda.srt`).
+- [ ] **Pacing:** algo muda na tela a cada 2–3 s (linha `pacing:` do render), um evento grande de cada vez.
 
 ## Textos de impacto
 - [ ] No máximo 3 em 30 s; o do gancho aparece nos primeiros 3 s (formato leo com promessa clara).

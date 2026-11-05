@@ -19,10 +19,11 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
   //  zoom: força o enquadramento do trecho (padrão: alterna 1,00/1,12 a cada corte)
   //  foco_x / foco_y: 0..1, onde centralizar o recorte 9:16 (padrão 0,5)
   //  manter_pausas: true = não tira silêncios desse trecho
+  //  fixo: true = sem punch de enquadramento nesse trecho (ver 10-pacing)
 
   "correcoes": [ {"de": "decan", "para": "decant"} ],
   "legenda_maiusculas": [ {"take": 1, "ini": 2.40, "fim": 3.10} ],
-  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80} ],   // letreiro na palavra-chave (ver 03); "estilo" opcional: placa|carimbo|neon|faixa|dourado|caps
+  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80} ],   // 3D na palavra-chave (ver 03); "estilo" opcional: 3d (padrão) | caps | botao (CTA vira botão sozinho)
 
   "textos": [
     {"texto": "ATÉ 30% DE DESCONTO\nNO SITE TODO", "estilo": "impacto", "take": 2, "ini": 7.8, "fim": 10.2},

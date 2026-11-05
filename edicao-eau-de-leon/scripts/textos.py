@@ -75,7 +75,7 @@ def _par(layer, a, b, estilo, x, y, tam, corpo, sombra, extra_txt='', extra_somb
     return [s, t]
 
 
-def montar_ass(legendas, textos, y_legenda):
+def montar_ass(legendas, textos, y_legenda, fim_video=0.0, periodo=1.0):
     L, I, D = ESTILO_TEXTO['legenda'], ESTILO_TEXTO['impacto'], ESTILO_TEXTO['destaque']
     cab = f"""[Script Info]
 ScriptType: v4.00+
@@ -94,29 +94,40 @@ Style: Dst,{D['fonte']},{D['tamanho']},&H00FFFFFF,&H00FFFFFF,&H00000000,&H000000
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     ev = []
+    n3d = 0
     for l in legendas:
         if not l.get('destaque'):
             tam = caber(l['texto'], L['arquivo'], L['tamanho'])
             ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
             continue
-        estilo = l.get('estilo_destaque', 'placa')
+        estilo = l.get('estilo_destaque', '3d')
         if estilo == 'caps':  # só CAIXA ALTA dentro da legenda (como nos anúncios da marca)
             txt = ' '.join(x for x in (l['texto'], l['destaque']) if x)
             tam = caber(txt, L['arquivo'], L['tamanho'])
             ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(txt), L['sombra'])
             continue
+        if estilo == 'botao':
+            # CTA: a frase segue normal no peito; o botão fica abaixo, até o fim, pulsando
+            if l['texto']:
+                tam = caber(l['texto'], L['arquivo'], L['tamanho'])
+                ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
+            linhas, _ = letreiros.botao(l['destaque'], l.get('ini_destaque', l['ini']), max(fim_video, l['fim']),
+                                        W // 2, min(H - 330, y_legenda + 230), periodo)
+            ev += linhas
+            continue
         alt = letreiros.altura(l['destaque'], estilo)
         if l['texto']:
-            # frase normal em cima, letreiro embaixo: o par fica centrado no peito
+            # frase normal em cima, palavra-chave 3D embaixo: o par fica centrado no peito
             tn = caber(l['texto'], L['arquivo'], L['tamanho'])
             hn = tn * 0.62
-            topo = y_legenda - (hn + 44 + alt) / 2
+            topo = y_legenda - (hn + 40 + alt) / 2
             yn = int(topo + hn / 2)
-            yd = int(topo + hn + 44 + alt / 2)
+            yd = int(topo + hn + 40 + alt / 2)
             ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, yn, tn, esc(l['texto']), L['sombra'])
         else:
             yd = y_legenda
-        linhas, _ = letreiros.gerar(l['destaque'], estilo, l.get('ini_destaque', l['ini']), l['fim'], W // 2, yd)
+        linhas, _ = letreiros.texto_3d(l['destaque'], l.get('ini_destaque', l['ini']), l['fim'], W // 2, yd, n3d)
+        n3d += 1
         ev += linhas
 
     rnd = random.Random(7)

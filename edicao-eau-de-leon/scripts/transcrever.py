@@ -50,13 +50,13 @@ def extrair_audio(arq: str, wav: str):
     subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', arq, '-vn', '-ac', '1', '-ar', '16000', wav], check=True)
 
 
-# Palavras-chave que viram DESTAQUE na legenda (o Claude confere e decide).
-CHAVES = [
-    'saiba mais', 'link da bio', 'link na bio', 'imperdivel', 'todos os perfumes', 'todo o site', 'site todo',
-    'frete gratis', 'gratis', 'gratuito', 'cupom', 'desconto', 'so hoje', 'ultima hora', 'ultimas unidades',
-    'exclusivo', 'lancamento', 'promocao', 'black friday', 'esgota', 'acaba hoje', 'primeira compra',
-    'presente', 'kit', 'decant', 'original', 'fixacao', 'o melhor', 'mais vendido', 'chama no direct',
-]
+# Palavras-chave que viram DESTAQUE 3D (o Claude confere e decide). A regra
+# da oferta: QUANTO (10% DE DESCONTO), EM QUÊ (TODOS OS PERFUMES), ATÉ QUANDO
+# (dia 10), e o CTA (SAIBA MAIS = botão). Ver treinamento/03.
+ESCOPO = ['todos os perfumes', 'todo o site', 'site todo', 'site inteiro', 'loja toda', 'todos os decants',
+          'frete gratis', 'primeira compra', 'kit descoberta', 'compre 1 leve 2', 'leve 3 pague 2']
+CTA = ['saiba mais', 'link na bio', 'link da bio', 'clica aqui', 'clique aqui', 'chama no direct', 'compre agora']
+FORTE = ['imperdivel', 'exclusivo', 'so hoje', 'ultimas unidades', 'acaba hoje', 'lancamento', 'gratis', 'gratuito']
 
 
 def sugerir_destaques(saida, pasta):
@@ -70,18 +70,38 @@ def sugerir_destaques(saida, pasta):
     for take in saida['takes']:
         pal = take['palavras']
         toks = [n(w['p']) for w in pal]
-        for i in range(len(pal)):
-            for c in sorted(CHAVES, key=len, reverse=True):
-                cs = c.split()
-                if toks[i:i + len(cs)] == cs:
-                    j = i + len(cs) - 1
-                    linhas.append(f"[take {take['n']} | {pal[i]['ini']:6.2f} → {pal[j]['fim']:6.2f}] "
-                                  + ' '.join(w['p'] for w in pal[i:j + 1]))
-                    break
-            if toks[i] != '%' and (toks[i].endswith('%') or (i + 1 < len(toks) and toks[i + 1] == '%')):
-                j = i + (1 if toks[i + 1:i + 2] == ['%'] else 0)
-                linhas.append(f"[take {take['n']} | {pal[i]['ini']:6.2f} → {pal[j]['fim']:6.2f}] "
-                              + ' '.join(w['p'] for w in pal[i:j + 1]))
+
+        def add(i, j, tipo):
+            linhas.append(f"[take {take['n']} | {pal[i]['ini']:6.2f} → {pal[j]['fim']:6.2f}] {tipo:<10} "
+                          + ' '.join(w['p'] for w in pal[i:j + 1]))
+        i = 0
+        while i < len(pal):
+            achou = False
+            # QUANTO: "10 %", "10%", "30 % de desconto", "R$ 50"
+            num = re.fullmatch(r'\d+%?', toks[i] or '')
+            if num:
+                j = i
+                if toks[i].endswith('%') or toks[i + 1:i + 2] == ['%']:
+                    j = i if toks[i].endswith('%') else i + 1
+                    if toks[j + 1:j + 3] == ['de', 'desconto'] or toks[j + 1:j + 3] == ['do', 'desconto']:
+                        j += 2
+                    add(i, j, 'QUANTO')
+                    i, achou = j + 1, True
+                elif i > 0 and toks[i - 1] in ('dia', 'ate'):
+                    add(i, i, 'ATE QUANDO')
+                    i, achou = i + 1, True
+            if not achou:
+                for grupo, tipo in ((CTA, 'CTA-botao'), (ESCOPO, 'EM QUE'), (FORTE, 'FORTE')):
+                    for c in sorted(grupo, key=len, reverse=True):
+                        cs = c.split()
+                        if toks[i:i + len(cs)] == cs:
+                            add(i, i + len(cs) - 1, tipo)
+                            i, achou = i + len(cs), True
+                            break
+                    if achou:
+                        break
+            if not achou:
+                i += 1
     with open(os.path.join(pasta, 'destaques_sugeridos.txt'), 'w', encoding='utf8') as f:
         f.write('\n'.join(linhas) if linhas else 'Nenhuma palavra-chave da lista encontrada.')
 

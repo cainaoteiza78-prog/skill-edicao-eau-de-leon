@@ -19,49 +19,67 @@ A legenda é **sempre a mesma** e o render faz tudo. Seu trabalho é escolher o 
 | `palavra` | `creator` | uma palavra por vez |
 | `nenhuma` | formatos sem fala | — |
 
-## Destaque de palavra-chave: LETREIROS (`destaques`)
+## Destaque de palavra-chave: 3D (`destaques`)
 
-A palavra que vende sai da legenda e vira um **letreiro** numa linha própria, logo abaixo da frase (que continua normal em cima), no instante em que é falada:
+A palavra que vende **sai da legenda e pula da tela em 3D**: letras grossas brancas (Bungee) com **profundidade** na cor da marca, sombra no "chão" e uma entrada animada. A frase continua normal em cima. Ao mesmo tempo, a câmera chega 8% mais perto (ver 10-pacing):
 
 ```
-        simplesmente          ← legenda normal (Poppins branca)
-      ┌─────────────┐
-      │ IMPERDÍVEL  │         ← letreiro (muda a cada destaque)
-      └─────────────┘
+         liberamos            ← legenda normal (Poppins branca)
+   10% DE DESCONTO            ← 3D, entra no instante da palavra
 ```
 
-Os 5 letreiros (`scripts/letreiros.py`) usam as fontes e as cores da marca:
+Cada destaque varia a profundidade e a entrada, sozinho e em rodízio, pra não repetir:
 
-| Estilo | Como é | Entrada |
+| Variação | Profundidade | Entrada |
 |---|---|---|
-| `placa` | placa **rosa** da marca, levemente inclinada, letras escuras (Bebas) | a placa cresce da linha e as letras dão pop |
-| `carimbo` | caixa **preta** inclinada, letras brancas (Bungee) | bate na tela grande e assenta, como um carimbo |
-| `neon` | letras brancas (Bungee) com **brilho azul** da marca | pisca ao acender |
-| `faixa` | marca-texto **azul** atrás de letras brancas (Bebas) | a faixa passa da esquerda pra direita |
-| `dourado` | letras **douradas** grandes (Bebas) com sombra | digitadas letra a letra |
-| `caps` | sem letreiro: a palavra em CAIXA ALTA dentro da legenda | — (o jeito dos anúncios da marca; use pra **nome de perfume**) |
+| 1ª | azul da marca | salto (cresce e assenta) |
+| 2ª | rosa da marca | giro (vira de lado e assenta) |
+| 3ª | dourado | queda (cai de cima e quica) |
 
-**Rodízio automático:** sem `estilo`, o render usa placa → carimbo → neon → faixa → dourado, e nunca repete o letreiro anterior. Só escolha à mão se fizer sentido (ex.: `dourado` pra "EXCLUSIVO" ou "LUXO", `carimbo` pra "ACABA HOJE").
+### Como identificar as palavras-chave (a regra da oferta)
 
-O que destacar:
-- CTA ("saiba mais", "link na bio", "chama no direct")
-- benefício ou oferta ("todos os perfumes", "frete grátis", "cupom")
-- adjetivo forte ("imperdível", "o melhor", "exclusivo")
-- nome de perfume → `caps`, não letreiro
-- **2 a 4 letreiros por vídeo de 30 s.** Mais que isso perde a força.
-- Nunca destaque o que já está num texto de impacto na tela ao mesmo tempo.
+Em fala de promoção, destaque **sempre** estas 3 coisas, toda vez que forem faladas:
 
-O `transcrever.py` gera `destaques_sugeridos.txt` com as candidatas e seus tempos. Escolha, confira os tempos e escreva:
+1. **QUANTO**: o valor da vantagem, junto com o que ele é: "**10% DE DESCONTO**", "**10%**", "**R$ 50 OFF**", "**FRETE GRÁTIS**".
+2. **EM QUÊ**: onde vale: "**TODOS OS PERFUMES**", "**SITE TODO**", "**PRIMEIRA COMPRA**".
+3. **ATÉ QUANDO**: o prazo (só o número ou a data): "até o dia **10**", "só **HOJE**".
+
+Exemplo do dono: "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o dia **10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**."
+
+Também podem ganhar 3D: um adjetivo muito forte ("imperdível", "exclusivo"), mas só se o vídeo estiver com poucos destaques. **Nome de perfume** não vira 3D: vai em CAIXA ALTA dentro da legenda (`"estilo": "caps"`), como nos anúncios da marca ("esse aqui é o CREED AVENTUS").
+
+O `transcrever.py` gera `destaques_sugeridos.txt` já marcando QUANTO / EM QUE / ATE QUANDO / CTA-botao / FORTE com os tempos. Confira e copie:
 ```json
 "destaques": [
-  {"take": 1, "ini": 4.86, "fim": 5.60},
-  {"take": 2, "ini": 8.80, "fim": 9.75},
-  {"take": 3, "ini": 3.26, "fim": 3.80, "estilo": "neon"},
+  {"take": 2, "ini": 2.24, "fim": 3.54},
+  {"take": 2, "ini": 3.72, "fim": 4.76},
+  {"take": 2, "ini": 5.50, "fim": 5.94},
   {"take": 1, "ini": 1.20, "fim": 2.10, "estilo": "caps"}
 ]
 ```
-- `ini`/`fim` cobrem **só as palavras destacadas** (início da 1ª até o fim da última), até 4 palavras.
-- O letreiro fica até a frase acabar.
+`ini`/`fim` cobrem **só as palavras destacadas**, até 4 palavras.
+
+### "SAIBA MAIS" é SEMPRE um botão
+
+O CTA de clique ("saiba mais", "link na bio", "clica aqui", "compre agora") é desenhado como um **botão 3D**:
+- branco com texto preto (Bungee), maior que todos os outros textos;
+- lateral escura (profundidade), sombra e um brilho bem leve;
+- aparece no peito, logo abaixo da legenda, saltando da tela;
+- **fica até o fim do vídeo pulsando devagar** (cresce 7% e volta), no ritmo da fala, uma vez a cada ~2–3 palavras;
+- é só visual, mas induz a pessoa a clicar no botão real do anúncio.
+
+O render cria o botão **sozinho** sempre que a legenda tiver "Saiba mais" (depois das correções de grafia). Garanta só que a grafia está certa: o Whisper costuma ouvir "saia mais" ou "salha mais", então corrija com `{"de": "salha mais", "para": "Saiba mais"}`.
+
+### Nada de legenda repetida (redundância)
+
+**A mesma informação nunca aparece duas vezes na mesma fala.** Se um texto grande (`impacto` ou `destaque`) mostrou "PROMOÇÃO 10.10", a legenda que vem depois não pode repetir "10.10": ela continua de onde o texto grande parou ("da Eau de Leon já começou"). O render faz isso sozinho, de dois jeitos:
+- some da legenda toda palavra falada enquanto o texto grande está na tela;
+- some também a palavra logo depois dele que só repete o que ele já mostrou.
+
+Seu cuidado ao planejar:
+- O `fim` do texto grande deve ir até a **última palavra que ele resume** (em "a promoção do dia 10 do 10", até o fim do segundo "10").
+- Não ponha texto grande e 3D com as mesmas palavras na mesma fala. Ou é texto de impacto ("10% DE DESCONTO / EM TODOS OS PERFUMES"), ou são destaques 3D nas palavras. Na dúvida, use os destaques 3D.
+- Leia o `legenda.srt`: nenhuma palavra do texto grande pode reaparecer logo depois dele.
 
 ## Ênfase em CAIXA ALTA (`legenda_maiusculas`)
 

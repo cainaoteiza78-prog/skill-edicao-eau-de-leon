@@ -19,21 +19,21 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ## Como o editor pensou
 
-1. **Formato** `leo`, legenda `frase`, marca d'água (automática), sem cartão final.
-2. **Trechos:** um por take, da primeira à última palavra. O silêncio do começo de cada take e as pausas entre as frases ("…de mês. | Isso o mês…") o render corta sozinho: 3 trechos viraram 4 pedaços, sem nenhuma pausa sobrando (`conferir.py` → "PAUSAS que sobraram: nenhuma").
+1. **Formato** `leo`, legenda `frase`, marca d'água automática, sem cartão final.
+2. **Trechos:** um por take, da primeira à última palavra. O render tira as pausas e respirações sozinho, sem cortar palavra.
 3. **Whip** só na troca do gancho para a oferta (muda o cenário).
-4. **Gancho:** destaque Bungee "PROMOÇÃO / 10.10" quando ele fala "promoção" (1,00).
-5. **Oferta:** impacto Bebas "10% DE DESCONTO / EM TODOS OS PERFUMES" quando ele fala "10" (2,24).
-6. **Grafia:** "Aude Leon" → Eau de Leon; "10 -10" → 10.10; "ultimora" → última hora; "salha mais" → Saiba mais. O "10 %" vira "10%" sozinho.
-7. **Letreiros:** "simplesmente **IMPERDÍVEL**" (placa rosa), "10% em **TODOS OS PERFUMES**" (carimbo preto; na 2ª vez que ele fala, porque a 1ª já está no texto de impacto) e "clica em **SAIBA MAIS**" (neon azul). O render alternou os estilos sozinho. Vieram do `destaques_sugeridos.txt`; o "saiba mais" foi achado à mão, porque o Whisper escreveu "salha mais".
-8. **Música:** `auto`, uma trilha animada nova gerada pra este vídeo (ex.: funk, 114 bpm).
-9. **Legenda:** o render detectou o rosto e pôs a legenda em y = 1151 (no peito).
+4. **Gancho:** destaque Bungee "PROMOÇÃO / 10.10" de "promoção" até o fim do segundo "10" (2,75). Sem redundância: a legenda continua em "Eau de Leon já começou", sem repetir "10.10".
+5. **Palavras-chave em 3D** (regra da oferta, vindas do `destaques_sugeridos.txt`): "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o dia **10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**." O render variou a cor da profundidade (azul, rosa, dourado) e a entrada de cada uma, com zoom de ênfase junto.
+6. **CTA:** "clica em Saiba mais" virou **botão 3D** sozinho, pulsando até o fim no ritmo da fala.
+7. **Grafia:** "Aude Leon" → Eau de Leon; "10 -10" → 10.10; "ultimora" → última hora; "salha mais" → Saiba mais; "do desconto" → de desconto; "de mês" → desse mês; "isso o mês" → isso mesmo.
+8. **Música:** `auto`, trilha animada nova.
+9. **Pacing:** o render fez 4 punches de enquadramento e 6 zooms de ênfase.
 
 ## plano.json
 
 ```json
 {
-  "saida": "editado.mp4",
+  "saida": "editado-v2.mp4",
   "formato": "leo",
   "legenda": "frase",
   "trechos": [
@@ -45,16 +45,21 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
     {"de": "Aude Leon", "para": "Eau de Leon"},
     {"de": "10 -10", "para": "10.10"},
     {"de": "ultimora", "para": "última hora"},
-    {"de": "salha mais", "para": "Saiba mais"}
+    {"de": "salha mais", "para": "Saiba mais"},
+    {"de": "do desconto", "para": "de desconto"},
+    {"de": "de mês", "para": "desse mês"},
+    {"de": "isso o mês", "para": "isso mesmo"}
   ],
   "textos": [
-    {"texto": "PROMOÇÃO\n10.10", "estilo": "destaque", "take": 1, "ini": 1.00, "fim": 3.10},
-    {"texto": "10% DE DESCONTO\nEM TODOS OS PERFUMES", "estilo": "impacto", "take": 2, "ini": 2.24, "fim": 4.70}
+    {"texto": "PROMOÇÃO
+10.10", "estilo": "destaque", "take": 1, "ini": 1.00, "fim": 2.75}
   ],
   "destaques": [
-    {"take": 1, "ini": 4.86, "fim": 5.60},
-    {"take": 2, "ini": 8.80, "fim": 9.75},
-    {"take": 3, "ini": 3.26, "fim": 3.80}
+    {"take": 2, "ini": 2.24, "fim": 3.54},
+    {"take": 2, "ini": 3.72, "fim": 4.76},
+    {"take": 2, "ini": 5.50, "fim": 5.94},
+    {"take": 2, "ini": 7.92, "fim": 8.56},
+    {"take": 2, "ini": 8.88, "fim": 9.68}
   ],
   "musica": "auto"
 }
@@ -62,6 +67,4 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ## Resultado
 
-23,9 s de bruto → 16,5 s (16,1 s de fala + 0,35 s de sobra), 4 pedaços, voz em -14,5 LUFS. `conferir.py`: **PAUSAS: nenhuma**, **PALAVRAS: todas inteiras** (o "todos" de "em todos os perfumes" fica inteiro). Legenda no peito, 3 letreiros diferentes, marca d'água do início ao fim, sem cartão final.
-
-Se o vídeo citar perfume, acrescente o grupo de perfumes (ver 05). Eles entram em fileira logo abaixo da legenda, na hora do nome, e o nome vai em CAIXA ALTA na legenda (`destaques` com `"estilo": "caps"`).
+23,9 s de bruto → 16,5 s. `conferir.py`: **PAUSAS: nenhuma**, **PALAVRAS: todas inteiras**, voz em -14,6 LUFS. Legenda no peito, 5 palavras-chave em 3D, botão SAIBA MAIS pulsando, marca d'água do início ao fim.
