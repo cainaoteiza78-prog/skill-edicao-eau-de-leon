@@ -25,7 +25,9 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 4. **Gancho:** destaque Bungee "PROMOÇÃO / 10.10" quando ele fala "promoção" (1,00).
 5. **Oferta:** impacto Bebas "10% DE DESCONTO / EM TODOS OS PERFUMES" quando ele fala "10" (2,24).
 6. **Grafia:** "Aude Leon" → Eau de Leon; "10 -10" → 10.10; "ultimora" → última hora; "salha mais" → Saiba mais. O "10 %" vira "10%" sozinho.
-7. **Legenda:** o render detectou o rosto em 5 quadros e pôs a legenda em y = 1151 (no peito).
+7. **Destaques:** "simplesmente **IMPERDÍVEL**", "10% em **TODOS OS PERFUMES**" (na 2ª vez que ele fala, porque a 1ª já está no texto de impacto) e "clica em **SAIBA MAIS**". Vieram do `destaques_sugeridos.txt`; o "saiba mais" foi achado à mão, porque o Whisper escreveu "salha mais".
+8. **Música:** `auto`, uma trilha nova gerada pra este vídeo.
+9. **Legenda:** o render detectou o rosto em 5 quadros e pôs a legenda em y = 1151 (no peito).
 
 ## plano.json
 
@@ -49,6 +51,12 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
     {"texto": "PROMOÇÃO\n10.10", "estilo": "destaque", "take": 1, "ini": 1.00, "fim": 3.10},
     {"texto": "10% DE DESCONTO\nEM TODOS OS PERFUMES", "estilo": "impacto", "take": 2, "ini": 2.24, "fim": 4.70}
   ],
+  "destaques": [
+    {"take": 1, "ini": 4.86, "fim": 5.60},
+    {"take": 2, "ini": 8.80, "fim": 9.75},
+    {"take": 3, "ini": 3.26, "fim": 3.80}
+  ],
+  "musica": "auto",
   "cartao_final": true
 }
 ```

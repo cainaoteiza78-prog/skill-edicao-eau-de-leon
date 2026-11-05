@@ -30,6 +30,9 @@ ESTILO_TEXTO = {
     'destaque': {'fonte': 'Bungee', 'arquivo': 'Bungee-Regular.ttf', 'tamanho': 239, 'bold': 0,
                  'sub': 0.82, 'entrelinha': 1.06, 'sombra': (5, 8, 5, 0x38)},
     'rotulo': {'arquivo': 'TikTokSans-SemiBold.ttf', 'tamanho': 62, 'contorno': 0.075},
+    # palavra-chave dentro da legenda ("clica em SAIBA MAIS"): linha própria,
+    # maior, CAIXA ALTA, entra com pop. 'cor' = colorida | 'grande' = branca e maior
+    'destaque_legenda': {'escala': {'cor': 1.45, 'grande': 1.75}, 'cor': '#FFD23F', 'vao': 0.62},
 }
 LARG_MAX = W * 0.90
 
@@ -89,9 +92,29 @@ Style: Dst,{D['fonte']},{D['tamanho']},&H00FFFFFF,&H00FFFFFF,&H00000000,&H000000
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     ev = []
+    DL = ESTILO_TEXTO['destaque_legenda']
+    pop = '\\fscx55\\fscy55\\t(0,120,\\fscx112\\fscy112)\\t(120,200,\\fscx100\\fscy100)'
     for l in legendas:
-        tam = caber(l['texto'], L['arquivo'], L['tamanho'])
-        ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
+        if not l.get('destaque'):
+            tam = caber(l['texto'], L['arquivo'], L['tamanho'])
+            ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
+            continue
+        estilo = l.get('estilo_destaque', 'cor')
+        td = caber(l['destaque'], L['arquivo'], int(L['tamanho'] * DL['escala'].get(estilo, 1.45)))
+        cor = ''
+        if estilo == 'cor':
+            r, g, b = (int(DL['cor'][k:k + 2], 16) for k in (1, 3, 5))
+            cor = f'\\1c&H{b:02X}{g:02X}{r:02X}&'
+        if l['texto']:
+            tn = caber(l['texto'], L['arquivo'], L['tamanho'])
+            # frase normal sobe, palavra-chave desce: o par fica centrado no peito
+            yn = int(y_legenda - td * DL['vao'] / 2)
+            yd = int(y_legenda + tn * DL['vao'] / 2 + td * 0.12)
+            ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, yn, tn, esc(l['texto']), L['sombra'])
+        else:
+            yd = y_legenda
+        ev += _par(1, l.get('ini_destaque', l['ini']), l['fim'], 'Leg', W // 2, yd, td, esc(l['destaque']),
+                   L['sombra'], extra_txt=cor + pop, extra_sombra=pop)
 
     rnd = random.Random(7)
     for t in textos:

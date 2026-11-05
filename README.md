@@ -19,24 +19,34 @@ instalar-skill.ps1             ← instala a skill no Claude Code (Windows)
 instalar-skill.sh              ← idem (Mac/Linux)
 ```
 
-## Instalação (uma vez)
+## Instalação (uma vez) — o Claude faz tudo
 
-**Windows (PowerShell):**
+Pré-requisitos: ter o **Claude Code** instalado e acesso a este repositório (o dono adiciona seu usuário do GitHub como colaborador).
+
+Abra o Claude Code em qualquer pasta e cole:
+
+> Instala a skill de edição da Eau de Leon: clona https://github.com/cainaoteiza78-prog/skill-edicao-eau-de-leon.git numa pasta temporária, roda o `instalar-skill.ps1` (Windows) ou `instalar-skill.sh` (Mac/Linux) que está nele e só me avisa quando aparecer "PRONTO".
+
+O Claude copia a skill para `~/.claude/skills/edicao-eau-de-leon` e roda o **preparador** (`scripts/preparar.ps1` / `preparar.sh`). O preparador instala sozinho o que a edição precisa e que não vem no computador:
+
+| Programa | Pra quê | Como é instalado |
+|---|---|---|
+| Python 3.12 | roda os scripts da skill | winget (Windows) / Homebrew (Mac) / apt (Linux) |
+| ffmpeg (versão completa) | corta, junta, põe legenda e exporta o vídeo | idem |
+| Runtime do Visual C++ (só Windows) | exigido pela transcrição | winget |
+| Bibliotecas Python (`requirements.txt`) | transcrição, detecção de rosto, imagens | pip |
+| Modelo de transcrição Whisper "small" (~500 MB) | entende a fala, no próprio PC e grátis | baixado uma vez |
+
+Na 1ª vez leva alguns minutos e baixa ~1 GB. Tudo é grátis e roda no computador, sem nenhuma API paga. Se faltar algo depois, a própria skill percebe antes de editar e roda o preparador de novo (é o "Passo 0" do SKILL.md).
+
+Para atualizar a skill: peça ao Claude "atualiza a skill de edição da Eau de Leon" (ele faz `git pull` e roda o instalador de novo).
+
+Instalação manual (se preferir):
 ```powershell
 git clone https://github.com/cainaoteiza78-prog/skill-edicao-eau-de-leon.git
 cd skill-edicao-eau-de-leon
 powershell -ExecutionPolicy Bypass -File .\instalar-skill.ps1
 ```
-
-**Mac/Linux:**
-```bash
-git clone https://github.com/cainaoteiza78-prog/skill-edicao-eau-de-leon.git
-cd skill-edicao-eau-de-leon && bash instalar-skill.sh
-```
-
-O instalador copia a skill para `~/.claude/skills/edicao-eau-de-leon`, instala ffmpeg/Python se faltarem, as bibliotecas (`requirements.txt`), baixa o modelo de transcrição e roda um teste (`scripts/verificar.py`). No fim tem que aparecer **"Tudo pronto."**
-
-Para atualizar depois: `git pull` e rode o instalador de novo.
 
 ## Como usar
 
@@ -46,7 +56,7 @@ Abra o Claude Code na pasta onde estão os vídeos e peça, por exemplo:
 
 Ou chame direto: `/edicao-eau-de-leon take1.mp4 take2.mp4`.
 
-O Claude vai: transcrever → decidir cortes, legenda, textos e perfumes → renderizar um rascunho → conferir os quadros → renderizar o final. Sai `edicao/editado.mp4` + `edicao/legenda.srt`.
+O Claude vai: transcrever → decidir cortes, legenda, destaques, textos e perfumes → renderizar um rascunho → conferir os quadros → renderizar o final. Sai `edicao/editado.mp4` + `edicao/legenda.srt`.
 
 ## Requisitos
 

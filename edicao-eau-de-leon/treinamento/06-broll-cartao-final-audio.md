@@ -28,9 +28,10 @@ Caminho relativo é a partir da pasta de trabalho.
 ## Áudio
 
 - **Voz:** o render limpa graves (< 80 Hz) e nivela em **-14 LUFS** (padrão Instagram/TikTok). Micro-fade de 20–30 ms em cada corte pra não estalar.
-- **Música:** os reels usam "áudio original" — a voz manda. Trilha é opcional:
-  - `"musica": null` (padrão) → sem trilha.
-  - `"musica": "auto"` → usa a primeira faixa em `assets/musicas/` (coloque lá trilhas **licenciadas/sem direitos**).
-  - `"musica": "C:/caminho/trilha.mp3"` → essa faixa.
-  - A trilha fica bem baixa (volume 0,12) e **abaixa sozinha** quando alguém fala (sidechain); entra com fade de 0,8 s e sai com fade de 1,5 s.
+- **Música suave de fundo: sempre, e sempre diferente** (padrão `"musica": "auto"`).
+  - Se houver faixas **licenciadas** em `assets/musicas/` (mp3/wav/m4a), o render usa uma delas em **rodízio**: não repete a do vídeo anterior.
+  - Se a pasta estiver vazia, o render **gera uma trilha nova** (`scripts/trilha.py`): lofi/ambiente calmo com piano elétrico, pad, baixo e batida leve. Tom, andamento (68–88 bpm), acordes e instrumentos são sorteados a cada vídeo. É feita na hora, então não tem direito autoral nem custo.
+  - Fica bem baixa (~20 dB abaixo da voz) e **abaixa sozinha** quando alguém fala. Entra com fade de 0,8 s e sai com fade de 1,5 s junto com o cartão final.
+  - `"musica": "caminho/trilha.mp3"` usa uma faixa específica; `"musica": null` tira a música (só se o usuário pedir).
+  - O terminal mostra qual foi usada (`música: gerada (semente …)` ou `música: licenciada: …`). Para repetir exatamente uma trilha gerada: `python scripts/trilha.py trilha.wav --duracao 30 --semente <número>` e use o caminho em `"musica"`.
 - Não adicione efeito sonoro (whoosh, pop, ding). O estilo não usa.

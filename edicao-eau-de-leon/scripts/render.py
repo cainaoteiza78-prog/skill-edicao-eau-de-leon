@@ -40,6 +40,7 @@ from catalogo import carregar, por_id, norm  # noqa: E402
 from cortes import energia_db, pedacos_do_trecho  # noqa: E402
 from textos import montar_ass, rotulo_png  # noqa: E402
 from enquadramento import altura_legenda  # noqa: E402
+import trilha  # noqa: E402
 
 W, H, FPS = 1080, 1920, 30
 
@@ -50,7 +51,7 @@ ESTILO = {
     'perfume': {'altura': 300, 'altura_grande': 460, 'base_y': 1420, 'largura_linha': 940, 'slot_max': 250},
     'zoom_corte': 1.12,
     'cartao_final': {'duracao': 2.0, 'dissolve': 0.45, 'logo_largura': 560, 'logo_y': 768},
-    'musica_volume': 0.12,
+    'musica_volume': 0.14,
     'whip': 0.10,
 }
 
@@ -214,19 +215,40 @@ def blocos_legenda(plano, words):
             t = t.upper()
         return t
 
+    # destaques: janelas (tempo final) em que a fala é palavra-chave
+    dest = []
+    for d in plano.get('destaques', []):
+        a = plano['_map'](d['take'], d['ini'])
+        b = plano['_map'](d['take'], d['fim'], False)
+        if a is not None and b is not None:
+            dest.append((a - 0.02, b + 0.02, d.get('estilo', 'cor')))
+
+    def em_destaque(w):
+        meio = (w['ini'] + w['fim']) / 2
+        return next((k for k, (a, b, _) in enumerate(dest) if a <= meio <= b), None)
+
     blocos, cur = [], []
     fim_frase = True
     for i, w in enumerate(words):
         prev = words[i - 1] if i else None
-        novo = not cur
+        em = em_destaque(w)
         if cur:
-            txt = ' '.join(x['t'] for x in cur)
-            if modo == 'palavra' or len(cur) >= E['max_palavras'] or len(txt) + 1 + len(limpar(w['p'])) > E['max_chars'] \
-                    or w['ini'] - prev['fim'] > 0.35 or prev['p'].rstrip()[-1:] in '.?!' \
-                    or (prev['p'].rstrip()[-1:] in ',;:' and len(cur) >= 2):
+            em_prev = cur[-1]['em']
+            normais = [x for x in cur if x['em'] is None]
+            txt = ' '.join(x['t'] for x in normais)
+            pausa = w['ini'] - prev['fim'] > 0.35
+            if em is not None and em == em_prev:
+                quebra = len([x for x in cur if x['em'] == em]) >= 5   # destaque fica junto
+            elif em_prev is not None:
+                quebra = True                                          # destaque fecha o bloco
+            elif em is not None:
+                quebra = len(normais) > 3 or pausa                     # até 3 palavras antes do destaque
+            else:
+                quebra = modo == 'palavra' or len(cur) >= E['max_palavras']                     or len(txt) + 1 + len(limpar(w['p'])) > E['max_chars'] or pausa                     or prev['p'].rstrip()[-1:] in '.?!' or (prev['p'].rstrip()[-1:] in ',;:' and len(cur) >= 2)
+            if quebra:
                 blocos.append(cur)
-                cur, novo = [], True
-        cur.append({'t': fmt(w, fim_frase), 'ini': w['ini'], 'fim': w['fim']})
+                cur = []
+        cur.append({'t': fmt(w, fim_frase), 'ini': w['ini'], 'fim': w['fim'], 'em': em})
         fim_frase = w['p'].rstrip()[-1:] in '.?!'
     if cur:
         blocos.append(cur)
@@ -235,7 +257,14 @@ def blocos_legenda(plano, words):
         ini = b[0]['ini']
         prox = blocos[i + 1][0]['ini'] if i + 1 < len(blocos) else None
         fim = prox if prox is not None and prox - b[-1]['fim'] < 0.5 else b[-1]['fim'] + 0.25
-        out.append({'texto': ' '.join(x['t'] for x in b if x['t']), 'ini': ini, 'fim': max(fim, ini + 0.25)})
+        normais = [x for x in b if x['em'] is None and x['t']]
+        destq = [x for x in b if x['em'] is not None and x['t']]
+        bloco = {'texto': ' '.join(x['t'] for x in normais), 'ini': ini, 'fim': max(fim, ini + 0.25)}
+        if destq:
+            bloco['destaque'] = ' '.join(x['t'] for x in destq).upper()
+            bloco['ini_destaque'] = destq[0]['ini']
+            bloco['estilo_destaque'] = dest[destq[0]['em']][2]
+        out.append(bloco)
     return out
 
 
@@ -413,7 +442,8 @@ def main():
     with open(os.path.join(trabalho, 'legenda.srt'), 'w', encoding='utf8') as f:
         for i, l in enumerate(leg_ok, 1):
             ts = lambda x: f'{int(x // 3600):02d}:{int(x % 3600 // 60):02d}:{int(x % 60):02d},{int(round(x % 1 * 1000)) % 1000:03d}'
-            f.write(f"{i}\n{ts(l['ini'])} --> {ts(l['fim'])}\n{l['texto']}\n\n")
+            txt = ' '.join(x for x in (l['texto'], l.get('destaque', '')) if x)
+            f.write(f"{i}\n{ts(l['ini'])} --> {ts(l['fim'])}\n{txt}\n\n")
     fdir = os.path.join(tmp, 'fonts')
     os.makedirs(fdir, exist_ok=True)
     for fn in os.listdir(FONTES):
@@ -490,10 +520,13 @@ def main():
     else:
         grafo.append(f'{cur}null[vout]')
 
-    musica = plano.get('musica')
+    # música suave sempre (padrão "auto"): trilha licenciada em rodízio ou uma nova gerada
+    musica = plano.get('musica', 'auto')
     if musica == 'auto':
-        cand = sorted(f for f in os.listdir(MUSICAS) if f.lower().endswith(('.mp3', '.wav', '.m4a'))) if os.path.isdir(MUSICAS) else []
-        musica = os.path.join(MUSICAS, cand[0]) if cand else None
+        musica, origem = trilha.escolher(final, tmp)
+        print(f'música: {origem}', flush=True)
+    elif musica and not os.path.isabs(musica):
+        musica = os.path.normpath(os.path.join(trabalho, musica))
     # Loudnorm em 2 passadas: mede a voz editada e aplica a correção exata (-14 LUFS).
     r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', 'junto.mkv', '-vn', '-af',
                         'highpass=f=80,loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json', '-f', 'null', '-'],
@@ -536,6 +569,7 @@ def main():
         'broll': [{'arquivo': os.path.basename(b['arq']), 'ini': round(b['A'], 2), 'fim': round(b['B'], 2)} for b in brolls],
         'cortes': [round(s['dst'], 2) for s in segs],
         'legenda_y': y_legenda, 'rostos': rostos,
+        'destaques': [{'texto': l['destaque'], 'ini': round(l['ini_destaque'], 2)} for l in leg_ok if l.get('destaque')],
         'bastidor_removido': bastidor,
     }
     with open(os.path.join(trabalho, 'linha_do_tempo.json'), 'w', encoding='utf8') as f:

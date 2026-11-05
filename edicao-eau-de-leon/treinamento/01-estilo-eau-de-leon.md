@@ -11,6 +11,7 @@ Estudo feito quadro a quadro, com recorte em resolução nativa, nos reels da **
 | Elemento | Fonte | Aparência | Exemplo do perfil |
 |---|---|---|---|
 | Legenda | **Poppins Bold** | branca, minúscula como se fala, sombra preta suave deslocada pra baixo e pra direita (sem contorno), 1 linha | "já começou", "DE QUAL ESCOLHER?" |
+| Destaque de palavra-chave | Poppins Bold, 1,45× | CAIXA ALTA, **amarela**, linha própria logo abaixo da frase, pop | "clica em **SAIBA MAIS**", "simplesmente **IMPERDÍVEL**" |
 | Texto de impacto | **Bebas Neue** engrossada (o negrito do CapCut) | branca, CAIXA ALTA, sombra suave; a 1ª linha é digitada letra a letra e as de baixo vêm menores | "30% DE DESCONTO / EM TODOS OS PERFUMES" |
 | Destaque | **Bungee** | branca, CAIXA ALTA, sombra mais escura, entra com pop; linhas quase encostando | "QUIZ 100% / GRATUITO / E PERSONALIZADO" |
 | Rótulo / POV | **TikTok Sans SemiBold** (texto nativo do TikTok/Instagram) | branca, contorno preto fino, frase normal (não caixa alta) + emoji colorido | "POV: Você encontrou o perfume perfeito para balada!", "Bom 🤗", "Dia ☀️ X Noite 🌙" |
@@ -52,11 +53,11 @@ Sentada na frente da estante, uma take quase contínua.
 ## O que NÃO é o estilo
 
 - Fonte inventada ou "parecida": use só as 5 da tabela.
-- Legenda grande amarela, palavra colorida, caixa atrás do texto, contorno grosso.
+- Legenda inteira amarela ou colorida, caixa atrás do texto, contorno grosso. A cor vai **só** na palavra-chave destacada (2 a 4 por vídeo).
 - Legenda no queixo ou na barriga: é **no peito**.
 - Sombra em perfume, moldura, sticker animado, seta desenhada.
 - Zoom lento contínuo (Ken Burns) na pessoa falando.
 - Transição em todo corte (corte seco é o padrão).
 - Narração, locução ou qualquer voz que não seja a das takes.
-- Música alta competindo com a voz.
+- Sem música, ou música alta competindo com a voz. O padrão é trilha suave, baixa e diferente a cada vídeo.
 - Vinheta de abertura.

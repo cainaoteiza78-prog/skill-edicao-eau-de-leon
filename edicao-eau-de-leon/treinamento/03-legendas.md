@@ -19,6 +19,36 @@ A legenda é **sempre a mesma** e o render faz tudo. Seu trabalho é escolher o 
 | `palavra` | `creator` | uma palavra por vez |
 | `nenhuma` | formatos sem fala | — |
 
+## Destaque de palavra-chave (`destaques`)
+
+A palavra que vende ganha destaque **dentro da legenda**: ela vai para uma **linha própria logo abaixo**, **maior** (1,45×), em **CAIXA ALTA**, **amarela** (#FFD23F) e entra com um **pop** no instante em que é falada. O resto da frase continua normal em cima:
+
+```
+          clica em            ← legenda normal (branca)
+       SAIBA MAIS             ← destaque: maior, amarelo, pop
+```
+
+Exemplos: "clica em **SAIBA MAIS**", "simplesmente **IMPERDÍVEL**", "10% em **TODOS OS PERFUMES**", "**FRETE GRÁTIS** pra todo o Brasil", "só **HOJE**".
+
+O que destacar:
+- CTA ("saiba mais", "link na bio", "chama no direct")
+- benefício ou oferta ("todos os perfumes", "frete grátis", "10%", "cupom")
+- adjetivo forte do gancho ("imperdível", "o melhor", "exclusivo")
+- **2 a 4 destaques por vídeo de 30 s.** Mais que isso perde a força.
+- Nunca destaque o que já está num texto de impacto na tela ao mesmo tempo.
+
+O `transcrever.py` gera `destaques_sugeridos.txt` com as candidatas e seus tempos. Escolha, confira os tempos e escreva:
+```json
+"destaques": [
+  {"take": 1, "ini": 4.86, "fim": 5.60},
+  {"take": 2, "ini": 8.80, "fim": 9.75},
+  {"take": 3, "ini": 3.26, "fim": 3.80, "estilo": "grande"}
+]
+```
+- `ini`/`fim` cobrem **só as palavras destacadas** (início da 1ª até o fim da última). Até 5 palavras.
+- `estilo`: `cor` (padrão: amarelo e 1,45×) ou `grande` (branco e 1,75×, pra quando o fundo é amarelado).
+- A cor é uma só pro vídeo todo (`ESTILO_TEXTO['destaque_legenda']['cor']` em `scripts/textos.py`).
+
 ## Ênfase em CAIXA ALTA (`legenda_maiusculas`)
 
 No reel do Quiz, "DE QUAL ESCOLHER?" aparece em maiúsculas: é a pergunta do gancho. Use no máximo 1 ou 2 vezes por vídeo, sempre na pergunta do gancho ou na frase que vende.

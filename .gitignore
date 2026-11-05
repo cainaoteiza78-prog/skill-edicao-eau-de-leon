@@ -4,3 +4,6 @@ edicao/
 _render/
 *.wav
 .DS_Store
+edicao-eau-de-leon/scripts/python.txt
+.venv/
+edicao-eau-de-leon/assets/musicas/.rodizio.json

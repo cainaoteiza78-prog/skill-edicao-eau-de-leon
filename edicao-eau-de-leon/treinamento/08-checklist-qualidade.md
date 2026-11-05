@@ -19,6 +19,7 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Sem ponto/vírgula; ? e ! preservados; começo de frase minúsculo; marcas com maiúscula.
 - [ ] Modo certo: `frase` (leo) ou `palavra` (creator).
 - [ ] Legenda não aparece junto com texto de impacto.
+- [ ] 2 a 4 **destaques** de palavra-chave (CTA, oferta, adjetivo forte), amarelos, numa linha própria logo abaixo, entrando na hora da palavra.
 
 ## Textos de impacto
 - [ ] No máximo 3 em 30 s; o do gancho aparece nos primeiros 3 s (formato leo com promessa clara).
@@ -35,7 +36,7 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 ## Cartão final e áudio
 - [ ] Formato leo: dissolve para o fundo preto com logo Eau de Leon centralizado, ~2 s. Creator: sem cartão.
 - [ ] Voz clara, sem estalo nos cortes, volume constante.
-- [ ] Música (se houver) não compete com a voz.
+- [ ] Tem música suave de fundo, diferente da do vídeo anterior, e ela não compete com a voz.
 
 ## Técnico
 - [ ] `ffprobe` mostra 1080×1920, 30 fps, h264 + aac.

@@ -17,7 +17,7 @@ def item(nome, cond, dica=''):
     ok &= bool(cond)
 
 
-item('ffmpeg no PATH', shutil.which('ffmpeg'), 'instale o ffmpeg (scripts/instalar.ps1)')
+item('ffmpeg no PATH', shutil.which('ffmpeg'), 'rode scripts/preparar.ps1 (Windows) ou scripts/preparar.sh')
 item('ffprobe no PATH', shutil.which('ffprobe'), 'vem junto com o ffmpeg')
 if shutil.which('ffmpeg'):
     filtros = subprocess.run(['ffmpeg', '-hide_banner', '-filters'], capture_output=True, text=True).stdout

@@ -50,6 +50,42 @@ def extrair_audio(arq: str, wav: str):
     subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', arq, '-vn', '-ac', '1', '-ar', '16000', wav], check=True)
 
 
+# Palavras-chave que viram DESTAQUE na legenda (o Claude confere e decide).
+CHAVES = [
+    'saiba mais', 'link da bio', 'link na bio', 'imperdivel', 'todos os perfumes', 'todo o site', 'site todo',
+    'frete gratis', 'gratis', 'gratuito', 'cupom', 'desconto', 'so hoje', 'ultima hora', 'ultimas unidades',
+    'exclusivo', 'lancamento', 'promocao', 'black friday', 'esgota', 'acaba hoje', 'primeira compra',
+    'presente', 'kit', 'decant', 'original', 'fixacao', 'o melhor', 'mais vendido', 'chama no direct',
+]
+
+
+def sugerir_destaques(saida, pasta):
+    import re
+    import unicodedata
+
+    def n(s):
+        s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
+        return re.sub(r'[^a-z0-9%]+', ' ', s).strip()
+    linhas = []
+    for take in saida['takes']:
+        pal = take['palavras']
+        toks = [n(w['p']) for w in pal]
+        for i in range(len(pal)):
+            for c in sorted(CHAVES, key=len, reverse=True):
+                cs = c.split()
+                if toks[i:i + len(cs)] == cs:
+                    j = i + len(cs) - 1
+                    linhas.append(f"[take {take['n']} | {pal[i]['ini']:6.2f} → {pal[j]['fim']:6.2f}] "
+                                  + ' '.join(w['p'] for w in pal[i:j + 1]))
+                    break
+            if toks[i] != '%' and (toks[i].endswith('%') or (i + 1 < len(toks) and toks[i + 1] == '%')):
+                j = i + (1 if toks[i + 1:i + 2] == ['%'] else 0)
+                linhas.append(f"[take {take['n']} | {pal[i]['ini']:6.2f} → {pal[j]['fim']:6.2f}] "
+                              + ' '.join(w['p'] for w in pal[i:j + 1]))
+    with open(os.path.join(pasta, 'destaques_sugeridos.txt'), 'w', encoding='utf8') as f:
+        f.write('\n'.join(linhas) if linhas else 'Nenhuma palavra-chave da lista encontrada.')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('trabalho')
@@ -103,6 +139,7 @@ def main():
     with open(os.path.join(a.trabalho, 'transcricao.txt'), 'w', encoding='utf8') as f:
         f.write('\n'.join(linhas))
 
+    sugerir_destaques(saida, a.trabalho)
     cat = carregar()
     cit = achar_citacoes(saida, cat)
     with open(os.path.join(a.trabalho, 'perfumes_citados.txt'), 'w', encoding='utf8') as f:
