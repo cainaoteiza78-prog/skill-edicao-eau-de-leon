@@ -13,14 +13,14 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Whips só em troca de assunto/cena, no máximo 1 a cada ~6 s.
 
 ## Legenda
-- [ ] **Abaixo do pescoço, na altura do peito**, mesma posição o vídeo todo, uma linha, branca, sombra suave, sem caixa. Se caiu no queixo ou na barriga, ajuste `legenda_y`.
+- [ ] **Abaixo do pescoço, na altura do peito**, mesma posição o vídeo todo, uma linha, branca, contorno fino + sombra suave, sem caixa. Se caiu no queixo ou na barriga, ajuste `legenda_y`.
 - [ ] Fontes: legenda Poppins, impacto Bebas Neue, destaque Bungee, rótulo TikTok Sans. Nenhuma outra.
 - [ ] Nomes certos: Eau de Leon, decant, nomes de perfume com a grafia oficial.
 - [ ] Sem ponto/vírgula; ? e ! preservados; começo de frase minúsculo; marcas com maiúscula.
 - [ ] Modo certo: `frase` (leo) ou `palavra` (creator).
 - [ ] Legenda não aparece junto com texto de impacto.
-- [ ] Toda fala da oferta tem painel de vidro em **QUANTO / EM QUÊ / ATÉ QUANDO**, com o fundo desfocado de verdade atrás, entrando na hora da palavra. Nome de perfume em CAIXA ALTA (`caps`).
-- [ ] "SAIBA MAIS" é um **botão de vidro escuro**, maior que os outros textos, pulsando devagar até o fim.
+- [ ] Toda fala da oferta tem a **legenda aumentada** (Bebas, borda fina, sombra maior) em QUANTO / EM QUÊ / ATÉ QUANDO, entrando na hora da palavra. Nome de perfume em CAIXA ALTA (`caps`).
+- [ ] "SAIBA MAIS" é a **placa de vidro 3D** (rosa ou azul da marca, contrastando com o fundo), com o fundo desfocado de verdade, texto de vidro com glow, pulsando devagar até o fim. É o único glassmorphism do vídeo.
 - [ ] **Nenhuma redundância:** nada do que um texto grande mostrou reaparece na legenda logo depois (leia o `legenda.srt`).
 - [ ] **Pacing:** algo muda na tela a cada 2–3 s (linha `pacing:` do render), um evento grande de cada vez.
 

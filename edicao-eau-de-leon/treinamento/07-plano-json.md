@@ -23,7 +23,7 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
 
   "correcoes": [ {"de": "decan", "para": "decant"} ],
   "legenda_maiusculas": [ {"take": 1, "ini": 2.40, "fim": 3.10} ],
-  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80} ],   // vidro fosco na palavra-chave (ver 03); "estilo" opcional: 3d (padrão) | caps | botao (CTA vira botão sozinho)
+  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80} ],   // legenda aumentada na palavra-chave (ver 03); "estilo": "caps" pra nome de perfume. CTA vira vidro 3D sozinho
 
   "textos": [
     {"texto": "ATÉ 30% DE DESCONTO\nNO SITE TODO", "estilo": "impacto", "take": 2, "ini": 7.8, "fim": 10.2},
@@ -45,6 +45,7 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
   ],
 
   "divisorias": [ {"take": 1, "ini": 0, "fim": 12, "y0": 0.23, "y1": 0.62} ],   // linha branca do "Dia X Noite"
+  "cta_cor": "azul",                 // opcional: rosa | azul (padrão: automático pelo contraste)
   "legenda_y": 0.58,                 // opcional: força a altura da legenda (padrão = automático pelo rosto)
 
   "musica": "auto"                   // padrão "auto" (rodízio/gerada) | "caminho/da/trilha.mp3" | null (sem música)

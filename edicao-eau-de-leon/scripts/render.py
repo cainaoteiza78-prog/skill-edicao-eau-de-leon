@@ -42,6 +42,8 @@ from textos import montar_ass, rotulo_png  # noqa: E402
 from enquadramento import altura_legenda  # noqa: E402
 import trilha  # noqa: E402
 import letreiros  # noqa: E402
+import textos as textos_mod  # noqa: E402
+import cta as cta_mod  # noqa: E402
 
 W, H, FPS = 1080, 1920, 30
 
@@ -533,6 +535,7 @@ def main():
         fala_ps = len(words) / max(total, 1)                 # palavras por segundo
         periodo = min(1.3, max(0.8, 2.6 / max(fala_ps, 0.5)))  # 1 pulso a cada ~2-3 palavras
         letreiros.CAIXAS.clear()
+        textos_mod.CTAS.clear()
         f.write(montar_ass(leg_ok, textos, y_legenda, total + ESTILO['cauda'], periodo))
     with open(os.path.join(trabalho, 'legenda.srt'), 'w', encoding='utf8') as f:
         for i, l in enumerate(leg_ok, 1):
@@ -614,6 +617,38 @@ def main():
         idx += 1
     grafo.append(f"{cur}ass=legenda.ass:fontsdir=fonts[vt]")
     cur = '[vt]'
+    # CTA final: placa de vidro 3D (cta.py) — fundo desfocado de verdade + peça por cima
+    def cor_por_contraste(c):
+        """Rosa ou azul (cores da marca): a que mais contrasta com o fundo atrás do CTA."""
+        try:
+            r = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f"{c['a'] + 0.4:.2f}", '-i', 'junto.mkv', '-frames:v', '1',
+                                '-vf', f"crop={W}:400:0:{int(max(0, min(H - 400, c['cy'] - 200)))},scale=8:4",
+                                '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], cwd=tmp, capture_output=True)
+            px = np.frombuffer(r.stdout, np.uint8).reshape(-1, 3).astype(float).mean(0)
+            return 'azul' if px[0] > px[2] + 18 else 'rosa'   # fundo quente/rosado → azul
+        except Exception:
+            return 'azul'
+    for k, c in enumerate(textos_mod.CTAS):
+        cor_cta = plano.get('cta_cor') or cor_por_contraste(c)
+        pasta = os.path.join(tmp, f'cta{k}')
+        os.makedirs(pasta, exist_ok=True)
+        dur = max(0.5, c['b'] - c['a'])
+        qw, qh = cta_mod.quadros(c['texto'], dur, c['periodo'], pasta, cor_cta)
+        x = (W - qw) // 2
+        y = int(min(max(0, c['cy'] - qh / 2), H - qh))
+        print(f"CTA de vidro: {c['texto'].upper()} ({cor_cta}) {c['a']:.2f}s → {c['b']:.2f}s", flush=True)
+        for nome, rot in (('ctam', 'm'), ('cta', 'p')):
+            entradas += ['-framerate', str(FPS), '-i', os.path.join(f'cta{k}', f'{nome}_%04d.png')]
+            grafo.append(f"[{idx}:v]setpts=PTS-STARTPTS+{c['a']:.3f}/TB,format={'gray' if rot == 'm' else 'rgba'}[ct{k}{rot}]")
+            idx += 1
+        grafo.append(f'{cur}split[ct{k}a][ct{k}b]')
+        grafo.append(f"[ct{k}b]crop={qw}:{qh}:{x}:{y},boxblur=22:2,eq=brightness=-0.04:saturation=1.1,format=rgba[ct{k}c]")
+        grafo.append(f"[ct{k}c][ct{k}m]alphamerge[ct{k}d]")
+        grafo.append(f"[ct{k}a][ct{k}d]overlay=x={x}:y={y}:enable='between(t,{c['a']:.3f},{c['b']:.3f})':eof_action=pass[ct{k}e]")
+        grafo.append(f"[ct{k}e][ct{k}p]overlay=x={x}:y={y}:enable='between(t,{c['a']:.3f},{c['b']:.3f})':eof_action=pass[ct{k}]")
+        cur = f'[ct{k}]'
+    grafo.append(f'{cur}null[vt2]')
+    cur = '[vt2]'
     # marca d'água: logo pequeno, centralizado na borda de baixo, do início ao fim
     M = ESTILO['marca_dagua']
     logo = Image.open(LOGO).convert('RGBA')

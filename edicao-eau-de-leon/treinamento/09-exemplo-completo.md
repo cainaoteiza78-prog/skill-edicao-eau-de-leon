@@ -23,8 +23,8 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 2. **Trechos:** um por take, da primeira à última palavra. O render tira as pausas e respirações sozinho, sem cortar palavra.
 3. **Whip** só na troca do gancho para a oferta (muda o cenário).
 4. **Gancho:** destaque Bungee "PROMOÇÃO / 10.10" de "promoção" até o fim do segundo "10" (2,75). Sem redundância: a legenda continua em "Eau de Leon já começou", sem repetir "10.10".
-5. **Palavras-chave em vidro fosco** (regra da oferta, vindas do `destaques_sugeridos.txt`): "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o dia **10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**." O render pôs cada uma num painel de vidro fosco (película clara, azulada e rosada em rodízio), com zoom de ênfase junto.
-6. **CTA:** "clica em Saiba mais" virou **botão de vidro escuro** sozinho, pulsando até o fim no ritmo da fala.
+5. **Palavras-chave** (regra da oferta, vindas do `destaques_sugeridos.txt`): "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o dia **10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**." Em cada uma, a legenda cresceu para Bebas (frase em cima, palavra-chave grande embaixo), com zoom de ênfase.
+6. **CTA:** "clica em Saiba mais" virou a **placa de vidro 3D** sozinha, azul (o fundo era a caixa rosa), pulsando até o fim.
 7. **Grafia:** "Aude Leon" → Eau de Leon; "10 -10" → 10.10; "ultimora" → última hora; "salha mais" → Saiba mais; "do desconto" → de desconto; "de mês" → desse mês; "isso o mês" → isso mesmo.
 8. **Música:** `auto`, trilha animada nova.
 9. **Pacing:** o render fez 4 punches de enquadramento e 6 zooms de ênfase.
@@ -33,7 +33,7 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ```json
 {
-  "saida": "editado-v3.mp4",
+  "saida": "editado-v4.mp4",
   "formato": "leo",
   "legenda": "frase",
   "trechos": [

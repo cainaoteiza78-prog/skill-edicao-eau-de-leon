@@ -4,7 +4,7 @@ A legenda é **sempre a mesma** e o render faz tudo. Seu trabalho é escolher o 
 
 ## Como ela é (igual aos reels)
 
-- **Poppins Bold**, branca, com **sombra preta suave** deslocada pra baixo e pra direita. É uma sombra, não um contorno.
+- **Poppins Bold**, branca, um pouco grande (uma frase de ~17 letras ocupa ~58% da largura), com **contorno escuro bem fino** e **sombra preta suave** deslocada pra baixo.
 - Uma linha só. Uma frase de ~22 caracteres ocupa ~55% da largura.
 - **Abaixo do pescoço, na altura do peito.** O render detecta o rosto e calcula a altura sozinho, uma vez pro vídeo todo. Se a pessoa estiver muito alta ou baixa no quadro e a legenda cair no queixo ou na barriga, force com `"legenda_y": 0.58` (fração da altura; 0,56–0,62 é o normal).
 - Aparece seca, sem animação de entrada, e troca no ritmo da fala.
@@ -19,23 +19,20 @@ A legenda é **sempre a mesma** e o render faz tudo. Seu trabalho é escolher o 
 | `palavra` | `creator` | uma palavra por vez |
 | `nenhuma` | formatos sem fala | — |
 
-## Destaque de palavra-chave: GLASSMORPHISM (`destaques`)
+## Destaque de palavra-chave: a PRÓPRIA legenda aumentada (`destaques`)
 
-A palavra que vende sai da legenda e aparece num **painel de vidro fosco**, logo abaixo da frase (que continua normal em cima). O visual é realista e premium, nada de cara de desenho:
-- o **vídeo atrás do painel fica desfocado de verdade** (o render recorta, desfoca e devolve aquele pedaço);
-- película translúcida por cima, borda fina de luz, reflexo suave no topo e sombra difusa embaixo (o painel "flutua");
-- texto **Poppins Bold** em CAIXA ALTA, espaçado, branco, com sombra sutil;
-- entrada discreta: aparece em 0,22 s subindo 24 px. **Nada** de giro, quique ou cor saturada: é isso que deixa o visual infantil.
+É assim que a Eau de Leon faz ("QUE UM DECANT DE 2 ML / RENDE MUITO"): quando chega a palavra-chave, a legenda daquela fala **cresce** e vira:
+- **Bebas Neue** engrossada, CAIXA ALTA, branca;
+- **borda escura fina** e **sombra maior** que a da legenda comum;
+- em duas linhas: a frase em cima, um pouco menor, e a palavra-chave embaixo, maior, entrando com um pop curto no instante em que é falada;
 - a câmera chega 8% mais perto junto (zoom de ênfase, ver 10-pacing).
 
 ```
-         liberamos              ← legenda normal (Poppins branca)
-   ╭──────────────────────╮
-   │   10% DE DESCONTO    │     ← vidro fosco (fundo desfocado)
-   ╰──────────────────────╯
+        LIBERAMOS               ← linha de cima (Bebas, 84%)
+     10% DE DESCONTO            ← palavra-chave (Bebas grande, pop)
 ```
 
-A película varia sozinha, em rodízio: clara, azulada (azul da marca), rosada (rosa da marca). Sempre bem sutil, porque o vidro é quase transparente.
+**Sem vidro, sem cor, sem caixa** nos destaques do corpo. O glassmorphism é só do CTA final.
 
 ### Como identificar as palavras-chave (a regra da oferta)
 
@@ -47,7 +44,7 @@ Em fala de promoção, destaque **sempre** estas 3 coisas, toda vez que forem fa
 
 Exemplo do dono: "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o dia **10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**."
 
-Também podem ganhar vidro: um adjetivo muito forte ("imperdível", "exclusivo"), mas só se o vídeo estiver com poucos destaques. **Nome de perfume** não vira 3D: vai em CAIXA ALTA dentro da legenda (`"estilo": "caps"`), como nos anúncios da marca ("esse aqui é o CREED AVENTUS").
+Também podem ganhar destaque: um adjetivo muito forte ("imperdível", "exclusivo"), mas só se o vídeo estiver com poucos destaques. **Nome de perfume** não vira 3D: vai em CAIXA ALTA dentro da legenda (`"estilo": "caps"`), como nos anúncios da marca ("esse aqui é o CREED AVENTUS").
 
 O `transcrever.py` gera `destaques_sugeridos.txt` já marcando QUANTO / EM QUE / ATE QUANDO / CTA-botao / FORTE com os tempos. Confira e copie:
 ```json
@@ -60,16 +57,16 @@ O `transcrever.py` gera `destaques_sugeridos.txt` já marcando QUANTO / EM QUE /
 ```
 `ini`/`fim` cobrem **só as palavras destacadas**, até 4 palavras.
 
-### "SAIBA MAIS" é SEMPRE um botão
+### "SAIBA MAIS" é SEMPRE uma placa de vidro 3D (o único glassmorphism)
 
-O CTA de clique ("saiba mais", "link na bio", "clica aqui", "compre agora") é desenhado como um **botão de vidro**:
-- pílula de **vidro escuro** fosco (contraste em qualquer fundo), texto branco Poppins Bold, maior que todos os outros textos;
-- borda de luz, reflexo no topo, sombra difusa e um halo bem leve;
-- aparece no peito, logo abaixo da legenda, saltando da tela;
-- **fica até o fim do vídeo pulsando devagar** (cresce 7% e volta), no ritmo da fala, uma vez a cada ~2–3 palavras;
-- é só visual, mas induz a pessoa a clicar no botão real do anúncio.
+O CTA de clique ("saiba mais", "link na bio", "clica aqui", "compre agora") é a **única** peça em glassmorphism. Ela é desenhada quadro a quadro pelo `scripts/cta.py`:
+- **placa de vidro flutuando em 3D:** o vídeo atrás fica desfocado de verdade, a placa tem perspectiva (levemente inclinada), espessura lateral, borda de luz, reflexo diagonal e sombra no "chão";
+- **o texto também é de vidro:** degradê da mesma cor, textura granulada, glow da própria cor, fio de luz em cima das letras e sombra que descola o texto da placa;
+- **cores: SEMPRE rosa ou azul da Eau de Leon** (#F2A595 / #6BA9CF), com **leve fade lateral** (degradê da esquerda pra direita). O vidro é da mesma cor do texto, só que mais escuro e suave, pra dar contraste;
+- a cor é **escolhida sozinha pelo contraste** com o fundo (fundo rosado/quente → azul, fundo frio → rosa). Pra forçar: `"cta_cor": "rosa"` ou `"azul"` no plano;
+- aparece logo abaixo da legenda, saltando da tela, e **fica até o fim** pulsando devagar no ritmo da fala e flutuando de leve.
 
-O render cria o botão **sozinho** sempre que a legenda tiver "Saiba mais" (depois das correções de grafia). Garanta só que a grafia está certa: o Whisper costuma ouvir "saia mais" ou "salha mais", então corrija com `{"de": "salha mais", "para": "Saiba mais"}`.
+O render cria o CTA **sozinho** sempre que a legenda tiver "Saiba mais" (depois das correções de grafia). Garanta só a grafia: `{"de": "salha mais", "para": "Saiba mais"}`.
 
 ### Nada de legenda repetida (redundância)
 
@@ -79,7 +76,7 @@ O render cria o botão **sozinho** sempre que a legenda tiver "Saiba mais" (depo
 
 Seu cuidado ao planejar:
 - O `fim` do texto grande deve ir até a **última palavra que ele resume** (em "a promoção do dia 10 do 10", até o fim do segundo "10").
-- Não ponha texto grande e vidro com as mesmas palavras na mesma fala. Ou é texto de impacto ("10% DE DESCONTO / EM TODOS OS PERFUMES"), ou são destaques em vidro nas palavras. Na dúvida, use os destaques em vidro.
+- Não ponha texto grande e destaque com as mesmas palavras na mesma fala. Ou é texto de impacto ("10% DE DESCONTO / EM TODOS OS PERFUMES"), ou são destaques em vidro nas palavras. Na dúvida, use os destaques.
 - Leia o `legenda.srt`: nenhuma palavra do texto grande pode reaparecer logo depois dele.
 
 ## Ênfase em CAIXA ALTA (`legenda_maiusculas`)

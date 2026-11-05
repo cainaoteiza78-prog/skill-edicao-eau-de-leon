@@ -25,16 +25,15 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 FONTES = os.path.normpath(os.path.join(AQUI, '..', 'assets', 'fontes'))
 
 ESTILO_TEXTO = {
-    'legenda': {'fonte': 'Poppins', 'arquivo': 'Poppins-Bold.ttf', 'tamanho': 88, 'bold': -1,
-                'sombra': (3, 5, 6, 0x5A)},            # dx, dy, desfoque, alfa (00=opaco FF=invisível)
+    'legenda': {'fonte': 'Poppins', 'arquivo': 'Poppins-Bold.ttf', 'tamanho': 100, 'bold': -1,
+                'sombra': (2, 5, 7, 0x48), 'contorno': 1.6, 'contorno_alfa': 0x80},            # dx, dy, desfoque, alfa (00=opaco FF=invisível)
     'impacto': {'fonte': 'Bebas Neue', 'arquivo': 'BebasNeue-Regular.ttf', 'tamanho': 158, 'bold': 0,
                 'engrossa': 2.2, 'entrelinha': 0.98, 'digitacao': 0.45, 'sombra': (4, 7, 9, 0x50)},
     'destaque': {'fonte': 'Bungee', 'arquivo': 'Bungee-Regular.ttf', 'tamanho': 239, 'bold': 0,
                  'sub': 0.82, 'entrelinha': 1.06, 'sombra': (5, 8, 5, 0x38)},
     'rotulo': {'arquivo': 'TikTokSans-SemiBold.ttf', 'tamanho': 62, 'contorno': 0.075},
-    # palavra-chave dentro da legenda ("clica em SAIBA MAIS"): linha própria,
-    # maior, CAIXA ALTA, entra com pop. 'cor' = colorida | 'grande' = branca e maior
-    'destaque_legenda': {'escala': {'cor': 1.45, 'grande': 1.75}, 'cor': '#FFD23F', 'vao': 0.62},
+    # palavra-chave do corpo = legenda aumentada (Bebas), ver treinamento/03
+    'legenda_grande': {'tamanho': 140, 'linha_de_cima': 0.84, 'sombra': (4, 8, 10, 0x38), 'borda': 2.2, 'borda_alfa': 0x50},
 }
 LARG_MAX = W * 0.90
 
@@ -70,9 +69,15 @@ def _par(layer, a, b, estilo, x, y, tam, corpo, sombra, extra_txt='', extra_somb
     s = (f"Dialogue: {layer},{ass_tempo(a)},{ass_tempo(b)},{estilo},,0,0,0,,"
          f"{{\\an{an}\\pos({x + dx},{y + dy})\\fs{tam}\\1c&H000000&\\1a&H{alfa:02X}&\\3c&H000000&\\3a&H{alfa:02X}&"
          f"\\blur{blur}{extra_sombra}}}{sombra_corpo if sombra_corpo is not None else corpo}")
+    if estilo == 'Leg' and '\\bord' not in extra_txt:   # legenda: contorno escuro fino
+        L = ESTILO_TEXTO['legenda']
+        extra_txt = f"\\bord{L['contorno']}\\3c&H000000&\\3a&H{L['contorno_alfa']:02X}&" + extra_txt
     t = (f"Dialogue: {layer + 1},{ass_tempo(a)},{ass_tempo(b)},{estilo},,0,0,0,,"
          f"{{\\an{an}\\pos({x},{y})\\fs{tam}{extra_txt}}}{corpo}")
     return [s, t]
+
+
+CTAS = []  # CTAs de vidro 3D da edição atual (render.py desenha com cta.py)
 
 
 def montar_ass(legendas, textos, y_legenda, fim_video=0.0, periodo=1.0):
@@ -107,28 +112,37 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(txt), L['sombra'])
             continue
         if estilo == 'botao':
-            # CTA: a frase segue normal no peito; o botão fica abaixo, até o fim, pulsando
+            # CTA: a frase segue normal no peito; o botão de vidro 3D (cta.py) fica abaixo,
+            # do instante do "saiba mais" até o fim, pulsando. O render desenha quadro a quadro.
             if l['texto']:
                 tam = caber(l['texto'], L['arquivo'], L['tamanho'])
                 ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
-            linhas, _ = letreiros.botao(l['destaque'], l.get('ini_destaque', l['ini']), max(fim_video, l['fim']),
-                                        W // 2, min(H - 330, y_legenda + 230), periodo)
-            ev += linhas
+            CTAS.append({'texto': l['destaque'], 'a': l.get('ini_destaque', l['ini']), 'b': max(fim_video, l['fim']),
+                         'cy': min(H - 300, y_legenda + 250), 'periodo': periodo})
             continue
-        alt = letreiros.altura(l['destaque'], estilo)
-        if l['texto']:
-            # frase normal em cima, palavra-chave 3D embaixo: o par fica centrado no peito
-            tn = caber(l['texto'], L['arquivo'], L['tamanho'])
-            hn = tn * 0.62
-            topo = y_legenda - (hn + 40 + alt) / 2
-            yn = int(topo + hn / 2)
-            yd = int(topo + hn + 40 + alt / 2)
-            ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, yn, tn, esc(l['texto']), L['sombra'])
-        else:
-            yd = y_legenda
-        linhas, _ = letreiros.texto_3d(l['destaque'], l.get('ini_destaque', l['ini']), l['fim'], W // 2, yd, n3d)
-        n3d += 1
-        ev += linhas
+        # palavra-chave: a PRÓPRIA legenda aumentada, como a Eau de Leon faz
+        # ("QUE UM DECANT DE 2 ML / RENDE MUITO"): Bebas Neue engrossada, CAIXA ALTA,
+        # branca, borda escura fina e sombra maior. A frase sobe pra linha de cima.
+        I = ESTILO_TEXTO['impacto']
+        G = ESTILO_TEXTO['legenda_grande']
+        l1, l2 = l['texto'].upper(), l['destaque'].upper()
+        t2 = caber(l2, I['arquivo'], G['tamanho'], extra=24)
+        t1 = caber(l1, I['arquivo'], int(G['tamanho'] * G['linha_de_cima']), extra=24) if l1 else 0
+        passos = [x * _CAP[I['arquivo']] * _PASSO[I['arquivo']] for x in ([t1] if l1 else []) + [t2]]
+        y = y_legenda - sum(passos) / 2
+        linhas_ = ([(l1, t1, l['ini'], '')] if l1 else []) + [
+            (l2, t2, l.get('ini_destaque', l['ini']), '\\fscx86\\fscy86\\t(0,110,\\fscx104\\fscy104)\\t(110,190,\\fscx100\\fscy100)')]
+        for k, (txt, tam, a0, pop) in enumerate(linhas_):
+            yc = int(y + passos[k] / 2)
+            y += passos[k]
+            dx, dy, bl, al = G['sombra']
+            base = f'\\an5\\fnBebas Neue\\b0\\fs{tam}\\fsp1'
+            ev.append(f"Dialogue: 2,{ass_tempo(a0)},{ass_tempo(l['fim'])},Leg,,0,0,0,,{{{base}\\pos({W // 2 + dx},{yc + dy})"
+                      f"\\1c&H000000&\\1a&H{al:02X}&\\3c&H000000&\\3a&H{al:02X}&\\bord{I['engrossa'] + 2}\\blur{bl}{pop}}}{esc(txt)}")
+            ev.append(f"Dialogue: 3,{ass_tempo(a0)},{ass_tempo(l['fim'])},Leg,,0,0,0,,{{{base}\\pos({W // 2},{yc})"
+                      f"\\1a&HFF&\\3c&H000000&\\3a&H{G['borda_alfa']:02X}&\\bord{I['engrossa'] + G['borda']}{pop}}}{esc(txt)}")
+            ev.append(f"Dialogue: 4,{ass_tempo(a0)},{ass_tempo(l['fim'])},Leg,,0,0,0,,{{{base}\\pos({W // 2},{yc})"
+                      f"\\1c&HFFFFFF&\\3c&HFFFFFF&\\bord{I['engrossa']}{pop}}}{esc(txt)}")
 
     rnd = random.Random(7)
     for t in textos:
