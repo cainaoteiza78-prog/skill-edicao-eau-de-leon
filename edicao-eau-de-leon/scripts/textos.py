@@ -18,6 +18,8 @@ import re
 
 from PIL import Image, ImageDraw, ImageFont
 
+import letreiros
+
 W, H = 1080, 1920
 AQUI = os.path.dirname(os.path.abspath(__file__))
 FONTES = os.path.normpath(os.path.join(AQUI, '..', 'assets', 'fontes'))
@@ -92,29 +94,30 @@ Style: Dst,{D['fonte']},{D['tamanho']},&H00FFFFFF,&H00FFFFFF,&H00000000,&H000000
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     ev = []
-    DL = ESTILO_TEXTO['destaque_legenda']
-    pop = '\\fscx55\\fscy55\\t(0,120,\\fscx112\\fscy112)\\t(120,200,\\fscx100\\fscy100)'
     for l in legendas:
         if not l.get('destaque'):
             tam = caber(l['texto'], L['arquivo'], L['tamanho'])
             ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
             continue
-        estilo = l.get('estilo_destaque', 'cor')
-        td = caber(l['destaque'], L['arquivo'], int(L['tamanho'] * DL['escala'].get(estilo, 1.45)))
-        cor = ''
-        if estilo == 'cor':
-            r, g, b = (int(DL['cor'][k:k + 2], 16) for k in (1, 3, 5))
-            cor = f'\\1c&H{b:02X}{g:02X}{r:02X}&'
+        estilo = l.get('estilo_destaque', 'placa')
+        if estilo == 'caps':  # só CAIXA ALTA dentro da legenda (como nos anúncios da marca)
+            txt = ' '.join(x for x in (l['texto'], l['destaque']) if x)
+            tam = caber(txt, L['arquivo'], L['tamanho'])
+            ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(txt), L['sombra'])
+            continue
+        alt = letreiros.altura(l['destaque'], estilo)
         if l['texto']:
+            # frase normal em cima, letreiro embaixo: o par fica centrado no peito
             tn = caber(l['texto'], L['arquivo'], L['tamanho'])
-            # frase normal sobe, palavra-chave desce: o par fica centrado no peito
-            yn = int(y_legenda - td * DL['vao'] / 2)
-            yd = int(y_legenda + tn * DL['vao'] / 2 + td * 0.12)
+            hn = tn * 0.62
+            topo = y_legenda - (hn + 44 + alt) / 2
+            yn = int(topo + hn / 2)
+            yd = int(topo + hn + 44 + alt / 2)
             ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, yn, tn, esc(l['texto']), L['sombra'])
         else:
             yd = y_legenda
-        ev += _par(1, l.get('ini_destaque', l['ini']), l['fim'], 'Leg', W // 2, yd, td, esc(l['destaque']),
-                   L['sombra'], extra_txt=cor + pop, extra_sombra=pop)
+        linhas, _ = letreiros.gerar(l['destaque'], estilo, l.get('ini_destaque', l['ini']), l['fim'], W // 2, yd)
+        ev += linhas
 
     rnd = random.Random(7)
     for t in textos:
@@ -234,3 +237,4 @@ def rotulo_png(texto, destino, tam=None):
         out = out.resize((int(out.width * k), int(out.height * k)), Image.LANCZOS)
     out.save(destino)
     return out.size
+

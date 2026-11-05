@@ -22,7 +22,7 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
 
   "correcoes": [ {"de": "decan", "para": "decant"} ],
   "legenda_maiusculas": [ {"take": 1, "ini": 2.40, "fim": 3.10} ],
-  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80, "estilo": "cor"} ],   // palavra-chave na legenda (ver 03)
+  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80} ],   // letreiro na palavra-chave (ver 03); "estilo" opcional: placa|carimbo|neon|faixa|dourado|caps
 
   "textos": [
     {"texto": "ATÉ 30% DE DESCONTO\nNO SITE TODO", "estilo": "impacto", "take": 2, "ini": 7.8, "fim": 10.2},
@@ -46,7 +46,6 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
   "divisorias": [ {"take": 1, "ini": 0, "fim": 12, "y0": 0.23, "y1": 0.62} ],   // linha branca do "Dia X Noite"
   "legenda_y": 0.58,                 // opcional: força a altura da legenda (padrão = automático pelo rosto)
 
-  "cartao_final": true,              // padrão: true no leo, false no creator
   "musica": "auto"                   // padrão "auto" (rodízio/gerada) | "caminho/da/trilha.mp3" | null (sem música)
 }
 ```

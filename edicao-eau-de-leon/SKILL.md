@@ -1,6 +1,6 @@
 ---
 name: edicao-eau-de-leon
-description: Edita vídeos (Reels/TikTok 9:16) no padrão visual da Eau de Leon a partir das takes brutas na ordem certa — corta erros e respirações, põe legenda padrão com destaque nas palavras-chave, textos de impacto, música suave de fundo (sempre diferente), fotos sem fundo dos perfumes citados, b-roll, transições (whip, fade, slide, drop, pop) e o cartão final com o logo. Use quando pedirem "edita esse vídeo", "edição Eau de Leon", "monta o reels com essas takes", "editar no estilo da Eau de Leon", "/edicao-eau-de-leon", ou quando receber arquivos de vídeo (.mp4/.mov) de gravação para virar post. Roda tudo local e grátis (ffmpeg + Whisper local), sem API paga.
+description: Edita vídeos (Reels/TikTok 9:16) no padrão visual da Eau de Leon a partir das takes brutas na ordem certa — corta erros e respirações, põe legenda padrão com letreiros nas palavras-chave, textos de impacto, música animada de fundo (sempre diferente), marca d'água, fotos sem fundo dos perfumes citados, b-roll, transições (whip, fade, slide, drop, pop) e o logo como marca d'água. Use quando pedirem "edita esse vídeo", "edição Eau de Leon", "monta o reels com essas takes", "editar no estilo da Eau de Leon", "/edicao-eau-de-leon", ou quando receber arquivos de vídeo (.mp4/.mov) de gravação para virar post. Roda tudo local e grátis (ffmpeg + Whisper local), sem API paga.
 ---
 
 # Edição de vídeo no padrão Eau de Leon
@@ -27,7 +27,7 @@ A skill precisa de programas que não vêm no Windows/Mac: **Python**, **ffmpeg*
 3. `treinamento/03-legendas.md` — legenda padrão (fonte, tamanho, posição, quebra, caixa)
 4. `treinamento/04-textos-de-impacto.md` — quando e como pôr texto grande na tela
 5. `treinamento/05-perfumes-na-tela.md` — fotos sem fundo dos perfumes citados
-6. `treinamento/06-broll-cartao-final-audio.md` — b-roll, cartão final, música, volume
+6. `treinamento/06-broll-marca-dagua-audio.md` — b-roll, marca d'água, música animada, volume
 7. `treinamento/07-plano-json.md` — o formato exato do plano que o render lê
 8. `treinamento/08-checklist-qualidade.md` — a conferência antes de entregar
 9. `treinamento/09-exemplo-completo.md` — uma edição inteira, do bruto ao plano
@@ -69,5 +69,8 @@ Abra **cada** `conferir/conferir_XX.png` com a ferramenta Read e passe o `treina
 - **Nunca** invente fala nem mude o sentido do que a pessoa disse. Correção de legenda é só grafia (nome de perfume, marca, "Eau de Leon").
 - Perfume na tela **só** se ele foi falado (ou o usuário pediu) e **só** com a foto do catálogo `assets/perfumes` — nunca baixe imagem da internet, nunca use foto com fundo.
 - Perfume que não está no catálogo: não invente; avise no fim ("o X foi citado mas não tem foto no catálogo") e siga sem ele.
-- Saída sempre 1080×1920, 30 fps, H.264 + AAC, voz em -14 LUFS, **com música suave de fundo** (padrão; só tire se o usuário pedir).
+- Saída sempre 1080×1920, 30 fps, H.264 + AAC, voz em -14 LUFS, **com música animada de fundo** (padrão; só tire se o usuário pedir) e **marca d'água** do logo.
+- **Nunca** coloque cartão final com o logo (fundo preto no fim). Proibido pelo dono.
+- **Nunca** entregue com palavra cortada: o `conferir.py` tem que dizer `PALAVRAS ...: todas inteiras` e `PAUSAS ...: nenhuma`.
+- Letreiros de palavra-chave: 2 a 4 por vídeo, nunca o mesmo estilo duas vezes seguidas (o render alterna sozinho).
 - Se faltar algo que só o usuário sabe (ex.: qual take é a boa quando as duas estão perfeitas e dizem coisas diferentes), pergunte **uma vez**, objetivo. O resto, decida pelo treinamento.

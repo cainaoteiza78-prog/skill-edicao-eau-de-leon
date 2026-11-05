@@ -41,6 +41,7 @@ from cortes import energia_db, pedacos_do_trecho  # noqa: E402
 from textos import montar_ass, rotulo_png  # noqa: E402
 from enquadramento import altura_legenda  # noqa: E402
 import trilha  # noqa: E402
+import letreiros  # noqa: E402
 
 W, H, FPS = 1080, 1920, 30
 
@@ -50,8 +51,11 @@ ESTILO = {
     'legenda': {'max_palavras': 4, 'max_chars': 24},
     'perfume': {'altura': 300, 'altura_grande': 460, 'base_y': 1420, 'largura_linha': 940, 'slot_max': 250},
     'zoom_corte': 1.12,
-    'cartao_final': {'duracao': 2.0, 'dissolve': 0.45, 'logo_largura': 560, 'logo_y': 768},
-    'musica_volume': 0.14,
+    # SEM cartão final com logo (decisão do dono, 05/11/2026). O logo aparece só
+    # como marca d'água pequena, centralizada na borda de baixo, o vídeo todo.
+    'marca_dagua': {'largura': 180, 'margem_baixo': 70, 'opacidade': 0.9},
+    'cauda': 0.35,  # sobra parada no fim (o anúncio do Meta come os últimos quadros)
+    'musica_volume': 0.18,   # trilha (normalizada ~-12 LUFS) fica ~13 dB abaixo da voz
     'whip': 0.10,
 }
 
@@ -217,11 +221,12 @@ def blocos_legenda(plano, words):
 
     # destaques: janelas (tempo final) em que a fala é palavra-chave
     dest = []
-    for d in plano.get('destaques', []):
+    estilos = letreiros.escolher_estilos(plano.get('destaques', []))
+    for d, est in zip(plano.get('destaques', []), estilos):
         a = plano['_map'](d['take'], d['ini'])
         b = plano['_map'](d['take'], d['fim'], False)
         if a is not None and b is not None:
-            dest.append((a - 0.02, b + 0.02, d.get('estilo', 'cor')))
+            dest.append((a - 0.02, b + 0.02, est))
 
     def em_destaque(w):
         meio = (w['ini'] + w['fim']) / 2
@@ -450,9 +455,7 @@ def main():
         if fn.endswith('.ttf'):
             shutil.copy(os.path.join(FONTES, fn), fdir)
 
-    cartao = plano.get('cartao_final', plano.get('formato', 'leo') == 'leo')
-    C = ESTILO['cartao_final']
-    final = total + (C['duracao'] if cartao else 0.0)
+    final = total + ESTILO['cauda']
 
     perfumes = preparar_perfumes(plano, tmp, total, cat, y_legenda)
     rotulos = preparar_rotulos(textos, tmp)
@@ -503,22 +506,17 @@ def main():
         cur = f'[vd{k}]'
     grafo.append(f"{cur}ass=legenda.ass:fontsdir=fonts[vt]")
     cur = '[vt]'
-    if cartao:
-        # cartão: fundo preto + logo branco, dissolvendo por cima do último quadro
-        card = os.path.join(tmp, 'cartao.png')
-        logo = Image.open(LOGO).convert('RGBA')
-        f = C['logo_largura'] / logo.width
-        logo = logo.resize((C['logo_largura'], round(logo.height * f)), Image.LANCZOS)
-        fundo = Image.new('RGBA', (W, H), (3, 3, 5, 255))
-        fundo.alpha_composite(logo, ((W - logo.width) // 2, C['logo_y'] - logo.height // 2))
-        fundo.save(card)
-        entradas += ['-loop', '1', '-framerate', str(FPS), '-t', f'{final + 0.2:.3f}', '-i', 'cartao.png']
-        grafo.append(f"{cur}tpad=stop_mode=clone:stop_duration={C['duracao']}[vpad]")
-        grafo.append(f"[{idx}:v]format=rgba,fade=t=in:st={total:.3f}:d={C['dissolve']}:alpha=1[card]")
-        grafo.append(f"[vpad][card]overlay=0:0:enable='gte(t,{total:.3f})'[vout]")
-        idx += 1
-    else:
-        grafo.append(f'{cur}null[vout]')
+    # marca d'água: logo pequeno, centralizado na borda de baixo, do início ao fim
+    M = ESTILO['marca_dagua']
+    logo = Image.open(LOGO).convert('RGBA')
+    logo = logo.resize((M['largura'], round(logo.height * M['largura'] / logo.width)), Image.LANCZOS)
+    r_, g_, b_, a_ = logo.split()
+    logo = Image.merge('RGBA', (r_, g_, b_, a_.point(lambda v: int(v * M['opacidade']))))
+    logo.save(os.path.join(tmp, 'marca_dagua.png'))
+    entradas += ['-loop', '1', '-framerate', str(FPS), '-t', f'{final + 0.2:.3f}', '-i', 'marca_dagua.png']
+    grafo.append(f"{cur}tpad=stop_mode=clone:stop_duration={ESTILO['cauda']}[vpad]")
+    grafo.append(f"[vpad][{idx}:v]overlay=x=(W-w)/2:y=H-h-{M['margem_baixo']}:eof_action=repeat[vout]")
+    idx += 1
 
     # música suave sempre (padrão "auto"): trilha licenciada em rodízio ou uma nova gerada
     musica = plano.get('musica', 'auto')
@@ -541,8 +539,8 @@ def main():
     if musica:
         entradas += ['-stream_loop', '-1', '-i', musica]
         grafo.append(f'{voz},asplit=2[voz][chave]')
-        grafo.append(f"[{idx}:a]aresample=48000,aformat=channel_layouts=stereo,volume={ESTILO['musica_volume']},afade=t=in:d=0.8,afade=t=out:st={max(0, final - 1.5):.3f}:d=1.5[mus]")
-        grafo.append('[mus][chave]sidechaincompress=threshold=0.02:ratio=6:attack=30:release=500[duck]')
+        grafo.append(f"[{idx}:a]aresample=48000,aformat=channel_layouts=stereo,volume={ESTILO['musica_volume']},afade=t=in:d=0.8,afade=t=out:st={max(0, final - 1.0):.3f}:d=1.0[mus]")
+        grafo.append('[mus][chave]sidechaincompress=threshold=0.03:ratio=2.5:attack=40:release=350[duck]')
         grafo.append('[voz][duck]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[aout]')
     else:
         grafo.append(f'{voz}[aout]')
@@ -568,6 +566,7 @@ def main():
         'perfumes': [{'png': os.path.basename(p['png']), 'ini': round(p['A'], 2), 'fim': round(p['B'], 2)} for p in perfumes],
         'broll': [{'arquivo': os.path.basename(b['arq']), 'ini': round(b['A'], 2), 'fim': round(b['B'], 2)} for b in brolls],
         'cortes': [round(s['dst'], 2) for s in segs],
+        'palavras': [{'p': w['p'], 'ini': round(w['ini'], 2)} for w in words],
         'legenda_y': y_legenda, 'rostos': rostos,
         'destaques': [{'texto': l['destaque'], 'ini': round(l['ini_destaque'], 2)} for l in leg_ok if l.get('destaque')],
         'bastidor_removido': bastidor,

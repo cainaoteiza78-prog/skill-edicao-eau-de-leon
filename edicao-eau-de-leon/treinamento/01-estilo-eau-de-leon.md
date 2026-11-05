@@ -1,63 +1,70 @@
 # 01 — O estilo de edição da Eau de Leon
 
-Estudo feito quadro a quadro, com recorte em resolução nativa, nos reels da **@eau.de.leon** (05/11/2026). Entre os analisados: Quiz (83,7 mil views), "Até 30% de desconto no site todo", "Vem ver como funciona" (decant), tour da sede, reels da criadora ("perfumes óbvios", "+/- / Bom / Melhor"), "Dia X Noite", "POV: …". As fontes foram identificadas letra a letra comparando lado a lado com as candidatas. **Não troque nenhuma fonte.** Todas estão em `assets/fontes` (licença OFL).
+Estudo feito quadro a quadro, com recorte em resolução nativa, nos reels da **@eau.de.leon** e nos **anúncios ativos da marca** na Biblioteca de Anúncios da Meta (05/11/2026). Entre os analisados: Quiz, "Até 30% de desconto", "Vem ver como funciona", "Vem comigo preparar", decant do Le Male Le Parfum, decant do Creed Aventus, reels da criadora, "Dia X Noite", "Acessível x Caro", "Esse é bom mas.. / Esse é melhor!", "POV: …". As fontes foram identificadas letra a letra, comparando lado a lado com as candidatas. **Não troque nenhuma fonte.** Todas estão em `assets/fontes` (licença OFL).
 
 ## A personalidade da edição
 
-**Limpa, rápida e legível.** A pessoa fala direto pra câmera e os cortes tiram todo respiro. A legenda é branca, discreta e fica no peito. Os elementos grandes (texto de impacto, perfumes) só aparecem no instante em que a fala pede. A única voz do vídeo é a de quem gravou as takes: **nunca** se põe narração, locução ou voz gerada.
+**Limpa, rápida e legível.** A pessoa fala direto pra câmera e os cortes tiram todo respiro. A legenda é branca, discreta e fica no peito. O que vende (gancho, oferta, palavra-chave) aparece grande, na hora certa. Música animada por baixo, sem roubar a cena. A única voz do vídeo é a de quem gravou as takes: **nunca** se põe narração, locução ou voz gerada.
 
-## Os elementos (fonte, cor e onde ficam)
+## Texto em cada momento do vídeo (o mapa que não pode errar)
 
-| Elemento | Fonte | Aparência | Exemplo do perfil |
-|---|---|---|---|
-| Legenda | **Poppins Bold** | branca, minúscula como se fala, sombra preta suave deslocada pra baixo e pra direita (sem contorno), 1 linha | "já começou", "DE QUAL ESCOLHER?" |
-| Destaque de palavra-chave | Poppins Bold, 1,45× | CAIXA ALTA, **amarela**, linha própria logo abaixo da frase, pop | "clica em **SAIBA MAIS**", "simplesmente **IMPERDÍVEL**" |
-| Texto de impacto | **Bebas Neue** engrossada (o negrito do CapCut) | branca, CAIXA ALTA, sombra suave; a 1ª linha é digitada letra a letra e as de baixo vêm menores | "30% DE DESCONTO / EM TODOS OS PERFUMES" |
-| Destaque | **Bungee** | branca, CAIXA ALTA, sombra mais escura, entra com pop; linhas quase encostando | "QUIZ 100% / GRATUITO / E PERSONALIZADO" |
-| Rótulo / POV | **TikTok Sans SemiBold** (texto nativo do TikTok/Instagram) | branca, contorno preto fino, frase normal (não caixa alta) + emoji colorido | "POV: Você encontrou o perfume perfeito para balada!", "Bom 🤗", "Dia ☀️ X Noite 🌙" |
-| Perfumes | foto sem fundo | **sem sombra**, "chapada" no vídeo, em fileira | criadora listando perfumes |
-| Divisória | linha branca vertical fina no meio | só nas comparações "isso X aquilo" | "Dia X Noite" |
-| Cartão final | logo Eau de Leon branco no preto | dissolve 0,45 s e fica ~2 s | fim dos reels do Leo |
+| Momento | O que aparece | Fonte | Tamanho / posição | Cor | Visto em |
+|---|---|---|---|---|---|
+| **Gancho** (0–3 s) | a frase-chave do gancho em CAIXA ALTA, digitada letra a letra (`impacto`), ou o nome da ação com pop (`destaque`) | Bebas Neue engrossada / Bungee | grande, ~70% da largura, no peito | branca, sombra suave | "VEM COMIGO PREPARAR", "QUE UM DECANT DE 2 ML / RENDE MUITO", "QUIZ 100% / GRATUITO" |
+| **Corpo** (a explicação) | legenda da fala, 2–4 palavras por vez | Poppins Bold | pequena (~55% da largura numa frase de 22 letras), uma linha, **no peito** | branca, sombra preta suave | "de umas 30 borrifadas", "e garantir que não vai vazar" |
+| **Nome de perfume** no corpo | o nome em CAIXA ALTA dentro da própria legenda (`destaques` com estilo `caps`) | Poppins Bold | igual à legenda | branca | "esse aqui é o CREED AVENTUS", "Esse aqui é o LE MALE LE PARFUM" (anúncios) |
+| **Oferta / número** | texto de impacto digitado | Bebas Neue engrossada | grande, no peito; 2ª linha a 78% | branca | "30% DE DESCONTO / EM TODOS OS PERFUMES", "COM DECANTS A PARTIR DE 2ML" |
+| **Palavra-chave** (o que vende) | **letreiro**: placa, carimbo, neon, faixa ou dourado, cada um diferente do anterior | Bebas Neue / Bungee | linha própria logo abaixo da frase, no peito | rosa e azul do logo, preto, branco, dourado | "simplesmente IMPERDÍVEL", "10% em TODOS OS PERFUMES", "clica em SAIBA MAIS" |
+| **CTA** (fim) | legenda normal + letreiro no "SAIBA MAIS" / "LINK NA BIO" | Poppins Bold + letreiro | no peito | branca + letreiro | "clica aqui embaixo", "e faça seu pedido" |
+| **POV / rótulos** (sem fala) | texto nativo do TikTok/Instagram | TikTok Sans SemiBold | topo (y 12–15%) | branca, contorno preto fino + emoji | "POV: você descobriu um jeito de usar os melhores perfumes…", "Acessível x Caro", "Bom 🤗" |
+| **Marca d'água** | logo Eau de Leon pequeno | — | **180 px de largura, centralizado, 70 px acima da borda de baixo, o vídeo inteiro** | logo branco (o "E" rosa/azul) | pedido do dono |
 
-Os emojis saem no desenho do Google (Noto). Os do perfil são os da Apple, que não podem ser distribuídos; o formato e o tamanho são os mesmos.
+**Proibido:** cartão final, ou seja, terminar o vídeo dissolvendo para o logo no fundo preto. O dono pediu para nunca usar, e o render nem tem mais essa opção. O logo aparece só como marca d'água.
 
-## Onde as coisas ficam no quadro (1080×1920)
+## Cores da marca (tiradas do logo)
 
-- **Legenda: abaixo do pescoço, na altura do peito** de quem fala. O render acha o rosto sozinho (`enquadramento.py`) e põe o centro da legenda ~0,6 rosto abaixo do queixo. Num plano médio isso dá y ≈ 1080–1160. A altura é a mesma no vídeo todo.
-- **Texto de impacto e destaque:** no mesmo lugar da legenda (a legenda some enquanto eles estão na tela).
-- **Fileira de perfumes:** logo abaixo da legenda, centralizada, até 4 frascos.
-- **Rótulos/POV:** no topo (y ≈ 12–15%), ou onde o formato pedir (ex.: tier list à esquerda).
-- **Logo no cartão final:** 560 px de largura, centro em y = 768.
+| Nome | Hex | Uso |
+|---|---|---|
+| rosa | #F2A595 | placa (letreiro) |
+| azul | #6BA9CF | faixa e brilho do neon (letreiro) |
+| escuro | #151A22 | carimbo e letras da placa |
+| dourado | #F4C95D | letreiro dourado |
+| branco | #FFFFFF | toda legenda e texto grande |
+
+Legenda e texto grande são **sempre brancos**. Cor só existe nos letreiros de palavra-chave.
 
 ## Os 3 formatos do perfil
 
 ### `leo`: apresentador falando (fundador, time)
-Plano médio, olhando pra câmera, estante de perfumes ou escritório atrás.
+Plano médio, olhando pra câmera, estante de perfumes atrás.
 - Legenda em frases de 2 a 4 palavras.
-- **Destaque** (Bungee) ou **impacto** (Bebas) no gancho e na oferta.
-- **Cortes secos** nas respirações, alternando o enquadramento (zoom 1,00 ↔ 1,12) a cada corte.
-- **Whip** (borrão horizontal de ~0,1 s) quando muda o assunto ou o ambiente.
-- **B-roll** do produto, do site ou da embalagem, com a legenda continuando por cima.
-- Fim: **cartão final** com o logo.
+- Impacto ou destaque no gancho e na oferta.
+- 2 a 4 letreiros nas palavras-chave.
+- Cortes secos, alternando o zoom 1,00 ↔ 1,12 a cada corte.
+- Whip na troca de assunto.
+- B-roll do produto.
+- Música animada e marca d'água.
 
 ### `creator`: criadora falando de perfumes
-Sentada na frente da estante, uma take quase contínua.
-- Legenda **palavra por palavra**.
-- **Perfumes citados** entrando em fileira na hora em que são falados.
-- Às vezes um **rótulo** fixo no topo ("+/- 🫠 / Bom 🤗 / Melhor! 🤌").
-- Sem cartão final.
+- Legenda palavra por palavra.
+- Perfumes citados em fileira logo abaixo da legenda.
+- 1 ou 2 letreiros.
+- Rótulo opcional no topo.
+- Música e marca d'água.
 
 ### Formatos sem fala (produto na mão)
-"POV: …" no topo e frase no rodapé com emoji, "Dia ☀️ X Noite 🌙" com a divisória, "Esse é bom mas.. / Esse é melhor!". Tudo com **rótulo** (TikTok Sans) e sem legenda de fala.
+- POV ou rótulo no topo (TikTok Sans + emoji).
+- "Dia ☀️ X Noite 🌙" com a divisória.
+- Música e marca d'água.
 
 ## O que NÃO é o estilo
 
-- Fonte inventada ou "parecida": use só as 5 da tabela.
-- Legenda inteira amarela ou colorida, caixa atrás do texto, contorno grosso. A cor vai **só** na palavra-chave destacada (2 a 4 por vídeo).
+- Fonte inventada ou "parecida": só Poppins, Bebas Neue, Bungee e TikTok Sans.
+- Cartão final com logo (proibido).
+- Legenda inteira colorida, caixa atrás da legenda, contorno grosso. A cor vai só no letreiro.
+- O mesmo letreiro duas vezes seguidas.
 - Legenda no queixo ou na barriga: é **no peito**.
-- Sombra em perfume, moldura, sticker animado, seta desenhada.
-- Zoom lento contínuo (Ken Burns) na pessoa falando.
+- Sombra em perfume, sticker animado, seta desenhada, vinheta de abertura.
 - Transição em todo corte (corte seco é o padrão).
 - Narração, locução ou qualquer voz que não seja a das takes.
-- Sem música, ou música alta competindo com a voz. O padrão é trilha suave, baixa e diferente a cada vídeo.
-- Vinheta de abertura.
+- Vídeo sem música, ou música que briga com a voz.

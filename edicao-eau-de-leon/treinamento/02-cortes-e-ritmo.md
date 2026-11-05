@@ -10,7 +10,7 @@ O usuário manda as takes **na ordem certa** do vídeo. Isso quer dizer:
 ## O que sai (sempre)
 
 O render tira sozinho (`scripts/cortes.py`):
-- **respirações, pausas e estalos** entre palavras: o corte é guiado por cada palavra e pela força da voz. Só fica voz, com 0,03 s de folga antes e 0,05 s depois. Na conferência, não pode sobrar pausa maior que ~0,12 s;
+- **respirações, pausas e estalos ENTRE palavras.** Regra de ouro: **o corte nunca cai dentro de uma palavra.** O tempo de cada palavra é protegido; dele só sai silêncio de verdade (no nível do ruído da sala, por mais de 0,16 s). O "t" de "todos" (um silêncio de ~80 ms dentro da palavra) fica. As bordas ainda crescem pra pegar consoante que o Whisper deixou de fora, e uma trava final garante que a parte com som de cada palavra cabe inteira num pedaço. Na conferência, não pode sobrar pausa maior que ~0,15 s;
 - **falas de bastidor isoladas**: "corta", "vai", "parou", "pera", "de novo", "vou de novo", "repete", "errei", "valendo", "ok", "bora", "mais uma vez", "3, 2, 1"… Saem quando estão soltas (com pausa antes ou depois, ou na ponta da take). "Isso **vai** ficar lindo" fica, porque faz parte da frase. O render lista no terminal o que removeu (`fala de bastidor removida: …`).
 
 Você decide e tira pelo plano:

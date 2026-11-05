@@ -62,6 +62,67 @@ def main():
     os.remove(os.path.join(pasta, '_q.png'))
     print('\n'.join(folhas))
     pausas(video)
+    palavras_inteiras(video)
+
+
+def palavras_inteiras(video):
+    """Transcreve o vídeo FINAL e compara com as palavras que deviam estar lá.
+    Palavra faltando ou trocada (ex.: "todos" virou "dos") = corte em cima da
+    palavra. Tem que dar "todas inteiras"; senão, o trecho volta pro plano."""
+    import difflib
+    import re
+    import unicodedata
+    import wave
+    import numpy as np
+    lt = os.path.join(os.path.dirname(video), 'linha_do_tempo.json')
+    if not os.path.exists(lt):
+        return
+    esperado = json.load(open(lt, encoding='utf8')).get('palavras') or []
+    if not esperado:
+        return
+    from faster_whisper import WhisperModel
+
+    def n(s):
+        s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
+        return re.sub(r'[^a-z0-9]+', ' ', s).strip()
+    wav = os.path.join(os.path.dirname(video), '_conferir.wav')
+    subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', video, '-vn', '-ac', '1', '-ar', '16000', wav], check=True)
+    with wave.open(wav) as w:
+        audio = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768.0
+    os.remove(wav)
+    modelo = None
+    for nome in ('small', 'base'):  # PC com pouca memória: tenta o modelo menor
+        try:
+            modelo = WhisperModel(nome, device='cpu', compute_type='int8')
+            break
+        except RuntimeError as e:
+            print(f'(modelo {nome} sem memória: {e}; tentando menor)')
+    if modelo is None:
+        print('PALAVRAS: não deu pra conferir (sem memória). Feche programas e rode o conferir.py de novo.')
+        return
+    segs, _ = modelo.transcribe(audio, language='pt', word_timestamps=True, condition_on_previous_text=False)
+    ouvido = [t for s in segs for w in (s.words or []) for t in n(w.word).split()]
+    exp = [(t, e['ini']) for e in esperado for t in n(e['p']).split()]
+    sm = difflib.SequenceMatcher(a=[t for t, _ in exp], b=ouvido, autojunk=False)
+    problemas = []
+    for op, i1, i2, j1, j2 in sm.get_opcodes():
+        if op not in ('delete', 'replace'):
+            continue
+        falt = [t for t, _ in exp[i1:i2]]
+        ouv = ouvido[j1:j2]
+        if all(re.fullmatch(r'\d+', x) for x in falt):  # "10" x "dez" não é corte
+            continue
+        if op == 'replace':
+            # grafia diferente do Whisper ("saia" x "saiba", "audeleon") não é corte.
+            # Corte é pedaço de palavra: "dos" no lugar de "todos", "perfu" de "perfumes".
+            pedaco = any(h != x and len(h) < len(x) and (x.endswith(h) or x.startswith(h))
+                         for x in falt for h in ouv)
+            parecido = difflib.SequenceMatcher(a=''.join(falt), b=''.join(ouv)).ratio() >= 0.5
+            if parecido and not pedaco:
+                continue
+        problemas.append(f'{exp[i1][1]:.2f}s esperado "{" ".join(falt)}" ouvido "{" ".join(ouvido[j1:j2])}"')
+    print(f'PALAVRAS (vídeo final x transcrição original, {sm.ratio():.0%} iguais): '
+          + ('todas inteiras' if not problemas else 'CONFERIR -> ' + ' | '.join(problemas)))
 
 
 def pausas(video):

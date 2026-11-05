@@ -19,22 +19,36 @@ A legenda é **sempre a mesma** e o render faz tudo. Seu trabalho é escolher o 
 | `palavra` | `creator` | uma palavra por vez |
 | `nenhuma` | formatos sem fala | — |
 
-## Destaque de palavra-chave (`destaques`)
+## Destaque de palavra-chave: LETREIROS (`destaques`)
 
-A palavra que vende ganha destaque **dentro da legenda**: ela vai para uma **linha própria logo abaixo**, **maior** (1,45×), em **CAIXA ALTA**, **amarela** (#FFD23F) e entra com um **pop** no instante em que é falada. O resto da frase continua normal em cima:
+A palavra que vende sai da legenda e vira um **letreiro** numa linha própria, logo abaixo da frase (que continua normal em cima), no instante em que é falada:
 
 ```
-          clica em            ← legenda normal (branca)
-       SAIBA MAIS             ← destaque: maior, amarelo, pop
+        simplesmente          ← legenda normal (Poppins branca)
+      ┌─────────────┐
+      │ IMPERDÍVEL  │         ← letreiro (muda a cada destaque)
+      └─────────────┘
 ```
 
-Exemplos: "clica em **SAIBA MAIS**", "simplesmente **IMPERDÍVEL**", "10% em **TODOS OS PERFUMES**", "**FRETE GRÁTIS** pra todo o Brasil", "só **HOJE**".
+Os 5 letreiros (`scripts/letreiros.py`) usam as fontes e as cores da marca:
+
+| Estilo | Como é | Entrada |
+|---|---|---|
+| `placa` | placa **rosa** da marca, levemente inclinada, letras escuras (Bebas) | a placa cresce da linha e as letras dão pop |
+| `carimbo` | caixa **preta** inclinada, letras brancas (Bungee) | bate na tela grande e assenta, como um carimbo |
+| `neon` | letras brancas (Bungee) com **brilho azul** da marca | pisca ao acender |
+| `faixa` | marca-texto **azul** atrás de letras brancas (Bebas) | a faixa passa da esquerda pra direita |
+| `dourado` | letras **douradas** grandes (Bebas) com sombra | digitadas letra a letra |
+| `caps` | sem letreiro: a palavra em CAIXA ALTA dentro da legenda | — (o jeito dos anúncios da marca; use pra **nome de perfume**) |
+
+**Rodízio automático:** sem `estilo`, o render usa placa → carimbo → neon → faixa → dourado, e nunca repete o letreiro anterior. Só escolha à mão se fizer sentido (ex.: `dourado` pra "EXCLUSIVO" ou "LUXO", `carimbo` pra "ACABA HOJE").
 
 O que destacar:
 - CTA ("saiba mais", "link na bio", "chama no direct")
-- benefício ou oferta ("todos os perfumes", "frete grátis", "10%", "cupom")
-- adjetivo forte do gancho ("imperdível", "o melhor", "exclusivo")
-- **2 a 4 destaques por vídeo de 30 s.** Mais que isso perde a força.
+- benefício ou oferta ("todos os perfumes", "frete grátis", "cupom")
+- adjetivo forte ("imperdível", "o melhor", "exclusivo")
+- nome de perfume → `caps`, não letreiro
+- **2 a 4 letreiros por vídeo de 30 s.** Mais que isso perde a força.
 - Nunca destaque o que já está num texto de impacto na tela ao mesmo tempo.
 
 O `transcrever.py` gera `destaques_sugeridos.txt` com as candidatas e seus tempos. Escolha, confira os tempos e escreva:
@@ -42,12 +56,12 @@ O `transcrever.py` gera `destaques_sugeridos.txt` com as candidatas e seus tempo
 "destaques": [
   {"take": 1, "ini": 4.86, "fim": 5.60},
   {"take": 2, "ini": 8.80, "fim": 9.75},
-  {"take": 3, "ini": 3.26, "fim": 3.80, "estilo": "grande"}
+  {"take": 3, "ini": 3.26, "fim": 3.80, "estilo": "neon"},
+  {"take": 1, "ini": 1.20, "fim": 2.10, "estilo": "caps"}
 ]
 ```
-- `ini`/`fim` cobrem **só as palavras destacadas** (início da 1ª até o fim da última). Até 5 palavras.
-- `estilo`: `cor` (padrão: amarelo e 1,45×) ou `grande` (branco e 1,75×, pra quando o fundo é amarelado).
-- A cor é uma só pro vídeo todo (`ESTILO_TEXTO['destaque_legenda']['cor']` em `scripts/textos.py`).
+- `ini`/`fim` cobrem **só as palavras destacadas** (início da 1ª até o fim da última), até 4 palavras.
+- O letreiro fica até a frase acabar.
 
 ## Ênfase em CAIXA ALTA (`legenda_maiusculas`)
 

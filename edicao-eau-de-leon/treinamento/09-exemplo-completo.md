@@ -19,14 +19,14 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ## Como o editor pensou
 
-1. **Formato** `leo`, legenda `frase`, cartão final.
+1. **Formato** `leo`, legenda `frase`, marca d'água (automática), sem cartão final.
 2. **Trechos:** um por take, da primeira à última palavra. O silêncio do começo de cada take e as pausas entre as frases ("…de mês. | Isso o mês…") o render corta sozinho: 3 trechos viraram 8 pedaços, sem nenhuma pausa sobrando (`conferir.py` → "PAUSAS que sobraram: nenhuma").
 3. **Whip** só na troca do gancho para a oferta (muda o cenário).
 4. **Gancho:** destaque Bungee "PROMOÇÃO / 10.10" quando ele fala "promoção" (1,00).
 5. **Oferta:** impacto Bebas "10% DE DESCONTO / EM TODOS OS PERFUMES" quando ele fala "10" (2,24).
 6. **Grafia:** "Aude Leon" → Eau de Leon; "10 -10" → 10.10; "ultimora" → última hora; "salha mais" → Saiba mais. O "10 %" vira "10%" sozinho.
-7. **Destaques:** "simplesmente **IMPERDÍVEL**", "10% em **TODOS OS PERFUMES**" (na 2ª vez que ele fala, porque a 1ª já está no texto de impacto) e "clica em **SAIBA MAIS**". Vieram do `destaques_sugeridos.txt`; o "saiba mais" foi achado à mão, porque o Whisper escreveu "salha mais".
-8. **Música:** `auto`, uma trilha nova gerada pra este vídeo.
+7. **Letreiros:** "simplesmente **IMPERDÍVEL**" (placa rosa), "10% em **TODOS OS PERFUMES**" (carimbo preto; na 2ª vez que ele fala, porque a 1ª já está no texto de impacto) e "clica em **SAIBA MAIS**" (neon azul). O render alternou os estilos sozinho. Vieram do `destaques_sugeridos.txt`; o "saiba mais" foi achado à mão, porque o Whisper escreveu "salha mais".
+8. **Música:** `auto`, uma trilha animada nova gerada pra este vídeo (ex.: funk, 114 bpm).
 9. **Legenda:** o render detectou o rosto em 5 quadros e pôs a legenda em y = 1151 (no peito).
 
 ## plano.json
@@ -56,13 +56,12 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
     {"take": 2, "ini": 8.80, "fim": 9.75},
     {"take": 3, "ini": 3.26, "fim": 3.80}
   ],
-  "musica": "auto",
-  "cartao_final": true
+  "musica": "auto"
 }
 ```
 
 ## Resultado
 
-23,9 s de bruto → 17,4 s (15,4 s de fala + 2 s de cartão), 8 pedaços, voz em -14,5 LUFS, legenda no peito, dissolve para o logo no fim.
+23,9 s de bruto → 16,5 s (16,1 s de fala + 0,35 s de sobra), 4 pedaços, voz em -14,5 LUFS. `conferir.py`: **PAUSAS: nenhuma**, **PALAVRAS: todas inteiras** (o "todos" de "em todos os perfumes" fica inteiro). Legenda no peito, 3 letreiros diferentes, marca d'água do início ao fim, sem cartão final.
 
-Se o vídeo citar perfume, acrescente o grupo de perfumes (ver 05). Eles entram em fileira logo abaixo da legenda, na hora do nome.
+Se o vídeo citar perfume, acrescente o grupo de perfumes (ver 05). Eles entram em fileira logo abaixo da legenda, na hora do nome, e o nome vai em CAIXA ALTA na legenda (`destaques` com `"estilo": "caps"`).

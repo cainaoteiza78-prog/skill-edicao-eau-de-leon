@@ -8,7 +8,7 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Nenhuma respiração ou pausa: a conversa emenda uma palavra na outra. O `linha_do_tempo.json` lista os cortes; se algum trecho ficou com pausa, ele estava com `manter_pausas`.
 - [ ] Só a voz de quem gravou. Nada de narração ou voz gerada.
 - [ ] Nenhuma frase repetida (mesma informação duas vezes).
-- [ ] Nenhuma palavra cortada no meio (ouça o fim de cada trecho: se o `legenda.srt` mostra a palavra mas ela parece engolida, aumente `fim` em 0,15 s).
+- [ ] **Nenhuma palavra cortada**, nem um pedaço ("dos" no lugar de "todos"). O `conferir.py` transcreve o vídeo final e compara: tem que aparecer `PALAVRAS ...: todas inteiras`. Se aparecer `CONFERIR -> 7.22s esperado "todos" ouvido "dos"`, aumente o trecho no plano (`ini` 0,2 s antes / `fim` 0,2 s depois) ou marque `manter_pausas` nele, renderize e confira de novo. **Nunca entregue com palavra cortada.**
 - [ ] O CTA final está inteiro.
 - [ ] Whips só em troca de assunto/cena, no máximo 1 a cada ~6 s.
 
@@ -19,7 +19,7 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Sem ponto/vírgula; ? e ! preservados; começo de frase minúsculo; marcas com maiúscula.
 - [ ] Modo certo: `frase` (leo) ou `palavra` (creator).
 - [ ] Legenda não aparece junto com texto de impacto.
-- [ ] 2 a 4 **destaques** de palavra-chave (CTA, oferta, adjetivo forte), amarelos, numa linha própria logo abaixo, entrando na hora da palavra.
+- [ ] 2 a 4 **letreiros** de palavra-chave (CTA, oferta, adjetivo forte), cada um de um estilo diferente do anterior, logo abaixo da frase, entrando na hora da palavra. Nome de perfume em CAIXA ALTA (`caps`).
 
 ## Textos de impacto
 - [ ] No máximo 3 em 30 s; o do gancho aparece nos primeiros 3 s (formato leo com promessa clara).
@@ -33,13 +33,14 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Fileira centralizada logo abaixo da legenda, sem cortar frasco na borda e sem ficar em cima do texto de impacto.
 - [ ] Grupo some quando o assunto muda.
 
-## Cartão final e áudio
-- [ ] Formato leo: dissolve para o fundo preto com logo Eau de Leon centralizado, ~2 s. Creator: sem cartão.
+## Marca d'água e áudio
+- [ ] **Nenhum cartão final** (o vídeo acaba na última palavra + 0,35 s).
+- [ ] Logo pequeno no centro da borda de baixo, do primeiro ao último quadro.
 - [ ] Voz clara, sem estalo nos cortes, volume constante.
-- [ ] Tem música suave de fundo, diferente da do vídeo anterior, e ela não compete com a voz.
+- [ ] Música **animada** e perceptível, diferente da do vídeo anterior, sem competir com a voz.
 
 ## Técnico
 - [ ] `ffprobe` mostra 1080×1920, 30 fps, h264 + aac.
-- [ ] Duração coerente com a fala útil (sem buracos pretos, sem quadro congelado fora do cartão).
+- [ ] Duração coerente com a fala útil (sem buracos pretos, sem quadro congelado).
 
 Ao entregar, diga: arquivo final, duração, o que foi cortado (frases, em linguagem simples), perfumes que entraram (e os citados que não têm foto), e onde está o `legenda.srt`.

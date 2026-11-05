@@ -93,67 +93,93 @@ def tirar_bastidor(palavras, ini_trecho, fim_trecho):
     return [p for k, p in enumerate(palavras) if k not in fora], [p for k, p in enumerate(palavras) if k in fora]
 
 
-def borda_da_voz(db, voz, ini, fim, dur, lim_esq=None, lim_dir=None):
-    """Início/fim reais da voz de UMA palavra (o Whisper erra por décimos e às
-    vezes estica a palavra por cima da pausa). Só anda por voz contígua e nunca
-    invade a palavra vizinha (lim_esq = fim da anterior, lim_dir = início da próxima)."""
-    forte = voz - 18
-    n = len(db)
-    lo = int(max(0.0, ini - 0.12, lim_esq if lim_esq is not None else 0.0) / PASSO)
-    hi = int(min(dur, fim + 0.20, lim_dir if lim_dir is not None else dur) / PASSO)
-    hi = min(hi, n)
-    nucleo = [k for k in range(int(ini / PASSO), min(int(fim / PASSO) + 1, hi)) if k < n and db[k] > forte]
-    if not nucleo:
-        return max(0.0, ini - FOLGA_INICIO), min(dur, fim + FOLGA_FIM)
-    s, e = nucleo[0], nucleo[-1]
-    # dentro do intervalo do Whisper, a voz real termina no último trecho forte
-    # que não esteja separado do núcleo por > 120 ms de fraco
-    k = nucleo[0]
-    ultimo = k
-    while k < min(int(fim / PASSO) + 1, hi):
-        if db[k] > forte:
-            ultimo = k
-        elif k - ultimo > 12:
-            break
-        k += 1
-    e = ultimo
-    while e + 1 < hi and db[e + 1] > forte:   # estende enquanto for voz
-        e += 1
-    while s - 1 >= lo and db[s - 1] > forte:
-        s -= 1
-    return max(0.0, s * PASSO - FOLGA_INICIO), min(dur, (e + 1) * PASSO + FOLGA_FIM)
+SILENCIO_DB = 32     # abaixo de (voz - 32 dB) é silêncio de verdade (não é consoante)
+SILENCIO_MIN = 0.16  # silêncio dentro do tempo de uma palavra só sai se for maior que isso
+RESPIRO_DB = 20      # entre palavras: abaixo de (voz - 20 dB) é respiração/pausa → sai
 
 
 def pedacos_do_trecho(palavras_take, db, voz, ini, fim, dur, manter_pausas=False):
-    """[(a,b), ...] dentro de [ini,fim] da take, só com voz, sem bastidor nem respiração."""
+    """[(a,b), ...] dentro de [ini,fim] da take: só fala, sem bastidor, respiração ou pausa.
+
+    REGRA QUE NÃO PODE QUEBRAR: nenhuma palavra mantida é cortada. O tempo de cada
+    palavra (Whisper) é protegido; dele só sai silêncio de verdade (> 0,16 s abaixo
+    de voz-32 dB, ex.: o Whisper esticou a palavra por cima de uma pausa). O que é
+    cortado fica ENTRE palavras. As bordas ainda crescem pra pegar consoante que o
+    Whisper deixou de fora (o "s" final, o "t" inicial).
+    """
+    n = len(db)
     pal = [p for p in palavras_take if ini - 0.05 <= (p['ini'] + p['fim']) / 2 <= fim + 0.05]
     if not pal:
         return [(ini, fim)], []
     pal, removidas = tirar_bastidor(pal, ini, fim)
     if not pal:
         return [], removidas
-    if manter_pausas:
-        a, _ = borda_da_voz(db, voz, pal[0]['ini'], pal[0]['fim'], dur)
-        _, b = borda_da_voz(db, voz, pal[-1]['ini'], pal[-1]['fim'], dur)
-        return [(max(a, ini - 0.1), min(b, fim + 0.2))], removidas
-    bordas = [borda_da_voz(db, voz, p['ini'], p['fim'], dur,
-                           pal[k - 1]['fim'] if k > 0 else None,
-                           pal[k + 1]['ini'] if k + 1 < len(pal) else None) for k, p in enumerate(pal)]
-    # palavras vizinhas não podem se sobrepor por causa da folga
-    pedacos = []
-    a, b = bordas[0]
-    for (s, e) in bordas[1:]:
-        if s - b <= JUNTA_SE_GAP:
-            b = max(b, e)
+    fr = lambda s: max(0, min(n, int(round(s / PASSO))))
+    # silêncio = perto do ruído de fundo DESTA take (sala, ar-condicionado),
+    # nunca acima de voz-20 dB (aí já pode ser consoante)
+    piso = float(np.percentile(db, 10))
+    silencio = db < min(voz - RESPIRO_DB, max(voz - SILENCIO_DB, piso + 8))
+    fraco = db < voz - RESPIRO_DB
+
+    def ilhas(a, b):
+        """Partes de [a,b] com som (tira silêncios internos longos)."""
+        out, ini_s, k = [], a, fr(a)
+        while k < fr(b):
+            if silencio[k]:
+                j = k
+                while j < fr(b) and silencio[j]:
+                    j += 1
+                if (j - k) * PASSO >= SILENCIO_MIN:
+                    if k * PASSO - ini_s > 0.02:
+                        out.append((ini_s, k * PASSO))
+                    ini_s = j * PASSO
+                k = j
+            else:
+                k += 1
+        if b - ini_s > 0.02:
+            out.append((ini_s, b))
+        return out or [(a, b)]
+
+    blocos = []
+    for k, p in enumerate(pal):
+        a, b = p['ini'], p['fim']
+        esq = pal[k - 1]['fim'] if k else max(0.0, a - 0.30)
+        dirt = pal[k + 1]['ini'] if k + 1 < len(pal) else min(dur, b + 0.40)
+        # cresce enquanto ainda é som (consoante/fim de sílaba), sem invadir a vizinha
+        while fr(a) - 1 >= fr(esq) and fr(a) - 1 >= 0 and not fraco[fr(a) - 1] and p['ini'] - a < 0.15:
+            a -= PASSO
+        while fr(b) < fr(dirt) and fr(b) < n and not fraco[fr(b)] and b - p['fim'] < 0.25:
+            b += PASSO
+        for x, y in ilhas(a, b):
+            blocos.append([max(0.0, x - FOLGA_INICIO), min(dur, y + FOLGA_FIM)])
+    blocos.sort()
+    # junta o que encosta; o que separa é pausa/respiração entre palavras
+    junt = [blocos[0]]
+    for x, y in blocos[1:]:
+        if manter_pausas or x - junt[-1][1] <= JUNTA_SE_GAP:
+            junt[-1][1] = max(junt[-1][1], y)
         else:
-            pedacos.append((a, b))
-            a, b = s, e
-    pedacos.append((a, b))
-    # pedaço curto demais (ex.: uma sílaba solta) gruda no vizinho
+            junt.append([x, y])
+    # garantia final: toda palavra mantida cabe inteira dentro de algum pedaço
+    # (a parte COM SOM da palavra; silêncio que o Whisper grudou nela pode sair)
+    for p in pal:
+        som = [k for k in range(fr(p['ini']), max(fr(p['ini']) + 1, fr(p['fim']))) if k < n and not silencio[k]]
+        if not som:
+            continue
+        s_ini, s_fim = som[0] * PASSO, (som[-1] + 1) * PASSO
+        if any(x <= s_ini and s_fim <= y for x, y in junt):
+            continue
+        cobre = [q for q in junt if q[1] > s_ini and q[0] < s_fim]
+        if cobre:
+            novo = [min(cobre[0][0], s_ini - FOLGA_INICIO), max(cobre[-1][1], s_fim + FOLGA_FIM)]
+            junt = [q for q in junt if q not in cobre] + [novo]
+        else:
+            junt.append([s_ini - FOLGA_INICIO, s_fim + FOLGA_FIM])
+        junt.sort()
     final = []
-    for p in pedacos:
-        if final and p[1] - p[0] < PEDACO_MINIMO and p[0] - final[-1][1] < 0.35:
-            final[-1] = (final[-1][0], p[1])
-        elif p[1] - p[0] >= 0.12:
-            final.append(p)
-    return final, removidas
+    for x, y in junt:
+        if final and x <= final[-1][1] + JUNTA_SE_GAP:
+            final[-1][1] = max(final[-1][1], y)
+        else:
+            final.append([x, y])
+    return [(max(0.0, x), min(dur, y)) for x, y in final], removidas
