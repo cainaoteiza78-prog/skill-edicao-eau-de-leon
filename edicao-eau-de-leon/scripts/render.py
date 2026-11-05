@@ -39,7 +39,7 @@ sys.path.insert(0, AQUI)
 from catalogo import carregar, por_id, norm  # noqa: E402
 from cortes import energia_db, pedacos_do_trecho  # noqa: E402
 from textos import montar_ass, rotulo_png  # noqa: E402
-from enquadramento import altura_legenda, centro_rosto  # noqa: E402
+from enquadramento import altura_legenda, centro_rosto, trilha_rosto  # noqa: E402
 import trilha  # noqa: E402
 import letreiros  # noqa: E402
 import textos as textos_mod  # noqa: E402
@@ -128,7 +128,7 @@ def mapear(segs, take, t, depois=True):
 def _expr_zoom(s, punches, enfases):
     """z(t) do pedaço: zoom base (alterna 1,00/1,12 a cada punch) + ênfase suave nas palavras-chave."""
     z0 = s['zoom']
-    z1 = ESTILO['zoom_corte'] if z0 <= 1.0 else 1.0
+    z1 = z0 + (ESTILO['zoom_corte'] - 1.0)
     base = f'{z0}'
     if punches:
         conta = '+'.join(f'gte(t,{p:.3f})' for p in punches)
@@ -141,11 +141,26 @@ def filtro_video(s, prox_whip, punches=(), enfases=()):
     f = [f'scale={W}:{H}:force_original_aspect_ratio=increase',
          f"crop={W}:{H}:(iw-{W})*{s['foco_x']}:(ih-{H})*{s['foco_y']}", 'setsar=1', f'fps={FPS}']
     z = _expr_zoom(s, punches, enfases)
-    if z != '1.0':
-        f.append(f"scale=w='ceil({W}*({z})/2)*2':h='ceil({H}*({z})/2)*2':eval=frame")
-        rx, ry = s.get('rosto') or (0.5, 0.45)
-        # zoom ancorado no rosto: centraliza na horizontal e mantém a altura do rosto
-        f.append(f"crop={W}:{H}:'clip({rx:.4f}*iw-{W // 2},0,iw-{W})':'clip({ry:.4f}*(ih-{H}),0,ih-{H})'")
+    if z != '1.0' or s.get('trilha'):
+        pass  # zoom + recorte feitos juntos pelo zoompan (recalcula a cada quadro)
+        tr = s.get('trilha') or [(0.0, 0.5, 0.45)]
+        # zoom ancorado no rosto, SEGUINDO ele ao longo do pedaço (interpolação linear)
+        def lerp(k):
+            ex = f'{tr[-1][k]:.4f}'
+            for i in range(len(tr) - 2, -1, -1):
+                t0, t1 = tr[i][0], tr[i + 1][0]
+                v0, v1 = tr[i][k], tr[i + 1][k]
+                ex = f'if(lt(t,{t1:.3f}),{v0:.4f}+({v1 - v0:.4f})*clip((t-{t0:.3f})/{max(0.01, t1 - t0):.3f},0,1),{ex})'
+            return ex
+        rx, ry = lerp(1), lerp(2)
+        import re as _re
+        zz = _re.sub(r'\bt\b', 'it', z)
+        rx_, ry_ = _re.sub(r'\bt\b', 'it', rx), _re.sub(r'\bt\b', 'it', ry)
+        # zoompan: z por quadro; x,y = canto da janela (iw/zoom), centrada no rosto em x
+        # e mantendo a altura relativa do rosto em y (a pessoa não sobe nem desce)
+        f.append(f"zoompan=z='{zz}':d=1:fps={FPS}:s={W}x{H}"
+                 f":x='clip(({rx_})*iw-iw/zoom/2,0,iw-iw/zoom)'"
+                 f":y='clip(({ry_})*(ih-ih/zoom),0,ih-ih/zoom)'")
     d = s['b'] - s['a']
     wp = ESTILO['whip']
     if s['abre'] and s['transicao'] == 'whip':
@@ -159,6 +174,10 @@ def filtro_video(s, prox_whip, punches=(), enfases=()):
         f.append(f"avgblur=sizeX=60:sizeY=1:enable='gte(t,{max(0, d - 0.04):.3f})'")
     f.append('format=yuv420p')
     return ','.join(f)
+
+
+def tr_fixo(s):
+    return bool(s.get('fixo'))
 
 
 def ritmo(s, palavras_take, enfases_finais):
@@ -507,8 +526,13 @@ def main():
         for a0, b0 in bloqueios:
             if l['ini'] < a0 < l['fim']:
                 l['fim'] = a0
-        if l['fim'] - l['ini'] >= 0.15:
+        if l['fim'] - l['ini'] >= 0.08:
             leg_ok.append(l)
+    # NUNCA duas legendas ao mesmo tempo: cada uma sai exatamente quando a próxima entra
+    leg_ok.sort(key=lambda l: l['ini'])
+    for k in range(len(leg_ok) - 1):
+        leg_ok[k]['fim'] = min(leg_ok[k]['fim'], leg_ok[k + 1]['ini'])
+    leg_ok = [l for l in leg_ok if l['fim'] - l['ini'] >= 0.05]
     enfases = [(l['ini_destaque'], l['ini_destaque'] + 0.9) for l in leg_ok
                if l.get('destaque') and l.get('estilo_destaque') == '3d']
     enfases += [(t_['ini'], t_['ini'] + 0.9) for t_ in textos if t_['estilo'] in ('impacto', 'destaque')]
@@ -516,7 +540,11 @@ def main():
     lista = []
     n_punch = 0
     for i, s in enumerate(segs):
-        s['rosto'] = centro_rosto(s, trans['takes'])
+        s['trilha'] = trilha_rosto(s, trans['takes'])
+        if s['trilha'] and not tr_fixo(s):
+            # pessoa fora do meio: aproxima o mínimo necessário pra poder centralizar o rosto o pedaço todo
+            dx = max(abs(cx - 0.5) for _, cx, _ in s['trilha'])
+            s['zoom'] = max(s['zoom'], min(1.35, 1 / max(0.5, 1 - 2 * dx) + 0.02))
         punches, enf_local = ritmo(s, trans['takes'][s['take'] - 1]['palavras'], enfases)
         n_punch += len(punches)
         prox_whip = i + 1 < len(segs) and segs[i + 1]['abre'] and segs[i + 1]['transicao'] == 'whip'
@@ -647,7 +675,7 @@ def main():
             grafo.append(f"[{idx}:v]setpts=PTS-STARTPTS+{c['a']:.3f}/TB,format={'gray' if rot == 'm' else 'rgba'}[ct{k}{rot}]")
             idx += 1
         grafo.append(f'{cur}split[ct{k}a][ct{k}b]')
-        grafo.append(f"[ct{k}b]crop={qw}:{qh}:{x}:{y},boxblur=22:2,eq=brightness=-0.04:saturation=1.1,format=rgba[ct{k}c]")
+        grafo.append(f"[ct{k}b]crop={qw}:{qh}:{x}:{y},boxblur=28:2,eq=brightness=0.05:saturation=1.05,format=rgba[ct{k}c]")
         grafo.append(f"[ct{k}c][ct{k}m]alphamerge[ct{k}d]")
         grafo.append(f"[ct{k}a][ct{k}d]overlay=x={x}:y={y}:enable='between(t,{c['a']:.3f},{c['b']:.3f})':eof_action=pass[ct{k}e]")
         grafo.append(f"[ct{k}e][ct{k}p]overlay=x={x}:y={y}:enable='between(t,{c['a']:.3f},{c['b']:.3f})':eof_action=pass[ct{k}]")

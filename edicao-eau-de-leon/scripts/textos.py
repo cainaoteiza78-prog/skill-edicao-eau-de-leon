@@ -118,7 +118,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                 tam = caber(l['texto'], L['arquivo'], L['tamanho'])
                 ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
             CTAS.append({'texto': l['destaque'], 'a': l.get('ini_destaque', l['ini']), 'b': max(fim_video, l['fim']),
-                         'cy': min(H - 330, y_legenda + 215), 'periodo': periodo})
+                         'cy': min(H - 360, y_legenda + 200), 'periodo': periodo})
             continue
         # palavra-chave: a PRÓPRIA legenda aumentada, como a Eau de Leon faz
         # ("QUE UM DECANT DE 2 ML / RENDE MUITO"): Bebas Neue engrossada, CAIXA ALTA,

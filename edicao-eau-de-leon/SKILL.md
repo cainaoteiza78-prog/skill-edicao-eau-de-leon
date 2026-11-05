@@ -32,6 +32,7 @@ A skill precisa de programas que não vêm no Windows/Mac: **Python**, **ffmpeg*
 8. `treinamento/08-checklist-qualidade.md` — a conferência antes de entregar
 9. `treinamento/09-exemplo-completo.md` — uma edição inteira, do bruto ao plano
 10. `treinamento/10-pacing.md` — ritmo: o que muda na tela e quando (punch, ênfase, CTA)
+11. `treinamento/11-verificacao.md` — como assistir e corrigir o próprio vídeo antes de entregar
 
 ## Fluxo (siga sem pular etapas)
 
@@ -53,12 +54,20 @@ Se o áudio tiver muito ruído ou nome errado demais, rode de novo com `--modelo
 
 **4. Escreva o plano** em `<trabalho>/plano.json` seguindo `treinamento/07-plano-json.md`. Tempos sempre na **take original** (take N + segundo), copiados do `transcricao.txt`.
 
-**5. Rascunho e conferência:**
+**5. Rascunho e VERIFICAÇÃO (você assiste o vídeo — obrigatório, nunca pule):**
 ```
 python <skill>/scripts/render.py <trabalho>/plano.json --rapido
-python <skill>/scripts/conferir.py <trabalho>/editado.mp4
+python <skill>/scripts/revisar.py <trabalho>/editado.mp4
+python <skill>/scripts/conferir.py <trabalho>/editado.mp4 --cada 0.5
 ```
-Abra **cada** `conferir/conferir_XX.png` com a ferramenta Read e passe o `treinamento/08-checklist-qualidade.md` item por item. Errou algo → corrija o plano e renderize de novo. Não entregue sem olhar os quadros.
+O `revisar.py` mede o vídeo inteiro e o `conferir.py` monta as folhas de quadros + mede pausas e palavras. Tudo tem que dar OK:
+- `SOBREPOSIÇÃO de legendas: OK` (nunca duas legendas na tela ao mesmo tempo)
+- `CENTRALIZAÇÃO: OK` (o rosto não sai do meio da tela em nenhum zoom)
+- `POSIÇÃO da legenda: OK (peito)`
+- `PAUSAS que sobraram: nenhuma`
+- `PALAVRAS: todas inteiras`
+
+Depois **assista** você mesmo: abra com a ferramenta Read **todas** as folhas `conferir/conferir_XX.png` (um quadro a cada 0,5 s) e procure, quadro por quadro, os erros básicos que a medição não pega (lista no `treinamento/11-verificacao.md`): destaque na palavra errada, palavra repetida, texto cortado na borda, CTA tapando o rosto, cor sem contraste, legenda com erro de grafia. Achou erro → corrija o plano (ou o parâmetro) → render → verifique **tudo de novo**. Só passe pro passo 6 quando uma rodada inteira sair limpa. Não entregue "quase certo".
 
 **6. Render final** (sem `--rapido`) e entregue: caminho do MP4, duração, o que foi cortado (em linguagem simples), perfumes e destaques que entraram, a música usada, e `legenda.srt` (pra colar como legenda do post se quiserem).
 
@@ -72,7 +81,7 @@ Abra **cada** `conferir/conferir_XX.png` com a ferramenta Read e passe o `treina
 - Perfume que não está no catálogo: não invente; avise no fim ("o X foi citado mas não tem foto no catálogo") e siga sem ele.
 - Saída sempre 1080×1920, 30 fps, H.264 + AAC, voz em -14 LUFS, **com música animada de fundo** (padrão; só tire se o usuário pedir) e **marca d'água** do logo.
 - **Nunca** coloque cartão final com o logo (fundo preto no fim). Proibido pelo dono.
-- **Nunca** entregue com palavra cortada: o `conferir.py` tem que dizer `PALAVRAS ...: todas inteiras` e `PAUSAS ...: nenhuma`.
+- **Nunca** entregue sem a verificação limpa (passo 5): `revisar.py` e `conferir.py` todos OK **e** você olhou todos os quadros.
 - Palavras-chave da oferta (QUANTO, EM QUÊ, ATÉ QUANDO) com a **legenda aumentada** em Bebas, toda vez que forem faladas (ver 03).
 - "Saiba mais" (e todo CTA de clique) é **sempre a placa de vidro 3D** (único glassmorphism), rosa ou azul da marca, pulsando até o fim. O render cria sozinho.
 - **Nunca** repita na legenda o que um texto grande acabou de mostrar (redundância, ver 03).

@@ -12,8 +12,8 @@ import subprocess
 import numpy as np
 
 W, H = 1080, 1920
-PADRAO = 1300          # sem rosto detectado: altura do peito num plano médio típico
-MIN_Y, MAX_Y = 1050, 1480
+PADRAO = 1400          # sem rosto detectado: altura do peito num plano médio típico
+MIN_Y, MAX_Y = 1150, 1560
 
 
 def _quadro(arquivo, t):
@@ -67,7 +67,7 @@ def altura_legenda(segs, takes):
         sh, sw = img.shape[:2]
         x, y, w, h = para_saida(c, sw, sh, s['zoom'], s['foco_x'], s['foco_y'])
         queixo = y + h
-        ys.append(queixo + 1.15 * h)   # PEITO (não pescoço): ~1 rosto abaixo do queixo
+        ys.append(queixo + 1.45 * h)   # PEITO (não pescoço): ~1,5 rosto abaixo do queixo
         achados.append((round(x), round(y), round(w), round(h)))
     if not ys:
         return PADRAO, achados
@@ -87,3 +87,32 @@ def centro_rosto(s, takes):
     sh, sw = img.shape[:2]
     x, y, w, h = para_saida(c, sw, sh, 1.0, s['foco_x'], s['foco_y'])
     return min(1, max(0, (x + w / 2) / W)), min(1, max(0, (y + h / 2) / H))
+
+
+def trilha_rosto(s, takes, passo=0.25):
+    """Centro do rosto (fração do quadro-base) ao longo do pedaço: [(t_local, cx, cy), ...]
+    suavizado. Vazio se não achar rosto."""
+    arq = takes[s['take'] - 1]['arquivo']
+    dur = s['b'] - s['a']
+    pts = []
+    k = 0
+    while True:
+        tl = min(dur - 0.02, 0.05 + k * passo)
+        img = _quadro(arq, s['a'] + tl)
+        if img is not None:
+            c = rosto(img)
+            if c:
+                sh, sw = img.shape[:2]
+                x, y, w, h = para_saida(c, sw, sh, 1.0, s['foco_x'], s['foco_y'])
+                pts.append([tl, (x + w / 2) / W, (y + h / 2) / H])
+        if tl >= dur - 0.02:
+            break
+        k += 1
+    if not pts:
+        return []
+    # suaviza (média móvel de 3) pra câmera não tremer
+    sm = []
+    for i in range(len(pts)):
+        viz = pts[max(0, i - 1):i + 2]
+        sm.append((pts[i][0], sum(v[1] for v in viz) / len(viz), sum(v[2] for v in viz) / len(viz)))
+    return sm

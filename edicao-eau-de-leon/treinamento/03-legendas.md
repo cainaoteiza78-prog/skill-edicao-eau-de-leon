@@ -6,7 +6,7 @@ A legenda é **sempre a mesma** e o render faz tudo. Seu trabalho é escolher o 
 
 - **Poppins Bold**, branca, grande, com **contorno escuro** (3 px, como a Eau de Leon usa hoje) e **sombra preta suave** deslocada pra baixo.
 - Uma linha só. Uma frase de ~22 caracteres ocupa ~55% da largura.
-- **Na altura do PEITO, não do pescoço.** O render detecta o rosto e põe o centro da legenda ~1 rosto abaixo do queixo (num plano médio, y ≈ 1300–1400 de 1920), uma vez pro vídeo todo. Se cair no pescoço ou na barriga, force com `"legenda_y": 0.70` (fração da altura; 0,66–0,74 é o normal).
+- **Na altura do PEITO, não do pescoço.** O render detecta o rosto e põe o centro da legenda ~1,5 rosto abaixo do queixo (num plano médio, y ≈ 1450–1550 de 1920), uma vez pro vídeo todo. Se cair no pescoço, force com `"legenda_y": 0.76`.
 - Aparece seca, sem animação de entrada, e troca no ritmo da fala.
 - Minúscula como se fala: "quer usar", "mas não faz ideia". O começo de frase também fica minúsculo; nomes próprios e marcas mantêm a maiúscula ("a Eau de Leon lançou", "o Sauvage").
 - Sem ponto final e sem vírgula. Mantém **?** e **!**.
@@ -67,6 +67,7 @@ O `transcrever.py` gera `destaques_sugeridos.txt` com QUANTO / EM QUE / ATE QUAN
 O CTA de clique ("saiba mais", "link na bio", "clica aqui", "compre agora") é a **única** peça em glassmorphism. Ela é desenhada quadro a quadro pelo `scripts/cta.py`:
 - **placa de vidro flutuando em 3D:** o vídeo atrás fica desfocado de verdade, a placa tem perspectiva (levemente inclinada), espessura lateral, borda de luz, reflexo diagonal e sombra no "chão";
 - **o texto também é de vidro:** degradê da mesma cor, textura granulada, glow da própria cor, fio de luz em cima das letras e sombra que descola o texto da placa;
+- **vidro translúcido de verdade:** a face é quase transparente (fosca), o fundo desfocado aparece através; a espessura é só uma aresta clara embaixo (não um bloco opaco);
 - **cores: SEMPRE rosa ou azul da Eau de Leon** (#F2A595 / #6BA9CF), com **leve fade lateral** (degradê da esquerda pra direita). O vidro é da mesma cor do texto, só que mais escuro e suave, pra dar contraste;
 - a cor é **escolhida sozinha pelo contraste** com o fundo (o render olha a cena em volta do botão: cena rosada/quente, como a caixa e a estante rosa, → azul; senão, a cor mais distante do fundo). Pra forçar: `"cta_cor": "rosa"` ou `"azul"` no plano;
 - aparece abaixo da legenda (mais embaixo que ela, acima da marca d'água), saltando da tela, quase sem inclinação, com sombra forte de contato e sombra longa no "chão" (é isso que faz parecer 3D), e **fica até o fim** pulsando devagar no ritmo da fala e flutuando de leve.

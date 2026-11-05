@@ -157,23 +157,29 @@ def montar(txt, larg_max=640, paleta='rosa'):
     sc = Image.new('RGBA', (W_, H_), (0, 0, 0, 0))
     sc.paste((0, 0, 0, 170), (x0 + 4, y0 + esp + 6), _arredondado(bw - 8, bh, r))
     peca.alpha_composite(sc.filter(ImageFilter.GaussianBlur(9)))
-    # espessura do vidro: camadas um pouco mais escuras descendo
-    for k in range(esp, 0, -1):
-        c = tuple(int(v * (0.45 + 0.35 * (1 - k / esp))) for v in pal['vidro'])
-        lado = Image.new('RGBA', (bw, bh), c + (0,))
-        lado.putalpha(_arredondado(bw, bh, r, 170))
-        peca.alpha_composite(lado, (x0, y0 + k))
-    # face: película da mesma cor, suave e translúcida (o desfoque real fica atrás)
-    face = np.zeros((bh, bw, 4))
-    vx = np.linspace(1.30, 0.70, bw)[None, :, None]                 # fade lateral do vidro
-    vy = np.linspace(1.08, 0.80, bh)[:, None, None]
-    face[:, :, :3] = np.array(pal['vidro'], float)[None, None, :] * vx * vy
-    face[:, :, 3] = np.linspace(0.30, 0.44, bh)[:, None] * 255
-    face[:, :, :3] += _ruido(bw, bh, 5, 7)[:, :, None]
-    face_im = Image.fromarray(face.clip(0, 255).astype('uint8'), 'RGBA')
     fm = _arredondado(bw, bh, r)
-    face_im.putalpha(Image.fromarray((np.asarray(face_im.getchannel('A'), float) * np.asarray(fm) / 255).astype('uint8')))
-    peca.alpha_composite(face_im, (x0, y0))
+    fa = np.asarray(fm, float) / 255
+    # espessura do vidro: SÓ a aresta que sobra embaixo da face (não tapa o fundo),
+    # translúcida e mais clara, como a borda de uma placa de vidro grossa
+    aresta = np.zeros((bh + esp, bw))
+    for k in range(1, esp + 1):
+        aresta[k:k + bh] = np.maximum(aresta[k:k + bh], fa)
+    aresta[:bh] = aresta[:bh] * (1 - fa)
+    claro = tuple(min(255, int(v * 0.35 + 255 * 0.65)) for v in pal['meio'])
+    edge = np.zeros((bh + esp, bw, 4))
+    edge[:, :, :3] = np.array(claro, float)
+    edge[:, :, 3] = aresta * np.linspace(1.0, 0.55, bh + esp)[:, None] * 150
+    peca.alpha_composite(Image.fromarray(edge.clip(0, 255).astype('uint8'), 'RGBA'), (x0, y0))
+    # face: vidro FOSCO e translúcido — branco gelo + um véu da cor da marca com fade
+    # lateral. O fundo desfocado de verdade aparece através dela.
+    face = np.zeros((bh, bw, 4))
+    vx = np.linspace(1.0, 0.0, bw)[None, :, None]                   # fade lateral
+    cor_viva = np.array(pal['meio'], float)
+    cor_suave = np.array(pal['claro'], float)
+    face[:, :, :3] = cor_suave * vx + cor_viva * (1 - vx)
+    face[:, :, 3] = (np.linspace(0.42, 0.30, bh)[:, None] * 255) * fa
+    face[:, :, :3] += _ruido(bw, bh, 6, 7)[:, :, None]               # grão fosco
+    peca.alpha_composite(Image.fromarray(face.clip(0, 255).astype('uint8'), 'RGBA'), (x0, y0))
     # reflexo diagonal (luz batendo no vidro)
     refl = Image.new('L', (bw, bh), 0)
     ImageDraw.Draw(refl).polygon([(bw * 0.08, 0), (bw * 0.34, 0), (bw * 0.18, bh), (-bw * 0.08, bh)], fill=60)

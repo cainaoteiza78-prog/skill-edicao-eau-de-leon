@@ -33,7 +33,7 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ```json
 {
-  "saida": "editado-v5.mp4",
+  "saida": "editado-v6.mp4",
   "formato": "leo",
   "legenda": "frase",
   "trechos": [
