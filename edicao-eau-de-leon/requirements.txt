@@ -1,0 +1,7 @@
+faster-whisper>=1.0
+numpy
+Pillow
+scipy
+# só para cadastrar perfume novo (remover fundo):
+rembg[cpu]>=2.0.60
+onnxruntime

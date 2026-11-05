@@ -1,0 +1,5196 @@
+{
+ "perfumes": [
+  {
+   "id": "femininos/212-nyc",
+   "nome": "212 NYC",
+   "genero": "feminino",
+   "arquivo": "femininos/212-nyc.png",
+   "angulos": [
+    "femininos/outros-angulos/212-nyc-2.png"
+   ],
+   "apelidos": [
+    "212 nyc"
+   ]
+  },
+  {
+   "id": "femininos/212-sexy",
+   "nome": "212 SEXY",
+   "genero": "feminino",
+   "arquivo": "femininos/212-sexy.png",
+   "angulos": [
+    "femininos/outros-angulos/212-sexy-2.png"
+   ],
+   "apelidos": [
+    "212 sexy"
+   ]
+  },
+  {
+   "id": "femininos/212-vip",
+   "nome": "212 VIP",
+   "genero": "feminino",
+   "arquivo": "femininos/212-vip.png",
+   "angulos": [
+    "femininos/outros-angulos/212-vip-rose-2.png"
+   ],
+   "apelidos": [
+    "212 vip"
+   ]
+  },
+  {
+   "id": "femininos/56",
+   "nome": "56",
+   "genero": "feminino",
+   "arquivo": "femininos/56.png",
+   "angulos": [],
+   "apelidos": [
+    "56"
+   ]
+  },
+  {
+   "id": "femininos/amber-rouge-edp",
+   "nome": "AMBER ROUGE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/amber-rouge-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/amber-rouge-edp-2.png"
+   ],
+   "apelidos": [
+    "amber rouge",
+    "amber rouge edp"
+   ]
+  },
+  {
+   "id": "femininos/ameerat-al-arab-edp",
+   "nome": "AMEERAT AL ARAB EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/ameerat-al-arab-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/ameerat-al-arab-edp-2.png"
+   ],
+   "apelidos": [
+    "ameerat al arab",
+    "ameerat al arab edp"
+   ]
+  },
+  {
+   "id": "femininos/ameerat-al-arab-prive-rose",
+   "nome": "AMEERAT AL ARAB PRIVE ROSE",
+   "genero": "feminino",
+   "arquivo": "femininos/ameerat-al-arab-prive-rose.png",
+   "angulos": [
+    "femininos/outros-angulos/ameerat-al-arab-prive-rose-2.png"
+   ],
+   "apelidos": [
+    "ameerat al arab prive rose"
+   ]
+  },
+  {
+   "id": "femininos/ameerati-edp",
+   "nome": "AMEERATI EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/ameerati-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/ameerati-edp-2.png"
+   ],
+   "apelidos": [
+    "ameerati",
+    "ameerati edp"
+   ]
+  },
+  {
+   "id": "femininos/angel-mugler-edp",
+   "nome": "ANGEL MUGLER EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/angel-mugler-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/angel-mugler-edp-2.png"
+   ],
+   "apelidos": [
+    "angel",
+    "angel mugler",
+    "angel mugler edp"
+   ]
+  },
+  {
+   "id": "femininos/angel-mugler-hid",
+   "nome": "ANGEL MUGLER HID",
+   "genero": "feminino",
+   "arquivo": "femininos/angel-mugler-hid.png",
+   "angulos": [],
+   "apelidos": [
+    "angel mugler hid"
+   ]
+  },
+  {
+   "id": "femininos/aqua-kiss",
+   "nome": "AQUA KISS",
+   "genero": "feminino",
+   "arquivo": "femininos/aqua-kiss.png",
+   "angulos": [],
+   "apelidos": [
+    "aqua kiss"
+   ]
+  },
+  {
+   "id": "femininos/baccarat-rouge-edp",
+   "nome": "BACCARAT ROUGE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/baccarat-rouge-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/baccarat-rouge-edp-2.png"
+   ],
+   "apelidos": [
+    "baccarat rouge",
+    "baccarat rouge edp"
+   ]
+  },
+  {
+   "id": "femininos/black-orchid-edp",
+   "nome": "BLACK ORCHID EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/black-orchid-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/black-orchid-edp-2.png"
+   ],
+   "apelidos": [
+    "black orchid",
+    "black orchid edp"
+   ]
+  },
+  {
+   "id": "femininos/black-xs-for-her-edp",
+   "nome": "BLACK XS FOR HER EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/black-xs-for-her-edp.png",
+   "angulos": [],
+   "apelidos": [
+    "black xs for her",
+    "black xs for her edp"
+   ]
+  },
+  {
+   "id": "femininos/born-in-roma-donna-edp",
+   "nome": "BORN IN ROMA DONNA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/born-in-roma-donna-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/born-in-roma-donna-edp-2.png"
+   ],
+   "apelidos": [
+    "born in roma donna",
+    "born in roma donna edp"
+   ]
+  },
+  {
+   "id": "femininos/bs-aqua-kiss",
+   "nome": "BS AQUA KISS",
+   "genero": "feminino",
+   "arquivo": "femininos/bs-aqua-kiss.png",
+   "angulos": [],
+   "apelidos": [
+    "aqua kiss",
+    "britney spears aqua kiss",
+    "bs aqua kiss"
+   ]
+  },
+  {
+   "id": "femininos/bs-coconut-passion-shimmer",
+   "nome": "BS COCONUT PASSION SHIMMER",
+   "genero": "feminino",
+   "arquivo": "femininos/bs-coconut-passion-shimmer.png",
+   "angulos": [],
+   "apelidos": [
+    "britney spears coconut passion shimmer",
+    "bs coconut passion shimmer",
+    "coconut passion shimmer"
+   ]
+  },
+  {
+   "id": "femininos/bs-coconut-passion",
+   "nome": "BS COCONUT PASSION",
+   "genero": "feminino",
+   "arquivo": "femininos/bs-coconut-passion.png",
+   "angulos": [],
+   "apelidos": [
+    "britney spears coconut passion",
+    "bs coconut passion",
+    "coconut passion"
+   ]
+  },
+  {
+   "id": "femininos/bs-love-spell-shimmer",
+   "nome": "BS LOVE SPELL SHIMMER",
+   "genero": "feminino",
+   "arquivo": "femininos/bs-love-spell-shimmer.png",
+   "angulos": [],
+   "apelidos": [
+    "britney spears love spell shimmer",
+    "bs love spell shimmer",
+    "love spell shimmer"
+   ]
+  },
+  {
+   "id": "femininos/bs-pure-seduction",
+   "nome": "BS PURE SEDUCTION",
+   "genero": "feminino",
+   "arquivo": "femininos/bs-pure-seduction.png",
+   "angulos": [],
+   "apelidos": [
+    "britney spears pure seduction",
+    "bs pure seduction",
+    "pure seduction"
+   ]
+  },
+  {
+   "id": "femininos/bs-romantic",
+   "nome": "BS ROMANTIC",
+   "genero": "feminino",
+   "arquivo": "femininos/bs-romantic.png",
+   "angulos": [],
+   "apelidos": [
+    "britney spears romantic",
+    "bs romantic",
+    "romantic"
+   ]
+  },
+  {
+   "id": "femininos/burberry-her-edp",
+   "nome": "BURBERRY HER EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/burberry-her-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/burberry-her-edp-2.png"
+   ],
+   "apelidos": [
+    "burberry her",
+    "burberry her edp"
+   ]
+  },
+  {
+   "id": "femininos/burberry-touch",
+   "nome": "BURBERRY TOUCH",
+   "genero": "feminino",
+   "arquivo": "femininos/burberry-touch.png",
+   "angulos": [
+    "femininos/outros-angulos/burberry-touch-for-women-2.png"
+   ],
+   "apelidos": [
+    "burberry touch"
+   ]
+  },
+  {
+   "id": "femininos/ch-pasion-edp",
+   "nome": "CH PASION EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/ch-pasion-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/ch-pasion-edp-2.png"
+   ],
+   "apelidos": [
+    "carolina herrera pasion edp",
+    "ch pasion",
+    "ch pasion edp",
+    "pasion",
+    "pasion edp"
+   ]
+  },
+  {
+   "id": "femininos/chance-eau-fraiche-edt",
+   "nome": "CHANCE EAU FRAÎCHE EDT",
+   "genero": "feminino",
+   "arquivo": "femininos/chance-eau-fraiche-edt.png",
+   "angulos": [
+    "femininos/outros-angulos/chance-eau-fraiche-edt-2.png"
+   ],
+   "apelidos": [
+    "chance eau fraiche edt",
+    "chance fraiche"
+   ]
+  },
+  {
+   "id": "femininos/chanel-chance-edt",
+   "nome": "CHANEL CHANCE EDT",
+   "genero": "feminino",
+   "arquivo": "femininos/chanel-chance-edt.png",
+   "angulos": [
+    "femininos/outros-angulos/chanel-chance-edt-2.png"
+   ],
+   "apelidos": [
+    "chance",
+    "chance edt",
+    "chanel chance",
+    "chanel chance edt"
+   ]
+  },
+  {
+   "id": "femininos/chanel-gabrielle",
+   "nome": "CHANEL GABRIELLE",
+   "genero": "feminino",
+   "arquivo": "femininos/chanel-gabrielle.png",
+   "angulos": [
+    "femininos/outros-angulos/chanel-gabrielle-2.png"
+   ],
+   "apelidos": [
+    "chanel gabrielle",
+    "gabrielle"
+   ]
+  },
+  {
+   "id": "femininos/chanel-n19-edp",
+   "nome": "CHANEL N19 EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/chanel-n19-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/chanel-n19-edp-2.png"
+   ],
+   "apelidos": [
+    "chanel n19",
+    "chanel n19 edp",
+    "n19 edp"
+   ]
+  },
+  {
+   "id": "femininos/chanel-n5-edp",
+   "nome": "CHANEL N5 EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/chanel-n5-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/chanel-n5-edp-2.png"
+   ],
+   "apelidos": [
+    "chanel n5",
+    "chanel n5 edp",
+    "n5 edp"
+   ]
+  },
+  {
+   "id": "femininos/chanel-n5-edt",
+   "nome": "CHANEL N°5 EDT",
+   "genero": "feminino",
+   "arquivo": "femininos/chanel-n5-edt.png",
+   "angulos": [
+    "femininos/outros-angulos/chanel-n5-edt-2.png"
+   ],
+   "apelidos": [
+    "chanel n5",
+    "chanel n5 edt",
+    "n5 edt"
+   ]
+  },
+  {
+   "id": "femininos/chloe-edp",
+   "nome": "CHLOÉ EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/chloe-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/chloe-edp-2.png"
+   ],
+   "apelidos": [
+    "chloe",
+    "chloe edp"
+   ]
+  },
+  {
+   "id": "femininos/club-de-nuit-woman",
+   "nome": "CLUB DE NUIT WOMAN",
+   "genero": "feminino",
+   "arquivo": "femininos/club-de-nuit-woman.png",
+   "angulos": [
+    "femininos/outros-angulos/club-de-nuit-woman-2.png"
+   ],
+   "apelidos": [
+    "club de nuit woman",
+    "club nuit woman"
+   ]
+  },
+  {
+   "id": "femininos/coco-mademoiselle",
+   "nome": "COCO MADEMOISELLE",
+   "genero": "feminino",
+   "arquivo": "femininos/coco-mademoiselle.png",
+   "angulos": [
+    "femininos/outros-angulos/coco-mademoiselle-2.png"
+   ],
+   "apelidos": [
+    "coco mademoiselle"
+   ]
+  },
+  {
+   "id": "femininos/coconut-passion-shimmer",
+   "nome": "COCONUT PASSION SHIMMER",
+   "genero": "feminino",
+   "arquivo": "femininos/coconut-passion-shimmer.png",
+   "angulos": [],
+   "apelidos": [
+    "coconut passion shimmer"
+   ]
+  },
+  {
+   "id": "femininos/coconut-passion",
+   "nome": "COCONUT PASSION",
+   "genero": "feminino",
+   "arquivo": "femininos/coconut-passion.png",
+   "angulos": [],
+   "apelidos": [
+    "coconut passion"
+   ]
+  },
+  {
+   "id": "femininos/creed-aventus-for-her",
+   "nome": "CREED AVENTUS FOR HER",
+   "genero": "feminino",
+   "arquivo": "femininos/creed-aventus-for-her.png",
+   "angulos": [
+    "femininos/outros-angulos/creed-aventus-for-her-2.png"
+   ],
+   "apelidos": [
+    "aventus for her",
+    "creed aventus for her"
+   ]
+  },
+  {
+   "id": "femininos/d-e-g-light-blue",
+   "nome": "D&G LIGHT BLUE",
+   "genero": "feminino",
+   "arquivo": "femininos/d-e-g-light-blue.png",
+   "angulos": [],
+   "apelidos": [
+    "d e g light blue"
+   ]
+  },
+  {
+   "id": "femininos/dania-extrait-de-parfum",
+   "nome": "DANIA EXTRAIT DE PARFUM",
+   "genero": "feminino",
+   "arquivo": "femininos/dania-extrait-de-parfum.png",
+   "angulos": [
+    "femininos/outros-angulos/dania-extrait-de-parfum-2.png"
+   ],
+   "apelidos": [
+    "dania",
+    "dania extrait de parfum"
+   ]
+  },
+  {
+   "id": "femininos/delilah-blanc-edp",
+   "nome": "DELILAH BLANC EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/delilah-blanc-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/delilah-blanc-edp-2.png"
+   ],
+   "apelidos": [
+    "delilah blanc",
+    "delilah blanc edp"
+   ]
+  },
+  {
+   "id": "femininos/delilah-edp",
+   "nome": "DELILAH EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/delilah-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/delilah-edp-2.png"
+   ],
+   "apelidos": [
+    "delilah",
+    "delilah edp"
+   ]
+  },
+  {
+   "id": "femininos/delina-edp",
+   "nome": "DELINA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/delina-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/delina-edp-2.png"
+   ],
+   "apelidos": [
+    "delina",
+    "delina edp"
+   ]
+  },
+  {
+   "id": "femininos/delina-la-rosee",
+   "nome": "DELINA LA ROSÉE",
+   "genero": "feminino",
+   "arquivo": "femininos/delina-la-rosee.png",
+   "angulos": [
+    "femininos/outros-angulos/delina-la-rosee-2.png"
+   ],
+   "apelidos": [
+    "delina la rosee"
+   ]
+  },
+  {
+   "id": "femininos/devotion-edp",
+   "nome": "DEVOTION EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/devotion-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/devotion-edp-2.png"
+   ],
+   "apelidos": [
+    "devotion",
+    "devotion edp"
+   ]
+  },
+  {
+   "id": "femininos/dior-j-adore",
+   "nome": "DIOR J ADORE",
+   "genero": "feminino",
+   "arquivo": "femininos/dior-j-adore.png",
+   "angulos": [
+    "femininos/outros-angulos/dior-j-adore-2.png"
+   ],
+   "apelidos": [
+    "dior j adore",
+    "j adore"
+   ]
+  },
+  {
+   "id": "femininos/eclaire-banoffi-edp",
+   "nome": "ECLAIRE BANOFFI EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/eclaire-banoffi-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/eclaire-banoffi-edp-2.png"
+   ],
+   "apelidos": [
+    "eclaire banoffi",
+    "eclaire banoffi edp"
+   ]
+  },
+  {
+   "id": "femininos/eclaire-edp",
+   "nome": "ECLAIRE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/eclaire-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/eclaire-edp-2.png"
+   ],
+   "apelidos": [
+    "eclaire",
+    "eclaire edp"
+   ]
+  },
+  {
+   "id": "femininos/eclaire-pistache-edp",
+   "nome": "ECLAIRE PISTACHE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/eclaire-pistache-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/eclaire-pistache-edp-2.png"
+   ],
+   "apelidos": [
+    "eclaire pistache",
+    "eclaire pistache edp"
+   ]
+  },
+  {
+   "id": "femininos/eternity-moment",
+   "nome": "ETERNITY MOMENT",
+   "genero": "feminino",
+   "arquivo": "femininos/eternity-moment.png",
+   "angulos": [
+    "femininos/outros-angulos/eternity-moment-2.png"
+   ],
+   "apelidos": [
+    "eternity moment"
+   ]
+  },
+  {
+   "id": "femininos/euphoria-edp",
+   "nome": "EUPHORIA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/euphoria-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/euphoria-edp-2.png"
+   ],
+   "apelidos": [
+    "euphoria",
+    "euphoria edp"
+   ]
+  },
+  {
+   "id": "femininos/fakhar-rose-edp",
+   "nome": "FAKHAR ROSE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/fakhar-rose-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/fakhar-rose-edp-2.png"
+   ],
+   "apelidos": [
+    "fakhar rose",
+    "fakhar rose edp"
+   ]
+  },
+  {
+   "id": "femininos/fame-edp",
+   "nome": "FAME EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/fame-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/fame-edp-2.png"
+   ],
+   "apelidos": [
+    "fame",
+    "fame edp"
+   ]
+  },
+  {
+   "id": "femininos/fleur-de-orientica-edp",
+   "nome": "FLEUR DE ORIENTICA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/fleur-de-orientica-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/fleur-de-orientica-edp-2.png"
+   ],
+   "apelidos": [
+    "fleur",
+    "fleur de orientica edp",
+    "fleur orientica"
+   ]
+  },
+  {
+   "id": "femininos/gabriela-sabatini-edt",
+   "nome": "GABRIELA SABATINI EDT",
+   "genero": "feminino",
+   "arquivo": "femininos/gabriela-sabatini-edt.png",
+   "angulos": [
+    "femininos/outros-angulos/gabriela-sabatini-edt-2.png"
+   ],
+   "apelidos": [
+    "gabriela sabatini",
+    "gabriela sabatini edt"
+   ]
+  },
+  {
+   "id": "femininos/glam-jasmine-michael-kors",
+   "nome": "GLAM JASMINE MICHAEL KORS",
+   "genero": "feminino",
+   "arquivo": "femininos/glam-jasmine-michael-kors.png",
+   "angulos": [],
+   "apelidos": [
+    "glam jasmine michael kors"
+   ]
+  },
+  {
+   "id": "femininos/goddes-edp",
+   "nome": "GODDES EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/goddes-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/goddes-edp-2.png"
+   ],
+   "apelidos": [
+    "goddes",
+    "goddes edp"
+   ]
+  },
+  {
+   "id": "femininos/good-girl-blush",
+   "nome": "GOOD GIRL BLUSH",
+   "genero": "feminino",
+   "arquivo": "femininos/good-girl-blush.png",
+   "angulos": [
+    "femininos/outros-angulos/good-girl-blush-2.png"
+   ],
+   "apelidos": [
+    "good girl blush"
+   ]
+  },
+  {
+   "id": "femininos/good-girl-carolina-herrera",
+   "nome": "GOOD GIRL CAROLINA HERRERA",
+   "genero": "feminino",
+   "arquivo": "femininos/good-girl-carolina-herrera.png",
+   "angulos": [],
+   "apelidos": [
+    "good girl",
+    "good girl carolina herrera"
+   ]
+  },
+  {
+   "id": "femininos/good-girl-dazzling-garden",
+   "nome": "GOOD GIRL DAZZLING GARDEN",
+   "genero": "feminino",
+   "arquivo": "femininos/good-girl-dazzling-garden.png",
+   "angulos": [
+    "femininos/outros-angulos/good-girl-dazzling-garden-2.png"
+   ],
+   "apelidos": [
+    "good girl dazzling garden"
+   ]
+  },
+  {
+   "id": "femininos/good-girl-gold",
+   "nome": "GOOD GIRL GOLD",
+   "genero": "feminino",
+   "arquivo": "femininos/good-girl-gold.png",
+   "angulos": [
+    "femininos/outros-angulos/good-girl-gold-2.png"
+   ],
+   "apelidos": [
+    "good girl gold"
+   ]
+  },
+  {
+   "id": "femininos/hacivat",
+   "nome": "HACIVAT",
+   "genero": "feminino",
+   "arquivo": "femininos/hacivat.png",
+   "angulos": [
+    "femininos/outros-angulos/hacivat-2.png"
+   ],
+   "apelidos": [
+    "hacivat"
+   ]
+  },
+  {
+   "id": "femininos/hid-aqua-kiss",
+   "nome": "HID AQUA KISS",
+   "genero": "feminino",
+   "arquivo": "femininos/hid-aqua-kiss.png",
+   "angulos": [],
+   "apelidos": [
+    "hid aqua kiss"
+   ]
+  },
+  {
+   "id": "femininos/hid-coconut-passion-shimmer",
+   "nome": "HID COCONUT PASSION SHIMMER",
+   "genero": "feminino",
+   "arquivo": "femininos/hid-coconut-passion-shimmer.png",
+   "angulos": [],
+   "apelidos": [
+    "hid coconut passion shimmer"
+   ]
+  },
+  {
+   "id": "femininos/hid-coconut-passion",
+   "nome": "HID COCONUT PASSION",
+   "genero": "feminino",
+   "arquivo": "femininos/hid-coconut-passion.png",
+   "angulos": [],
+   "apelidos": [
+    "hid coconut passion"
+   ]
+  },
+  {
+   "id": "femininos/hid-love-spell-shimmer",
+   "nome": "HID LOVE SPELL SHIMMER",
+   "genero": "feminino",
+   "arquivo": "femininos/hid-love-spell-shimmer.png",
+   "angulos": [],
+   "apelidos": [
+    "hid love spell shimmer"
+   ]
+  },
+  {
+   "id": "femininos/hid-pure-seduction",
+   "nome": "HID PURE SEDUCTION",
+   "genero": "feminino",
+   "arquivo": "femininos/hid-pure-seduction.png",
+   "angulos": [],
+   "apelidos": [
+    "hid pure seduction"
+   ]
+  },
+  {
+   "id": "femininos/hid-romantic",
+   "nome": "HID ROMANTIC",
+   "genero": "feminino",
+   "arquivo": "femininos/hid-romantic.png",
+   "angulos": [],
+   "apelidos": [
+    "hid romantic"
+   ]
+  },
+  {
+   "id": "femininos/hypnotic-poison-edt",
+   "nome": "HYPNOTIC POISON EDT",
+   "genero": "feminino",
+   "arquivo": "femininos/hypnotic-poison-edt.png",
+   "angulos": [
+    "femininos/outros-angulos/hypnotic-poison-edt-2.png"
+   ],
+   "apelidos": [
+    "hypnotic poison",
+    "hypnotic poison edt"
+   ]
+  },
+  {
+   "id": "femininos/idole-lancome",
+   "nome": "IDOLE LANCOME",
+   "genero": "feminino",
+   "arquivo": "femininos/idole-lancome.png",
+   "angulos": [],
+   "apelidos": [
+    "idole lancome"
+   ]
+  },
+  {
+   "id": "femininos/jo-malone-englih-pear-e-freesia",
+   "nome": "JO MALONE ENGLIH PEAR & FREESIA",
+   "genero": "feminino",
+   "arquivo": "femininos/jo-malone-englih-pear-e-freesia.png",
+   "angulos": [],
+   "apelidos": [
+    "jo malone englih pear e freesia"
+   ]
+  },
+  {
+   "id": "femininos/jo-malone-oud-e-bergamot",
+   "nome": "JO MALONE OUD & BERGAMOT",
+   "genero": "feminino",
+   "arquivo": "femininos/jo-malone-oud-e-bergamot.png",
+   "angulos": [
+    "femininos/outros-angulos/jo-malone-oud-e-bergamot-2.png"
+   ],
+   "apelidos": [
+    "jo malone oud e bergamot"
+   ]
+  },
+  {
+   "id": "femininos/jo-malone-wood-sage-e-sea-salt",
+   "nome": "JO MALONE WOOD SAGE & SEA SALT",
+   "genero": "feminino",
+   "arquivo": "femininos/jo-malone-wood-sage-e-sea-salt.png",
+   "angulos": [
+    "femininos/outros-angulos/jo-malone-wood-sage-e-sea-salt-2.png"
+   ],
+   "apelidos": [
+    "jo malone wood sage e sea salt"
+   ]
+  },
+  {
+   "id": "femininos/l-interdit-edp",
+   "nome": "L INTERDIT EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/l-interdit-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/l-interdit-edp-2.png"
+   ],
+   "apelidos": [
+    "l interdit",
+    "l interdit edp"
+   ]
+  },
+  {
+   "id": "femininos/l-interdit-intense-edp",
+   "nome": "L INTERDIT INTENSE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/l-interdit-intense-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/l-interdit-intense-edp-2.png"
+   ],
+   "apelidos": [
+    "l interdit",
+    "l interdit intense edp"
+   ]
+  },
+  {
+   "id": "femininos/la-belle-edp",
+   "nome": "LA BELLE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/la-belle-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/la-belle-edp-2.png"
+   ],
+   "apelidos": [
+    "la belle",
+    "la belle edp"
+   ]
+  },
+  {
+   "id": "femininos/la-belle-paradise-garden",
+   "nome": "LA BELLE PARADISE GARDEN",
+   "genero": "feminino",
+   "arquivo": "femininos/la-belle-paradise-garden.png",
+   "angulos": [
+    "femininos/outros-angulos/la-belle-paradise-garden-2.png"
+   ],
+   "apelidos": [
+    "la belle paradise garden"
+   ]
+  },
+  {
+   "id": "femininos/la-bomba-edp",
+   "nome": "LA BOMBA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/la-bomba-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/la-bomba-edp-2.png"
+   ],
+   "apelidos": [
+    "la bomba",
+    "la bomba edp"
+   ]
+  },
+  {
+   "id": "femininos/la-nuit-tresor",
+   "nome": "LA NUIT TRESOR",
+   "genero": "feminino",
+   "arquivo": "femininos/la-nuit-tresor.png",
+   "angulos": [
+    "femininos/outros-angulos/la-nuit-tresor-2.png"
+   ],
+   "apelidos": [
+    "la nuit tresor"
+   ]
+  },
+  {
+   "id": "femininos/la-vie-est-belle-lancome",
+   "nome": "LA VIE EST BELLE LANCOME",
+   "genero": "feminino",
+   "arquivo": "femininos/la-vie-est-belle-lancome.png",
+   "angulos": [],
+   "apelidos": [
+    "la vie est belle",
+    "la vie est belle lancome"
+   ]
+  },
+  {
+   "id": "femininos/lady-million-edp",
+   "nome": "LADY MILLION EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/lady-million-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/lady-million-edp-2.png"
+   ],
+   "apelidos": [
+    "lady million",
+    "lady million edp"
+   ]
+  },
+  {
+   "id": "femininos/lady-million-royal",
+   "nome": "LADY MILLION ROYAL",
+   "genero": "feminino",
+   "arquivo": "femininos/lady-million-royal.png",
+   "angulos": [
+    "femininos/outros-angulos/lady-million-royal-2.png"
+   ],
+   "apelidos": [
+    "lady million royal"
+   ]
+  },
+  {
+   "id": "femininos/leau-dissey",
+   "nome": "LEAU DISSEY",
+   "genero": "feminino",
+   "arquivo": "femininos/leau-dissey.png",
+   "angulos": [],
+   "apelidos": [
+    "leau dissey"
+   ]
+  },
+  {
+   "id": "femininos/libre-edp",
+   "nome": "LIBRE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/libre-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/libre-edp-2.png"
+   ],
+   "apelidos": [
+    "libre",
+    "libre edp"
+   ]
+  },
+  {
+   "id": "femininos/libre-le-parfum",
+   "nome": "LIBRE LE PARFUM",
+   "genero": "feminino",
+   "arquivo": "femininos/libre-le-parfum.png",
+   "angulos": [
+    "femininos/outros-angulos/libre-le-parfum-2.png"
+   ],
+   "apelidos": [
+    "libre le",
+    "libre le parfum"
+   ]
+  },
+  {
+   "id": "femininos/light-blue-200ml",
+   "nome": "LIGHT BLUE 200ML",
+   "genero": "feminino",
+   "arquivo": "femininos/light-blue-200ml.png",
+   "angulos": [
+    "femininos/outros-angulos/light-blue-200ml-2.png"
+   ],
+   "apelidos": [
+    "light blue 200ml"
+   ]
+  },
+  {
+   "id": "femininos/love-spell-shimmer",
+   "nome": "LOVE SPELL SHIMMER",
+   "genero": "feminino",
+   "arquivo": "femininos/love-spell-shimmer.png",
+   "angulos": [],
+   "apelidos": [
+    "love spell shimmer"
+   ]
+  },
+  {
+   "id": "femininos/miss-dior-edp",
+   "nome": "MISS DIOR EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/miss-dior-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/miss-dior-edp-2.png"
+   ],
+   "apelidos": [
+    "miss",
+    "miss dior",
+    "miss dior edp"
+   ]
+  },
+  {
+   "id": "femininos/my-way",
+   "nome": "MY WAY",
+   "genero": "feminino",
+   "arquivo": "femininos/my-way.png",
+   "angulos": [
+    "femininos/outros-angulos/my-way-2.png"
+   ],
+   "apelidos": [
+    "my way"
+   ]
+  },
+  {
+   "id": "femininos/olympea-edp",
+   "nome": "OLYMPÉA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/olympea-edp.png",
+   "angulos": [],
+   "apelidos": [
+    "olympea",
+    "olympea edp"
+   ]
+  },
+  {
+   "id": "femininos/olympea-legend",
+   "nome": "OLYMPÉA LEGEND",
+   "genero": "feminino",
+   "arquivo": "femininos/olympea-legend.png",
+   "angulos": [
+    "femininos/outros-angulos/olympea-legend-2.png"
+   ],
+   "apelidos": [
+    "olympea legend"
+   ]
+  },
+  {
+   "id": "femininos/prada-candy",
+   "nome": "PRADA CANDY",
+   "genero": "feminino",
+   "arquivo": "femininos/prada-candy.png",
+   "angulos": [
+    "femininos/outros-angulos/prada-candy-2.png"
+   ],
+   "apelidos": [
+    "candy",
+    "prada candy"
+   ]
+  },
+  {
+   "id": "femininos/prada-paradoxe-edp",
+   "nome": "PRADA PARADOXE EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/prada-paradoxe-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/prada-paradoxe-edp-2.png"
+   ],
+   "apelidos": [
+    "paradoxe",
+    "paradoxe edp",
+    "prada paradoxe",
+    "prada paradoxe edp"
+   ]
+  },
+  {
+   "id": "femininos/pure-seduction",
+   "nome": "PURE SEDUCTION",
+   "genero": "feminino",
+   "arquivo": "femininos/pure-seduction.png",
+   "angulos": [],
+   "apelidos": [
+    "pure seduction"
+   ]
+  },
+  {
+   "id": "femininos/red-jeans",
+   "nome": "RED JEANS",
+   "genero": "feminino",
+   "arquivo": "femininos/red-jeans.png",
+   "angulos": [
+    "femininos/outros-angulos/red-jeans-2.png"
+   ],
+   "apelidos": [
+    "red jeans"
+   ]
+  },
+  {
+   "id": "femininos/romantic",
+   "nome": "ROMANTIC",
+   "genero": "feminino",
+   "arquivo": "femininos/romantic.png",
+   "angulos": [],
+   "apelidos": [
+    "romantic"
+   ]
+  },
+  {
+   "id": "femininos/royal-amber-edp",
+   "nome": "ROYAL AMBER EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/royal-amber-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/royal-amber-edp-2.png"
+   ],
+   "apelidos": [
+    "royal amber",
+    "royal amber edp"
+   ]
+  },
+  {
+   "id": "femininos/sabah-al-ward-edp",
+   "nome": "SABAH AL WARD EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/sabah-al-ward-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/sabah-al-ward-edp-2.png"
+   ],
+   "apelidos": [
+    "sabah al ward",
+    "sabah al ward edp"
+   ]
+  },
+  {
+   "id": "femininos/scandal-absolu-parfum",
+   "nome": "SCANDAL ABSOLU PARFUM",
+   "genero": "feminino",
+   "arquivo": "femininos/scandal-absolu-parfum.png",
+   "angulos": [
+    "femininos/outros-angulos/scandal-absolu-parfum-2.png"
+   ],
+   "apelidos": [
+    "scandal absolu",
+    "scandal absolu parfum"
+   ]
+  },
+  {
+   "id": "femininos/scandal-edp",
+   "nome": "SCANDAL EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/scandal-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/scandal-edp-2.png"
+   ],
+   "apelidos": [
+    "scandal",
+    "scandal edp"
+   ]
+  },
+  {
+   "id": "femininos/si-edp",
+   "nome": "SÍ EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/si-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/si-edp-2.png"
+   ],
+   "apelidos": [
+    "si edp"
+   ]
+  },
+  {
+   "id": "femininos/valaya-edp",
+   "nome": "VALAYA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/valaya-edp.png",
+   "angulos": [],
+   "apelidos": [
+    "valaya",
+    "valaya edp"
+   ]
+  },
+  {
+   "id": "femininos/very-good-girl-elixir",
+   "nome": "VERY GOOD GIRL ELIXIR",
+   "genero": "feminino",
+   "arquivo": "femininos/very-good-girl-elixir.png",
+   "angulos": [
+    "femininos/outros-angulos/very-good-girl-elixir-2.png"
+   ],
+   "apelidos": [
+    "very good girl elixir"
+   ]
+  },
+  {
+   "id": "femininos/yara-candy-edp",
+   "nome": "YARA CANDY EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/yara-candy-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/yara-candy-edp-2.png"
+   ],
+   "apelidos": [
+    "yara candy",
+    "yara candy edp"
+   ]
+  },
+  {
+   "id": "femininos/yara-edp",
+   "nome": "YARA EDP",
+   "genero": "feminino",
+   "arquivo": "femininos/yara-edp.png",
+   "angulos": [
+    "femininos/outros-angulos/yara-edp-2.png"
+   ],
+   "apelidos": [
+    "yara",
+    "yara edp"
+   ]
+  },
+  {
+   "id": "femininos/yara",
+   "nome": "YARA",
+   "genero": "feminino",
+   "arquivo": "femininos/yara.png",
+   "angulos": [
+    "femininos/outros-angulos/yara-2.png",
+    "femininos/outros-angulos/yara-candy-edp-2.png",
+    "femininos/outros-angulos/yara-edp-2.png"
+   ],
+   "apelidos": [
+    "yara"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/212-nyc-2",
+   "nome": "212 NYC 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/212-nyc-2.png",
+   "angulos": [],
+   "apelidos": [
+    "212 nyc 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/212-sexy-2",
+   "nome": "212 SEXY 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/212-sexy-2.png",
+   "angulos": [],
+   "apelidos": [
+    "212 sexy 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/212-vip-rose-2",
+   "nome": "212 VIP ROSÉ 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/212-vip-rose-2.png",
+   "angulos": [],
+   "apelidos": [
+    "212 vip rose 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/60",
+   "nome": "60",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/60.png",
+   "angulos": [],
+   "apelidos": [
+    "60"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/amber-rouge-edp-2",
+   "nome": "AMBER ROUGE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/amber-rouge-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "amber rouge 2",
+    "amber rouge edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/ameerat-al-arab-edp-2",
+   "nome": "AMEERAT AL ARAB EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/ameerat-al-arab-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "ameerat al arab 2",
+    "ameerat al arab edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/ameerat-al-arab-prive-rose-2",
+   "nome": "AMEERAT AL ARAB PRIVE ROSE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/ameerat-al-arab-prive-rose-2.png",
+   "angulos": [],
+   "apelidos": [
+    "ameerat al arab prive rose 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/ameerati-edp-2",
+   "nome": "AMEERATI EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/ameerati-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "ameerati 2",
+    "ameerati edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/angel-mugler-edp-2",
+   "nome": "ANGEL MUGLER EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/angel-mugler-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "angel mugler 2",
+    "angel mugler edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/baccarat-rouge-edp-2",
+   "nome": "BACCARAT ROUGE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/baccarat-rouge-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "baccarat rouge 2",
+    "baccarat rouge edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/black-orchid-edp-2",
+   "nome": "BLACK ORCHID EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/black-orchid-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "black orchid 2",
+    "black orchid edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/black-xs-2",
+   "nome": "BLACK XS 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/black-xs-2.png",
+   "angulos": [],
+   "apelidos": [
+    "black xs 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/born-in-roma-donna-edp-2",
+   "nome": "BORN IN ROMA DONNA EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/born-in-roma-donna-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "born in roma donna 2",
+    "born in roma donna edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/burberry-her-edp-2",
+   "nome": "BURBERRY HER EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/burberry-her-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "burberry her 2",
+    "burberry her edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/burberry-touch-for-women-2",
+   "nome": "BURBERRY TOUCH FOR WOMEN 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/burberry-touch-for-women-2.png",
+   "angulos": [],
+   "apelidos": [
+    "burberry touch for women 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/ch-pasion-edp-2",
+   "nome": "CH PASION EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/ch-pasion-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "carolina herrera pasion edp 2",
+    "ch pasion 2",
+    "ch pasion edp 2",
+    "pasion 2",
+    "pasion edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/chance-eau-fraiche-edt-2",
+   "nome": "CHANCE EAU FRAÎCHE EDT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/chance-eau-fraiche-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "chance eau fraiche edt 2",
+    "chance fraiche 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/chanel-chance-edt-2",
+   "nome": "CHANEL CHANCE EDT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/chanel-chance-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "chance 2",
+    "chance edt 2",
+    "chanel chance 2",
+    "chanel chance edt 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/chanel-gabrielle-2",
+   "nome": "CHANEL GABRIELLE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/chanel-gabrielle-2.png",
+   "angulos": [],
+   "apelidos": [
+    "chanel gabrielle 2",
+    "gabrielle 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/chanel-n19-edp-2",
+   "nome": "CHANEL N19 EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/chanel-n19-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "chanel n19 2",
+    "chanel n19 edp 2",
+    "n19 2",
+    "n19 edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/chanel-n5-edp-2",
+   "nome": "CHANEL N5 EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/chanel-n5-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "chanel n5 2",
+    "chanel n5 edp 2",
+    "n5 2",
+    "n5 edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/chanel-n5-edt-2",
+   "nome": "CHANEL N°5 EDT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/chanel-n5-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "chanel n5 2",
+    "chanel n5 edt 2",
+    "n5 2",
+    "n5 edt 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/chloe-edp-2",
+   "nome": "CHLOÉ EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/chloe-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "chloe 2",
+    "chloe edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/ck-one-2",
+   "nome": "CK ONE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/ck-one-2.png",
+   "angulos": [],
+   "apelidos": [
+    "ck one 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/club-de-nuit-woman-2",
+   "nome": "CLUB DE NUIT WOMAN 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/club-de-nuit-woman-2.png",
+   "angulos": [],
+   "apelidos": [
+    "club de nuit woman 2",
+    "club nuit woman 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/coco-mademoiselle-2",
+   "nome": "COCO MADEMOISELLE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/coco-mademoiselle-2.png",
+   "angulos": [],
+   "apelidos": [
+    "coco mademoiselle 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/creed-aventus-for-her-2",
+   "nome": "CREED AVENTUS FOR HER 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/creed-aventus-for-her-2.png",
+   "angulos": [],
+   "apelidos": [
+    "aventus for her 2",
+    "creed aventus for her 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/dania-extrait-de-parfum-2",
+   "nome": "DANIA EXTRAIT DE PARFUM 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/dania-extrait-de-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "dania 2",
+    "dania extrait de parfum 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/delilah-blanc-edp-2",
+   "nome": "DELILAH BLANC EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/delilah-blanc-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "delilah blanc 2",
+    "delilah blanc edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/delilah-edp-2",
+   "nome": "DELILAH EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/delilah-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "delilah 2",
+    "delilah edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/delina-edp-2",
+   "nome": "DELINA EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/delina-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "delina 2",
+    "delina edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/delina-la-rosee-2",
+   "nome": "DELINA LA ROSÉE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/delina-la-rosee-2.png",
+   "angulos": [],
+   "apelidos": [
+    "delina la rosee 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/devotion-edp-2",
+   "nome": "DEVOTION EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/devotion-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "devotion 2",
+    "devotion edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/dior-j-adore-2",
+   "nome": "DIOR J ADORE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/dior-j-adore-2.png",
+   "angulos": [],
+   "apelidos": [
+    "dior j adore 2",
+    "j adore 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/eclaire-banoffi-edp-2",
+   "nome": "ECLAIRE BANOFFI EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/eclaire-banoffi-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "eclaire banoffi 2",
+    "eclaire banoffi edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/eclaire-edp-2",
+   "nome": "ECLAIRE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/eclaire-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "eclaire 2",
+    "eclaire edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/eclaire-pistache-edp-2",
+   "nome": "ECLAIRE PISTACHE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/eclaire-pistache-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "eclaire pistache 2",
+    "eclaire pistache edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/eternity-moment-2",
+   "nome": "ETERNITY MOMENT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/eternity-moment-2.png",
+   "angulos": [],
+   "apelidos": [
+    "eternity moment 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/euphoria-edp-2",
+   "nome": "EUPHORIA EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/euphoria-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "euphoria 2",
+    "euphoria edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/fakhar-rose-edp-2",
+   "nome": "FAKHAR ROSE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/fakhar-rose-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "fakhar rose 2",
+    "fakhar rose edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/fame-edp-2",
+   "nome": "FAME EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/fame-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "fame 2",
+    "fame edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/fleur-de-orientica-edp-2",
+   "nome": "FLEUR DE ORIENTICA EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/fleur-de-orientica-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "fleur de orientica edp 2",
+    "fleur orientica 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/gabriela-sabatini-edt-2",
+   "nome": "GABRIELA SABATINI EDT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/gabriela-sabatini-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "gabriela sabatini 2",
+    "gabriela sabatini edt 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/glam-jasmine-2",
+   "nome": "GLAM JASMINE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/glam-jasmine-2.png",
+   "angulos": [],
+   "apelidos": [
+    "glam jasmine 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/goddes-edp-2",
+   "nome": "GODDES EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/goddes-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "goddes 2",
+    "goddes edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/good-girl-2",
+   "nome": "GOOD GIRL 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/good-girl-2.png",
+   "angulos": [],
+   "apelidos": [
+    "good girl 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/good-girl-blush-2",
+   "nome": "GOOD GIRL BLUSH 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/good-girl-blush-2.png",
+   "angulos": [],
+   "apelidos": [
+    "good girl blush 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/good-girl-dazzling-garden-2",
+   "nome": "GOOD GIRL DAZZLING GARDEN 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/good-girl-dazzling-garden-2.png",
+   "angulos": [],
+   "apelidos": [
+    "good girl dazzling garden 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/good-girl-gold-2",
+   "nome": "GOOD GIRL GOLD 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/good-girl-gold-2.png",
+   "angulos": [],
+   "apelidos": [
+    "good girl gold 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/hacivat-2",
+   "nome": "HACIVAT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/hacivat-2.png",
+   "angulos": [],
+   "apelidos": [
+    "hacivat 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/hypnotic-poison-edt-2",
+   "nome": "HYPNOTIC POISON EDT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/hypnotic-poison-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "hypnotic poison 2",
+    "hypnotic poison edt 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/idole-2",
+   "nome": "IDÔLE 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/idole-2.png",
+   "angulos": [],
+   "apelidos": [
+    "idole 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/jo-malone-oud-e-bergamot-2",
+   "nome": "JO MALONE OUD & BERGAMOT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/jo-malone-oud-e-bergamot-2.png",
+   "angulos": [],
+   "apelidos": [
+    "jo malone oud e bergamot 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/jo-malone-wood-sage-e-sea-salt-2",
+   "nome": "JO MALONE WOOD SAGE & SEA SALT 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/jo-malone-wood-sage-e-sea-salt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "jo malone wood sage e sea salt 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/l-eau-d-issey-2",
+   "nome": "L EAU D ISSEY 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/l-eau-d-issey-2.png",
+   "angulos": [],
+   "apelidos": [
+    "l d issey 2",
+    "l eau d issey 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/l-interdit-edp-2",
+   "nome": "L INTERDIT EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/l-interdit-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "l interdit 2",
+    "l interdit edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/l-interdit-intense-edp-2",
+   "nome": "L INTERDIT INTENSE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/l-interdit-intense-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "l interdit 2",
+    "l interdit intense edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/la-belle-edp-2",
+   "nome": "LA BELLE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/la-belle-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "la belle 2",
+    "la belle edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/la-belle-paradise-garden-2",
+   "nome": "LA BELLE PARADISE GARDEN 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/la-belle-paradise-garden-2.png",
+   "angulos": [],
+   "apelidos": [
+    "la belle paradise garden 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/la-bomba-edp-2",
+   "nome": "LA BOMBA EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/la-bomba-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "la bomba 2",
+    "la bomba edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/la-nuit-tresor-2",
+   "nome": "LA NUIT TRESOR 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/la-nuit-tresor-2.png",
+   "angulos": [],
+   "apelidos": [
+    "la nuit tresor 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/la-vie-edp-2",
+   "nome": "LA VIE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/la-vie-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "la vie 2",
+    "la vie edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/la-vie-edp-3",
+   "nome": "LA VIE EDP 3",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/la-vie-edp-3.png",
+   "angulos": [],
+   "apelidos": [
+    "la vie 3",
+    "la vie edp 3"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/lady-million-edp-2",
+   "nome": "LADY MILLION EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/lady-million-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "lady million 2",
+    "lady million edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/lady-million-royal-2",
+   "nome": "LADY MILLION ROYAL 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/lady-million-royal-2.png",
+   "angulos": [],
+   "apelidos": [
+    "lady million royal 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/libre-edp-2",
+   "nome": "LIBRE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/libre-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "libre 2",
+    "libre edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/libre-le-parfum-2",
+   "nome": "LIBRE LE PARFUM 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/libre-le-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "libre le 2",
+    "libre le parfum 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/light-blue-200ml-2",
+   "nome": "LIGHT BLUE 200ML 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/light-blue-200ml-2.png",
+   "angulos": [],
+   "apelidos": [
+    "light blue 200ml 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/light-blue-fem-2",
+   "nome": "LIGHT BLUE FEM 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/light-blue-fem-2.png",
+   "angulos": [],
+   "apelidos": [
+    "light blue fem 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/miss-dior-edp-2",
+   "nome": "MISS DIOR EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/miss-dior-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "miss dior 2",
+    "miss dior edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/my-way-2",
+   "nome": "MY WAY 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/my-way-2.png",
+   "angulos": [],
+   "apelidos": [
+    "my way 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/olympea-2",
+   "nome": "OLYMPÉA 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/olympea-2.png",
+   "angulos": [],
+   "apelidos": [
+    "olympea 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/olympea-legend-2",
+   "nome": "OLYMPÉA LEGEND 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/olympea-legend-2.png",
+   "angulos": [],
+   "apelidos": [
+    "olympea legend 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/prada-candy-2",
+   "nome": "PRADA CANDY 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/prada-candy-2.png",
+   "angulos": [],
+   "apelidos": [
+    "candy 2",
+    "prada candy 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/prada-paradoxe-edp-2",
+   "nome": "PRADA PARADOXE EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/prada-paradoxe-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "paradoxe 2",
+    "paradoxe edp 2",
+    "prada paradoxe 2",
+    "prada paradoxe edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/red-jeans-2",
+   "nome": "RED JEANS 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/red-jeans-2.png",
+   "angulos": [],
+   "apelidos": [
+    "red jeans 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/royal-amber-edp-2",
+   "nome": "ROYAL AMBER EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/royal-amber-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "royal amber 2",
+    "royal amber edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/sabah-al-ward-edp-2",
+   "nome": "SABAH AL WARD EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/sabah-al-ward-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "sabah al ward 2",
+    "sabah al ward edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/scandal-absolu-parfum-2",
+   "nome": "SCANDAL ABSOLU PARFUM 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/scandal-absolu-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "scandal absolu 2",
+    "scandal absolu parfum 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/scandal-edp-2",
+   "nome": "SCANDAL EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/scandal-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "scandal 2",
+    "scandal edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/si-edp-2",
+   "nome": "SÍ EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/si-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "si 2",
+    "si edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/very-good-girl-elixir-2",
+   "nome": "VERY GOOD GIRL ELIXIR 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/very-good-girl-elixir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "very good girl elixir 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/yara-2",
+   "nome": "YARA 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/yara-2.png",
+   "angulos": [],
+   "apelidos": [
+    "yara 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/yara-candy-edp-2",
+   "nome": "YARA CANDY EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/yara-candy-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "yara candy 2",
+    "yara candy edp 2"
+   ]
+  },
+  {
+   "id": "femininos/outros-angulos/yara-edp-2",
+   "nome": "YARA EDP 2",
+   "genero": "feminino",
+   "arquivo": "femininos/outros-angulos/yara-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "yara 2",
+    "yara edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/1-million-edp",
+   "nome": "1 MILLION EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/1-million-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/1-million-edp-2.png"
+   ],
+   "apelidos": [
+    "1 million",
+    "1 million edp",
+    "one million",
+    "one million edp"
+   ]
+  },
+  {
+   "id": "masculinos/1-million-edt",
+   "nome": "1 MILLION EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/1-million-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/1-million-edt-2.png"
+   ],
+   "apelidos": [
+    "1 million",
+    "1 million edt",
+    "one million",
+    "one million edt"
+   ]
+  },
+  {
+   "id": "masculinos/1-million-elixir",
+   "nome": "1 MILLION ELIXIR",
+   "genero": "masculino",
+   "arquivo": "masculinos/1-million-elixir.png",
+   "angulos": [
+    "masculinos/outros-angulos/1-million-elixir-2.png"
+   ],
+   "apelidos": [
+    "1 million elixir",
+    "one million elixir"
+   ]
+  },
+  {
+   "id": "masculinos/1-million-royal",
+   "nome": "1 MILLION ROYAL",
+   "genero": "masculino",
+   "arquivo": "masculinos/1-million-royal.png",
+   "angulos": [
+    "masculinos/outros-angulos/1-million-royal-2.png"
+   ],
+   "apelidos": [
+    "1 million royal",
+    "one million royal"
+   ]
+  },
+  {
+   "id": "masculinos/212-men-nyc-edt",
+   "nome": "212 MEN NYC EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/212-men-nyc-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/212-men-nyc-edt-2.png"
+   ],
+   "apelidos": [
+    "212 men nyc",
+    "212 men nyc edt"
+   ]
+  },
+  {
+   "id": "masculinos/212-vip-black-elixir",
+   "nome": "212 VIP BLACK ELIXIR",
+   "genero": "masculino",
+   "arquivo": "masculinos/212-vip-black-elixir.png",
+   "angulos": [
+    "masculinos/outros-angulos/212-vip-black-elixir-2.png"
+   ],
+   "apelidos": [
+    "212 vip black elixir"
+   ]
+  },
+  {
+   "id": "masculinos/212-vip-men",
+   "nome": "212 VIP MEN",
+   "genero": "masculino",
+   "arquivo": "masculinos/212-vip-men.png",
+   "angulos": [
+    "masculinos/outros-angulos/212-vip-men-2.png"
+   ],
+   "apelidos": [
+    "212 vip men"
+   ]
+  },
+  {
+   "id": "masculinos/212-vip",
+   "nome": "212 VIP",
+   "genero": "masculino",
+   "arquivo": "masculinos/212-vip.png",
+   "angulos": [
+    "masculinos/outros-angulos/212-vip-black-2.png",
+    "masculinos/outros-angulos/212-vip-black-elixir-2.png",
+    "masculinos/outros-angulos/212-vip-men-2.png"
+   ],
+   "apelidos": [
+    "212 vip"
+   ]
+  },
+  {
+   "id": "masculinos/68",
+   "nome": "68",
+   "genero": "masculino",
+   "arquivo": "masculinos/68.png",
+   "angulos": [],
+   "apelidos": [
+    "68"
+   ]
+  },
+  {
+   "id": "masculinos/acqua-di-gio-absolu",
+   "nome": "ACQUA DI GIÒ ABSOLU",
+   "genero": "masculino",
+   "arquivo": "masculinos/acqua-di-gio-absolu.png",
+   "angulos": [
+    "masculinos/outros-angulos/acqua-di-gio-absolu-2.png"
+   ],
+   "apelidos": [
+    "acqua di gio absolu"
+   ]
+  },
+  {
+   "id": "masculinos/acqua-di-gio-pour-homme",
+   "nome": "ACQUA DI GIÒ POUR HOMME",
+   "genero": "masculino",
+   "arquivo": "masculinos/acqua-di-gio-pour-homme.png",
+   "angulos": [],
+   "apelidos": [
+    "acqua di gio pour homme"
+   ]
+  },
+  {
+   "id": "masculinos/acqua-di-gio-profondo-parfum",
+   "nome": "ACQUA DI GIO PROFONDO PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/acqua-di-gio-profondo-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/acqua-di-gio-profondo-parfum-2.png"
+   ],
+   "apelidos": [
+    "acqua di gio profondo",
+    "acqua di gio profondo parfum"
+   ]
+  },
+  {
+   "id": "masculinos/acqua-di-gio-profondo",
+   "nome": "ACQUA DI GIO PROFONDO",
+   "genero": "masculino",
+   "arquivo": "masculinos/acqua-di-gio-profondo.png",
+   "angulos": [
+    "masculinos/outros-angulos/acqua-di-gio-profondo-2.png",
+    "masculinos/outros-angulos/acqua-di-gio-profondo-parfum-2.png"
+   ],
+   "apelidos": [
+    "acqua di gio profondo"
+   ]
+  },
+  {
+   "id": "masculinos/acqua-di-gio",
+   "nome": "ACQUA DI GIO",
+   "genero": "masculino",
+   "arquivo": "masculinos/acqua-di-gio.png",
+   "angulos": [
+    "masculinos/outros-angulos/acqua-di-gio-absolu-2.png",
+    "masculinos/outros-angulos/acqua-di-gio-edp-2.png",
+    "masculinos/outros-angulos/acqua-di-gio-edt-2.png",
+    "masculinos/outros-angulos/acqua-di-gio-profondo-2.png",
+    "masculinos/outros-angulos/acqua-di-gio-profondo-parfum-2.png"
+   ],
+   "apelidos": [
+    "acqua di gio"
+   ]
+  },
+  {
+   "id": "masculinos/afnan-9pm-edp",
+   "nome": "AFNAN 9PM EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/afnan-9pm-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/afnan-9pm-edp-2.png"
+   ],
+   "apelidos": [
+    "9pm edp",
+    "afnan 9pm",
+    "afnan 9pm edp"
+   ]
+  },
+  {
+   "id": "masculinos/afternoon-swim",
+   "nome": "AFTERNOON SWIM",
+   "genero": "masculino",
+   "arquivo": "masculinos/afternoon-swim.png",
+   "angulos": [],
+   "apelidos": [
+    "afternoon swim"
+   ]
+  },
+  {
+   "id": "masculinos/al-noble-safeer-edp",
+   "nome": "AL NOBLE SAFEER EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/al-noble-safeer-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/al-noble-safeer-edp-2.png"
+   ],
+   "apelidos": [
+    "al noble safeer",
+    "al noble safeer edp"
+   ]
+  },
+  {
+   "id": "masculinos/al-noble-wazeer-edp",
+   "nome": "AL NOBLE WAZEER EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/al-noble-wazeer-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/al-noble-wazeer-edp-2.png"
+   ],
+   "apelidos": [
+    "al noble wazeer",
+    "al noble wazeer edp"
+   ]
+  },
+  {
+   "id": "masculinos/allure-homme-edt",
+   "nome": "ALLURE HOMME EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/allure-homme-edt.png",
+   "angulos": [],
+   "apelidos": [
+    "allure homme",
+    "allure homme edt"
+   ]
+  },
+  {
+   "id": "masculinos/allure-homme-sport-edt-2",
+   "nome": "ALLURE HOMME SPORT EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/allure-homme-sport-edt-2.png",
+   "angulos": [
+    "masculinos/outros-angulos/allure-homme-sport-edt-2-2.png",
+    "masculinos/outros-angulos/allure-homme-sport-edt-2.png"
+   ],
+   "apelidos": [
+    "allure homme sport 2",
+    "allure homme sport edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/allure-homme-sport-edt",
+   "nome": "ALLURE HOMME SPORT EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/allure-homme-sport-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/allure-homme-sport-edt-2-2.png",
+    "masculinos/outros-angulos/allure-homme-sport-edt-2.png"
+   ],
+   "apelidos": [
+    "allure homme sport",
+    "allure homme sport edt"
+   ]
+  },
+  {
+   "id": "masculinos/alpine-homme-sport",
+   "nome": "ALPINE HOMME SPORT",
+   "genero": "masculino",
+   "arquivo": "masculinos/alpine-homme-sport.png",
+   "angulos": [
+    "masculinos/outros-angulos/alpine-homme-sport-2.png"
+   ],
+   "apelidos": [
+    "alpine homme sport"
+   ]
+  },
+  {
+   "id": "masculinos/armani-code-edt-2023",
+   "nome": "ARMANI CODE EDT 2023",
+   "genero": "masculino",
+   "arquivo": "masculinos/armani-code-edt-2023.png",
+   "angulos": [
+    "masculinos/outros-angulos/armani-code-edt-2023-2.png"
+   ],
+   "apelidos": [
+    "armani code 2023",
+    "armani code edt 2023"
+   ]
+  },
+  {
+   "id": "masculinos/armani-code-edt",
+   "nome": "ARMANI CODE EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/armani-code-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/armani-code-edt-2.png",
+    "masculinos/outros-angulos/armani-code-edt-2023-2.png"
+   ],
+   "apelidos": [
+    "armani code",
+    "armani code edt"
+   ]
+  },
+  {
+   "id": "masculinos/asad-bourbon-edp",
+   "nome": "ASAD BOURBON EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/asad-bourbon-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/asad-bourbon-edp-2.png"
+   ],
+   "apelidos": [
+    "asad bourbon",
+    "asad bourbon edp"
+   ]
+  },
+  {
+   "id": "masculinos/asad-zanzibar-edp",
+   "nome": "ASAD ZANZIBAR EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/asad-zanzibar-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/asad-zanzibar-edp-2.png"
+   ],
+   "apelidos": [
+    "asad zanzibar",
+    "asad zanzibar edp"
+   ]
+  },
+  {
+   "id": "masculinos/asad",
+   "nome": "ASAD",
+   "genero": "masculino",
+   "arquivo": "masculinos/asad.png",
+   "angulos": [
+    "masculinos/outros-angulos/asad-2.png",
+    "masculinos/outros-angulos/asad-bourbon-edp-2.png",
+    "masculinos/outros-angulos/asad-zanzibar-edp-2.png"
+   ],
+   "apelidos": [
+    "asad"
+   ]
+  },
+  {
+   "id": "masculinos/avant-edp",
+   "nome": "AVANT EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/avant-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/avant-edp-2.png"
+   ],
+   "apelidos": [
+    "avant",
+    "avant edp"
+   ]
+  },
+  {
+   "id": "masculinos/azzaro-pour-homme",
+   "nome": "AZZARO POUR HOMME",
+   "genero": "masculino",
+   "arquivo": "masculinos/azzaro-pour-homme.png",
+   "angulos": [
+    "masculinos/outros-angulos/azzaro-pour-homme-2.png"
+   ],
+   "apelidos": [
+    "azzaro pour homme",
+    "pour homme"
+   ]
+  },
+  {
+   "id": "masculinos/bad-boy-le-parfum",
+   "nome": "BAD BOY LE PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/bad-boy-le-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/bad-boy-le-parfum-2.png"
+   ],
+   "apelidos": [
+    "bad boy le",
+    "bad boy le parfum"
+   ]
+  },
+  {
+   "id": "masculinos/bareeq-edp",
+   "nome": "BAREEQ EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/bareeq-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/bareeq-edp-2.png"
+   ],
+   "apelidos": [
+    "bareeq",
+    "bareeq edp"
+   ]
+  },
+  {
+   "id": "masculinos/bleu-de-chanel-edt",
+   "nome": "BLEU DE CHANEL EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/bleu-de-chanel-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/bleu-de-chanel-edt-2.png"
+   ],
+   "apelidos": [
+    "bleu",
+    "bleu chanel",
+    "bleu de chanel edt"
+   ]
+  },
+  {
+   "id": "masculinos/bleu-de-chanel-parfum",
+   "nome": "BLEU DE CHANEL PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/bleu-de-chanel-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/bleu-de-chanel-parfum-2.png"
+   ],
+   "apelidos": [
+    "bleu",
+    "bleu chanel",
+    "bleu de chanel parfum"
+   ]
+  },
+  {
+   "id": "masculinos/bleu-de-chanel",
+   "nome": "BLEU DE CHANEL",
+   "genero": "masculino",
+   "arquivo": "masculinos/bleu-de-chanel.png",
+   "angulos": [
+    "masculinos/outros-angulos/bleu-de-chanel-edp-2.png",
+    "masculinos/outros-angulos/bleu-de-chanel-edt-2.png",
+    "masculinos/outros-angulos/bleu-de-chanel-parfum-2.png"
+   ],
+   "apelidos": [
+    "bleu",
+    "bleu chanel",
+    "bleu de",
+    "bleu de chanel"
+   ]
+  },
+  {
+   "id": "masculinos/born-in-roma-uomo-edt",
+   "nome": "BORN IN ROMA UOMO EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/born-in-roma-uomo-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/born-in-roma-uomo-edt-2.png"
+   ],
+   "apelidos": [
+    "born in roma uomo",
+    "born in roma uomo edt"
+   ]
+  },
+  {
+   "id": "masculinos/bvulgari-man-in-black",
+   "nome": "BVULGARI MAN IN BLACK",
+   "genero": "masculino",
+   "arquivo": "masculinos/bvulgari-man-in-black.png",
+   "angulos": [],
+   "apelidos": [
+    "bvulgari man in black"
+   ]
+  },
+  {
+   "id": "masculinos/calvin-klein-obsession",
+   "nome": "CALVIN KLEIN OBSESSION",
+   "genero": "masculino",
+   "arquivo": "masculinos/calvin-klein-obsession.png",
+   "angulos": [],
+   "apelidos": [
+    "calvin klein obsession",
+    "obsession"
+   ]
+  },
+  {
+   "id": "masculinos/ch-men",
+   "nome": "CH MEN",
+   "genero": "masculino",
+   "arquivo": "masculinos/ch-men.png",
+   "angulos": [],
+   "apelidos": [
+    "carolina herrera men",
+    "ch men"
+   ]
+  },
+  {
+   "id": "masculinos/ch-pasion-for-him",
+   "nome": "CH PASIÓN FOR HIM",
+   "genero": "masculino",
+   "arquivo": "masculinos/ch-pasion-for-him.png",
+   "angulos": [
+    "masculinos/outros-angulos/ch-pasion-for-him-2.png"
+   ],
+   "apelidos": [
+    "carolina herrera pasion for him",
+    "ch pasion for him",
+    "pasion for him"
+   ]
+  },
+  {
+   "id": "masculinos/city-of-stars-edp",
+   "nome": "CITY OF STARS EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/city-of-stars-edp.png",
+   "angulos": [],
+   "apelidos": [
+    "city of stars",
+    "city of stars edp"
+   ]
+  },
+  {
+   "id": "masculinos/ck-one",
+   "nome": "CK ONE",
+   "genero": "masculino",
+   "arquivo": "masculinos/ck-one.png",
+   "angulos": [],
+   "apelidos": [
+    "ck one"
+   ]
+  },
+  {
+   "id": "masculinos/club-de-nuit-intense-men-edt",
+   "nome": "CLUB DE NUIT INTENSE MEN EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/club-de-nuit-intense-men-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/club-de-nuit-intense-men-edt-2.png"
+   ],
+   "apelidos": [
+    "club de nuit intense men edt",
+    "club nuit men"
+   ]
+  },
+  {
+   "id": "masculinos/coral-fantasy-uomo",
+   "nome": "CORAL FANTASY UOMO",
+   "genero": "masculino",
+   "arquivo": "masculinos/coral-fantasy-uomo.png",
+   "angulos": [
+    "masculinos/outros-angulos/coral-fantasy-uomo-2.png"
+   ],
+   "apelidos": [
+    "coral fantasy uomo"
+   ]
+  },
+  {
+   "id": "masculinos/creed-aventus-cologne",
+   "nome": "CREED AVENTUS COLOGNE",
+   "genero": "masculino",
+   "arquivo": "masculinos/creed-aventus-cologne.png",
+   "angulos": [
+    "masculinos/outros-angulos/creed-aventus-cologne-2.png"
+   ],
+   "apelidos": [
+    "aventus cologne",
+    "creed aventus cologne"
+   ]
+  },
+  {
+   "id": "masculinos/creed-aventus",
+   "nome": "CREED AVENTUS",
+   "genero": "masculino",
+   "arquivo": "masculinos/creed-aventus.png",
+   "angulos": [
+    "masculinos/outros-angulos/creed-aventus-2.png",
+    "masculinos/outros-angulos/creed-aventus-cologne-2.png"
+   ],
+   "apelidos": [
+    "aventus",
+    "creed aventus"
+   ]
+  },
+  {
+   "id": "masculinos/d-e-g-pour-homme",
+   "nome": "D & G POUR HOMME",
+   "genero": "masculino",
+   "arquivo": "masculinos/d-e-g-pour-homme.png",
+   "angulos": [
+    "masculinos/outros-angulos/d-e-g-pour-homme-2.png"
+   ],
+   "apelidos": [
+    "d e g pour homme"
+   ]
+  },
+  {
+   "id": "masculinos/d-e-g-the-one-edp",
+   "nome": "D&G THE ONE EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/d-e-g-the-one-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/d-e-g-the-one-edp-2.png"
+   ],
+   "apelidos": [
+    "d e g the one",
+    "d e g the one edp"
+   ]
+  },
+  {
+   "id": "masculinos/dior-homme-intense-2011-edp",
+   "nome": "DIOR HOMME INTENSE 2011 EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/dior-homme-intense-2011-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/dior-homme-intense-2011-edp-2.png"
+   ],
+   "apelidos": [
+    "dior homme 2011",
+    "dior homme intense 2011 edp",
+    "homme 2011",
+    "homme intense 2011 edp"
+   ]
+  },
+  {
+   "id": "masculinos/dior-homme",
+   "nome": "DIOR HOMME",
+   "genero": "masculino",
+   "arquivo": "masculinos/dior-homme.png",
+   "angulos": [
+    "masculinos/outros-angulos/dior-homme-2.png",
+    "masculinos/outros-angulos/dior-homme-intense-2011-edp-2.png"
+   ],
+   "apelidos": [
+    "dior homme"
+   ]
+  },
+  {
+   "id": "masculinos/dolce-e-gabanna-the-one-edt",
+   "nome": "DOLCE & GABANNA THE ONE EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/dolce-e-gabanna-the-one-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/dolce-e-gabanna-the-one-edt-2.png"
+   ],
+   "apelidos": [
+    "dolce e gabanna the one",
+    "dolce e gabanna the one edt"
+   ]
+  },
+  {
+   "id": "masculinos/dolce-gabanna-light-blue",
+   "nome": "DOLCE GABANNA LIGHT BLUE",
+   "genero": "masculino",
+   "arquivo": "masculinos/dolce-gabanna-light-blue.png",
+   "angulos": [],
+   "apelidos": [
+    "dolce gabanna light blue"
+   ]
+  },
+  {
+   "id": "masculinos/erba-gold",
+   "nome": "ERBA GOLD",
+   "genero": "masculino",
+   "arquivo": "masculinos/erba-gold.png",
+   "angulos": [
+    "masculinos/outros-angulos/erba-gold-2.png"
+   ],
+   "apelidos": [
+    "erba gold"
+   ]
+  },
+  {
+   "id": "masculinos/erba-pura-edp",
+   "nome": "ERBA PURA EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/erba-pura-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/erba-pura-edp-2.png"
+   ],
+   "apelidos": [
+    "erba pura",
+    "erba pura edp"
+   ]
+  },
+  {
+   "id": "masculinos/eternal-oud",
+   "nome": "ETERNAL OUD",
+   "genero": "masculino",
+   "arquivo": "masculinos/eternal-oud.png",
+   "angulos": [
+    "masculinos/outros-angulos/eternal-oud-2.png"
+   ],
+   "apelidos": [
+    "eternal oud"
+   ]
+  },
+  {
+   "id": "masculinos/eternity-aqua",
+   "nome": "ETERNITY AQUA",
+   "genero": "masculino",
+   "arquivo": "masculinos/eternity-aqua.png",
+   "angulos": [
+    "masculinos/outros-angulos/eternity-aqua-men-2.png"
+   ],
+   "apelidos": [
+    "eternity aqua"
+   ]
+  },
+  {
+   "id": "masculinos/fahrenheit-edt",
+   "nome": "FAHRENHEIT EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/fahrenheit-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/fahrenheit-edt-2.png"
+   ],
+   "apelidos": [
+    "fahrenheit",
+    "fahrenheit edt"
+   ]
+  },
+  {
+   "id": "masculinos/fakhar-black",
+   "nome": "FAKHAR BLACK",
+   "genero": "masculino",
+   "arquivo": "masculinos/fakhar-black.png",
+   "angulos": [
+    "masculinos/outros-angulos/fakhar-black-2.png"
+   ],
+   "apelidos": [
+    "fakhar black"
+   ]
+  },
+  {
+   "id": "masculinos/fakhar-gold-edp",
+   "nome": "FAKHAR GOLD EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/fakhar-gold-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/fakhar-gold-edp-2.png"
+   ],
+   "apelidos": [
+    "fakhar gold",
+    "fakhar gold edp"
+   ]
+  },
+  {
+   "id": "masculinos/fucking-fabulous-edp",
+   "nome": "FUCKING FABULOUS EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/fucking-fabulous-edp.png",
+   "angulos": [],
+   "apelidos": [
+    "fucking fabulous",
+    "fucking fabulous edp"
+   ]
+  },
+  {
+   "id": "masculinos/givenchy-gentleman-reserve-privee",
+   "nome": "GIVENCHY GENTLEMAN RESERVE PRIVÉE",
+   "genero": "masculino",
+   "arquivo": "masculinos/givenchy-gentleman-reserve-privee.png",
+   "angulos": [],
+   "apelidos": [
+    "gentleman reserve privee",
+    "givenchy gentleman reserve privee"
+   ]
+  },
+  {
+   "id": "masculinos/givenchy-gentleman-society",
+   "nome": "GIVENCHY GENTLEMAN SOCIETY",
+   "genero": "masculino",
+   "arquivo": "masculinos/givenchy-gentleman-society.png",
+   "angulos": [],
+   "apelidos": [
+    "gentleman society",
+    "givenchy gentleman society"
+   ]
+  },
+  {
+   "id": "masculinos/gucci-guilty-black-pour-homme-edt",
+   "nome": "GUCCI GUILTY BLACK POUR HOMME EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/gucci-guilty-black-pour-homme-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/gucci-guilty-black-pour-homme-edt-2.png"
+   ],
+   "apelidos": [
+    "gucci guilty black pour homme",
+    "gucci guilty black pour homme edt",
+    "guilty black pour homme",
+    "guilty black pour homme edt"
+   ]
+  },
+  {
+   "id": "masculinos/himalaya-edp",
+   "nome": "HIMALAYA EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/himalaya-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/himalaya-edp-2.png"
+   ],
+   "apelidos": [
+    "himalaya",
+    "himalaya edp"
+   ]
+  },
+  {
+   "id": "masculinos/hugo-boss-bottled-edt",
+   "nome": "HUGO BOSS BOTTLED EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/hugo-boss-bottled-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/hugo-boss-bottled-edt-2.png"
+   ],
+   "apelidos": [
+    "bottled",
+    "bottled edt",
+    "hugo boss bottled",
+    "hugo boss bottled edt"
+   ]
+  },
+  {
+   "id": "masculinos/imagination",
+   "nome": "IMAGINATION",
+   "genero": "masculino",
+   "arquivo": "masculinos/imagination.png",
+   "angulos": [],
+   "apelidos": [
+    "imagination"
+   ]
+  },
+  {
+   "id": "masculinos/initio-rehab",
+   "nome": "INITIO REHAB",
+   "genero": "masculino",
+   "arquivo": "masculinos/initio-rehab.png",
+   "angulos": [
+    "masculinos/outros-angulos/initio-rehab-2.png"
+   ],
+   "apelidos": [
+    "initio rehab"
+   ]
+  },
+  {
+   "id": "masculinos/instant-crush-edp",
+   "nome": "INSTANT CRUSH EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/instant-crush-edp.png",
+   "angulos": [],
+   "apelidos": [
+    "instant crush",
+    "instant crush edp"
+   ]
+  },
+  {
+   "id": "masculinos/invictus-parfum",
+   "nome": "INVICTUS PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/invictus-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/invictus-parfum-2.png"
+   ],
+   "apelidos": [
+    "invictus",
+    "invictus parfum"
+   ]
+  },
+  {
+   "id": "masculinos/invictus-victory-elixir",
+   "nome": "INVICTUS VICTORY ELIXIR",
+   "genero": "masculino",
+   "arquivo": "masculinos/invictus-victory-elixir.png",
+   "angulos": [
+    "masculinos/outros-angulos/invictus-victory-elixir-2.png"
+   ],
+   "apelidos": [
+    "invictus victory elixir"
+   ]
+  },
+  {
+   "id": "masculinos/invictus-victory",
+   "nome": "INVICTUS VICTORY",
+   "genero": "masculino",
+   "arquivo": "masculinos/invictus-victory.png",
+   "angulos": [
+    "masculinos/outros-angulos/invictus-victory-2.png",
+    "masculinos/outros-angulos/invictus-victory-elixir-2.png"
+   ],
+   "apelidos": [
+    "invictus victory"
+   ]
+  },
+  {
+   "id": "masculinos/invictus",
+   "nome": "INVICTUS",
+   "genero": "masculino",
+   "arquivo": "masculinos/invictus.png",
+   "angulos": [
+    "masculinos/outros-angulos/invictus-2.png",
+    "masculinos/outros-angulos/invictus-parfum-2.png",
+    "masculinos/outros-angulos/invictus-victory-2.png",
+    "masculinos/outros-angulos/invictus-victory-elixir-2.png"
+   ],
+   "apelidos": [
+    "invictus"
+   ]
+  },
+  {
+   "id": "masculinos/jean-paul-gaultier-le-male",
+   "nome": "JEAN PAUL GAULTIER LE MALE",
+   "genero": "masculino",
+   "arquivo": "masculinos/jean-paul-gaultier-le-male.png",
+   "angulos": [],
+   "apelidos": [
+    "jean paul gaultier le male",
+    "le male"
+   ]
+  },
+  {
+   "id": "masculinos/khamrah-dukhan",
+   "nome": "KHAMRAH DUKHAN",
+   "genero": "masculino",
+   "arquivo": "masculinos/khamrah-dukhan.png",
+   "angulos": [
+    "masculinos/outros-angulos/khamrah-dukhan-edp-2.png"
+   ],
+   "apelidos": [
+    "khamrah dukhan"
+   ]
+  },
+  {
+   "id": "masculinos/khanjar-edp",
+   "nome": "KHANJAR EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/khanjar-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/khanjar-edp-2.png"
+   ],
+   "apelidos": [
+    "khanjar",
+    "khanjar edp"
+   ]
+  },
+  {
+   "id": "masculinos/kouros-silver-edt",
+   "nome": "KOUROS SILVER EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/kouros-silver-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/kouros-silver-edt-2.png"
+   ],
+   "apelidos": [
+    "kouros silver",
+    "kouros silver edt"
+   ]
+  },
+  {
+   "id": "masculinos/l-eau-d-issey-pour-homme-edt",
+   "nome": "L EAU D ISSEY POUR HOMME EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/l-eau-d-issey-pour-homme-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/l-eau-d-issey-pour-homme-edt-2.png"
+   ],
+   "apelidos": [
+    "l d issey pour homme",
+    "l eau d issey pour homme edt"
+   ]
+  },
+  {
+   "id": "masculinos/lattafa-khamrah",
+   "nome": "LATTAFA KHAMRAH",
+   "genero": "masculino",
+   "arquivo": "masculinos/lattafa-khamrah.png",
+   "angulos": [
+    "masculinos/outros-angulos/lattafa-khamrah-2.png"
+   ],
+   "apelidos": [
+    "khamrah",
+    "lattafa khamrah"
+   ]
+  },
+  {
+   "id": "masculinos/layton-exclusif",
+   "nome": "LAYTON EXCLUSIF",
+   "genero": "masculino",
+   "arquivo": "masculinos/layton-exclusif.png",
+   "angulos": [
+    "masculinos/outros-angulos/layton-exclusif-2.png"
+   ],
+   "apelidos": [
+    "layton exclusif"
+   ]
+  },
+  {
+   "id": "masculinos/le-beau-edt",
+   "nome": "LE BEAU EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/le-beau-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/le-beau-edt-2.png"
+   ],
+   "apelidos": [
+    "le beau",
+    "le beau edt"
+   ]
+  },
+  {
+   "id": "masculinos/le-beau-le-parfum",
+   "nome": "LE BEAU LE PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/le-beau-le-parfum.png",
+   "angulos": [],
+   "apelidos": [
+    "le beau le",
+    "le beau le parfum"
+   ]
+  },
+  {
+   "id": "masculinos/le-beau-paradise-garden",
+   "nome": "LE BEAU PARADISE GARDEN",
+   "genero": "masculino",
+   "arquivo": "masculinos/le-beau-paradise-garden.png",
+   "angulos": [
+    "masculinos/outros-angulos/le-beau-paradise-garden-2.png"
+   ],
+   "apelidos": [
+    "le beau paradise garden"
+   ]
+  },
+  {
+   "id": "masculinos/le-male-edt",
+   "nome": "LE MALE EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/le-male-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/le-male-edt-2.png"
+   ],
+   "apelidos": [
+    "le male",
+    "le male edt"
+   ]
+  },
+  {
+   "id": "masculinos/le-male-elixir-absolu",
+   "nome": "LE MALE ELIXIR ABSOLU",
+   "genero": "masculino",
+   "arquivo": "masculinos/le-male-elixir-absolu.png",
+   "angulos": [
+    "masculinos/outros-angulos/le-male-elixir-absolu-2.png"
+   ],
+   "apelidos": [
+    "le male elixir absolu"
+   ]
+  },
+  {
+   "id": "masculinos/le-male-elixir",
+   "nome": "LE MALE ELIXIR",
+   "genero": "masculino",
+   "arquivo": "masculinos/le-male-elixir.png",
+   "angulos": [
+    "masculinos/outros-angulos/le-male-elixir-2.png",
+    "masculinos/outros-angulos/le-male-elixir-absolu-2.png"
+   ],
+   "apelidos": [
+    "le male elixir"
+   ]
+  },
+  {
+   "id": "masculinos/le-male-lover-edp",
+   "nome": "LE MALE LOVER EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/le-male-lover-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/le-male-lover-edp-2.png"
+   ],
+   "apelidos": [
+    "le male lover",
+    "le male lover edp"
+   ]
+  },
+  {
+   "id": "masculinos/montblanc-legend",
+   "nome": "MONTBLANC LEGEND",
+   "genero": "masculino",
+   "arquivo": "masculinos/montblanc-legend.png",
+   "angulos": [
+    "masculinos/outros-angulos/montblanc-legend-2.png"
+   ],
+   "apelidos": [
+    "legend",
+    "montblanc legend"
+   ]
+  },
+  {
+   "id": "masculinos/myslf-edp",
+   "nome": "MYSLF EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/myslf-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/myslf-edp-2.png"
+   ],
+   "apelidos": [
+    "myslf",
+    "myslf edp"
+   ]
+  },
+  {
+   "id": "masculinos/myslf-le-parfum",
+   "nome": "MYSLF LE PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/myslf-le-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/myslf-le-parfum-2.png"
+   ],
+   "apelidos": [
+    "myslf le",
+    "myslf le parfum"
+   ]
+  },
+  {
+   "id": "masculinos/nautica-blue",
+   "nome": "NAUTICA BLUE",
+   "genero": "masculino",
+   "arquivo": "masculinos/nautica-blue.png",
+   "angulos": [
+    "masculinos/outros-angulos/nautica-blue-2.png"
+   ],
+   "apelidos": [
+    "nautica blue"
+   ]
+  },
+  {
+   "id": "masculinos/naxos",
+   "nome": "NAXOS",
+   "genero": "masculino",
+   "arquivo": "masculinos/naxos.png",
+   "angulos": [
+    "masculinos/outros-angulos/naxos-2.png"
+   ],
+   "apelidos": [
+    "naxos"
+   ]
+  },
+  {
+   "id": "masculinos/ombre-nomade-edp",
+   "nome": "OMBRE NOMADE EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/ombre-nomade-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/ombre-nomade-edp-2.png"
+   ],
+   "apelidos": [
+    "ombre nomade",
+    "ombre nomade edp"
+   ]
+  },
+  {
+   "id": "masculinos/oud-for-glory",
+   "nome": "OUD FOR GLORY",
+   "genero": "masculino",
+   "arquivo": "masculinos/oud-for-glory.png",
+   "angulos": [
+    "masculinos/outros-angulos/oud-for-glory-2.png"
+   ],
+   "apelidos": [
+    "oud for glory"
+   ]
+  },
+  {
+   "id": "masculinos/oud-mistery-intense",
+   "nome": "OUD MISTERY INTENSE",
+   "genero": "masculino",
+   "arquivo": "masculinos/oud-mistery-intense.png",
+   "angulos": [
+    "masculinos/outros-angulos/oud-mistery-intense-2.png"
+   ],
+   "apelidos": [
+    "oud mistery",
+    "oud mistery intense"
+   ]
+  },
+  {
+   "id": "masculinos/oud-saffron-edp",
+   "nome": "OUD SAFFRON EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/oud-saffron-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/oud-saffron-edp-2.png"
+   ],
+   "apelidos": [
+    "oud saffron",
+    "oud saffron edp"
+   ]
+  },
+  {
+   "id": "masculinos/pacific-chill",
+   "nome": "PACIFIC CHILL",
+   "genero": "masculino",
+   "arquivo": "masculinos/pacific-chill.png",
+   "angulos": [],
+   "apelidos": [
+    "pacific chill"
+   ]
+  },
+  {
+   "id": "masculinos/parfums-de-marly-layton",
+   "nome": "PARFUMS DE MARLY LAYTON",
+   "genero": "masculino",
+   "arquivo": "masculinos/parfums-de-marly-layton.png",
+   "angulos": [
+    "masculinos/outros-angulos/parfums-de-marly-layton-2.png"
+   ],
+   "apelidos": [
+    "layton",
+    "parfums de marly layton",
+    "parfums marly layton"
+   ]
+  },
+  {
+   "id": "masculinos/pegasus",
+   "nome": "PEGASUS",
+   "genero": "masculino",
+   "arquivo": "masculinos/pegasus.png",
+   "angulos": [
+    "masculinos/outros-angulos/pegasus-2.png"
+   ],
+   "apelidos": [
+    "pegasus"
+   ]
+  },
+  {
+   "id": "masculinos/perseus-edp",
+   "nome": "PERSEUS EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/perseus-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/perseus-edp-2.png"
+   ],
+   "apelidos": [
+    "perseus",
+    "perseus edp"
+   ]
+  },
+  {
+   "id": "masculinos/perseus-exclusif",
+   "nome": "PERSEUS EXCLUSIF",
+   "genero": "masculino",
+   "arquivo": "masculinos/perseus-exclusif.png",
+   "angulos": [
+    "masculinos/outros-angulos/perseus-exclusif-2.png"
+   ],
+   "apelidos": [
+    "perseus exclusif"
+   ]
+  },
+  {
+   "id": "masculinos/phantom-edt",
+   "nome": "PHANTOM EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/phantom-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/phantom-edt-2.png"
+   ],
+   "apelidos": [
+    "phantom",
+    "phantom edt"
+   ]
+  },
+  {
+   "id": "masculinos/phantom-elixir",
+   "nome": "PHANTOM ELIXIR",
+   "genero": "masculino",
+   "arquivo": "masculinos/phantom-elixir.png",
+   "angulos": [
+    "masculinos/outros-angulos/phantom-elixir-2.png"
+   ],
+   "apelidos": [
+    "phantom elixir"
+   ]
+  },
+  {
+   "id": "masculinos/phantom-parfum",
+   "nome": "PHANTOM PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/phantom-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/phantom-parfum-2.png"
+   ],
+   "apelidos": [
+    "phantom",
+    "phantom parfum"
+   ]
+  },
+  {
+   "id": "masculinos/polo-blue-edp",
+   "nome": "POLO BLUE EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/polo-blue-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/polo-blue-edp-2.png"
+   ],
+   "apelidos": [
+    "polo blue",
+    "polo blue edp"
+   ]
+  },
+  {
+   "id": "masculinos/polo-blue",
+   "nome": "POLO BLUE",
+   "genero": "masculino",
+   "arquivo": "masculinos/polo-blue.png",
+   "angulos": [
+    "masculinos/outros-angulos/polo-blue-2.png",
+    "masculinos/outros-angulos/polo-blue-edp-2.png"
+   ],
+   "apelidos": [
+    "polo blue"
+   ]
+  },
+  {
+   "id": "masculinos/polo-red",
+   "nome": "POLO RED",
+   "genero": "masculino",
+   "arquivo": "masculinos/polo-red.png",
+   "angulos": [
+    "masculinos/outros-angulos/polo-red-2.png"
+   ],
+   "apelidos": [
+    "polo red"
+   ]
+  },
+  {
+   "id": "masculinos/prada-l-homme-edt",
+   "nome": "PRADA L HOMME EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/prada-l-homme-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/prada-l-homme-edt-2.png"
+   ],
+   "apelidos": [
+    "l homme",
+    "l homme edt",
+    "prada l homme",
+    "prada l homme edt"
+   ]
+  },
+  {
+   "id": "masculinos/prada-luna-rossa-carbon",
+   "nome": "PRADA LUNA ROSSA CARBON",
+   "genero": "masculino",
+   "arquivo": "masculinos/prada-luna-rossa-carbon.png",
+   "angulos": [
+    "masculinos/outros-angulos/prada-luna-rossa-carbon-2.png"
+   ],
+   "apelidos": [
+    "luna rossa carbon",
+    "prada luna rossa carbon"
+   ]
+  },
+  {
+   "id": "masculinos/ralph-lauren-polo-black",
+   "nome": "RALPH LAUREN POLO BLACK",
+   "genero": "masculino",
+   "arquivo": "masculinos/ralph-lauren-polo-black.png",
+   "angulos": [],
+   "apelidos": [
+    "ralph lauren polo black"
+   ]
+  },
+  {
+   "id": "masculinos/royal-bleu-edp",
+   "nome": "ROYAL BLEU EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/royal-bleu-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/royal-bleu-edp-2.png"
+   ],
+   "apelidos": [
+    "royal bleu",
+    "royal bleu edp"
+   ]
+  },
+  {
+   "id": "masculinos/sauvage-dior",
+   "nome": "SAUVAGE DIOR",
+   "genero": "masculino",
+   "arquivo": "masculinos/sauvage-dior.png",
+   "angulos": [],
+   "apelidos": [
+    "sauvage",
+    "sauvage dior"
+   ]
+  },
+  {
+   "id": "masculinos/sauvage-edt",
+   "nome": "SAUVAGE EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/sauvage-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/sauvage-edt-2.png"
+   ],
+   "apelidos": [
+    "sauvage",
+    "sauvage edt"
+   ]
+  },
+  {
+   "id": "masculinos/sauvage-elixir",
+   "nome": "SAUVAGE ELIXIR",
+   "genero": "masculino",
+   "arquivo": "masculinos/sauvage-elixir.png",
+   "angulos": [
+    "masculinos/outros-angulos/sauvage-elixir-2.png"
+   ],
+   "apelidos": [
+    "sauvage elixir"
+   ]
+  },
+  {
+   "id": "masculinos/sauvage-parfum",
+   "nome": "SAUVAGE PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/sauvage-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/sauvage-parfum-2.png"
+   ],
+   "apelidos": [
+    "sauvage",
+    "sauvage parfum"
+   ]
+  },
+  {
+   "id": "masculinos/scandal-le-parfum",
+   "nome": "SCANDAL LE PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/scandal-le-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/scandal-le-parfum-2.png"
+   ],
+   "apelidos": [
+    "scandal le",
+    "scandal le parfum"
+   ]
+  },
+  {
+   "id": "masculinos/scandal-pour-homme-edt",
+   "nome": "SCANDAL POUR HOMME EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/scandal-pour-homme-edt.png",
+   "angulos": [],
+   "apelidos": [
+    "scandal pour homme",
+    "scandal pour homme edt"
+   ]
+  },
+  {
+   "id": "masculinos/silver-scent-edt-intense",
+   "nome": "SILVER SCENT EDT INTENSE",
+   "genero": "masculino",
+   "arquivo": "masculinos/silver-scent-edt-intense.png",
+   "angulos": [
+    "masculinos/outros-angulos/silver-scent-edt-intense-2.png"
+   ],
+   "apelidos": [
+    "silver scent",
+    "silver scent edt intense"
+   ]
+  },
+  {
+   "id": "masculinos/sospiro-vibrato",
+   "nome": "SOSPIRO VIBRATO",
+   "genero": "masculino",
+   "arquivo": "masculinos/sospiro-vibrato.png",
+   "angulos": [
+    "masculinos/outros-angulos/sospiro-vibrato-2.png"
+   ],
+   "apelidos": [
+    "sospiro vibrato"
+   ]
+  },
+  {
+   "id": "masculinos/spicebomb-edt",
+   "nome": "SPICEBOMB EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/spicebomb-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/spicebomb-edt-2.png"
+   ],
+   "apelidos": [
+    "spicebomb",
+    "spicebomb edt"
+   ]
+  },
+  {
+   "id": "masculinos/stronger-with-you-intensely",
+   "nome": "STRONGER WITH YOU INTENSELY",
+   "genero": "masculino",
+   "arquivo": "masculinos/stronger-with-you-intensely.png",
+   "angulos": [
+    "masculinos/outros-angulos/stronger-with-you-intensely-2.png"
+   ],
+   "apelidos": [
+    "stronger with you intensely"
+   ]
+  },
+  {
+   "id": "masculinos/terre-d-hermes-vetiver",
+   "nome": "TERRE D HERMES VETIVER",
+   "genero": "masculino",
+   "arquivo": "masculinos/terre-d-hermes-vetiver.png",
+   "angulos": [
+    "masculinos/outros-angulos/terre-d-hermes-vetiver-2.png"
+   ],
+   "apelidos": [
+    "terre d hermes vetiver"
+   ]
+  },
+  {
+   "id": "masculinos/the-most-wanted-edp-intense",
+   "nome": "THE MOST WANTED EDP INTENSE",
+   "genero": "masculino",
+   "arquivo": "masculinos/the-most-wanted-edp-intense.png",
+   "angulos": [
+    "masculinos/outros-angulos/the-most-wanted-edp-intense-2.png"
+   ],
+   "apelidos": [
+    "the most wanted",
+    "the most wanted edp intense"
+   ]
+  },
+  {
+   "id": "masculinos/the-most-wanted-edt-intense",
+   "nome": "THE MOST WANTED EDT INTENSE",
+   "genero": "masculino",
+   "arquivo": "masculinos/the-most-wanted-edt-intense.png",
+   "angulos": [
+    "masculinos/outros-angulos/the-most-wanted-edt-intense-2.png"
+   ],
+   "apelidos": [
+    "the most wanted",
+    "the most wanted edt intense"
+   ]
+  },
+  {
+   "id": "masculinos/the-most-wanted-parfum",
+   "nome": "THE MOST WANTED PARFUM",
+   "genero": "masculino",
+   "arquivo": "masculinos/the-most-wanted-parfum.png",
+   "angulos": [
+    "masculinos/outros-angulos/the-most-wanted-parfum-2.png"
+   ],
+   "apelidos": [
+    "the most wanted",
+    "the most wanted parfum"
+   ]
+  },
+  {
+   "id": "masculinos/tobaco-vanille-edp",
+   "nome": "TOBACO VANILLE EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/tobaco-vanille-edp.png",
+   "angulos": [],
+   "apelidos": [
+    "tobaco vanille",
+    "tobaco vanille edp"
+   ]
+  },
+  {
+   "id": "masculinos/tom-ford-noir-extreme",
+   "nome": "TOM FORD NOIR EXTREME",
+   "genero": "masculino",
+   "arquivo": "masculinos/tom-ford-noir-extreme.png",
+   "angulos": [],
+   "apelidos": [
+    "noir extreme",
+    "tom ford noir extreme"
+   ]
+  },
+  {
+   "id": "masculinos/ultra-male-edt",
+   "nome": "ULTRA MALE EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/ultra-male-edt.png",
+   "angulos": [
+    "masculinos/outros-angulos/ultra-male-edt-2.png"
+   ],
+   "apelidos": [
+    "ultra male",
+    "ultra male edt"
+   ]
+  },
+  {
+   "id": "masculinos/versace-blue-jeans",
+   "nome": "VERSACE BLUE JEANS",
+   "genero": "masculino",
+   "arquivo": "masculinos/versace-blue-jeans.png",
+   "angulos": [],
+   "apelidos": [
+    "blue jeans",
+    "versace blue jeans"
+   ]
+  },
+  {
+   "id": "masculinos/versace-dylan-blue",
+   "nome": "VERSACE DYLAN BLUE",
+   "genero": "masculino",
+   "arquivo": "masculinos/versace-dylan-blue.png",
+   "angulos": [
+    "masculinos/outros-angulos/versace-dylan-blue-2.png"
+   ],
+   "apelidos": [
+    "dylan blue",
+    "versace dylan blue"
+   ]
+  },
+  {
+   "id": "masculinos/versace-eros-edt",
+   "nome": "VERSACE EROS EDT",
+   "genero": "masculino",
+   "arquivo": "masculinos/versace-eros-edt.png",
+   "angulos": [],
+   "apelidos": [
+    "eros",
+    "eros edt",
+    "versace eros",
+    "versace eros edt"
+   ]
+  },
+  {
+   "id": "masculinos/versace-eros",
+   "nome": "VERSACE EROS",
+   "genero": "masculino",
+   "arquivo": "masculinos/versace-eros.png",
+   "angulos": [
+    "masculinos/outros-angulos/versace-eros-edp-2.png"
+   ],
+   "apelidos": [
+    "eros",
+    "versace eros"
+   ]
+  },
+  {
+   "id": "masculinos/versace-oud-noir",
+   "nome": "VERSACE OUD NOIR",
+   "genero": "masculino",
+   "arquivo": "masculinos/versace-oud-noir.png",
+   "angulos": [
+    "masculinos/outros-angulos/versace-oud-noir-2.png"
+   ],
+   "apelidos": [
+    "oud noir",
+    "versace oud noir"
+   ]
+  },
+  {
+   "id": "masculinos/y-yves-saint-laurent-edp",
+   "nome": "Y YVES SAINT LAURENT EDP",
+   "genero": "masculino",
+   "arquivo": "masculinos/y-yves-saint-laurent-edp.png",
+   "angulos": [
+    "masculinos/outros-angulos/y-yves-saint-laurent-edp-2.png"
+   ],
+   "apelidos": [
+    "y yves saint laurent",
+    "y yves saint laurent edp"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/1-million-edp-2",
+   "nome": "1 MILLION EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/1-million-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "1 million 2",
+    "1 million edp 2",
+    "one million 2",
+    "one million edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/1-million-edt-2",
+   "nome": "1 MILLION EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/1-million-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "1 million 2",
+    "1 million edt 2",
+    "one million 2",
+    "one million edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/1-million-elixir-2",
+   "nome": "1 MILLION ELIXIR 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/1-million-elixir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "1 million elixir 2",
+    "one million elixir 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/1-million-royal-2",
+   "nome": "1 MILLION ROYAL 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/1-million-royal-2.png",
+   "angulos": [],
+   "apelidos": [
+    "1 million royal 2",
+    "one million royal 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/115",
+   "nome": "115",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/115.png",
+   "angulos": [],
+   "apelidos": [
+    "115"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/212-men-nyc-edt-2",
+   "nome": "212 MEN NYC EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/212-men-nyc-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "212 men nyc 2",
+    "212 men nyc edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/212-vip-black-2",
+   "nome": "212 VIP BLACK 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/212-vip-black-2.png",
+   "angulos": [],
+   "apelidos": [
+    "212 vip black 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/212-vip-black-elixir-2",
+   "nome": "212 VIP BLACK ELIXIR 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/212-vip-black-elixir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "212 vip black elixir 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/212-vip-men-2",
+   "nome": "212 VIP MEN 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/212-vip-men-2.png",
+   "angulos": [],
+   "apelidos": [
+    "212 vip men 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/acqua-di-gio-absolu-2",
+   "nome": "ACQUA DI GIO ABSOLU 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/acqua-di-gio-absolu-2.png",
+   "angulos": [],
+   "apelidos": [
+    "acqua di gio absolu 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/acqua-di-gio-edp-2",
+   "nome": "ACQUA DI GIO EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/acqua-di-gio-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "acqua di gio 2",
+    "acqua di gio edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/acqua-di-gio-edt-2",
+   "nome": "ACQUA DI GIO EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/acqua-di-gio-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "acqua di gio 2",
+    "acqua di gio edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/acqua-di-gio-profondo-2",
+   "nome": "ACQUA DI GIO PROFONDO 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/acqua-di-gio-profondo-2.png",
+   "angulos": [],
+   "apelidos": [
+    "acqua di gio profondo 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/acqua-di-gio-profondo-parfum-2",
+   "nome": "ACQUA DI GIO PROFONDO PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/acqua-di-gio-profondo-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "acqua di gio profondo 2",
+    "acqua di gio profondo parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/afnan-9pm-edp-2",
+   "nome": "AFNAN 9PM EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/afnan-9pm-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "9pm 2",
+    "9pm edp 2",
+    "afnan 9pm 2",
+    "afnan 9pm edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/al-noble-safeer-edp-2",
+   "nome": "AL NOBLE SAFEER EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/al-noble-safeer-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "al noble safeer 2",
+    "al noble safeer edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/al-noble-wazeer-edp-2",
+   "nome": "AL NOBLE WAZEER EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/al-noble-wazeer-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "al noble wazeer 2",
+    "al noble wazeer edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/allure-homme-sport-edt-2-2",
+   "nome": "ALLURE HOMME SPORT EDT 2 (2)",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/allure-homme-sport-edt-2-2.png",
+   "angulos": [],
+   "apelidos": [
+    "allure homme sport 2 2",
+    "allure homme sport edt 2 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/allure-homme-sport-edt-2",
+   "nome": "ALLURE HOMME SPORT EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/allure-homme-sport-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "allure homme sport 2",
+    "allure homme sport edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/alpine-homme-sport-2",
+   "nome": "ALPINE HOMME SPORT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/alpine-homme-sport-2.png",
+   "angulos": [],
+   "apelidos": [
+    "alpine homme sport 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/alure-homme-edt-2",
+   "nome": "ALURE HOMME EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/alure-homme-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "alure homme 2",
+    "alure homme edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/armani-code-edt-2",
+   "nome": "ARMANI CODE EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/armani-code-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "armani code 2",
+    "armani code edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/armani-code-edt-2023-2",
+   "nome": "ARMANI CODE EDT 2023 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/armani-code-edt-2023-2.png",
+   "angulos": [],
+   "apelidos": [
+    "armani code 2023 2",
+    "armani code edt 2023 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/asad-2",
+   "nome": "ASAD 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/asad-2.png",
+   "angulos": [],
+   "apelidos": [
+    "asad 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/asad-bourbon-edp-2",
+   "nome": "ASAD BOURBON EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/asad-bourbon-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "asad bourbon 2",
+    "asad bourbon edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/asad-zanzibar-edp-2",
+   "nome": "ASAD ZANZIBAR EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/asad-zanzibar-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "asad zanzibar 2",
+    "asad zanzibar edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/avant-edp-2",
+   "nome": "AVANT EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/avant-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "avant 2",
+    "avant edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/azzaro-pour-homme-2",
+   "nome": "AZZARO POUR HOMME 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/azzaro-pour-homme-2.png",
+   "angulos": [],
+   "apelidos": [
+    "azzaro pour homme 2",
+    "pour homme 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/bad-boy-le-parfum-2",
+   "nome": "BAD BOY LE PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/bad-boy-le-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "bad boy le 2",
+    "bad boy le parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/bareeq-edp-2",
+   "nome": "BAREEQ EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/bareeq-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "bareeq 2",
+    "bareeq edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/bleu-de-chanel-edp-2",
+   "nome": "BLEU DE CHANEL EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/bleu-de-chanel-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "bleu chanel 2",
+    "bleu de chanel edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/bleu-de-chanel-edt-2",
+   "nome": "BLEU DE CHANEL EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/bleu-de-chanel-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "bleu chanel 2",
+    "bleu de chanel edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/bleu-de-chanel-parfum-2",
+   "nome": "BLEU DE CHANEL PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/bleu-de-chanel-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "bleu chanel 2",
+    "bleu de chanel parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/blue-jeans-2",
+   "nome": "BLUE JEANS 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/blue-jeans-2.png",
+   "angulos": [],
+   "apelidos": [
+    "blue jeans 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/born-in-roma-uomo-edt-2",
+   "nome": "BORN IN ROMA UOMO EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/born-in-roma-uomo-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "born in roma uomo 2",
+    "born in roma uomo edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/ch-me-2",
+   "nome": "CH ME 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/ch-me-2.png",
+   "angulos": [],
+   "apelidos": [
+    "carolina herrera me 2",
+    "ch me 2",
+    "me 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/ch-pasion-for-him-2",
+   "nome": "CH PASIÓN FOR HIM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/ch-pasion-for-him-2.png",
+   "angulos": [],
+   "apelidos": [
+    "carolina herrera pasion for him 2",
+    "ch pasion for him 2",
+    "pasion for him 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/ck-obsession-for-men-2",
+   "nome": "CK OBSESSION FOR MEN 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/ck-obsession-for-men-2.png",
+   "angulos": [],
+   "apelidos": [
+    "ck obsession for men 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/club-de-nuit-intense-men-edp-2",
+   "nome": "CLUB DE NUIT INTENSE MEN EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/club-de-nuit-intense-men-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "club de nuit intense men edp 2",
+    "club nuit men 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/club-de-nuit-intense-men-edt-2",
+   "nome": "CLUB DE NUIT INTENSE MEN EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/club-de-nuit-intense-men-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "club de nuit intense men edt 2",
+    "club nuit men 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/coral-fantasy-uomo-2",
+   "nome": "CORAL FANTASY UOMO 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/coral-fantasy-uomo-2.png",
+   "angulos": [],
+   "apelidos": [
+    "coral fantasy uomo 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/creed-aventus-2",
+   "nome": "CREED AVENTUS 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/creed-aventus-2.png",
+   "angulos": [],
+   "apelidos": [
+    "aventus 2",
+    "creed aventus 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/creed-aventus-cologne-2",
+   "nome": "CREED AVENTUS COLOGNE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/creed-aventus-cologne-2.png",
+   "angulos": [],
+   "apelidos": [
+    "aventus cologne 2",
+    "creed aventus cologne 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/d-e-g-pour-homme-2",
+   "nome": "D & G POUR HOMME 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/d-e-g-pour-homme-2.png",
+   "angulos": [],
+   "apelidos": [
+    "d e g pour homme 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/d-e-g-the-one-edp-2",
+   "nome": "D&G THE ONE EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/d-e-g-the-one-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "d e g the one 2",
+    "d e g the one edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/dior-homme-2",
+   "nome": "DIOR HOMME 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/dior-homme-2.png",
+   "angulos": [],
+   "apelidos": [
+    "dior homme 2",
+    "homme 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/dior-homme-intense-2011-edp-2",
+   "nome": "DIOR HOMME INTENSE 2011 EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/dior-homme-intense-2011-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "dior homme 2011 2",
+    "dior homme intense 2011 edp 2",
+    "homme 2011 2",
+    "homme intense 2011 edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/dolce-e-gabanna-the-one-edt-2",
+   "nome": "DOLCE & GABANNA THE ONE EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/dolce-e-gabanna-the-one-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "dolce e gabanna the one 2",
+    "dolce e gabanna the one edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/erba-gold-2",
+   "nome": "ERBA GOLD 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/erba-gold-2.png",
+   "angulos": [],
+   "apelidos": [
+    "erba gold 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/erba-pura-edp-2",
+   "nome": "ERBA PURA EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/erba-pura-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "erba pura 2",
+    "erba pura edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/eternal-oud-2",
+   "nome": "ETERNAL OUD 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/eternal-oud-2.png",
+   "angulos": [],
+   "apelidos": [
+    "eternal oud 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/eternity-aqua-men-2",
+   "nome": "ETERNITY AQUA MEN 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/eternity-aqua-men-2.png",
+   "angulos": [],
+   "apelidos": [
+    "eternity aqua men 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/fahrenheit-edt-2",
+   "nome": "FAHRENHEIT EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/fahrenheit-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "fahrenheit 2",
+    "fahrenheit edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/fakhar-black-2",
+   "nome": "FAKHAR BLACK 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/fakhar-black-2.png",
+   "angulos": [],
+   "apelidos": [
+    "fakhar black 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/fakhar-gold-edp-2",
+   "nome": "FAKHAR GOLD EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/fakhar-gold-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "fakhar gold 2",
+    "fakhar gold edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/gentleman-society-2",
+   "nome": "GENTLEMAN SOCIETY 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/gentleman-society-2.png",
+   "angulos": [],
+   "apelidos": [
+    "gentleman society 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/gucci-guilty-black-pour-homme-edt-2",
+   "nome": "GUCCI GUILTY BLACK POUR HOMME EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/gucci-guilty-black-pour-homme-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "gucci guilty black pour homme 2",
+    "gucci guilty black pour homme edt 2",
+    "guilty black pour homme 2",
+    "guilty black pour homme edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/himalaya-edp-2",
+   "nome": "HIMALAYA EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/himalaya-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "himalaya 2",
+    "himalaya edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/hugo-boss-bottled-edt-2",
+   "nome": "HUGO BOSS BOTTLED EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/hugo-boss-bottled-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "bottled 2",
+    "bottled edt 2",
+    "hugo boss bottled 2",
+    "hugo boss bottled edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/initio-rehab-2",
+   "nome": "INITIO REHAB 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/initio-rehab-2.png",
+   "angulos": [],
+   "apelidos": [
+    "initio rehab 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/invictus-2",
+   "nome": "INVICTUS 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/invictus-2.png",
+   "angulos": [],
+   "apelidos": [
+    "invictus 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/invictus-parfum-2",
+   "nome": "INVICTUS PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/invictus-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "invictus 2",
+    "invictus parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/invictus-victory-2",
+   "nome": "INVICTUS VICTORY 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/invictus-victory-2.png",
+   "angulos": [],
+   "apelidos": [
+    "invictus victory 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/invictus-victory-elixir-2",
+   "nome": "INVICTUS VICTORY ELIXIR 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/invictus-victory-elixir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "invictus victory elixir 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/khamrah-dukhan-edp-2",
+   "nome": "KHAMRAH DUKHAN EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/khamrah-dukhan-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "khamrah dukhan 2",
+    "khamrah dukhan edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/khanjar-edp-2",
+   "nome": "KHANJAR EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/khanjar-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "khanjar 2",
+    "khanjar edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/kouros-silver-edt-2",
+   "nome": "KOUROS SILVER EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/kouros-silver-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "kouros silver 2",
+    "kouros silver edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/l-eau-d-issey-pour-homme-edt-2",
+   "nome": "L EAU D ISSEY POUR HOMME EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/l-eau-d-issey-pour-homme-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "l d issey pour homme 2",
+    "l eau d issey pour homme edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/lattafa-khamrah-2",
+   "nome": "LATTAFA KHAMRAH 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/lattafa-khamrah-2.png",
+   "angulos": [],
+   "apelidos": [
+    "khamrah 2",
+    "lattafa khamrah 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/layton-exclusif-2",
+   "nome": "LAYTON EXCLUSIF 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/layton-exclusif-2.png",
+   "angulos": [],
+   "apelidos": [
+    "layton exclusif 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-beau-edt-2",
+   "nome": "LE BEAU EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-beau-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le beau 2",
+    "le beau edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-beau-paradise-garden-2",
+   "nome": "LE BEAU PARADISE GARDEN 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-beau-paradise-garden-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le beau paradise garden 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-beua-le-parfum-2",
+   "nome": "LE BEUA LE PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-beua-le-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le beua le 2",
+    "le beua le parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-male-edt-2",
+   "nome": "LE MALE EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-male-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le male 2",
+    "le male edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-male-elixir-2",
+   "nome": "LE MALE ELIXIR 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-male-elixir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le male elixir 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-male-elixir-absolu-2",
+   "nome": "LE MALE ELIXIR ABSOLU 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-male-elixir-absolu-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le male elixir absolu 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-male-le-parfum-2",
+   "nome": "LE MALE LE PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-male-le-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le male le 2",
+    "le male le parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/le-male-lover-edp-2",
+   "nome": "LE MALE LOVER EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/le-male-lover-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "le male lover 2",
+    "le male lover edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/light-blue-pour-homme-2",
+   "nome": "LIGHT BLUE POUR HOMME 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/light-blue-pour-homme-2.png",
+   "angulos": [],
+   "apelidos": [
+    "light blue pour homme 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/man-in-black-2",
+   "nome": "MAN IN BLACK 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/man-in-black-2.png",
+   "angulos": [],
+   "apelidos": [
+    "man in black 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/montblanc-legend-2",
+   "nome": "MONTBLANC LEGEND 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/montblanc-legend-2.png",
+   "angulos": [],
+   "apelidos": [
+    "legend 2",
+    "montblanc legend 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/myslf-edp-2",
+   "nome": "MYSLF EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/myslf-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "myslf 2",
+    "myslf edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/myslf-le-parfum-2",
+   "nome": "MYSLF LE PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/myslf-le-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "myslf le 2",
+    "myslf le parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/nautica-blue-2",
+   "nome": "NAUTICA BLUE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/nautica-blue-2.png",
+   "angulos": [],
+   "apelidos": [
+    "nautica blue 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/naxos-2",
+   "nome": "NAXOS 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/naxos-2.png",
+   "angulos": [],
+   "apelidos": [
+    "naxos 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/noir-extreme-2",
+   "nome": "NOIR EXTREME 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/noir-extreme-2.png",
+   "angulos": [],
+   "apelidos": [
+    "noir extreme 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/ombre-nomade-edp-2",
+   "nome": "OMBRE NOMADE EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/ombre-nomade-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "ombre nomade 2",
+    "ombre nomade edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/oud-for-glory-2",
+   "nome": "OUD FOR GLORY 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/oud-for-glory-2.png",
+   "angulos": [],
+   "apelidos": [
+    "oud for glory 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/oud-mistery-intense-2",
+   "nome": "OUD MISTERY INTENSE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/oud-mistery-intense-2.png",
+   "angulos": [],
+   "apelidos": [
+    "oud mistery 2",
+    "oud mistery intense 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/oud-saffron-edp-2",
+   "nome": "OUD SAFFRON EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/oud-saffron-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "oud saffron 2",
+    "oud saffron edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/parfums-de-marly-layton-2",
+   "nome": "PARFUMS DE MARLY LAYTON 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/parfums-de-marly-layton-2.png",
+   "angulos": [],
+   "apelidos": [
+    "layton 2",
+    "parfums de marly layton 2",
+    "parfums marly layton 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/pegasus-2",
+   "nome": "PEGASUS 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/pegasus-2.png",
+   "angulos": [],
+   "apelidos": [
+    "pegasus 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/perseus-edp-2",
+   "nome": "PERSEUS EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/perseus-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "perseus 2",
+    "perseus edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/perseus-exclusif-2",
+   "nome": "PERSEUS EXCLUSIF 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/perseus-exclusif-2.png",
+   "angulos": [],
+   "apelidos": [
+    "perseus exclusif 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/phantom-edt-2",
+   "nome": "PHANTOM EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/phantom-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "phantom 2",
+    "phantom edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/phantom-elixir-2",
+   "nome": "PHANTOM ELIXIR 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/phantom-elixir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "phantom elixir 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/phantom-parfum-2",
+   "nome": "PHANTOM PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/phantom-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "phantom 2",
+    "phantom parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/polo-black-2",
+   "nome": "POLO BLACK 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/polo-black-2.png",
+   "angulos": [],
+   "apelidos": [
+    "polo black 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/polo-blue-2",
+   "nome": "POLO BLUE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/polo-blue-2.png",
+   "angulos": [],
+   "apelidos": [
+    "polo blue 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/polo-blue-edp-2",
+   "nome": "POLO BLUE EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/polo-blue-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "polo blue 2",
+    "polo blue edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/polo-red-2",
+   "nome": "POLO RED 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/polo-red-2.png",
+   "angulos": [],
+   "apelidos": [
+    "polo red 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/prada-l-homme-edt-2",
+   "nome": "PRADA L HOMME EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/prada-l-homme-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "l homme 2",
+    "l homme edt 2",
+    "prada l homme 2",
+    "prada l homme edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/prada-luna-rossa-carbon-2",
+   "nome": "PRADA LUNA ROSSA CARBON 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/prada-luna-rossa-carbon-2.png",
+   "angulos": [],
+   "apelidos": [
+    "luna rossa carbon 2",
+    "prada luna rossa carbon 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/reserve-privee-2",
+   "nome": "RESERVE PRIVÉE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/reserve-privee-2.png",
+   "angulos": [],
+   "apelidos": [
+    "reserve privee 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/royal-bleu-edp-2",
+   "nome": "ROYAL BLEU EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/royal-bleu-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "royal bleu 2",
+    "royal bleu edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/sauvage-edp-2",
+   "nome": "SAUVAGE EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/sauvage-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "sauvage 2",
+    "sauvage edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/sauvage-edt-2",
+   "nome": "SAUVAGE EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/sauvage-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "sauvage 2",
+    "sauvage edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/sauvage-elixir-2",
+   "nome": "SAUVAGE ELIXIR 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/sauvage-elixir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "sauvage elixir 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/sauvage-parfum-2",
+   "nome": "SAUVAGE PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/sauvage-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "sauvage 2",
+    "sauvage parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/scandal-edt-2",
+   "nome": "SCANDAL EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/scandal-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "scandal 2",
+    "scandal edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/scandal-le-parfum-2",
+   "nome": "SCANDAL LE PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/scandal-le-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "scandal le 2",
+    "scandal le parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/silver-scent-edt-intense-2",
+   "nome": "SILVER SCENT EDT INTENSE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/silver-scent-edt-intense-2.png",
+   "angulos": [],
+   "apelidos": [
+    "silver scent 2",
+    "silver scent edt intense 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/sospiro-vibrato-2",
+   "nome": "SOSPIRO VIBRATO 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/sospiro-vibrato-2.png",
+   "angulos": [],
+   "apelidos": [
+    "sospiro vibrato 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/spicebomb-edt-2",
+   "nome": "SPICEBOMB EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/spicebomb-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "spicebomb 2",
+    "spicebomb edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/stronger-with-you-intensely-2",
+   "nome": "STRONGER WITH YOU INTENSELY 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/stronger-with-you-intensely-2.png",
+   "angulos": [],
+   "apelidos": [
+    "stronger with you intensely 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/terre-d-hermes-vetiver-2",
+   "nome": "TERRE D HERMES VETIVER 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/terre-d-hermes-vetiver-2.png",
+   "angulos": [],
+   "apelidos": [
+    "terre d hermes vetiver 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/the-most-wanted-edp-intense-2",
+   "nome": "THE MOST WANTED EDP INTENSE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/the-most-wanted-edp-intense-2.png",
+   "angulos": [],
+   "apelidos": [
+    "the most wanted 2",
+    "the most wanted edp intense 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/the-most-wanted-edt-intense-2",
+   "nome": "THE MOST WANTED EDT INTENSE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/the-most-wanted-edt-intense-2.png",
+   "angulos": [],
+   "apelidos": [
+    "the most wanted 2",
+    "the most wanted edt intense 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/the-most-wanted-parfum-2",
+   "nome": "THE MOST WANTED PARFUM 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/the-most-wanted-parfum-2.png",
+   "angulos": [],
+   "apelidos": [
+    "the most wanted 2",
+    "the most wanted parfum 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/ultra-male-edt-2",
+   "nome": "ULTRA MALE EDT 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/ultra-male-edt-2.png",
+   "angulos": [],
+   "apelidos": [
+    "ultra male 2",
+    "ultra male edt 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/versace-dylan-blue-2",
+   "nome": "VERSACE DYLAN BLUE 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/versace-dylan-blue-2.png",
+   "angulos": [],
+   "apelidos": [
+    "dylan blue 2",
+    "versace dylan blue 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/versace-eros-edp-2",
+   "nome": "VERSACE EROS EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/versace-eros-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "eros 2",
+    "eros edp 2",
+    "versace eros 2",
+    "versace eros edp 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/versace-oud-noir-2",
+   "nome": "VERSACE OUD NOIR 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/versace-oud-noir-2.png",
+   "angulos": [],
+   "apelidos": [
+    "oud noir 2",
+    "versace oud noir 2"
+   ]
+  },
+  {
+   "id": "masculinos/outros-angulos/y-yves-saint-laurent-edp-2",
+   "nome": "Y YVES SAINT LAURENT EDP 2",
+   "genero": "masculino",
+   "arquivo": "masculinos/outros-angulos/y-yves-saint-laurent-edp-2.png",
+   "angulos": [],
+   "apelidos": [
+    "y yves saint laurent 2",
+    "y yves saint laurent edp 2"
+   ]
+  }
+ ]
+}

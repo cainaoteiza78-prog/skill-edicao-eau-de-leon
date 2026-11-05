@@ -1,0 +1,1 @@
+# Coloque aqui trilhas LICENCIADAS (mp3/wav/m4a) para usar com "musica": "auto".

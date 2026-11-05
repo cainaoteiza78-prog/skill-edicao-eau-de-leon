@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+edicao/
+_render/
+*.wav
+.DS_Store
