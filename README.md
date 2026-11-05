@@ -13,7 +13,7 @@ edicao-eau-de-leon/            ← a skill (é essa pasta que vai pro Claude)
   scripts/                     ← transcrever, render, conferir, catálogo, remover fundo
   assets/perfumes/             ← 445 fotos de perfume SEM FUNDO (PNG transparente) + perfumes.json
   assets/fontes/               ← as fontes do perfil: Poppins, Bebas Neue, Bungee, TikTok Sans + emoji Noto (OFL)
-  assets/logo/                 ← logo Eau de Leon branco (transparente) do cartão final
+  assets/logo/                 ← logo Eau de Leon branco (transparente) da marca d'água
   assets/musicas/              ← (vazia) coloque aqui trilhas licenciadas, se quiser
 instalar-skill.ps1             ← instala a skill no Claude Code (Windows)
 instalar-skill.sh              ← idem (Mac/Linux)
