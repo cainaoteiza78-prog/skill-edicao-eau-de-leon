@@ -49,7 +49,7 @@ Se o áudio tiver muito ruído ou nome errado demais, rode de novo com `--modelo
 - Qual o gancho (primeira frase forte)? Qual a oferta/CTA no fim?
 - Quais falas são erro, repetição, "corta", "de novo", gaguejo → **saem**.
 - Quais perfumes são citados → **entram na tela** no instante exato da fala. Confirme cada id com `python <skill>/scripts/catalogo.py buscar "nome"`.
-- Quais são as **palavras-chave** da oferta (QUANTO / EM QUÊ / ATÉ QUANDO) → viram **legenda aumentada**. O CTA "Saiba mais" vira botão sozinho. Comece pelo `destaques_sugeridos.txt` (ver treinamento/03).
+- Quais são as **palavras-chave** que vendem (QUANTO / EM QUÊ / ATÉ QUANDO / FORTE; nunca verbos como "liberamos" ou "ouviu") → viram **legenda aumentada**. O CTA "Saiba mais" vira botão sozinho. Comece pelo `destaques_sugeridos.txt` (ver treinamento/03).
 
 **4. Escreva o plano** em `<trabalho>/plano.json` seguindo `treinamento/07-plano-json.md`. Tempos sempre na **take original** (take N + segundo), copiados do `transcricao.txt`.
 

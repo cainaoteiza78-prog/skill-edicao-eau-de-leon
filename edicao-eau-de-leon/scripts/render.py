@@ -39,7 +39,7 @@ sys.path.insert(0, AQUI)
 from catalogo import carregar, por_id, norm  # noqa: E402
 from cortes import energia_db, pedacos_do_trecho  # noqa: E402
 from textos import montar_ass, rotulo_png  # noqa: E402
-from enquadramento import altura_legenda  # noqa: E402
+from enquadramento import altura_legenda, centro_rosto  # noqa: E402
 import trilha  # noqa: E402
 import letreiros  # noqa: E402
 import textos as textos_mod  # noqa: E402
@@ -143,7 +143,9 @@ def filtro_video(s, prox_whip, punches=(), enfases=()):
     z = _expr_zoom(s, punches, enfases)
     if z != '1.0':
         f.append(f"scale=w='ceil({W}*({z})/2)*2':h='ceil({H}*({z})/2)*2':eval=frame")
-        f.append(f"crop={W}:{H}:'(iw-{W})*{s['foco_x']}':'(ih-{H})*{s['foco_y']}'")
+        rx, ry = s.get('rosto') or (0.5, 0.45)
+        # zoom ancorado no rosto: centraliza na horizontal e mantém a altura do rosto
+        f.append(f"crop={W}:{H}:'clip({rx:.4f}*iw-{W // 2},0,iw-{W})':'clip({ry:.4f}*(ih-{H}),0,ih-{H})'")
     d = s['b'] - s['a']
     wp = ESTILO['whip']
     if s['abre'] and s['transicao'] == 'whip':
@@ -311,6 +313,11 @@ def blocos_legenda(plano, words):
         meio = (w['ini'] + w['fim']) / 2
         return next((k for k, (a, b, _) in enumerate(dest) if a <= meio <= b), None)
 
+    # LEGENDA PALAVRA POR PALAVRA (dinâmica): cada palavra é um bloco; só se juntam
+    #  - o artigo com a palavra seguinte ("o perfume", "os perfumes", "uma fragrância");
+    #  - as palavras de um mesmo destaque ("10% DE DESCONTO", "DIA 10") — o destaque
+    #    é SEMPRE um bloco só dele (a frase normal vem antes, em legenda comum).
+    ARTIGOS = {'o', 'a', 'os', 'as', 'um', 'uma', 'uns', 'umas'}
     blocos, cur = [], []
     fim_frase = True
     for i, w in enumerate(words):
@@ -318,17 +325,11 @@ def blocos_legenda(plano, words):
         em = em_destaque(w)
         if cur:
             em_prev = cur[-1]['em']
-            normais = [x for x in cur if x['em'] is None]
-            txt = ' '.join(x['t'] for x in normais)
-            pausa = w['ini'] - prev['fim'] > 0.35
-            if em is not None and em == em_prev:
-                quebra = len([x for x in cur if x['em'] == em]) >= 5   # destaque fica junto
-            elif em_prev is not None:
-                quebra = True                                          # destaque fecha o bloco
-            elif em is not None:
-                quebra = len(normais) > 3 or pausa                     # até 3 palavras antes do destaque
+            if em is not None or em_prev is not None:
+                quebra = not (em is not None and em == em_prev and len(cur) < 5)
             else:
-                quebra = modo == 'palavra' or len(cur) >= E['max_palavras']                     or len(txt) + 1 + len(limpar(w['p'])) > E['max_chars'] or pausa                     or prev['p'].rstrip()[-1:] in '.?!' or (prev['p'].rstrip()[-1:] in ',;:' and len(cur) >= 2)
+                artigo_antes = len(cur) == 1 and norm(cur[0]['t']) in ARTIGOS and w['ini'] - prev['fim'] < 0.35
+                quebra = not artigo_antes
             if quebra:
                 blocos.append(cur)
                 cur = []
@@ -515,6 +516,7 @@ def main():
     lista = []
     n_punch = 0
     for i, s in enumerate(segs):
+        s['rosto'] = centro_rosto(s, trans['takes'])
         punches, enf_local = ritmo(s, trans['takes'][s['take'] - 1]['palavras'], enfases)
         n_punch += len(punches)
         prox_whip = i + 1 < len(segs) and segs[i + 1]['abre'] and segs[i + 1]['transicao'] == 'whip'
@@ -622,10 +624,13 @@ def main():
         """Rosa ou azul (cores da marca): a que mais contrasta com o fundo atrás do CTA."""
         try:
             r = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f"{c['a'] + 0.4:.2f}", '-i', 'junto.mkv', '-frames:v', '1',
-                                '-vf', f"crop={W}:400:0:{int(max(0, min(H - 400, c['cy'] - 200)))},scale=8:4",
+                                '-vf', f"crop={int(W * 0.7)}:600:{int(W * 0.15)}:{int(max(0, min(H - 600, c['cy'] - 450)))},scale=16:12",
                                 '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], cwd=tmp, capture_output=True)
             px = np.frombuffer(r.stdout, np.uint8).reshape(-1, 3).astype(float).mean(0)
-            return 'azul' if px[0] > px[2] + 18 else 'rosa'   # fundo quente/rosado → azul
+            dist = lambda c: float(((px - np.array(c, float)) ** 2).sum()) ** 0.5
+            if px[0] > px[2] + 6:          # cena quente/rosada (caixa, estante rosa) → azul
+                return 'azul'
+            return 'azul' if dist((107, 169, 207)) > dist((242, 165, 149)) else 'rosa'   # senão: a mais distante do fundo
         except Exception:
             return 'azul'
     for k, c in enumerate(textos_mod.CTAS):

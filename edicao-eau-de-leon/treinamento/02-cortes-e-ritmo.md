@@ -45,6 +45,7 @@ Use os tempos por palavra do `transcricao.txt` (o número entre parênteses é o
 ## Enquadramento (o "zoom no corte")
 
 - A cada corte seco **dentro** de uma mesma fala, o enquadramento alterna entre **1,00** (normal) e **1,12** (mais perto). É o que esconde o "pulo" do jump cut. O render faz isso sozinho.
+- **Todo zoom (punch e ênfase) é centralizado no ROSTO** da pessoa (detectado em cada pedaço), nunca no centro da tela: a pessoa não pode "escorregar" pro lado quando a câmera chega perto.
 - Ênfase forte (a frase do preço, "olha isso"): pode forçar `"zoom": 1.25` naquele trecho.
 - Gravação horizontal ou pessoa fora do centro: use `"foco_x"` (0 = esquerda, 0,5 = centro, 1 = direita) pra não cortar o rosto no 9:16.
 

@@ -23,7 +23,7 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 2. **Trechos:** um por take, da primeira à última palavra. O render tira as pausas e respirações sozinho, sem cortar palavra.
 3. **Whip** só na troca do gancho para a oferta (muda o cenário).
 4. **Gancho:** destaque Bungee "PROMOÇÃO / 10.10" de "promoção" até o fim do segundo "10" (2,75). Sem redundância: a legenda continua em "Eau de Leon já começou", sem repetir "10.10".
-5. **Palavras-chave** (regra da oferta, vindas do `destaques_sugeridos.txt`): "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o dia **10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**." Em cada uma, a legenda cresceu para Bebas (frase em cima, palavra-chave grande embaixo), com zoom de ênfase.
+5. **Palavras-chave** (do `destaques_sugeridos.txt`): "simplesmente **IMPERDÍVEL**", "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o **DIA 10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**." Cada uma aparece sozinha e grande (Bebas), depois da palavra comum anterior; "liberamos", "até o", "ouviu" ficam em legenda comum.
 6. **CTA:** "clica em Saiba mais" virou a **placa de vidro 3D** sozinha, azul (o fundo era a caixa rosa), pulsando até o fim.
 7. **Grafia:** "Aude Leon" → Eau de Leon; "10 -10" → 10.10; "ultimora" → última hora; "salha mais" → Saiba mais; "do desconto" → de desconto; "de mês" → desse mês; "isso o mês" → isso mesmo.
 8. **Música:** `auto`, trilha animada nova.
@@ -33,7 +33,7 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ```json
 {
-  "saida": "editado-v4.mp4",
+  "saida": "editado-v5.mp4",
   "formato": "leo",
   "legenda": "frase",
   "trechos": [
@@ -55,9 +55,10 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 10.10", "estilo": "destaque", "take": 1, "ini": 1.00, "fim": 2.75}
   ],
   "destaques": [
+    {"take": 1, "ini": 4.86, "fim": 5.72},
     {"take": 2, "ini": 2.24, "fim": 3.54},
     {"take": 2, "ini": 3.72, "fim": 4.76},
-    {"take": 2, "ini": 5.50, "fim": 5.94},
+    {"take": 2, "ini": 5.30, "fim": 5.94},
     {"take": 2, "ini": 7.92, "fim": 8.56},
     {"take": 2, "ini": 8.88, "fim": 9.68}
   ],
@@ -67,4 +68,4 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ## Resultado
 
-23,9 s de bruto → 16,5 s. `conferir.py`: **PAUSAS: nenhuma**, **PALAVRAS: todas inteiras**, voz em -14,6 LUFS. Legenda no peito, 5 palavras-chave com a legenda aumentada, CTA SAIBA MAIS em vidro 3D azul pulsando, marca d'água do início ao fim.
+23,9 s de bruto → 16,5 s. `conferir.py`: **PAUSAS: nenhuma**, **PALAVRAS: todas inteiras**, voz em -14,6 LUFS. Legenda palavra por palavra no peito, 6 palavras-chave com a legenda aumentada, CTA SAIBA MAIS em vidro 3D azul pulsando, marca d'água do início ao fim.

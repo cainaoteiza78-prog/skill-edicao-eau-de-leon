@@ -113,7 +113,7 @@ def _texto_vidro(txt, tam, pal):
     return out
 
 
-def _perspectiva(im, inclina=0.045, giro=0.0):
+def _perspectiva(im, inclina=0.018, giro=0.0):
     """Inclina a placa: topo um pouco mais estreito (vista de baixo), leve giro lateral."""
     w, h = im.size
     dx = w * inclina
@@ -143,15 +143,20 @@ def montar(txt, larg_max=640, paleta='rosa'):
     tw, th = tb[2] - tb[0], tb[3] - tb[1]
     bw, bh = int(tw + 110), int(th + 84)
     r = int(bh * 0.32)
-    esp = 16                       # espessura (lateral 3D)
-    marg = 70                      # espaço pra sombra/glow
+    esp = 22                       # espessura (lateral 3D)
+    marg = 100                     # espaço pra sombra/glow
     W_, H_ = bw + 2 * marg, bh + esp + 2 * marg
     peca = Image.new('RGBA', (W_, H_), (0, 0, 0, 0))
     x0, y0 = marg, marg
     # sombra no chão (flutuando)
     sh = Image.new('RGBA', (W_, H_), (0, 0, 0, 0))
-    sh.paste((0, 0, 0, 150), (x0 + 10, y0 + esp + 34), _arredondado(bw - 20, bh - 10, r))
-    peca.alpha_composite(sh.filter(ImageFilter.GaussianBlur(26)))
+    sh.paste((0, 0, 0, 215), (x0 + 6, y0 + esp + 44), _arredondado(bw - 12, bh - 4, r))
+    sh.paste((0, 0, 0, 120), (x0 + 30, y0 + esp + 80), _arredondado(bw - 60, int(bh * 0.6), r))
+    peca.alpha_composite(sh.filter(ImageFilter.GaussianBlur(30)))
+    # sombra de contato, curta e escura, colada na base (dá o volume)
+    sc = Image.new('RGBA', (W_, H_), (0, 0, 0, 0))
+    sc.paste((0, 0, 0, 170), (x0 + 4, y0 + esp + 6), _arredondado(bw - 8, bh, r))
+    peca.alpha_composite(sc.filter(ImageFilter.GaussianBlur(9)))
     # espessura do vidro: camadas um pouco mais escuras descendo
     for k in range(esp, 0, -1):
         c = tuple(int(v * (0.45 + 0.35 * (1 - k / esp))) for v in pal['vidro'])

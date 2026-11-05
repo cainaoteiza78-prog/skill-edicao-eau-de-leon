@@ -12,8 +12,8 @@ import subprocess
 import numpy as np
 
 W, H = 1080, 1920
-PADRAO = 1080          # sem rosto detectado: altura do peito num plano médio típico
-MIN_Y, MAX_Y = 900, 1300
+PADRAO = 1300          # sem rosto detectado: altura do peito num plano médio típico
+MIN_Y, MAX_Y = 1050, 1480
 
 
 def _quadro(arquivo, t):
@@ -67,8 +67,23 @@ def altura_legenda(segs, takes):
         sh, sw = img.shape[:2]
         x, y, w, h = para_saida(c, sw, sh, s['zoom'], s['foco_x'], s['foco_y'])
         queixo = y + h
-        ys.append(queixo + 0.6 * h)
+        ys.append(queixo + 1.15 * h)   # PEITO (não pescoço): ~1 rosto abaixo do queixo
         achados.append((round(x), round(y), round(w), round(h)))
     if not ys:
         return PADRAO, achados
     return int(min(MAX_Y, max(MIN_Y, float(np.median(ys))))), achados
+
+
+def centro_rosto(s, takes):
+    """Centro do rosto (fração 0..1) no quadro-base 1080x1920 do pedaço, ou None.
+    O zoom (punch/ênfase) centraliza nele, pra pessoa não sair do lugar."""
+    arq = takes[s['take'] - 1]['arquivo']
+    img = _quadro(arq, (s['a'] + s['b']) / 2)
+    if img is None:
+        return None
+    c = rosto(img)
+    if not c:
+        return None
+    sh, sw = img.shape[:2]
+    x, y, w, h = para_saida(c, sw, sh, 1.0, s['foco_x'], s['foco_y'])
+    return min(1, max(0, (x + w / 2) / W)), min(1, max(0, (y + h / 2) / H))

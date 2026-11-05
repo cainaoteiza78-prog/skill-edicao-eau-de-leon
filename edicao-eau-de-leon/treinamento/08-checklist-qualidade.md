@@ -13,15 +13,17 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Whips só em troca de assunto/cena, no máximo 1 a cada ~6 s.
 
 ## Legenda
-- [ ] **Abaixo do pescoço, na altura do peito**, mesma posição o vídeo todo, uma linha, branca, contorno fino + sombra suave, sem caixa. Se caiu no queixo ou na barriga, ajuste `legenda_y`.
+- [ ] **Na altura do PEITO** (não do pescoço), mesma posição o vídeo todo, branca, contorno escuro + sombra suave, sem caixa. Se caiu no pescoço ou na barriga, ajuste `legenda_y`.
+- [ ] **Palavra por palavra**, rápida; só artigo + palavra e os grupos de destaque aparecem juntos.
 - [ ] Fontes: legenda Poppins, impacto Bebas Neue, destaque Bungee, rótulo TikTok Sans. Nenhuma outra.
 - [ ] Nomes certos: Eau de Leon, decant, nomes de perfume com a grafia oficial.
 - [ ] Sem ponto/vírgula; ? e ! preservados; começo de frase minúsculo; marcas com maiúscula.
 - [ ] Modo certo: `frase` (leo) ou `palavra` (creator).
 - [ ] Legenda não aparece junto com texto de impacto.
-- [ ] Toda fala da oferta tem a **legenda aumentada** (Bebas, borda fina, sombra maior) em QUANTO / EM QUÊ / ATÉ QUANDO, entrando na hora da palavra. Nome de perfume em CAIXA ALTA (`caps`).
+- [ ] Destaque **só** nas palavras que vendem (QUANTO / EM QUÊ / ATÉ QUANDO / FORTE): "10% DE DESCONTO", "TODOS OS PERFUMES", "DIA 10", "IMPERDÍVEL". Nunca em "liberamos", "ouviu", "até o". O destaque aparece **sozinho**, depois da palavra comum anterior. Nome de perfume em CAIXA ALTA (`caps`).
 - [ ] "SAIBA MAIS" é a **placa de vidro 3D** (rosa ou azul da marca, contrastando com o fundo), com o fundo desfocado de verdade, texto de vidro com glow, pulsando devagar até o fim. É o único glassmorphism do vídeo.
 - [ ] **Nenhuma redundância:** nada do que um texto grande mostrou reaparece na legenda logo depois (leia o `legenda.srt`).
+- [ ] Nos zooms a pessoa continua **centralizada** (não escorrega pro lado).
 - [ ] **Pacing:** algo muda na tela a cada 2–3 s (linha `pacing:` do render), um evento grande de cada vez.
 
 ## Textos de impacto

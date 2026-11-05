@@ -26,14 +26,14 @@ FONTES = os.path.normpath(os.path.join(AQUI, '..', 'assets', 'fontes'))
 
 ESTILO_TEXTO = {
     'legenda': {'fonte': 'Poppins', 'arquivo': 'Poppins-Bold.ttf', 'tamanho': 100, 'bold': -1,
-                'sombra': (2, 5, 7, 0x48), 'contorno': 1.6, 'contorno_alfa': 0x80},            # dx, dy, desfoque, alfa (00=opaco FF=invisível)
+                'sombra': (2, 5, 7, 0x48), 'contorno': 3.0, 'contorno_alfa': 0x30},            # dx, dy, desfoque, alfa (00=opaco FF=invisível)
     'impacto': {'fonte': 'Bebas Neue', 'arquivo': 'BebasNeue-Regular.ttf', 'tamanho': 158, 'bold': 0,
                 'engrossa': 2.2, 'entrelinha': 0.98, 'digitacao': 0.45, 'sombra': (4, 7, 9, 0x50)},
     'destaque': {'fonte': 'Bungee', 'arquivo': 'Bungee-Regular.ttf', 'tamanho': 239, 'bold': 0,
                  'sub': 0.82, 'entrelinha': 1.06, 'sombra': (5, 8, 5, 0x38)},
     'rotulo': {'arquivo': 'TikTokSans-SemiBold.ttf', 'tamanho': 62, 'contorno': 0.075},
     # palavra-chave do corpo = legenda aumentada (Bebas), ver treinamento/03
-    'legenda_grande': {'tamanho': 140, 'linha_de_cima': 0.84, 'sombra': (4, 8, 10, 0x38), 'borda': 2.2, 'borda_alfa': 0x50},
+    'legenda_grande': {'tamanho': 140, 'linha_de_cima': 0.84, 'sombra': (5, 9, 12, 0x30), 'borda': 4.0, 'borda_alfa': 0x20},
 }
 LARG_MAX = W * 0.90
 
@@ -118,7 +118,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                 tam = caber(l['texto'], L['arquivo'], L['tamanho'])
                 ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
             CTAS.append({'texto': l['destaque'], 'a': l.get('ini_destaque', l['ini']), 'b': max(fim_video, l['fim']),
-                         'cy': min(H - 300, y_legenda + 250), 'periodo': periodo})
+                         'cy': min(H - 330, y_legenda + 215), 'periodo': periodo})
             continue
         # palavra-chave: a PRÓPRIA legenda aumentada, como a Eau de Leon faz
         # ("QUE UM DECANT DE 2 ML / RENDE MUITO"): Bebas Neue engrossada, CAIXA ALTA,

@@ -88,7 +88,7 @@ def sugerir_destaques(saida, pasta):
                     add(i, j, 'QUANTO')
                     i, achou = j + 1, True
                 elif i > 0 and toks[i - 1] in ('dia', 'ate'):
-                    add(i, i, 'ATE QUANDO')
+                    add(i - 1 if toks[i - 1] == 'dia' else i, i, 'ATE QUANDO')
                     i, achou = i + 1, True
             if not achou:
                 for grupo, tipo in ((CTA, 'CTA-botao'), (ESCOPO, 'EM QUE'), (FORTE, 'FORTE')):
