@@ -19,7 +19,7 @@
 | Trecho | Duração | Densidade | O que acontece |
 |---|---|---|---|
 | Gancho | 0–3 s | **alta** | texto grande na palavra-chave + zoom de ênfase |
-| Corpo / oferta | 3–12 s | **média-alta** | 3D em QUANTO / EM QUÊ / ATÉ QUANDO, punches, perfumes |
+| Corpo / oferta | 3–12 s | **média-alta** | vidro fosco em QUANTO / EM QUÊ / ATÉ QUANDO, punches, perfumes |
 | Reforço | 12–15 s | média | repetição da oferta (vidro de novo, com outra película) |
 | CTA | últimos 2–4 s | **foco** | só a legenda + o botão pulsando até o fim |
 
@@ -27,5 +27,5 @@
 
 - O render imprime `pacing: N punch(es) de enquadramento, M zoom(s) de ênfase`. Num vídeo de 15–20 s, espere de 2 a 6 punches e de 3 a 6 ênfases.
 - Nas folhas do `conferir.py` (um quadro por segundo), quadros vizinhos não podem parecer idênticos por mais de 3 seguidos.
-- Se estiver monótono: ponha mais 1 destaque 3D (oferta, escopo ou prazo) ou um b-roll. Se estiver poluído: tire o destaque mais fraco (ex.: "imperdível").
+- Se estiver monótono: ponha mais 1 destaque em vidro (oferta, escopo ou prazo) ou um b-roll. Se estiver poluído: tire o destaque mais fraco (ex.: "imperdível").
 - Pra travar o enquadramento de um trecho (pessoa mostrando um produto, sem punch), use `"fixo": true` no trecho do plano.
