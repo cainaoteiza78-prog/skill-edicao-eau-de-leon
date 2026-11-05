@@ -67,4 +67,4 @@ Ordem passada pelo usuário: `IMG_1586.MOV` (gancho) → `IMG_1598.MOV` (oferta)
 
 ## Resultado
 
-23,9 s de bruto → 16,5 s. `conferir.py`: **PAUSAS: nenhuma**, **PALAVRAS: todas inteiras**, voz em -14,6 LUFS. Legenda no peito, 5 palavras-chave em vidro fosco, botão SAIBA MAIS pulsando, marca d'água do início ao fim.
+23,9 s de bruto → 16,5 s. `conferir.py`: **PAUSAS: nenhuma**, **PALAVRAS: todas inteiras**, voz em -14,6 LUFS. Legenda no peito, 5 palavras-chave com a legenda aumentada, CTA SAIBA MAIS em vidro 3D azul pulsando, marca d'água do início ao fim.
