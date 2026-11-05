@@ -27,7 +27,7 @@ Visto em "POV: Você encontrou o perfume perfeito para balada!", "Sexy e muitooo
 - **`leo`:** 1 destaque ou impacto no **gancho** (primeiros 0,3–3 s) e 1 na **oferta**. No máximo 3 em 30 s.
 - **`creator`:** normalmente nenhum, ou um rótulo fixo.
 - **Sem fala:** rótulo no topo (POV) e, se quiser, outro no rodapé com emoji.
-- **Sem redundância:** o `fim` do texto vai até a última palavra que ele resume, e as palavras dele não podem reaparecer na legenda logo depois. Não use texto de impacto e destaques 3D com as mesmas palavras na mesma fala (ver 03).
+- **Sem redundância:** o `fim` do texto vai até a última palavra que ele resume, e as palavras dele não podem reaparecer na legenda logo depois. Não use texto de impacto e destaques em vidro com as mesmas palavras na mesma fala (ver 03).
 - O texto entra **na palavra-chave** (`ini` = início da palavra no `transcricao.txt`) e fica até a ideia acabar.
 - Curto: até ~20 caracteres por linha, até 3 linhas. Ele repete ou resume o que a pessoa fala; nunca traz informação nova.
 

@@ -1,37 +1,43 @@
 """
-Destaques de palavra-chave (o que chama a atenção na legenda).
+Destaques em GLASSMORPHISM (vidro fosco), com aparência realista e premium.
 
-  3d     a palavra-chave sai da legenda e "pula da tela": letras brancas grossas
-         (Bungee) com profundidade 3D (camadas na cor da marca), sombra no chão,
-         entrada com giro/salto. Cada destaque varia a cor da profundidade e a
-         entrada (rodízio), pra não repetir.
-  botao  o "SAIBA MAIS" (e outros CTAs de clique): SEMPRE um botão 3D grande,
-         que fica até o fim e PULSA devagar no ritmo da fala, com brilho leve.
-         Induz o clique no botão real do anúncio.
-  caps   sem efeito: só CAIXA ALTA dentro da legenda (como nos anúncios da
-         marca) — use pra nome de perfume ("esse aqui é o CREED AVENTUS").
+Cada destaque é um painel de vidro:
+  1. o VÍDEO atrás do painel fica desfocado de verdade (o render recorta,
+     desfoca e devolve aquele pedaço; ver CAIXAS e render.py);
+  2. uma película translúcida por cima (branca ou levemente colorida);
+  3. borda fina de luz (1,5 px, branco 45%) e um reflexo suave no topo;
+  4. sombra larga e difusa embaixo (o painel "flutua" sobre o vídeo);
+  5. texto limpo: Poppins Bold em CAIXA ALTA, espaçado, com sombra sutil.
 
-Fontes e cores da marca (logo): rosa #F2A595, azul #6BA9CF.
+  vidro  palavra-chave da oferta ("10% DE DESCONTO", "TODOS OS PERFUMES").
+         Película em rodízio: clara, azul da marca, rosa da marca.
+  botao  "SAIBA MAIS" e outros CTAs: pílula de vidro ESCURO (contraste em
+         qualquer fundo), maior que os outros textos, com halo leve, e que
+         pulsa devagar no ritmo da fala até o fim do vídeo.
+  caps   sem painel: CAIXA ALTA dentro da legenda (nome de perfume).
+
+Entradas discretas (sobe 24 px + aparece em 0,22 s). Nada de giro, quique ou
+cor saturada: isso é o que deixava o visual infantil.
 """
 import os
 
-from PIL import ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 W, H = 1080, 1920
 AQUI = os.path.dirname(os.path.abspath(__file__))
 FONTES = os.path.normpath(os.path.join(AQUI, '..', 'assets', 'fontes'))
 
-MARCA = {'rosa': '#F2A595', 'azul': '#6BA9CF', 'escuro': '#151A22', 'branco': '#FFFFFF', 'dourado': '#F4C95D'}
-# profundidade (do mais perto ao mais fundo) e entrada de cada variação do 3D
-VARIACOES_3D = [
-    {'nome': 'azul', 'face': '#FFFFFF', 'fundo': ('#6BA9CF', '#1F4A66'), 'entrada': 'salto'},
-    {'nome': 'rosa', 'face': '#FFFFFF', 'fundo': ('#F2A595', '#7A3A2E'), 'entrada': 'giro'},
-    {'nome': 'dourado', 'face': '#FFF4D6', 'fundo': ('#F4C95D', '#6B4A12'), 'entrada': 'queda'},
-]
+MARCA = {'rosa': '#F2A595', 'azul': '#6BA9CF', 'escuro': '#151A22', 'branco': '#FFFFFF'}
+# película do vidro (cor, opacidade 0..1) em rodízio
+PELICULAS = [('#FFFFFF', 0.16), ('#6BA9CF', 0.22), ('#F2A595', 0.22)]
 CTA_BOTAO = ['saiba mais', 'clique aqui', 'clica aqui', 'link na bio', 'compre agora', 'garanta o seu', 'garante o seu']
 
-CAP = {'BebasNeue-Regular.ttf': 0.57, 'Bungee-Regular.ttf': 0.30}
-FATOR = {'BebasNeue-Regular.ttf': 0.775, 'Bungee-Regular.ttf': 0.388}
+ARQ = 'Poppins-Bold.ttf'
+FATOR = 0.559      # largura libass / largura PIL (Poppins, medido)
+CAP = 0.40         # altura da maiúscula / \fs no libass (Poppins)
+
+# Painéis da edição atual: o render usa pra desfocar o vídeo atrás de cada um.
+CAIXAS = []
 
 
 def cor(hexa):
@@ -39,10 +45,9 @@ def cor(hexa):
     return f'&H{b:02X}{g:02X}{r:02X}&'
 
 
-def mistura(a, b, f):
-    ra, ga, ba = (int(a[k:k + 2], 16) for k in (1, 3, 5))
-    rb, gb, bb = (int(b[k:k + 2], 16) for k in (1, 3, 5))
-    return '#%02X%02X%02X' % (round(ra + (rb - ra) * f), round(ga + (gb - ga) * f), round(ba + (bb - ba) * f))
+def alfa(opac):
+    """opacidade 0..1 → alfa ASS (00 = opaco, FF = invisível)."""
+    return f'&H{max(0, min(255, round(255 * (1 - opac)))):02X}&'
 
 
 def tempo(t):
@@ -55,97 +60,127 @@ def esc(s):
 
 
 def retangulo(w, h, r):
+    r = min(r, h / 2, w / 2)
     k = r * 0.45
-    return (f'm {r} 0 l {w - r} 0 b {w - k} 0 {w} {k} {w} {r} l {w} {h - r} b {w} {h - k} {w - k} {h} {w - r} {h} '
-            f'l {r} {h} b {k} {h} 0 {h - k} 0 {h - r} l 0 {r} b 0 {k} {k} 0 {r} 0')
+    return (f'm {r:.1f} 0 l {w - r:.1f} 0 b {w - k:.1f} 0 {w} {k:.1f} {w} {r:.1f} l {w} {h - r:.1f} '
+            f'b {w} {h - k:.1f} {w - k:.1f} {h} {w - r:.1f} {h} l {r:.1f} {h} b {k:.1f} {h} 0 {h - k:.1f} 0 {h - r:.1f} '
+            f'l 0 {r:.1f} b 0 {k:.1f} {k:.1f} 0 {r:.1f} 0')
 
 
-def largura(texto, arq, tam):
-    f = ImageFont.truetype(os.path.join(FONTES, arq), tam)
+def largura(texto, tam, esp=0):
+    f = ImageFont.truetype(os.path.join(FONTES, ARQ), tam)
     b = f.getbbox(texto)
-    return (b[2] - b[0]) * FATOR[arq]
+    return (b[2] - b[0]) * FATOR + esp * max(0, len(texto) - 1)
 
 
 def _linha(camada, a, b, tags, corpo):
     return f'Dialogue: {camada},{tempo(a)},{tempo(b)},Leg,,0,0,0,,{{{tags}}}{corpo}'
 
 
-def _entrada(tipo):
-    if tipo == 'giro':    # gira de lado e assenta
-        return '\\fry-70\\fscx60\\fscy60\\t(0,220,\\fry8\\fscx108\\fscy108)\\t(220,320,\\fry0\\fscx100\\fscy100)'
-    if tipo == 'queda':   # cai de cima e quica
-        return '\\frx-60\\fscx115\\fscy115\\t(0,180,\\frx10\\fscx98\\fscy98)\\t(180,290,\\frx0\\fscx100\\fscy100)'
-    return '\\fscx30\\fscy30\\t(0,170,\\fscx118\\fscy118)\\t(170,290,\\fscx100\\fscy100)'  # salto (pop)
+def _medidas(txt, alvo_cap, lim, padx, pady, esp):
+    tam = int(alvo_cap / CAP)
+    larg = largura(txt, tam, esp)
+    if larg > lim - 2 * padx:
+        f = (lim - 2 * padx) / larg
+        tam, larg = int(tam * f), larg * f
+    cap = tam * CAP
+    return tam, cap, int(larg + 2 * padx), int(cap + 2 * pady)
 
 
-def texto_3d(texto, a, b, cx, cy, variacao=0, alvo_cap=88, lim=W * 0.84):
-    """Letras grossas com profundidade 3D. Devolve (linhas, altura)."""
-    v = VARIACOES_3D[variacao % len(VARIACOES_3D)]
-    arq = 'Bungee-Regular.ttf'
+def _painel(ev, a, b, cx, cy, bw, bh, raio, pelicula, opac, anim, borda_opac=0.45, sombra_opac=0.35):
+    """Camadas ASS do vidro (o desfoque do fundo é feito pelo render via CAIXAS)."""
+    x0, y0 = cx - bw / 2, cy - bh / 2
+    forma = retangulo(bw, bh, raio)
+    # sombra difusa (flutuando)
+    ev.append(_linha(30, a, b, f'\\an7\\pos({x0:.0f},{y0 + 18:.0f})\\1c&H000000&\\1a{alfa(sombra_opac)}\\bord0\\shad0\\blur22{anim}\\p1', forma))
+    # película
+    ev.append(_linha(31, a, b, f'\\an7\\pos({x0:.0f},{y0:.0f})\\1c{cor(pelicula)}\\1a{alfa(opac)}\\bord0\\shad0{anim}\\p1', forma))
+    # reflexo no topo (luz vindo de cima)
+    rh = bh * 0.46
+    ev.append(_linha(32, a, b, f'\\an7\\pos({x0 + 4:.0f},{y0 + 3:.0f})\\1c&HFFFFFF&\\1a{alfa(0.10)}\\bord0\\shad0\\blur6{anim}\\p1',
+                     retangulo(bw - 8, rh, max(4, raio - 3))))
+    # borda de luz
+    ev.append(_linha(33, a, b, f'\\an7\\pos({x0:.0f},{y0:.0f})\\1a&HFF&\\3c&HFFFFFF&\\3a{alfa(borda_opac)}\\bord1.6\\shad0{anim}\\p1', forma))
+
+
+def _texto(ev, a, b, cx, cy, tam, txt, esp, anim, cor_txt='#FFFFFF'):
+    base = f'\\an5\\fnPoppins\\b1\\fs{tam}\\fsp{esp}\\bord0'
+    ev.append(_linha(34, a, b, f'{base}\\pos({cx + 2},{cy + 4})\\1c&H000000&\\1a{alfa(0.35)}\\blur5{anim}', esc(txt)))
+    ev.append(_linha(35, a, b, f'{base}\\pos({cx},{cy})\\1c{cor(cor_txt)}{anim}', esc(txt)))
+
+
+ENTRADA = '\\alpha&HFF&\\t(0,220,\\alpha&H00&)'   # só aparece; o movimento vai no \move
+
+
+def texto_3d(texto, a, b, cx, cy, variacao=0):
+    """Palavra-chave num painel de vidro fosco. (Mantém o nome por compatibilidade.)"""
     txt = texto.upper()
-    tam = int(alvo_cap / CAP[arq])
-    larg = largura(txt, arq, tam)
-    if larg > lim:
-        tam = int(tam * lim / larg)
-    cap = tam * CAP[arq]
-    prof = max(10, int(cap * 0.30))            # camadas de profundidade (px)
-    ent = _entrada(v['entrada'])
-    saida = '\\fad(0,140)'
-    base = f'\\an5\\fnBungee\\b0\\fs{tam}\\shad0'
-    t = esc(txt)
+    esp = 3
+    tam, cap, bw, bh = _medidas(txt, 58, W * 0.86, 52, 34, esp)
+    pel, opac = PELICULAS[variacao % len(PELICULAS)]
     ev = []
-    # sombra no "chão", desfocada
-    ev.append(_linha(10, a, b, f'{base}\\pos({cx + prof + 8},{cy + prof + 14})\\1c&H000000&\\1a&H60&\\bord3\\3c&H000000&'
-                                f'\\3a&H60&\\blur10{ent}{saida}', t))
-    # profundidade: da camada mais funda (escura) até a mais perto (cor da marca)
-    for i in range(prof, 0, -1):
-        c = mistura(v['fundo'][0], v['fundo'][1], i / prof)
-        ev.append(_linha(11, a, b, f'{base}\\pos({cx + i * 0.75:.1f},{cy + i})\\1c{cor(c)}\\bord3\\3c{cor(c)}{ent}{saida}', t))
-    # face
-    ev.append(_linha(12, a, b, f'{base}\\pos({cx},{cy})\\1c{cor(v["face"])}\\bord3\\3c{cor(v["fundo"][1])}{ent}{saida}', t))
-    return ev, int(cap * 1.25 + prof)
+    anim_in = f'\\fad(220,160)'
+    # sobe 24 px ao entrar: usa \move nas camadas de texto; o painel aparece no lugar
+    _painel(ev, a, b, cx, cy, bw, bh, 30, pel, opac, anim_in)
+    base = f'\\an5\\fnPoppins\\b1\\fs{tam}\\fsp{esp}\\bord0'
+    ev.append(_linha(34, a, b, f'{base}\\move({cx + 2},{cy + 28},{cx + 2},{cy + 4},0,220)\\1c&H000000&\\1a{alfa(0.35)}\\blur5{anim_in}', esc(txt)))
+    ev.append(_linha(35, a, b, f'{base}\\move({cx},{cy + 24},{cx},{cy},0,220)\\1c&HFFFFFF&{anim_in}', esc(txt)))
+    CAIXAS.append({'x': int(cx - bw / 2), 'y': int(cy - bh / 2), 'w': bw, 'h': bh, 'r': 30, 'a': a, 'b': b})
+    return ev, bh
 
 
 def botao(texto, a, b, cx, cy, periodo=1.0):
-    """Botão 3D grande ("SAIBA MAIS") que pulsa devagar até o fim do vídeo."""
-    arq = 'Bungee-Regular.ttf'
+    """Pílula de vidro escuro com halo leve, pulsando devagar até o fim."""
     txt = texto.upper()
-    tam = int(66 / CAP[arq])
-    larg = largura(txt, arq, tam)
-    if larg > W * 0.62:
-        tam = int(tam * W * 0.62 / larg)
-        larg = W * 0.62
-    cap = tam * CAP[arq]
-    bw, bh, r = int(larg + 120), int(cap + 78), int((cap + 78) / 2)
-    prof = 26
-    caminho = retangulo(bw, bh, r)
-    # entrada: salta da tela; depois pulsa (cresce 7% e volta) num ritmo de fala
-    tags_anim = '\\fscx20\\fscy20\\t(0,200,\\fscx112\\fscy112)\\t(200,320,\\fscx100\\fscy100)'
-    ms, k, dur = 520, 0, (b - a) * 1000
-    p = int(periodo * 1000)
-    while ms + p <= dur and k < 60:
-        tags_anim += f'\\t({ms},{ms + p // 2},\\fscx107\\fscy107)\\t({ms + p // 2},{ms + p},\\fscx100\\fscy100)'
+    esp = 4
+    tam, cap, bw, bh = _medidas(txt, 66, W * 0.70, 70, 44, esp)
+    raio = bh / 2
+    # pulso: cresce 5% e volta, um por período (ritmo da fala)
+    pulso = ''
+    ms, k, dur, p = 300, 0, (b - a) * 1000, int(periodo * 1000)
+    while ms + p <= dur and k < 80:
+        pulso += f'\\t({ms},{ms + p // 2},\\fscx105\\fscy105)\\t({ms + p // 2},{ms + p},\\fscx100\\fscy100)'
         ms += p
         k += 1
-    brilho = '\\alpha&HC8&'                     # brilho bem leve (quase transparente)
     ev = []
-    ev.append(_linha(20, a, b, f'\\an5\\pos({cx},{cy + prof + 12})\\1c&H000000&\\1a&H50&\\bord0\\shad0\\blur14{tags_anim}\\p1', caminho))
-    ev.append(_linha(21, a, b, f'\\an5\\pos({cx},{cy})\\1c&HFFFFFF&{brilho}\\bord10\\3c&HFFFFFF&\\3a&HC8&\\blur12\\shad0{tags_anim}\\p1', caminho))
-    ev.append(_linha(22, a, b, f'\\an5\\pos({cx},{cy + prof})\\1c{cor("#4A5560")}\\bord0\\shad0{tags_anim}\\p1', caminho))   # lateral (3D)
-    ev.append(_linha(23, a, b, f'\\an5\\pos({cx},{cy})\\1c&HFFFFFF&\\bord3\\3c{cor("#2B323A")}\\shad0{tags_anim}\\p1', caminho))  # face
-    ev.append(_linha(24, a, b, f'\\an5\\pos({cx},{cy - bh * 0.22:.0f})\\1c&HFFFFFF&\\bord0\\shad0\\blur6\\alpha&H70&{tags_anim}\\p1',
-                     retangulo(int(bw * 0.86), int(bh * 0.32), int(bh * 0.16))))                                           # reflexo
-    # texto preto com leve relevo
-    base = f'\\an5\\fnBungee\\b0\\fs{tam}\\shad0\\bord0{tags_anim}'
-    ev.append(_linha(25, a, b, f'{base}\\pos({cx + 2},{cy + 4})\\1c{cor("#6E7A86")}', esc(txt)))
-    ev.append(_linha(26, a, b, f'{base}\\pos({cx},{cy})\\1c{cor(MARCA["escuro"])}', esc(txt)))
-    return ev, bh + prof
+    x0, y0 = cx - bw / 2, cy - bh / 2
+    forma = retangulo(bw, bh, raio)
+    org = f'\\org({cx},{cy})'
+    ent = '\\fad(250,0)'
+    # halo leve (brilho baixo, pulsa junto)
+    ev.append(_linha(29, a, b, f'\\an7\\pos({x0:.0f},{y0:.0f}){org}\\1c&HFFFFFF&\\1a{alfa(0.10)}\\bord0\\shad0\\blur26{ent}{pulso}\\p1', forma))
+    # sombra
+    ev.append(_linha(30, a, b, f'\\an7\\pos({x0:.0f},{y0 + 22:.0f}){org}\\1c&H000000&\\1a{alfa(0.45)}\\bord0\\shad0\\blur24{ent}{pulso}\\p1', forma))
+    # película escura
+    ev.append(_linha(31, a, b, f'\\an7\\pos({x0:.0f},{y0:.0f}){org}\\1c{cor("#0E1116")}\\1a{alfa(0.48)}\\bord0\\shad0{ent}{pulso}\\p1', forma))
+    # reflexo no topo
+    ev.append(_linha(32, a, b, f'\\an7\\pos({x0 + 6:.0f},{y0 + 4:.0f}){org}\\1c&HFFFFFF&\\1a{alfa(0.12)}\\bord0\\shad0\\blur7{ent}{pulso}\\p1',
+                     retangulo(bw - 12, bh * 0.45, raio - 6)))
+    # borda de luz
+    ev.append(_linha(33, a, b, f'\\an7\\pos({x0:.0f},{y0:.0f}){org}\\1a&HFF&\\3c&HFFFFFF&\\3a{alfa(0.55)}\\bord1.8\\shad0{ent}{pulso}\\p1', forma))
+    # texto
+    base = f'\\an5\\fnPoppins\\b1\\fs{tam}\\fsp{esp}\\bord0{org}'
+    ev.append(_linha(34, a, b, f'{base}\\pos({cx + 2},{cy + 4})\\1c&H000000&\\1a{alfa(0.4)}\\blur5{ent}{pulso}', esc(txt)))
+    ev.append(_linha(35, a, b, f'{base}\\pos({cx},{cy})\\1c&HFFFFFF&{ent}{pulso}', esc(txt)))
+    # o desfoque do fundo cobre o tamanho máximo do pulso (borda com degradê)
+    m = int(bw * 0.012)
+    CAIXAS.append({'x': int(x0) - m, 'y': int(y0) - m, 'w': bw + 2 * m, 'h': bh + 2 * m, 'r': int(raio) + m, 'a': a, 'b': b})
+    return ev, bh
 
 
 def altura(texto, estilo):
-    if estilo == 'botao':
-        return botao(texto, 0, 1, 0, 0)[1]
-    return texto_3d(texto, 0, 1, 0, 0)[1]
+    n = len(CAIXAS)
+    h = (botao(texto, 0, 1, 0, 0) if estilo == 'botao' else texto_3d(texto, 0, 1, 0, 0))[1]
+    del CAIXAS[n:]
+    return h
+
+
+def mascara(caixa, destino):
+    """Máscara (branco = vidro) com cantos arredondados e borda levemente esfumada."""
+    w, h, r = caixa['w'], caixa['h'], caixa['r']
+    im = Image.new('L', (w, h), 0)
+    ImageDraw.Draw(im).rounded_rectangle((2, 2, w - 3, h - 3), radius=max(2, min(r, h // 2) - 2), fill=255)
+    im.filter(ImageFilter.GaussianBlur(5)).save(destino)
 
 
 def eh_cta_botao(texto):
@@ -157,11 +192,10 @@ def eh_cta_botao(texto):
 
 
 def escolher_estilos(destaques):
-    """Sem 'estilo': CTA de clique vira 'botao'; o resto vira 3D (a variação vai em rodízio no render)."""
     out = []
     for d in destaques:
         e = d.get('estilo')
-        if e in (None, 'auto', 'cor', 'grande', 'placa', 'carimbo', 'neon', 'faixa', 'dourado'):
+        if e in (None, 'auto', 'cor', 'grande', 'placa', 'carimbo', 'neon', 'faixa', 'dourado', 'vidro'):
             e = '3d'
         out.append(e)
     return out

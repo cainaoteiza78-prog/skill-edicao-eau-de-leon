@@ -14,8 +14,8 @@ Estudo feito quadro a quadro, com recorte em resolução nativa, nos reels da **
 | **Corpo** (a explicação) | legenda da fala, 2–4 palavras por vez | Poppins Bold | pequena (~55% da largura numa frase de 22 letras), uma linha, **no peito** | branca, sombra preta suave | "de umas 30 borrifadas", "e garantir que não vai vazar" |
 | **Nome de perfume** no corpo | o nome em CAIXA ALTA dentro da própria legenda (`destaques` com estilo `caps`) | Poppins Bold | igual à legenda | branca | "esse aqui é o CREED AVENTUS", "Esse aqui é o LE MALE LE PARFUM" (anúncios) |
 | **Oferta / número** | texto de impacto digitado | Bebas Neue engrossada | grande, no peito; 2ª linha a 78% | branca | "30% DE DESCONTO / EM TODOS OS PERFUMES", "COM DECANTS A PARTIR DE 2ML" |
-| **Palavra-chave** da oferta (QUANTO / EM QUÊ / ATÉ QUANDO) | a palavra sai da legenda e **pula da tela em 3D**, com zoom de ênfase; a cor da profundidade e a entrada variam | Bungee | linha própria logo abaixo da frase, no peito | face branca, profundidade azul / rosa / dourada | "liberamos 10% DE DESCONTO em TODOS OS PERFUMES até o dia 10" |
-| **CTA** (fim) | legenda normal + **botão 3D "SAIBA MAIS"** pulsando devagar até o fim | Poppins Bold + Bungee no botão | botão abaixo da legenda, maior que os outros textos | botão branco, texto preto, lateral escura, brilho leve | "clica aqui embaixo", "e faça seu pedido" |
+| **Palavra-chave** da oferta (QUANTO / EM QUÊ / ATÉ QUANDO) | painel de **vidro fosco** (glassmorphism) com o vídeo desfocado atrás, + zoom de ênfase | Poppins Bold, CAIXA ALTA | linha própria logo abaixo da frase, no peito | texto branco; película clara / azulada / rosada | "liberamos 10% DE DESCONTO em TODOS OS PERFUMES até o dia 10" |
+| **CTA** (fim) | legenda normal + **botão de vidro escuro "SAIBA MAIS"** pulsando devagar até o fim | Poppins Bold | abaixo da legenda, maior que os outros textos | texto branco, vidro escuro, borda de luz, halo leve | "clica aqui embaixo", "e faça seu pedido" |
 | **POV / rótulos** (sem fala) | texto nativo do TikTok/Instagram | TikTok Sans SemiBold | topo (y 12–15%) | branca, contorno preto fino + emoji | "POV: você descobriu um jeito de usar os melhores perfumes…", "Acessível x Caro", "Bom 🤗" |
 | **Marca d'água** | logo Eau de Leon pequeno | — | **180 px de largura, centralizado, 70 px acima da borda de baixo, o vídeo inteiro** | logo branco (o "E" rosa/azul) | pedido do dono |
 
@@ -25,13 +25,13 @@ Estudo feito quadro a quadro, com recorte em resolução nativa, nos reels da **
 
 | Nome | Hex | Uso |
 |---|---|---|
-| rosa | #F2A595 | profundidade do 3D (variação 2) |
-| azul | #6BA9CF | profundidade do 3D (variação 1) |
-| escuro | #151A22 | texto do botão SAIBA MAIS |
-| dourado | #F4C95D | profundidade do 3D (variação 3) |
+| rosa | #F2A595 | película do vidro (bem sutil) |
+| azul | #6BA9CF | película do vidro (bem sutil) |
+| escuro | #151A22 | — |
+| dourado | #F4C95D | película do vidro (bem sutil) |
 | branco | #FFFFFF | toda legenda e texto grande |
 
-Legenda e texto grande são **sempre brancos**. Cor só existe na profundidade do 3D das palavras-chave.
+Legenda e texto grande são **sempre brancos**. Cor só existe, bem sutil, na película dos painéis de vidro.
 
 ## Os 3 formatos do perfil
 
@@ -39,7 +39,7 @@ Legenda e texto grande são **sempre brancos**. Cor só existe na profundidade d
 Plano médio, olhando pra câmera, estante de perfumes atrás.
 - Legenda em frases de 2 a 4 palavras.
 - Impacto ou destaque no gancho e na oferta.
-- 3D nas palavras-chave da oferta e botão no SAIBA MAIS.
+- Vidro fosco nas palavras-chave da oferta e botão no SAIBA MAIS.
 - Cortes secos, alternando o zoom 1,00 ↔ 1,12 a cada corte.
 - Whip na troca de assunto.
 - B-roll do produto.
@@ -48,7 +48,7 @@ Plano médio, olhando pra câmera, estante de perfumes atrás.
 ### `creator`: criadora falando de perfumes
 - Legenda palavra por palavra.
 - Perfumes citados em fileira logo abaixo da legenda.
-- 1 ou 2 palavras em 3D.
+- 1 ou 2 palavras em vidro fosco.
 - Rótulo opcional no topo.
 - Música e marca d'água.
 
@@ -61,7 +61,7 @@ Plano médio, olhando pra câmera, estante de perfumes atrás.
 
 - Fonte inventada ou "parecida": só Poppins, Bebas Neue, Bungee e TikTok Sans.
 - Cartão final com logo (proibido).
-- Legenda inteira colorida, caixa atrás da legenda, contorno grosso. A cor vai só na profundidade do 3D.
+- Legenda inteira colorida, caixa atrás da legenda, contorno grosso. Nada de cor chapada, giro, quique, letra "gordinha" de desenho: destaque é vidro fosco.
 - A mesma informação duas vezes (texto grande + legenda repetindo). Ver 03.
 - "Saiba mais" como texto comum: é sempre botão.
 - Legenda no queixo ou na barriga: é **no peito**.

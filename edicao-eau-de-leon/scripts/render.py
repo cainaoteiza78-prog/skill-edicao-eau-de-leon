@@ -532,6 +532,7 @@ def main():
     with open(os.path.join(tmp, 'legenda.ass'), 'w', encoding='utf8') as f:
         fala_ps = len(words) / max(total, 1)                 # palavras por segundo
         periodo = min(1.3, max(0.8, 2.6 / max(fala_ps, 0.5)))  # 1 pulso a cada ~2-3 palavras
+        letreiros.CAIXAS.clear()
         f.write(montar_ass(leg_ok, textos, y_legenda, total + ESTILO['cauda'], periodo))
     with open(os.path.join(trabalho, 'legenda.srt'), 'w', encoding='utf8') as f:
         for i, l in enumerate(leg_ok, 1):
@@ -593,6 +594,24 @@ def main():
         y0, y1 = int(dv.get('y0', 0.23) * H), int(dv.get('y1', 0.62) * H)
         grafo.append(f"{cur}drawbox=x={W // 2 - 3}:y={y0}:w=6:h={y1 - y0}:color=white@1:t=fill:enable='between(t,{A:.3f},{B:.3f})'[vd{k}]")
         cur = f'[vd{k}]'
+    # glassmorphism: o vídeo atrás de cada painel é recortado, desfocado e devolvido
+    for k, c in enumerate(letreiros.CAIXAS):
+        x, y = max(0, c['x']), max(0, c['y'])
+        w_, h_ = min(W - x, c['w'] - (x - c['x'])), min(H - y, c['h'] - (y - c['y']))
+        w_, h_ = w_ - w_ % 2, h_ - h_ % 2
+        if w_ < 8 or h_ < 8:
+            continue
+        msk = os.path.join(tmp, f'vidro_{k}.png')
+        letreiros.mascara({'w': w_, 'h': h_, 'r': c['r']}, msk)
+        entradas += ['-loop', '1', '-framerate', str(FPS), '-t', f"{c['b'] + 0.3:.3f}", '-i', os.path.basename(msk)]
+        grafo.append(f'{cur}split[vg{k}a][vg{k}b]')
+        grafo.append(f"[vg{k}b]crop={w_}:{h_}:{x}:{y},boxblur=24:2,eq=brightness=0.03:saturation=1.15,format=rgba[vg{k}c]")
+        grafo.append(f"[{idx}:v]format=gray,scale={w_}:{h_}[vg{k}m]")
+        grafo.append(f"[vg{k}c][vg{k}m]alphamerge,fade=t=in:st={c['a']:.3f}:d=0.22:alpha=1,"
+                     f"fade=t=out:st={max(c['a'], c['b'] - 0.16):.3f}:d=0.16:alpha=1[vg{k}d]")
+        grafo.append(f"[vg{k}a][vg{k}d]overlay=x={x}:y={y}:enable='between(t,{c['a']:.3f},{c['b']:.3f})':eof_action=pass[vg{k}]")
+        cur = f'[vg{k}]'
+        idx += 1
     grafo.append(f"{cur}ass=legenda.ass:fontsdir=fonts[vt]")
     cur = '[vt]'
     # marca d'água: logo pequeno, centralizado na borda de baixo, do início ao fim

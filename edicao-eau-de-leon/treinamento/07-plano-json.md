@@ -23,7 +23,7 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
 
   "correcoes": [ {"de": "decan", "para": "decant"} ],
   "legenda_maiusculas": [ {"take": 1, "ini": 2.40, "fim": 3.10} ],
-  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80} ],   // 3D na palavra-chave (ver 03); "estilo" opcional: 3d (padrão) | caps | botao (CTA vira botão sozinho)
+  "destaques": [ {"take": 3, "ini": 3.26, "fim": 3.80} ],   // vidro fosco na palavra-chave (ver 03); "estilo" opcional: 3d (padrão) | caps | botao (CTA vira botão sozinho)
 
   "textos": [
     {"texto": "ATÉ 30% DE DESCONTO\nNO SITE TODO", "estilo": "impacto", "take": 2, "ini": 7.8, "fim": 10.2},

@@ -1,6 +1,6 @@
 ---
 name: edicao-eau-de-leon
-description: Edita vídeos (Reels/TikTok 9:16) no padrão visual da Eau de Leon a partir das takes brutas na ordem certa — corta erros e respirações, põe legenda padrão com palavras-chave em 3D, botão "Saiba mais" pulsando, pacing dinâmico, textos de impacto, música animada de fundo (sempre diferente), marca d'água, fotos sem fundo dos perfumes citados, b-roll, transições (whip, fade, slide, drop, pop) e o logo como marca d'água. Use quando pedirem "edita esse vídeo", "edição Eau de Leon", "monta o reels com essas takes", "editar no estilo da Eau de Leon", "/edicao-eau-de-leon", ou quando receber arquivos de vídeo (.mp4/.mov) de gravação para virar post. Roda tudo local e grátis (ffmpeg + Whisper local), sem API paga.
+description: Edita vídeos (Reels/TikTok 9:16) no padrão visual da Eau de Leon a partir das takes brutas na ordem certa — corta erros e respirações, põe legenda padrão com palavras-chave em vidro fosco (glassmorphism), botão "Saiba mais" pulsando, pacing dinâmico, textos de impacto, música animada de fundo (sempre diferente), marca d'água, fotos sem fundo dos perfumes citados, b-roll, transições (whip, fade, slide, drop, pop) e o logo como marca d'água. Use quando pedirem "edita esse vídeo", "edição Eau de Leon", "monta o reels com essas takes", "editar no estilo da Eau de Leon", "/edicao-eau-de-leon", ou quando receber arquivos de vídeo (.mp4/.mov) de gravação para virar post. Roda tudo local e grátis (ffmpeg + Whisper local), sem API paga.
 ---
 
 # Edição de vídeo no padrão Eau de Leon
@@ -49,7 +49,7 @@ Se o áudio tiver muito ruído ou nome errado demais, rode de novo com `--modelo
 - Qual o gancho (primeira frase forte)? Qual a oferta/CTA no fim?
 - Quais falas são erro, repetição, "corta", "de novo", gaguejo → **saem**.
 - Quais perfumes são citados → **entram na tela** no instante exato da fala. Confirme cada id com `python <skill>/scripts/catalogo.py buscar "nome"`.
-- Quais são as **palavras-chave** da oferta (QUANTO / EM QUÊ / ATÉ QUANDO) → viram **3D**. O CTA "Saiba mais" vira botão sozinho. Comece pelo `destaques_sugeridos.txt` (ver treinamento/03).
+- Quais são as **palavras-chave** da oferta (QUANTO / EM QUÊ / ATÉ QUANDO) → viram **vidro fosco**. O CTA "Saiba mais" vira botão sozinho. Comece pelo `destaques_sugeridos.txt` (ver treinamento/03).
 
 **4. Escreva o plano** em `<trabalho>/plano.json` seguindo `treinamento/07-plano-json.md`. Tempos sempre na **take original** (take N + segundo), copiados do `transcricao.txt`.
 
@@ -73,8 +73,8 @@ Abra **cada** `conferir/conferir_XX.png` com a ferramenta Read e passe o `treina
 - Saída sempre 1080×1920, 30 fps, H.264 + AAC, voz em -14 LUFS, **com música animada de fundo** (padrão; só tire se o usuário pedir) e **marca d'água** do logo.
 - **Nunca** coloque cartão final com o logo (fundo preto no fim). Proibido pelo dono.
 - **Nunca** entregue com palavra cortada: o `conferir.py` tem que dizer `PALAVRAS ...: todas inteiras` e `PAUSAS ...: nenhuma`.
-- Palavras-chave da oferta em **3D**: QUANTO, EM QUÊ e ATÉ QUANDO, toda vez que forem faladas (ver 03). O render varia cor e entrada sozinho.
-- "Saiba mais" (e todo CTA de clique) é **sempre um botão 3D pulsando** até o fim. O render cria sozinho.
+- Palavras-chave da oferta em **vidro fosco** (glassmorphism): QUANTO, EM QUÊ e ATÉ QUANDO, toda vez que forem faladas (ver 03). Visual realista, nunca de desenho.
+- "Saiba mais" (e todo CTA de clique) é **sempre um botão de vidro pulsando** até o fim. O render cria sozinho.
 - **Nunca** repita na legenda o que um texto grande acabou de mostrar (redundância, ver 03).
 - **Pacing** (ver 10): algo muda na tela a cada 2–3 s, um evento grande de cada vez, zero tempo morto.
 - Se faltar algo que só o usuário sabe (ex.: qual take é a boa quando as duas estão perfeitas e dizem coisas diferentes), pergunte **uma vez**, objetivo. O resto, decida pelo treinamento.

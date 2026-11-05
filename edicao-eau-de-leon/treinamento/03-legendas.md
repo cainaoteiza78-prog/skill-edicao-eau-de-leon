@@ -19,22 +19,23 @@ A legenda é **sempre a mesma** e o render faz tudo. Seu trabalho é escolher o 
 | `palavra` | `creator` | uma palavra por vez |
 | `nenhuma` | formatos sem fala | — |
 
-## Destaque de palavra-chave: 3D (`destaques`)
+## Destaque de palavra-chave: GLASSMORPHISM (`destaques`)
 
-A palavra que vende **sai da legenda e pula da tela em 3D**: letras grossas brancas (Bungee) com **profundidade** na cor da marca, sombra no "chão" e uma entrada animada. A frase continua normal em cima. Ao mesmo tempo, a câmera chega 8% mais perto (ver 10-pacing):
+A palavra que vende sai da legenda e aparece num **painel de vidro fosco**, logo abaixo da frase (que continua normal em cima). O visual é realista e premium, nada de cara de desenho:
+- o **vídeo atrás do painel fica desfocado de verdade** (o render recorta, desfoca e devolve aquele pedaço);
+- película translúcida por cima, borda fina de luz, reflexo suave no topo e sombra difusa embaixo (o painel "flutua");
+- texto **Poppins Bold** em CAIXA ALTA, espaçado, branco, com sombra sutil;
+- entrada discreta: aparece em 0,22 s subindo 24 px. **Nada** de giro, quique ou cor saturada: é isso que deixa o visual infantil.
+- a câmera chega 8% mais perto junto (zoom de ênfase, ver 10-pacing).
 
 ```
-         liberamos            ← legenda normal (Poppins branca)
-   10% DE DESCONTO            ← 3D, entra no instante da palavra
+         liberamos              ← legenda normal (Poppins branca)
+   ╭──────────────────────╮
+   │   10% DE DESCONTO    │     ← vidro fosco (fundo desfocado)
+   ╰──────────────────────╯
 ```
 
-Cada destaque varia a profundidade e a entrada, sozinho e em rodízio, pra não repetir:
-
-| Variação | Profundidade | Entrada |
-|---|---|---|
-| 1ª | azul da marca | salto (cresce e assenta) |
-| 2ª | rosa da marca | giro (vira de lado e assenta) |
-| 3ª | dourado | queda (cai de cima e quica) |
+A película varia sozinha, em rodízio: clara, azulada (azul da marca), rosada (rosa da marca). Sempre bem sutil, porque o vidro é quase transparente.
 
 ### Como identificar as palavras-chave (a regra da oferta)
 
@@ -46,7 +47,7 @@ Em fala de promoção, destaque **sempre** estas 3 coisas, toda vez que forem fa
 
 Exemplo do dono: "liberamos **10% DE DESCONTO** em **TODOS OS PERFUMES** até o dia **10** desse mês. Isso mesmo que você ouviu, **10%** em **TODOS OS PERFUMES**."
 
-Também podem ganhar 3D: um adjetivo muito forte ("imperdível", "exclusivo"), mas só se o vídeo estiver com poucos destaques. **Nome de perfume** não vira 3D: vai em CAIXA ALTA dentro da legenda (`"estilo": "caps"`), como nos anúncios da marca ("esse aqui é o CREED AVENTUS").
+Também podem ganhar vidro: um adjetivo muito forte ("imperdível", "exclusivo"), mas só se o vídeo estiver com poucos destaques. **Nome de perfume** não vira 3D: vai em CAIXA ALTA dentro da legenda (`"estilo": "caps"`), como nos anúncios da marca ("esse aqui é o CREED AVENTUS").
 
 O `transcrever.py` gera `destaques_sugeridos.txt` já marcando QUANTO / EM QUE / ATE QUANDO / CTA-botao / FORTE com os tempos. Confira e copie:
 ```json
@@ -61,9 +62,9 @@ O `transcrever.py` gera `destaques_sugeridos.txt` já marcando QUANTO / EM QUE /
 
 ### "SAIBA MAIS" é SEMPRE um botão
 
-O CTA de clique ("saiba mais", "link na bio", "clica aqui", "compre agora") é desenhado como um **botão 3D**:
-- branco com texto preto (Bungee), maior que todos os outros textos;
-- lateral escura (profundidade), sombra e um brilho bem leve;
+O CTA de clique ("saiba mais", "link na bio", "clica aqui", "compre agora") é desenhado como um **botão de vidro**:
+- pílula de **vidro escuro** fosco (contraste em qualquer fundo), texto branco Poppins Bold, maior que todos os outros textos;
+- borda de luz, reflexo no topo, sombra difusa e um halo bem leve;
 - aparece no peito, logo abaixo da legenda, saltando da tela;
 - **fica até o fim do vídeo pulsando devagar** (cresce 7% e volta), no ritmo da fala, uma vez a cada ~2–3 palavras;
 - é só visual, mas induz a pessoa a clicar no botão real do anúncio.
@@ -78,7 +79,7 @@ O render cria o botão **sozinho** sempre que a legenda tiver "Saiba mais" (depo
 
 Seu cuidado ao planejar:
 - O `fim` do texto grande deve ir até a **última palavra que ele resume** (em "a promoção do dia 10 do 10", até o fim do segundo "10").
-- Não ponha texto grande e 3D com as mesmas palavras na mesma fala. Ou é texto de impacto ("10% DE DESCONTO / EM TODOS OS PERFUMES"), ou são destaques 3D nas palavras. Na dúvida, use os destaques 3D.
+- Não ponha texto grande e vidro com as mesmas palavras na mesma fala. Ou é texto de impacto ("10% DE DESCONTO / EM TODOS OS PERFUMES"), ou são destaques em vidro nas palavras. Na dúvida, use os destaques em vidro.
 - Leia o `legenda.srt`: nenhuma palavra do texto grande pode reaparecer logo depois dele.
 
 ## Ênfase em CAIXA ALTA (`legenda_maiusculas`)
