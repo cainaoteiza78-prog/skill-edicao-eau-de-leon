@@ -1,36 +1,41 @@
-# 04 — Textos de impacto e destaque
+# 04 — Textos grandes: impacto, destaque e rótulo
 
-São os textos **grandes** que aparecem por cima, no lugar da legenda, por 1,5–3 s. Eles carregam a promessa do vídeo. Ficam na mesma região da legenda (centro, ~40% da altura), então a tela nunca fica poluída: ou tem legenda, ou tem texto grande.
+Os textos grandes ficam **no lugar da legenda** (no peito) por 1,5–3 s e carregam a promessa do vídeo. A tela nunca tem legenda e texto grande ao mesmo tempo.
 
-## Dois estilos
+## `impacto`: Bebas Neue, letra por letra
+Visto em "ATÉ 30% DE DESCONTO / NO SITE TODO" e "30% DE DESCONTO / EM TODOS OS PERFUMES".
+- Bebas Neue engrossada, branca, CAIXA ALTA, sombra suave.
+- A 1ª linha é **digitada letra a letra** em 0,45 s. As linhas de baixo (78% do tamanho) surgem com as letras aparecendo embaralhadas logo depois.
+- Uso: número, oferta, dado ("10% DE DESCONTO", "FRETE GRÁTIS", "+600 MIL POR MÊS").
 
-### `impacto` — condensado, letra por letra
-Visto em "ATÉ 30% DE DESCONTO / NO SITE TODO" e "30% DE DESCONTO / EM TODOS OS PERFUMES / DO SITE".
-- **Oswald Bold**, branco, CAIXA ALTA, halo escuro.
-- Animação: a 1ª linha é **digitada letra a letra** em 0,45 s; as linhas de baixo (menores, 78%) surgem com as letras aparecendo embaralhadas logo depois. Sai com fade de 0,12 s.
-- Uso: número, oferta, dado — "ATÉ 30% DE DESCONTO", "FRETE GRÁTIS", "+600 MIL POR MÊS", "DECANT DE 5ML".
-
-### `destaque` — arredondado e gordo, com pop
+## `destaque`: Bungee, com pop
 Visto em "QUIZ 100% / GRATUITO / E PERSONALIZADO".
-- **Titan One** branco com sombra escura sólida; a última linha opcional (`sub`) vem em **Poppins ExtraBold** menor.
-- Animação: **pop** (cresce de 60% → 108% → 100% em 0,22 s). Sai com fade 0,15 s.
-- Uso: nome de produto/lançamento/benefício principal — "QUIZ 100% GRATUITO", "KIT DESCOBERTA", "CUPOM EXCLUSIVO".
+- Bungee branca, sombra mais escura, linhas quase encostando. Entra com **pop** (60% → 108% → 100% em 0,22 s).
+- `sub` é a última linha, menor (82%), na mesma fonte.
+- Uso: nome do produto, da ação ou do benefício ("PROMOÇÃO 10.10", "QUIZ 100% GRATUITO", "KIT DESCOBERTA").
 
-### `rotulo` — texto fixo pequeno (formatos sem fala)
-Poppins Bold 46, branco, posição livre (`x`, `y` em fração da tela). Ex.: "+/- 🫠", "Bom", "Melhor!", "Dia X Noite". Use só se pedirem esse formato.
+## `rotulo`: texto nativo do TikTok/Instagram, com emoji
+Visto em "POV: Você encontrou o perfume perfeito para balada!", "Sexy e muitooo impressionante! 👏😲🔥", "+/- 🫠", "Bom 🤗", "Melhor! 🤌", "Dia ☀️ X Noite 🌙".
+- TikTok Sans SemiBold, branca, contorno preto fino. Frase normal (não caixa alta), emoji colorido junto.
+- Posição livre: `x`, `y` em fração da tela (padrão no topo, `y` 0,14). Quebre linha com `\n`.
+- `tamanho` opcional (padrão 62). Em rótulo de tier list use ~58.
+- Fica parado; entra e sai com fade curto.
+- Uso: formatos sem fala, ou rótulo fixo de comparação na fala da criadora.
 
-## Quando usar (regra de ouro: menos é mais)
+## Quando usar
 
-- **Formato `leo`:** 1 texto no **gancho** (primeiros 0,3–3 s) com a promessa, e 1 na **oferta/CTA**. Máximo 3 por vídeo de 30 s.
-- **Formato `creator`:** normalmente nenhum.
-- O texto aparece **quando a palavra-chave é falada** (o tempo `ini` é o início da palavra no `transcricao.txt`) e fica até a pessoa terminar a ideia (1,5–3 s).
-- Texto **curto**: até ~20 caracteres por linha, até 3 linhas. Use `\n` pra quebrar linha. Corte artigos: "ATÉ 30% DE DESCONTO\nNO SITE TODO", não "VOCÊ TEM ATÉ 30% DE DESCONTO EM TODO O NOSSO SITE".
-- O texto diz o que a pessoa está falando (ou o resumo exato). Nunca uma informação nova.
+- **`leo`:** 1 destaque ou impacto no **gancho** (primeiros 0,3–3 s) e 1 na **oferta**. No máximo 3 em 30 s.
+- **`creator`:** normalmente nenhum, ou um rótulo fixo.
+- **Sem fala:** rótulo no topo (POV) e, se quiser, outro no rodapé com emoji.
+- O texto entra **na palavra-chave** (`ini` = início da palavra no `transcricao.txt`) e fica até a ideia acabar.
+- Curto: até ~20 caracteres por linha, até 3 linhas. Ele repete ou resume o que a pessoa fala; nunca traz informação nova.
 
-## Exemplo no plano
 ```json
 "textos": [
-  {"texto": "ATÉ 30% DE DESCONTO\nNO SITE TODO", "estilo": "impacto", "take": 2, "ini": 7.80, "fim": 10.20},
-  {"texto": "QUIZ 100%\nGRATUITO", "sub": "E PERSONALIZADO", "estilo": "destaque", "take": 1, "ini": 6.90, "fim": 9.40}
-]
+  {"texto": "PROMOÇÃO\n10.10", "estilo": "destaque", "take": 1, "ini": 1.00, "fim": 3.10},
+  {"texto": "10% DE DESCONTO\nEM TODOS OS PERFUMES", "estilo": "impacto", "take": 2, "ini": 2.24, "fim": 4.70},
+  {"texto": "POV: Você encontrou o\nperfume perfeito para balada!", "estilo": "rotulo", "y": 0.13, "take": 1, "ini": 0, "fim": 12}
+],
+"divisorias": [ {"take": 1, "ini": 0, "fim": 12, "y0": 0.23, "y1": 0.62} ]
 ```
+`divisorias` desenha a linha branca vertical do meio (formato "Dia X Noite").

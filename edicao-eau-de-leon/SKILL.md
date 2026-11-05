@@ -51,7 +51,9 @@ Abra **cada** `conferir/conferir_XX.png` com a ferramenta Read e passe o `treina
 
 ## Regras que não mudam
 
+- **A única voz do vídeo é a das takes.** Nunca gere, adicione ou troque voz (nada de TTS, locução ou narração).
 - **Nunca** chame API paga (OpenAI, ElevenLabs, etc.). Transcrição é o Whisper local do `transcrever.py`.
+- **Fontes só as do perfil** (Poppins, Bebas Neue, Bungee, TikTok Sans). Nunca invente ou troque fonte.
 - **Nunca** invente fala nem mude o sentido do que a pessoa disse. Correção de legenda é só grafia (nome de perfume, marca, "Eau de Leon").
 - Perfume na tela **só** se ele foi falado (ou o usuário pediu) e **só** com a foto do catálogo `assets/perfumes` — nunca baixe imagem da internet, nunca use foto com fundo.
 - Perfume que não está no catálogo: não invente; avise no fim ("o X foi citado mas não tem foto no catálogo") e siga sem ele.

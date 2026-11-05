@@ -61,6 +61,36 @@ def main():
         folhas.append(nome)
     os.remove(os.path.join(pasta, '_q.png'))
     print('\n'.join(folhas))
+    pausas(video)
+
+
+def pausas(video):
+    """Mede o áudio final: lista trechos sem voz >= 0,15 s (respiração/pausa que sobrou)."""
+    import numpy as np
+    fala = None
+    lt = os.path.join(os.path.dirname(video), 'linha_do_tempo.json')
+    if os.path.exists(lt):
+        fala = json.load(open(lt, encoding='utf8')).get('fala')
+    cmd = ['ffmpeg', '-v', 'error', '-i', video] + (['-t', str(fala)] if fala else []) + ['-ac', '1', '-ar', '16000', '-f', 's16le', '-']
+    x = np.frombuffer(subprocess.run(cmd, capture_output=True).stdout, np.int16).astype(float)
+    j = 160
+    n = len(x) // j
+    if not n:
+        return
+    db = 20 * np.log10(np.sqrt((x[:n * j].reshape(n, j) ** 2).mean(1) + 1e-9) / 32768 + 1e-9)
+    fraco = db < np.percentile(db, 90) - 18
+    achou, i = [], 0
+    while i < n:
+        if fraco[i]:
+            k = i
+            while k < n and fraco[k]:
+                k += 1
+            if (k - i) * 0.01 >= 0.15:
+                achou.append(f'{i * 0.01:.2f}s ({(k - i) * 0.01:.2f}s)')
+            i = k
+        else:
+            i += 1
+    print('PAUSAS que sobraram (>=0,15 s): ' + (', '.join(achou) if achou else 'nenhuma'))
 
 
 if __name__ == '__main__':

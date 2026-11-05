@@ -9,12 +9,16 @@ O usuário manda as takes **na ordem certa** do vídeo. Isso quer dizer:
 
 ## O que sai (sempre)
 
-1. Silêncio antes da primeira palavra e depois da última.
-2. Falas de bastidor: "corta", "de novo", "vou repetir", "peraí", "tá gravando?", "errei", risada de erro, contagem "3, 2, 1".
-3. Frase que começou e foi abandonada no meio.
-4. Gaguejo e palavra repetida por erro ("o o perfume", "que que eu").
-5. Muletas longas no começo da frase ("é…", "então assim…", "tipo…") quando dá pra começar o trecho depois delas sem cortar palavra.
-6. Respirações e pausas > 0,28 s **dentro** dos trechos — isso o render faz sozinho medindo o áudio; você não precisa picotar à mão.
+O render tira sozinho (`scripts/cortes.py`):
+- **respirações, pausas e estalos** entre palavras: o corte é guiado por cada palavra e pela força da voz. Só fica voz, com 0,03 s de folga antes e 0,05 s depois. Na conferência, não pode sobrar pausa maior que ~0,12 s;
+- **falas de bastidor isoladas**: "corta", "vai", "parou", "pera", "de novo", "vou de novo", "repete", "errei", "valendo", "ok", "bora", "mais uma vez", "3, 2, 1"… Saem quando estão soltas (com pausa antes ou depois, ou na ponta da take). "Isso **vai** ficar lindo" fica, porque faz parte da frase. O render lista no terminal o que removeu (`fala de bastidor removida: …`).
+
+Você decide e tira pelo plano:
+1. A **tentativa errada** inteira quando a pessoa repete a frase: fique com a última tentativa boa.
+2. Frase começada e abandonada no meio.
+3. Gaguejo ou palavra repetida por erro ("o o perfume").
+4. Muleta longa no começo ("então assim…"), quando dá pra começar o trecho depois dela sem cortar palavra.
+5. Bastidor que não está isolado ("corta isso aí que eu errei o nome"): o filtro automático não pega, então tire pelo plano.
 
 ## O que fica
 
@@ -28,12 +32,13 @@ O usuário manda as takes **na ordem certa** do vídeo. Isso quer dizer:
 Use os tempos por palavra do `transcricao.txt` (o número entre parênteses é o **início** da palavra):
 - `ini` do trecho = início da primeira palavra **− 0,10 s**.
 - `fim` do trecho = início da última palavra + a duração dela (veja o início da palavra seguinte) **+ 0,15 s**. Na dúvida, prefira sobrar 0,2 s a cortar a sílaba final — o render apara o silêncio sobrando.
-- Um trecho = uma fala inteira (uma ou mais frases seguidas). Não picote dentro da frase; o render já tira as respirações.
+- Um trecho = uma fala inteira (uma ou mais frases seguidas). Não picote dentro da frase; o render já tira as respirações e as pausas.
+- Os cortes do render seguem a VOZ, então o vídeo pula junto com a fala. Se a imagem de um pedaço estiver ruim (pessoa saindo do quadro, mão na frente da câmera), tire o trecho pelo plano.
 - Trechos de takes diferentes podem se alternar livremente, mas a ordem final é a ordem da lista `trechos`.
 
 ## Ritmo
 
-- Meta: **zero respiro**. Entre uma frase e outra só fica a folga de 0,07 s que o render deixa.
+- Meta: **zero respiro**. Entre uma frase e outra só fica a folga de ~0,08 s que o render deixa.
 - Vídeo `leo`: alvo 15–45 s. Se o bruto passa de 60 s de fala útil, mantenha tudo que é informação — não resuma a fala da pessoa — mas corte toda repetição.
 - Vídeo `creator`: normalmente uma take quase inteira, só limpando começo, fim e erros.
 
@@ -56,4 +61,4 @@ Regra: **no máximo 1 whip a cada ~6 s**. Um vídeo de 30 s tem tipicamente 2 a 
 
 ## Pausas que devem ficar
 
-Se a pessoa faz uma pausa de propósito (suspense antes do preço, gesto mostrando o frasco), marque o trecho com `"manter_pausas": true`. Sem isso, o render tira toda pausa > 0,28 s.
+Se a pessoa faz uma pausa de propósito (suspense antes do preço, gesto mostrando o frasco), marque o trecho com `"manter_pausas": true`. Sem isso, o render tira toda pausa. A pausa de propósito é rara: na dúvida, corte.

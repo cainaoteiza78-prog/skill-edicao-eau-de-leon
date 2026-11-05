@@ -26,20 +26,24 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
   "textos": [
     {"texto": "ATÉ 30% DE DESCONTO\nNO SITE TODO", "estilo": "impacto", "take": 2, "ini": 7.8, "fim": 10.2},
     {"texto": "QUIZ 100%\nGRATUITO", "sub": "E PERSONALIZADO", "estilo": "destaque", "take": 1, "ini": 6.9, "fim": 9.4},
-    {"texto": "Melhor!", "estilo": "rotulo", "x": 0.18, "y": 0.62, "take": 1, "ini": 0.0, "fim": 30.0}
+    {"texto": "Melhor! 🤌", "estilo": "rotulo", "x": 0.18, "y": 0.62, "tamanho": 58, "take": 1, "ini": 0.0, "fim": 30.0}
   ],
 
   "perfumes": [
     {"itens": [ {"id": "masculinos/sauvage-edp", "take": 1, "t": 12.3} ],
      "ate": {"take": 1, "t": 16.0},    // opcional
      "animacao": "pop",                // pop | drop | slide | fade
-     "tamanho": "normal"}              // normal | grande
+     "tamanho": "normal",              // normal | grande
+     "base_y": 0.78}                   // opcional: onde fica a base dos frascos (fração da tela)
   ],
   //  item pode ter "x"/"y" (0..1, centro do frasco) pra posição livre
 
   "broll": [
     {"arquivo": "../site.png", "take": 1, "ini": 9.1, "fim": 12.0, "transicao": "whip", "inicio_arquivo": 0}
   ],
+
+  "divisorias": [ {"take": 1, "ini": 0, "fim": 12, "y0": 0.23, "y1": 0.62} ],   // linha branca do "Dia X Noite"
+  "legenda_y": 0.58,                 // opcional: força a altura da legenda (padrão = automático pelo rosto)
 
   "cartao_final": true,              // padrão: true no leo, false no creator
   "musica": null                     // null | "auto" | "caminho/da/trilha.mp3"

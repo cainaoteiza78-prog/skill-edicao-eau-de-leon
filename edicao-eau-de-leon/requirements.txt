@@ -2,6 +2,7 @@ faster-whisper>=1.0
 numpy
 Pillow
 scipy
+opencv-python-headless>=4.8,<5
 # só para cadastrar perfume novo (remover fundo):
 rembg[cpu]>=2.0.60
 onnxruntime

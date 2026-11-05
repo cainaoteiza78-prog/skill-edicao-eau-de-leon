@@ -19,10 +19,10 @@ Perfume citado que não existe no catálogo: **não coloque nada** e avise no fi
 
 ## Como aparecem (padrão observado)
 
-- **Fileira no terço de baixo**: frascos lado a lado, centralizados, altura ~300 px (15% do quadro), base em y = 1350. Até 4 por fileira (com 4, ficam 10% menores).
+- **Fileira logo abaixo da legenda** (que fica no peito): frascos lado a lado, centralizados, ~300 px de altura (15% do quadro). Até 4 por fileira; com 4, ficam 10% menores. Pra forçar a altura, use `"base_y": 0.78` no grupo (fração da tela, onde fica a base dos frascos).
 - Cada frasco entra **no instante em que o nome começa a ser falado**, na sua posição da fileira (da esquerda pra direita, na ordem da fala). Os anteriores ficam.
 - Quando a pessoa passa pra outro grupo/assunto, a fileira inteira some e começa uma nova (novo grupo no plano).
-- Sombra suave embaixo do frasco (o render põe sozinho).
+- **Sem sombra**: nos reels o frasco entra "chapado" sobre o vídeo.
 - Perfume único, protagonista do vídeo: `"tamanho": "grande"` (460 px de altura).
 
 ## Animações (campo `animacao`, por grupo ou por item)

@@ -37,19 +37,18 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.normpath(os.path.join(AQUI, '..'))
 sys.path.insert(0, AQUI)
 from catalogo import carregar, por_id, norm  # noqa: E402
+from cortes import energia_db, pedacos_do_trecho  # noqa: E402
+from textos import montar_ass, rotulo_png  # noqa: E402
+from enquadramento import altura_legenda  # noqa: E402
 
 W, H, FPS = 1080, 1920, 30
 
 # ── Medidas tiradas dos reels da @eau.de.leon (ver treinamento/01) ──────────
 ESTILO = {
-    'legenda': {'fonte': 'Poppins', 'tamanho': 78, 'y': 830, 'max_palavras': 4, 'max_chars': 24},
-    'impacto': {'fonte': 'Oswald', 'tamanho': 140, 'y_topo': 771, 'entrelinha': 1.08, 'digitacao': 0.45},
-    'destaque': {'fonte': 'Titan One', 'tamanho': 116, 'sub_fonte': 'Poppins ExtraBold', 'sub_tamanho': 86, 'y_topo': 758},
-    'rotulo': {'fonte': 'Poppins', 'tamanho': 66},
-    'perfume': {'altura': 300, 'altura_grande': 460, 'base_y': 1350, 'largura_linha': 940, 'slot_max': 250},
+    # textos (fontes, tamanhos, sombras): ver textos.py → ESTILO_TEXTO
+    'legenda': {'max_palavras': 4, 'max_chars': 24},
+    'perfume': {'altura': 300, 'altura_grande': 460, 'base_y': 1420, 'largura_linha': 940, 'slot_max': 250},
     'zoom_corte': 1.12,
-    'silencio_min': 0.28,   # pausa maior que isso dentro da fala é cortada
-    'folga_voz': 0.07,      # sobra de áudio antes/depois da voz em cada corte
     'cartao_final': {'duracao': 2.0, 'dissolve': 0.45, 'logo_largura': 560, 'logo_y': 768},
     'musica_volume': 0.12,
     'whip': 0.10,
@@ -67,85 +66,36 @@ def ff(args, cwd):
         raise SystemExit(f'ffmpeg falhou:\n{" ".join(args)[:1500]}\n{r.stderr[-2500:]}')
 
 
-# ── 1. energia do áudio → onde tem voz ──────────────────────────────────────
-def energia(wav_path):
-    with wave.open(wav_path) as w:
-        sr = w.getframerate()
-        x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32)
-    jan = sr // 100  # 10 ms
-    n = len(x) // jan
-    rms = np.sqrt((x[: n * jan].reshape(n, jan) ** 2).mean(axis=1) + 1e-9)
-    db = np.clip(20 * np.log10(rms / 32768 + 1e-9), -80, 0)  # dBFS, piso em -80
-    piso, voz = np.percentile(db, 15), np.percentile(db, 90)
-    # entre piso e voz, mas nunca mais de 26 dB abaixo da voz (silêncio digital
-    # ou sala muito silenciosa puxariam o limiar pra baixo demais)
-    limiar = max(piso + 0.35 * (voz - piso), voz - 26)
-    return db > limiar  # um booleano a cada 10 ms
-
-
-def pedacos_com_voz(voz, ini, fim, palavras, manter_pausas=False):
-    """Divide [ini,fim] tirando silêncios > silencio_min. Nunca corta dentro de palavra."""
-    if manter_pausas:
-        return [(ini, fim)]
-    a, b = int(ini * 100), min(int(fim * 100), len(voz))
-    if b - a < 5:
-        return [(ini, fim)]
-    trecho = voz[a:b]
-    folga = ESTILO['folga_voz']
-    sil_min = int(ESTILO['silencio_min'] * 100)
-    # regiões de silêncio
-    cortes = []
-    i = 0
-    while i < len(trecho):
-        if not trecho[i]:
-            j = i
-            while j < len(trecho) and not trecho[j]:
-                j += 1
-            borda = i == 0 or j == len(trecho)
-            if borda or j - i >= sil_min:
-                s0, s1 = (a + i) / 100, (a + j) / 100
-                dentro_de_palavra = any(p['ini'] + 0.04 < s0 and p['fim'] - 0.04 > s1 for p in palavras)
-                if not dentro_de_palavra:
-                    cortes.append((s0, s1, borda))
-            i = j
-        else:
-            i += 1
-    pedacos, cur = [], ini
-    for s0, s1, borda in cortes:
-        if s0 <= ini + 0.001:  # silêncio no começo
-            cur = max(cur, s1 - folga)
-            continue
-        if s1 >= fim - 0.001:  # silêncio no fim
-            pedacos.append((cur, min(fim, s0 + folga)))
-            cur = None
-            break
-        pedacos.append((cur, s0 + folga))
-        cur = s1 - folga
-    if cur is not None:
-        pedacos.append((cur, fim))
-    return [(x, y) for x, y in pedacos if y - x >= 0.15] or [(ini, fim)]
-
-
-# ── 2. segmentos ────────────────────────────────────────────────────────────
-def montar_segmentos(plano, trans, vozes):
-    segs = []
+# ── 1/2. cortes (ver cortes.py) → segmentos ─────────────────────────────────
+def montar_segmentos(plano, trans, energias):
+    segs, removidas = [], []
     for cena, tr in enumerate(plano['trechos']):
         k = tr['take']
         take = trans['takes'][k - 1]
         ini, fim = max(0.0, tr['ini']), min(take['duracao'], tr['fim'])
         if fim - ini < 0.15:
             continue
-        pal = [p for p in take['palavras'] if p['fim'] > ini and p['ini'] < fim]
-        for i, (a, b) in enumerate(pedacos_com_voz(vozes[k - 1], ini, fim, pal, tr.get('manter_pausas', False))):
+        db, voz = energias[k - 1]
+        pedacos, fora = pedacos_do_trecho(take['palavras'], db, voz, ini, fim, take['duracao'], tr.get('manter_pausas', False))
+        removidas += [{'take': k, 'ini': p['ini'], 'p': p['p']} for p in fora]
+        primeiro = True
+        for i, (a, b) in enumerate(pedacos):
             zoom = tr.get('zoom') or (ESTILO['zoom_corte'] if i % 2 == 1 else 1.0)
-            segs.append({'take': k, 'a': a, 'b': b, 'cena': cena, 'abre': i == 0,
-                         'transicao': tr.get('transicao', 'corte') if i == 0 else 'corte',
+            segs.append({'take': k, 'a': a, 'b': b, 'cena': cena, 'abre': primeiro,
+                         'transicao': tr.get('transicao', 'corte') if primeiro else 'corte',
                          'zoom': zoom, 'foco_x': tr.get('foco_x', 0.5), 'foco_y': tr.get('foco_y', 0.5)})
+            primeiro = False
+    # nunca repetir o mesmo trecho da take (trechos do plano encostados)
+    for i in range(1, len(segs)):
+        p, s = segs[i - 1], segs[i]
+        if p['take'] == s['take'] and s['a'] < p['b'] and s['b'] > p['a']:
+            s['a'] = p['b']
+    segs = [s for s in segs if s['b'] - s['a'] >= 0.1]
     t = 0.0
     for s in segs:
         s['dst'] = t
         t += s['b'] - s['a']
-    return segs, t
+    return segs, t, removidas
 
 
 def mapear(segs, take, t, depois=True):
@@ -187,16 +137,32 @@ def filtro_video(s, prox_whip):
 
 # ── 3. legenda ──────────────────────────────────────────────────────────────
 def palavras_finais(plano, trans, segs):
+    # cada palavra vai pro pedaço com quem ela mais se sobrepõe (o tempo do
+    # Whisper pode cair parte num silêncio que foi cortado — a palavra continua lá)
     out = []
-    for s in segs:
-        take = trans['takes'][s['take'] - 1]
+    for k, take in enumerate(trans['takes'], 1):
+        meus = [s for s in segs if s['take'] == k]
         for p in take['palavras']:
-            meio = (p['ini'] + p['fim']) / 2
-            if s['a'] <= meio <= s['b']:
-                out.append({'p': p['p'], 'take': s['take'], 'src': p['ini'],
-                            'ini': s['dst'] + max(0.0, p['ini'] - s['a']),
-                            'fim': s['dst'] + min(s['b'], p['fim']) - s['a']})
+            melhor, sob = None, 0.0
+            for s in meus:
+                o = min(s['b'], p['fim']) - max(s['a'], p['ini'])
+                if o > sob:
+                    melhor, sob = s, o
+            if melhor is None or sob < 0.04:
+                continue
+            s = melhor
+            out.append({'p': p['p'], 'take': k, 'src': p['ini'],
+                        'ini': s['dst'] + max(0.0, p['ini'] - s['a']),
+                        'fim': s['dst'] + min(s['b'], p['fim']) - s['a']})
     out.sort(key=lambda w: w['ini'])
+    # o Whisper separa símbolo da palavra ("10", "%"): junta de volta → "10%"
+    juntas = []
+    for w in out:
+        if juntas and w['p'].strip() and not any(ch.isalnum() for ch in w['p']) and w['p'].strip()[0] in '%$€+°ºª':
+            juntas[-1] = juntas[-1] | {'p': juntas[-1]['p'].rstrip() + w['p'].strip(), 'fim': w['fim']}
+        else:
+            juntas.append(w)
+    out = juntas
     # correções: "de" pode ser frase (várias palavras) → vira uma palavra só
     for c in plano.get('correcoes', []):
         de = norm(c['de']).split()
@@ -273,116 +239,14 @@ def blocos_legenda(plano, words):
     return out
 
 
-# Largura que o libass desenha = largura medida no PIL x fator da fonte
-# (calibrado renderizando de verdade). Serve pra encolher linha que não cabe.
-_FATOR = {'Oswald-Bold.ttf': 0.578, 'TitanOne-Regular.ttf': 0.873, 'Poppins-Bold.ttf': 0.565, 'Poppins-ExtraBold.ttf': 0.565}
-_LARG_MAX = W * 0.90
-
-
-def caber(texto, arquivo_fonte, tam):
-    from PIL import ImageFont
-    f = ImageFont.truetype(os.path.join(FONTES, arquivo_fonte), tam)
-    b = f.getbbox(texto)
-    larg = (b[2] - b[0]) * _FATOR[arquivo_fonte]
-    return tam if larg <= _LARG_MAX else int(tam * _LARG_MAX / larg)
-
-
-def ass_tempo(t):
-    t = max(0, t)
-    h = int(t // 3600)
-    m = int(t % 3600 // 60)
-    s = t % 60
-    return f'{h}:{m:02d}:{s:05.2f}'
-
-
-def ass_esc(s):
-    return s.replace('\\', '\\\\').replace('{', '(').replace('}', ')').replace('\n', '\\N')
-
-
-def montar_ass(legendas, textos):
-    L, I, D, R = ESTILO['legenda'], ESTILO['impacto'], ESTILO['destaque'], ESTILO['rotulo']
-    halo = '&H70000000'
-    cab = f"""[Script Info]
-ScriptType: v4.00+
-PlayResX: {W}
-PlayResY: {H}
-WrapStyle: 2
-ScaledBorderAndShadow: yes
-
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Leg,{L['fonte']},{L['tamanho']},&H00FFFFFF,&H00FFFFFF,{halo},&H96000000,-1,0,0,0,100,100,0,0,1,3,1,5,60,60,0,1
-Style: Imp,{I['fonte']},{I['tamanho']},&H00FFFFFF,&H00FFFFFF,{halo},&H96000000,-1,0,0,0,100,100,0,0,1,3.5,2,8,40,40,0,1
-Style: Dst,{D['fonte']},{D['tamanho']},&H00FFFFFF,&H00FFFFFF,&H50000000,&H90000000,0,0,0,0,100,100,1,0,1,4,5,8,40,40,0,1
-Style: DstSub,{D['sub_fonte']},{D['sub_tamanho']},&H00FFFFFF,&H00FFFFFF,&H50000000,&H90000000,0,0,0,0,100,100,1,0,1,3,4,8,40,40,0,1
-Style: Rot,{R['fonte']},{R['tamanho']},&H00FFFFFF,&H00FFFFFF,{halo},&H96000000,-1,0,0,0,100,100,0,0,1,3,1,5,20,20,0,1
-
-[Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-"""
-    ev = []
-    for l in legendas:
-        tam = caber(l['texto'], 'Poppins-Bold.ttf', L['tamanho'])
-        ev.append(f"Dialogue: 1,{ass_tempo(l['ini'])},{ass_tempo(l['fim'])},Leg,,0,0,0,,{{\\pos({W // 2},{L['y']})\\fs{tam}\\blur3}}{ass_esc(l['texto'])}")
-    rnd = random.Random(7)
-    for t in textos:
-        a, b = t['ini'], t['fim']
-        if t['estilo'] == 'impacto':
-            linhas = t['texto'].upper().split('\n')
-            y = I['y_topo']
-            dig = I['digitacao']
-            for n, linha in enumerate(linhas):
-                if n == 0:  # digita letra a letra
-                    passo = dig * 1000 / max(1, len(linha))
-                    ordem = list(range(len(linha)))
-                    t0 = 0
-                else:  # linhas de baixo: letras surgem embaralhadas
-                    passo = 260 / max(1, len(linha))
-                    ordem = list(range(len(linha)))
-                    rnd.shuffle(ordem)
-                    t0 = dig * 1000 * 0.8 + (n - 1) * 150
-                quando = {i: int(t0 + k * passo) for k, i in enumerate(ordem)}
-                corpo = ''.join(
-                    ch if ch == ' ' else f'{{\\alpha&HFF&\\t({quando[i]},{quando[i] + 40},\\alpha&H00&)}}{ass_esc(ch)}'
-                    for i, ch in enumerate(linha))
-                tam = caber(linha, 'Oswald-Bold.ttf', I['tamanho'] if n == 0 else int(I['tamanho'] * 0.78))
-                ev.append(f"Dialogue: 2,{ass_tempo(a)},{ass_tempo(b)},Imp,,0,0,0,,{{\\an8\\pos({W // 2},{int(y)})\\fs{tam}\\blur2\\fad(0,120)}}{corpo}")
-                y += tam * I['entrelinha']
-        elif t['estilo'] == 'destaque':
-            linhas = t['texto'].upper().split('\n')
-            y = D['y_topo']
-            pop = '\\fscx60\\fscy60\\t(0,140,\\fscx108\\fscy108)\\t(140,220,\\fscx100\\fscy100)'
-            for linha in linhas:
-                tam = caber(linha, 'TitanOne-Regular.ttf', D['tamanho'])
-                ev.append(f"Dialogue: 2,{ass_tempo(a)},{ass_tempo(b)},Dst,,0,0,0,,{{\\an8\\pos({W // 2},{int(y)})\\fs{tam}{pop}\\fad(0,150)}}{ass_esc(linha)}")
-                y += tam * 1.02
-            if t.get('sub'):
-                tam = caber(t['sub'].upper(), 'Poppins-ExtraBold.ttf', D['sub_tamanho'])
-                ev.append(f"Dialogue: 2,{ass_tempo(a + 0.12)},{ass_tempo(b)},DstSub,,0,0,0,,{{\\an8\\pos({W // 2},{int(y + 6)})\\fs{tam}{pop}\\fad(0,150)}}{ass_esc(t['sub'].upper())}")
-        elif t['estilo'] == 'rotulo':
-            x = int(t.get('x', 0.5) * W)
-            y = int(t.get('y', 0.12) * H)
-            ev.append(f"Dialogue: 2,{ass_tempo(a)},{ass_tempo(b)},Rot,,0,0,0,,{{\\pos({x},{y})\\blur2}}{ass_esc(t['texto'])}")
-    return cab + '\n'.join(ev) + '\n'
-
-
 # ── 4. perfumes e b-roll ────────────────────────────────────────────────────
-def png_com_sombra(origem, destino, larg_max, alt_max):
+def png_perfume(origem, destino, larg_max, alt_max):
+    """Frasco redimensionado, sem sombra (nos reels o frasco entra "chapado")."""
     im = Image.open(origem).convert('RGBA')
     f = min(larg_max / im.width, alt_max / im.height)
     im = im.resize((max(1, round(im.width * f)), max(1, round(im.height * f))), Image.LANCZOS)
-    m = 28
-    tela = Image.new('RGBA', (im.width + 2 * m, im.height + 2 * m), (0, 0, 0, 0))
-    sombra_a = im.getchannel('A').point(lambda v: int(v * 0.45))
-    sombra = Image.new('RGBA', im.size, (0, 0, 0, 0))
-    sombra.putalpha(sombra_a)
-    camada = Image.new('RGBA', tela.size, (0, 0, 0, 0))
-    camada.paste(sombra, (m, m + 10))
-    camada = camada.filter(ImageFilter.GaussianBlur(10))
-    tela.alpha_composite(camada)
-    tela.alpha_composite(im, (m, m))
-    tela.save(destino)
-    return tela.size, m
+    im.save(destino)
+    return im.size, 0
 
 
 def expr_anim(anim, A, x0, y0, lado):
@@ -403,7 +267,7 @@ def entrada_anim(anim):
     return {'fade': 0.30, 'drop': 0.12, 'slide': 0.12}.get(anim, 0.10)
 
 
-def preparar_perfumes(plano, trabalho, total, cat):
+def preparar_perfumes(plano, trabalho, total, cat, y_legenda=1080):
     P = ESTILO['perfume']
     itens = []
     grupos = plano.get('perfumes', [])
@@ -432,9 +296,11 @@ def preparar_perfumes(plano, trabalho, total, cat):
             if B - A < 0.3:
                 continue
             arq = os.path.join(trabalho, f'perf_{gi}_{i}.png')
-            (tw, th), m = png_com_sombra(os.path.join(PERFUMES, p['arquivo']), arq, slot - 12, alt)
+            (tw, th), m = png_perfume(os.path.join(PERFUMES, p['arquivo']), arq, slot - 12, alt)
             cx = W / 2 + (i - (n - 1) / 2) * slot
-            base = g.get('base_y', P['base_y'] if not grande else P['base_y'] + 60)
+            # fileira logo abaixo da legenda (que fica na altura do peito)
+            base_auto = min(1800, max(P['base_y'], y_legenda + 70 + alt))
+            base = int(g['base_y'] * H) if 'base_y' in g else base_auto
             x0, y0 = int(cx - tw / 2), int(base - th + m)
             if 'x' in it:
                 x0 = int(it['x'] * W - tw / 2)
@@ -443,6 +309,17 @@ def preparar_perfumes(plano, trabalho, total, cat):
             anim = it.get('animacao', g.get('animacao', 'pop'))
             itens.append({'png': arq, 'A': A, 'B': B, 'x0': x0, 'y0': y0, 'anim': anim, 'lado': -1 if cx < W / 2 else 1})
     return itens
+
+
+def preparar_rotulos(textos, tmp):
+    """Rótulos (texto nativo TikTok com emoji) viram PNG e entram por overlay."""
+    out = []
+    for k, t in enumerate(x for x in textos if x['estilo'] == 'rotulo'):
+        png = os.path.join(tmp, f'rotulo_{k}.png')
+        w, h = rotulo_png(t['texto'], png, t.get('tamanho'))
+        cx, cy = t.get('x', 0.5) * W, t.get('y', 0.14) * H
+        out.append({'png': png, 'A': t['ini'], 'B': t['fim'], 'x': int(cx - w / 2), 'y': int(cy - h / 2)})
+    return out
 
 
 def preparar_broll(plano, trabalho, total):
@@ -478,12 +355,20 @@ def main():
     tmp = os.path.join(trabalho, '_render')
     os.makedirs(tmp, exist_ok=True)
 
-    vozes = [energia(os.path.join(trabalho, f"take{t['n']}.wav")) for t in trans['takes']]
-    segs, total = montar_segmentos(plano, trans, vozes)
+    energias = [energia_db(os.path.join(trabalho, f"take{t['n']}.wav")) for t in trans['takes']]
+    segs, total, bastidor = montar_segmentos(plano, trans, energias)
     if not segs:
         raise SystemExit('Plano sem trechos válidos.')
     plano['_map'] = lambda take, t, depois=True: mapear(segs, take, t, depois)
     print(f'{len(segs)} pedaços, {total:.1f}s de fala editada', flush=True)
+    if bastidor:
+        print('fala de bastidor removida: ' + ' | '.join(f"take {b['take']} {b['ini']:.2f}s \"{b['p']}\"" for b in bastidor), flush=True)
+    # legenda abaixo do pescoço, na altura do peito (rosto detectado)
+    if plano.get('legenda_y'):
+        y_legenda, rostos = int(plano['legenda_y'] * H), []
+    else:
+        y_legenda, rostos = altura_legenda(segs, trans['takes'])
+    print(f'legenda em y={y_legenda} ({len(rostos)} rosto(s) detectado(s))', flush=True)
 
     preset = 'ultrafast' if a.rapido else 'veryfast'
     lista = []
@@ -515,15 +400,16 @@ def main():
     bloqueios = [(t['ini'], t['fim']) for t in textos if t['estilo'] in ('impacto', 'destaque')]
     leg_ok = []
     for l in legendas:
-        if any(a0 - 0.05 <= l['ini'] < b0 for a0, b0 in bloqueios):
-            continue
+        for a0, b0 in bloqueios:  # começou durante o texto grande: espera ele sair
+            if a0 - 0.05 <= l['ini'] < b0:
+                l['ini'] = b0 + 0.02
         for a0, b0 in bloqueios:
             if l['ini'] < a0 < l['fim']:
                 l['fim'] = a0
         if l['fim'] - l['ini'] >= 0.15:
             leg_ok.append(l)
     with open(os.path.join(tmp, 'legenda.ass'), 'w', encoding='utf8') as f:
-        f.write(montar_ass(leg_ok, textos))
+        f.write(montar_ass(leg_ok, textos, y_legenda))
     with open(os.path.join(trabalho, 'legenda.srt'), 'w', encoding='utf8') as f:
         for i, l in enumerate(leg_ok, 1):
             ts = lambda x: f'{int(x // 3600):02d}:{int(x % 3600 // 60):02d}:{int(x % 60):02d},{int(round(x % 1 * 1000)) % 1000:03d}'
@@ -538,7 +424,8 @@ def main():
     C = ESTILO['cartao_final']
     final = total + (C['duracao'] if cartao else 0.0)
 
-    perfumes = preparar_perfumes(plano, tmp, total, cat)
+    perfumes = preparar_perfumes(plano, tmp, total, cat, y_legenda)
+    rotulos = preparar_rotulos(textos, tmp)
     brolls = preparar_broll(plano, trabalho, total)
 
     entradas = ['-i', 'junto.mkv']
@@ -570,6 +457,20 @@ def main():
         grafo.append(f"{cur}[pf{k}]overlay=x='{x}':y='{y}':enable='between(t,{p['A']:.3f},{p['B']:.3f})':eof_action=pass[vp{k}]")
         cur = f'[vp{k}]'
         idx += 1
+    for k, r in enumerate(rotulos):
+        entradas += ['-loop', '1', '-framerate', str(FPS), '-t', f"{r['B'] + 0.2:.3f}", '-i', os.path.basename(r['png'])]
+        grafo.append(f"[{idx}:v]format=rgba,fade=t=in:st={r['A']:.3f}:d=0.15:alpha=1,fade=t=out:st={max(r['A'], r['B'] - 0.15):.3f}:d=0.15:alpha=1[rt{k}]")
+        grafo.append(f"{cur}[rt{k}]overlay=x={r['x']}:y={r['y']}:enable='between(t,{r['A']:.3f},{r['B']:.3f})':eof_action=pass[vr{k}]")
+        cur = f'[vr{k}]'
+        idx += 1
+    for k, dv in enumerate(plano.get('divisorias', [])):
+        A = plano['_map'](dv['take'], dv['ini'])
+        B = plano['_map'](dv['take'], dv['fim'], False)
+        if A is None or B is None:
+            continue
+        y0, y1 = int(dv.get('y0', 0.23) * H), int(dv.get('y1', 0.62) * H)
+        grafo.append(f"{cur}drawbox=x={W // 2 - 3}:y={y0}:w=6:h={y1 - y0}:color=white@1:t=fill:enable='between(t,{A:.3f},{B:.3f})'[vd{k}]")
+        cur = f'[vd{k}]'
     grafo.append(f"{cur}ass=legenda.ass:fontsdir=fonts[vt]")
     cur = '[vt]'
     if cartao:
@@ -634,6 +535,8 @@ def main():
         'perfumes': [{'png': os.path.basename(p['png']), 'ini': round(p['A'], 2), 'fim': round(p['B'], 2)} for p in perfumes],
         'broll': [{'arquivo': os.path.basename(b['arq']), 'ini': round(b['A'], 2), 'fim': round(b['B'], 2)} for b in brolls],
         'cortes': [round(s['dst'], 2) for s in segs],
+        'legenda_y': y_legenda, 'rostos': rostos,
+        'bastidor_removido': bastidor,
     }
     with open(os.path.join(trabalho, 'linha_do_tempo.json'), 'w', encoding='utf8') as f:
         json.dump(resumo, f, ensure_ascii=False, indent=1)

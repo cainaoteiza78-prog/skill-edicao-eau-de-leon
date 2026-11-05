@@ -22,13 +22,13 @@ item('ffprobe no PATH', shutil.which('ffprobe'), 'vem junto com o ffmpeg')
 if shutil.which('ffmpeg'):
     filtros = subprocess.run(['ffmpeg', '-hide_banner', '-filters'], capture_output=True, text=True).stdout
     item('ffmpeg com legenda (libass)', ' ass ' in filtros, 'use a build "full" do ffmpeg (gyan.dev no Windows)')
-for mod in ('faster_whisper', 'numpy', 'PIL'):
+for mod in ('faster_whisper', 'numpy', 'PIL', 'cv2', 'scipy'):
     try:
         __import__(mod)
         item(f'python: {mod}', True)
     except ImportError:
         item(f'python: {mod}', False, 'pip install -r requirements.txt')
-for f in ('Poppins-Bold.ttf', 'Poppins-ExtraBold.ttf', 'Oswald-Bold.ttf', 'TitanOne-Regular.ttf'):
+for f in ('Poppins-Bold.ttf', 'BebasNeue-Regular.ttf', 'Bungee-Regular.ttf', 'TikTokSans-SemiBold.ttf', 'NotoColorEmoji.ttf'):
     item(f'fonte {f}', os.path.exists(os.path.join(RAIZ, 'assets', 'fontes', f)), 'baixe o repo completo')
 item('logo', os.path.exists(os.path.join(RAIZ, 'assets', 'logo', 'eau-de-leon-branco.png')), 'baixe o repo completo')
 pj = os.path.join(RAIZ, 'assets', 'perfumes', 'perfumes.json')
