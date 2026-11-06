@@ -1,4 +1,7 @@
-# 09 — Exemplo completo (takes reais do Leo, promoção 10.10)
+# 09 — Exemplo completo
+
+> Os arquivos deste exemplo vêm com a skill em `exemplos/promocao-10-10/`: as 3 takes brutas (`takes/`), o `plano.json` e o resultado aprovado `editado.mp4`. Use o `editado.mp4` como **referência visual** de como a edição tem que ficar.
+ (takes reais do Leo, promoção 10.10)
 
 Três takes brutas gravadas no iPhone (1920×1080 deitado, rotacionado pelo celular → o render enquadra em 9:16). A voz é só a do Leo.
 

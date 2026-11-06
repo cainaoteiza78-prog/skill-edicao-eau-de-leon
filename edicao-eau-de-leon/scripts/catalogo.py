@@ -16,7 +16,9 @@ Cada perfume tem:
 Para ensinar um apelido novo ("o azulzinho da Lattafa"), edite "apelidos" no
 perfumes.json — não precisa rodar nada.
 """
-import sys as _sys
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ambiente  # noqa: F401,E402  (ffmpeg/modelos da pasta da skill)
 _sys.stdout.reconfigure(encoding='utf-8', errors='replace')  # console do Windows
 import json
 import os

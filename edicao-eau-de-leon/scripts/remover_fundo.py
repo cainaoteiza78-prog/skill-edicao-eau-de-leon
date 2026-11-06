@@ -13,7 +13,9 @@ Uso:
 - Confere cada resultado: os 4 cantos têm de ficar 100% transparentes; se não
   ficarem, o arquivo é listado como SUSPEITO no fim.
 """
-import sys as _sys
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ambiente  # noqa: F401,E402  (ffmpeg/modelos da pasta da skill)
 _sys.stdout.reconfigure(encoding='utf-8', errors='replace')  # console do Windows
 import argparse
 import os

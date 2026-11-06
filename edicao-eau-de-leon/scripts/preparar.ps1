@@ -1,89 +1,71 @@
-﻿# Prepara o computador (Windows) pra skill de edição Eau de Leon.
-# O Claude Code roda isto sozinho na primeira edição; pode rodar de novo sem medo
-# (o que já estiver instalado é pulado).
+﻿# Prepara TUDO que a skill precisa, baixando para dentro da propria pasta da skill
+# (ferramentas\). Nao precisa de Python, ffmpeg nem winget instalados antes, nem
+# de permissao de administrador. Pode rodar de novo: o que ja existe e pulado.
 #
 #   powershell -ExecutionPolicy Bypass -File scripts\preparar.ps1
 #
-# Instala, se faltar: Python 3.12, ffmpeg (versão completa, com legendas),
-# runtime do Visual C++, as bibliotecas Python da skill e o modelo de
-# transcrição. Tudo grátis. No fim grava o caminho do Python em scripts\python.txt.
-$ErrorActionPreference = 'Continue'
+# Baixa: ffmpeg completo (com legendas), uv + Python 3.12 isolado, bibliotecas
+# (requirements.txt) e o modelo de transcricao. Tudo gratis.
+$ErrorActionPreference = 'Stop'
+$ProgressPreference = 'SilentlyContinue'
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $scripts = $PSScriptRoot
 $raiz = Split-Path -Parent $scripts
+$ferr = Join-Path $raiz 'ferramentas'
+New-Item -ItemType Directory -Force $ferr | Out-Null
+$tmp = Join-Path $ferr '_baixando'
+New-Item -ItemType Directory -Force $tmp | Out-Null
 
 function Passo($t) { Write-Host "`n=== $t ===" -ForegroundColor Cyan }
-function RecarregaPath {
-  $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
-}
-function TemWinget { [bool](Get-Command winget -ErrorAction SilentlyContinue) }
-function Winget($id) {
-  if (-not (TemWinget)) { Write-Host "winget nao encontrado. Instale o 'Instalador de Aplicativo' pela Microsoft Store e rode de novo."; exit 1 }
-  winget install -e --id $id --silent --accept-package-agreements --accept-source-agreements --disable-interactivity
-  RecarregaPath
-}
-function AchaPython {
-  # o "python" da Microsoft Store e um atalho falso: testa de verdade
-  $cands = @(
-    "$env:LOCALAPPDATA\Programs\Python\Python312\python.exe",
-    "$env:LOCALAPPDATA\Programs\Python\Python313\python.exe",
-    "$env:LOCALAPPDATA\Programs\Python\Python311\python.exe",
-    "$env:ProgramFiles\Python312\python.exe"
-  )
-  foreach ($c in @('python', 'py')) {
-    $cmd = Get-Command $c -ErrorAction SilentlyContinue
-    if ($cmd -and $cmd.Source -notlike '*WindowsApps*') { $cands = @($cmd.Source) + $cands }
+function Baixar($url, $destino) {
+  for ($i = 1; $i -le 3; $i++) {
+    try { Invoke-WebRequest -Uri $url -OutFile $destino -UseBasicParsing; return }
+    catch { Write-Host "  tentativa $i falhou: $($_.Exception.Message)"; Start-Sleep -Seconds 3 }
   }
-  foreach ($c in $cands) {
-    if ($c -and (Test-Path $c)) {
-      $v = & $c -c "import sys; print(sys.version_info[0]*100+sys.version_info[1])" 2>$null
-      if ($v -and [int]$v -ge 310) { return (& $c -c "import sys; print(sys.executable)").Trim() }
-    }
-  }
-  return $null
+  throw "Nao consegui baixar $url (verifique a internet e rode de novo)."
 }
 
-Passo '1/6 Python'
-$py = AchaPython
-if (-not $py) { Winget 'Python.Python.3.12'; $py = AchaPython }
-if (-not $py) { Write-Host 'FALHA: nao consegui instalar o Python. Instale o Python 3.12 em python.org e rode de novo.'; exit 1 }
-Write-Host "Python: $py"
+Passo '1/5 ffmpeg (versao completa, com legendas)'
+$ffbin = Join-Path $ferr 'ffmpeg\bin'
+if (-not (Test-Path (Join-Path $ffbin 'ffmpeg.exe'))) {
+  $zip = Join-Path $tmp 'ffmpeg.zip'
+  Baixar 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip' $zip
+  Expand-Archive -Path $zip -DestinationPath $tmp -Force
+  $pasta = Get-ChildItem $tmp -Directory | Where-Object { $_.Name -like 'ffmpeg-*' } | Select-Object -First 1
+  New-Item -ItemType Directory -Force (Join-Path $ferr 'ffmpeg') | Out-Null
+  Copy-Item -Recurse -Force (Join-Path $pasta.FullName 'bin') (Join-Path $ferr 'ffmpeg')
+} else { Write-Host 'ja baixado' }
+$env:Path = "$ffbin;$env:Path"
 
-Passo '2/6 ffmpeg (com legendas)'
-RecarregaPath
-$ok = $false
-if (Get-Command ffmpeg -ErrorAction SilentlyContinue) {
-  $ok = (ffmpeg -hide_banner -filters 2>$null | Select-String ' ass ') -ne $null
-}
-if (-not $ok) {
-  Winget 'Gyan.FFmpeg'
-  $ok = (Get-Command ffmpeg -ErrorAction SilentlyContinue) -and ((ffmpeg -hide_banner -filters 2>$null | Select-String ' ass ') -ne $null)
-}
-if (-not $ok) {
-  # winget nao colocou no PATH desta sessao: procura o executavel e adiciona
-  $f = Get-ChildItem "$env:LOCALAPPDATA\Microsoft\WinGet" -Recurse -Filter ffmpeg.exe -ErrorAction SilentlyContinue | Select-Object -First 1
-  if ($f) {
-    $dir = $f.DirectoryName
-    $env:Path = "$dir;$env:Path"
-    [Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ";$dir", 'User')
-    $ok = $true
-  }
-}
-if (-not $ok) { Write-Host 'FALHA: ffmpeg nao ficou disponivel. Feche e abra o terminal e rode de novo.'; exit 1 }
-Write-Host 'ffmpeg ok'
+Passo '2/5 uv + Python 3.12 (isolados, dentro da skill)'
+$uv = Join-Path $ferr 'uv\uv.exe'
+if (-not (Test-Path $uv)) {
+  $zip = Join-Path $tmp 'uv.zip'
+  Baixar 'https://github.com/astral-sh/uv/releases/latest/download/uv-x86_64-pc-windows-msvc.zip' $zip
+  Expand-Archive -Path $zip -DestinationPath (Join-Path $ferr 'uv') -Force
+} else { Write-Host 'uv ja baixado' }
+$env:UV_PYTHON_INSTALL_DIR = Join-Path $ferr 'python'
+$env:UV_CACHE_DIR = Join-Path $ferr 'cache-uv'
+$venv = Join-Path $ferr 'venv'
+$py = Join-Path $venv 'Scripts\python.exe'
+if (-not (Test-Path $py)) { & $uv venv $venv --python 3.12 --python-preference only-managed; if ($LASTEXITCODE) { throw 'falha ao criar o Python' } }
+else { Write-Host 'Python ja pronto' }
 
-Passo '3/6 Runtime do Visual C++ (necessario pra transcricao)'
-$vc = Test-Path "$env:WINDIR\System32\msvcp140.dll"
-if (-not $vc) { Winget 'Microsoft.VCRedist.2015+.x64' } else { Write-Host 'ja instalado' }
+Passo '3/5 Runtime do Visual C++ (transcricao)'
+if (-not (Test-Path "$env:WINDIR\System32\msvcp140.dll")) {
+  $vc = Join-Path $tmp 'vc_redist.x64.exe'
+  Baixar 'https://aka.ms/vs/17/release/vc_redist.x64.exe' $vc
+  Start-Process $vc -ArgumentList '/install', '/quiet', '/norestart' -Wait
+} else { Write-Host 'ja instalado' }
 
-Passo '4/6 Bibliotecas Python'
-& $py -m pip install --upgrade pip --quiet --disable-pip-version-check
-& $py -m pip install -r (Join-Path $raiz 'requirements.txt') --quiet --disable-pip-version-check
-if ($LASTEXITCODE -ne 0) { Write-Host 'FALHA no pip install (ver mensagem acima).'; exit 1 }
+Passo '4/5 Bibliotecas e modelo de transcricao (1a vez ~1 GB)'
+& $uv pip install --python $py -r (Join-Path $raiz 'requirements.txt')
+if ($LASTEXITCODE) { throw 'falha ao instalar as bibliotecas' }
+& $py -c "import sys; sys.path.insert(0, r'$scripts'); import ambiente; from huggingface_hub import snapshot_download; snapshot_download('Systran/faster-whisper-small'); print('modelo ok')"
+if ($LASTEXITCODE) { throw 'falha ao baixar o modelo de transcricao (rode de novo)' }
 
-Passo '5/6 Modelo de transcricao (1a vez baixa ~500 MB)'
-& $py -c "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8'); print('modelo ok')"
-
-Passo '6/6 Conferencia'
+Passo '5/5 Conferencia'
+Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
 Set-Content -Path (Join-Path $scripts 'python.txt') -Value $py -Encoding ascii
 & $py (Join-Path $scripts 'verificar.py')
 if ($LASTEXITCODE -eq 0) { Write-Host "`nPRONTO. Use este Python nos comandos da skill:`nPYTHON=$py" -ForegroundColor Green }

@@ -1,0 +1,95 @@
+{
+ "saida": "editado.mp4",
+ "formato": "leo",
+ "legenda": "frase",
+ "trechos": [
+  {
+   "take": 1,
+   "ini": 0.0,
+   "fim": 6.0
+  },
+  {
+   "take": 2,
+   "ini": 1.55,
+   "fim": 9.9,
+   "transicao": "whip"
+  },
+  {
+   "take": 3,
+   "ini": 1.5,
+   "fim": 5.1
+  }
+ ],
+ "correcoes": [
+  {
+   "de": "Aude Leon",
+   "para": "Eau de Leon"
+  },
+  {
+   "de": "10 -10",
+   "para": "10.10"
+  },
+  {
+   "de": "ultimora",
+   "para": "última hora"
+  },
+  {
+   "de": "salha mais",
+   "para": "Saiba mais"
+  },
+  {
+   "de": "do desconto",
+   "para": "de desconto"
+  },
+  {
+   "de": "de mês",
+   "para": "desse mês"
+  },
+  {
+   "de": "isso o mês",
+   "para": "isso mesmo"
+  }
+ ],
+ "textos": [
+  {
+   "texto": "PROMOÇÃO\n10.10",
+   "estilo": "destaque",
+   "take": 1,
+   "ini": 1.0,
+   "fim": 2.75
+  }
+ ],
+ "destaques": [
+  {
+   "take": 1,
+   "ini": 4.86,
+   "fim": 5.72
+  },
+  {
+   "take": 2,
+   "ini": 2.24,
+   "fim": 3.54
+  },
+  {
+   "take": 2,
+   "ini": 3.72,
+   "fim": 4.76
+  },
+  {
+   "take": 2,
+   "ini": 5.3,
+   "fim": 5.94
+  },
+  {
+   "take": 2,
+   "ini": 7.92,
+   "fim": 8.56
+  },
+  {
+   "take": 2,
+   "ini": 8.88,
+   "fim": 9.68
+  }
+ ],
+ "musica": "auto"
+}

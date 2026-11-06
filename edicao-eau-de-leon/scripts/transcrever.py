@@ -12,7 +12,9 @@ Gera em <pasta_trabalho>:
 Roda 100% local com faster-whisper (grátis, sem API paga). Na 1ª vez baixa o
 modelo escolhido (~500 MB o "small", ~1,5 GB o "medium").
 """
-import sys as _sys
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ambiente  # noqa: F401,E402  (ffmpeg/modelos da pasta da skill)
 _sys.stdout.reconfigure(encoding='utf-8', errors='replace')  # console do Windows
 import argparse
 import json

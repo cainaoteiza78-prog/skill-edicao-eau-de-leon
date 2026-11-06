@@ -12,7 +12,9 @@ vídeo FINAL, o que o olho às vezes não pega nas folhas de quadros:
 Uso:  python revisar.py <trabalho>/editado.mp4
 Saída: uma linha por item, "OK" ou "PROBLEMA -> ...". Não entregue com PROBLEMA.
 """
-import sys as _sys
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ambiente  # noqa: F401,E402  (ffmpeg/modelos da pasta da skill)
 _sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 import json
 import os

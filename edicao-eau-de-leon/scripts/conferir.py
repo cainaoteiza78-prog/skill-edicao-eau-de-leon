@@ -9,7 +9,9 @@ Sem --em: um quadro a cada --cada segundos + os instantes de texto/perfume/b-rol
 da linha_do_tempo.json (se existir ao lado do vídeo). Gera conferir_01.png,
 conferir_02.png... com 8 quadros cada, tempo escrito em amarelo.
 """
-import sys as _sys
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ambiente  # noqa: F401,E402  (ffmpeg/modelos da pasta da skill)
 _sys.stdout.reconfigure(encoding='utf-8', errors='replace')  # console do Windows
 import argparse
 import json

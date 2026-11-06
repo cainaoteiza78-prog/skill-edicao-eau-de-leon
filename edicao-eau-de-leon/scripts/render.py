@@ -18,7 +18,9 @@ O que ele faz, na ordem:
 Medidas e estilos: ver ESTILO abaixo e treinamento/02..06. Tudo em px do
 quadro 1080x1920.
 """
-import sys as _sys
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ambiente  # noqa: F401,E402  (ffmpeg/modelos da pasta da skill)
 _sys.stdout.reconfigure(encoding='utf-8', errors='replace')  # console do Windows
 import argparse
 import json
@@ -726,7 +728,10 @@ def main():
         saida = os.path.join(trabalho, saida)
     with open(os.path.join(tmp, 'grafo.txt'), 'w', encoding='utf8') as f:
         f.write(';\n'.join(grafo))
-    cmd = entradas + ['-filter_complex_script', 'grafo.txt', '-map', '[vout]', '-map', '[aout]', '-t', f'{final:.3f}',
+    # ffmpeg 7.1+ lê o grafo de arquivo com "-/filter_complex"; versões antigas, com -filter_complex_script
+    opcoes = subprocess.run(['ffmpeg', '-hide_banner', '-h', 'long'], capture_output=True, text=True).stdout
+    script = ['-filter_complex_script', 'grafo.txt'] if 'filter_complex_script' in opcoes else ['-/filter_complex', 'grafo.txt']
+    cmd = entradas + script + ['-map', '[vout]', '-map', '[aout]', '-t', f'{final:.3f}',
                       '-c:v', 'libx264', '-preset', preset, '-crf', '18', '-pix_fmt', 'yuv420p', '-r', str(FPS),
                       '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart']
     try:

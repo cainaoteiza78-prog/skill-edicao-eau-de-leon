@@ -9,14 +9,14 @@ Você recebe **as takes na ordem certa** e entrega **um MP4 1080×1920 pronto pr
 
 ## Passo 0 — preparar a máquina (automático, sempre antes de editar)
 
-A skill precisa de programas que não vêm no Windows/Mac: **Python**, **ffmpeg** (corta e monta o vídeo), bibliotecas Python e o modelo de transcrição. **Você instala tudo sozinho**, sem pedir nada ao usuário:
+Todas as ferramentas (ffmpeg, Python 3.12, bibliotecas, modelo de transcrição) ficam **dentro da skill**, em `<skill>/ferramentas`, baixadas pelo instalador. Você nunca usa o ffmpeg/Python do sistema.
 
 1. Se existir `<skill>/scripts/python.txt`, rode `"<conteúdo do python.txt>" <skill>/scripts/verificar.py`. Se terminar em **"Tudo pronto."**, pule pro fluxo.
-2. Senão (ou se algo deu FALTA), rode o preparador e espere terminar (a 1ª vez leva alguns minutos e baixa ~1 GB):
+2. Senão (ou se algo deu FALTA), rode o preparador e espere terminar (1ª vez baixa ~1,5 GB):
    - Windows: `powershell -ExecutionPolicy Bypass -File "<skill>\scripts\preparar.ps1"`
    - Mac/Linux: `bash "<skill>/scripts/preparar.sh"`
-3. Ele termina com `PYTHON=<caminho>`. **Use esse caminho no lugar de `python`** em todos os comandos abaixo (também fica salvo em `scripts/python.txt`). Não use o `python` solto: no Windows ele pode ser o atalho falso da Microsoft Store.
-4. Se o preparador falhar, leia a mensagem: normalmente basta rodar de novo (o Windows às vezes só enxerga o programa recém-instalado na 2ª vez). Se pedir algo que só a pessoa pode fazer (senha de administrador, instalar o "Instalador de Aplicativo" da Microsoft Store), diga exatamente o que fazer em uma frase.
+3. Ele termina com `PYTHON=<caminho>` (também salvo em `scripts/python.txt`). **Use esse Python em todos os comandos abaixo**, no lugar de `python`.
+4. Se falhar, leia a mensagem: quase sempre é internet, e basta rodar de novo (ele continua de onde parou).
 
 `<skill>` = a pasta desta skill (onde está este SKILL.md), normalmente `~/.claude/skills/edicao-eau-de-leon`.
 
@@ -33,6 +33,12 @@ A skill precisa de programas que não vêm no Windows/Mac: **Python**, **ffmpeg*
 9. `treinamento/09-exemplo-completo.md` — uma edição inteira, do bruto ao plano
 10. `treinamento/10-pacing.md` — ritmo: o que muda na tela e quando (punch, ênfase, CTA)
 11. `treinamento/11-verificacao.md` — como assistir e corrigir o próprio vídeo antes de entregar
+
+## Referência visual
+
+Leia `exemplos/LEIA-ME.md` antes da 1ª edição: tem o output aprovado, as referências do dono e os erros que ele já reprovou.
+
+`exemplos/promocao-10-10/editado.mp4` é uma edição aprovada pelo dono (takes brutas e plano na mesma pasta). Na dúvida sobre como algo deve ficar, tire quadros dele (`scripts/conferir.py exemplos/promocao-10-10/editado.mp4 --cada 1`) e compare com o seu rascunho.
 
 ## Fluxo (siga sem pular etapas)
 

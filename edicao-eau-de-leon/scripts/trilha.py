@@ -13,7 +13,9 @@ partes (entra/sai instrumento a cada 4 compassos) são sorteados.
 Sem direitos autorais (é gerada aqui) e sem API paga. Se houver trilhas
 licenciadas em assets/musicas, o render usa elas primeiro, em rodízio.
 """
-import sys as _sys
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ambiente  # noqa: F401,E402  (ffmpeg/modelos da pasta da skill)
 _sys.stdout.reconfigure(encoding='utf-8', errors='replace')  # console do Windows
 import argparse
 import json

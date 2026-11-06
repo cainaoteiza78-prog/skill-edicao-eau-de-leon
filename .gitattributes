@@ -1,3 +1,6 @@
 *.sh text eol=lf
 *.png binary
 *.ttf binary
+*.MOV binary
+*.mov binary
+*.mp4 binary
