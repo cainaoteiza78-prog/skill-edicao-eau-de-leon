@@ -64,13 +64,15 @@ O `transcrever.py` gera `destaques_sugeridos.txt` com QUANTO / EM QUE / ATE QUAN
 
 ### "SAIBA MAIS" é SEMPRE uma placa de vidro 3D (o único glassmorphism)
 
-O CTA de clique ("saiba mais", "link na bio", "clica aqui", "compre agora") é a **única** peça em glassmorphism. Ela é desenhada quadro a quadro pelo `scripts/cta.py`:
+**Só a expressão "Saiba mais" vira placa de vidro. Mais nada.** "Clica aqui", "link na bio", "compre agora", "garanta o seu" ficam na **legenda comum**. E é **UMA placa por vídeo**: se "saiba mais" for falado duas vezes, o segundo vira legenda comum. Erro real reprovado pelo dono (06/11): "CLICA AQUI" e "SAIBA MAIS" viraram duas placas, uma pulsando em cima da outra.
+
+A placa é desenhada quadro a quadro pelo `scripts/cta.py`:
 - **placa de vidro flutuando em 3D:** o vídeo atrás fica desfocado de verdade, a placa tem perspectiva (levemente inclinada), espessura lateral, borda de luz, reflexo diagonal e sombra no "chão";
 - **o texto também é de vidro:** degradê da mesma cor, textura granulada, glow da própria cor, fio de luz em cima das letras e sombra que descola o texto da placa;
-- **vidro translúcido de verdade:** a face é quase transparente (fosca), o fundo desfocado aparece através; a espessura é só uma aresta clara embaixo (não um bloco opaco);
-- **cores: SEMPRE rosa ou azul da Eau de Leon** (#F2A595 / #6BA9CF), com **leve fade lateral** (degradê da esquerda pra direita). O vidro é da mesma cor do texto, só que mais escuro e suave, pra dar contraste;
-- a cor é **escolhida sozinha pelo contraste** com o fundo (o render olha a cena em volta do botão: cena rosada/quente, como a caixa e a estante rosa, → azul; senão, a cor mais distante do fundo). Pra forçar: `"cta_cor": "rosa"` ou `"azul"` no plano;
-- aparece abaixo da legenda (mais embaixo que ela, acima da marca d'água), saltando da tela, quase sem inclinação, com sombra forte de contato e sombra longa no "chão" (é isso que faz parecer 3D), e **fica até o fim** pulsando devagar no ritmo da fala e flutuando de leve.
+- **tamanho da legenda comum:** as letras têm a mesma altura da legenda (Poppins 100) e a placa só abraça o texto. Nada de botão gigante (reprovado em 06/11);
+- **vidro TRANSPARENTE e borrado:** a face é quase invisível — o que se vê é o vídeo de trás **desfocado de verdade**, com um véu branco bem leve e **só um pouco** da cor da marca, só pra dar a sensação de vidro. Vidro colorido/opaco foi reprovado (06/11). A espessura é só uma aresta clara embaixo;
+- **cor pelo PÚBLICO da copy** (só nas letras, com leve fade lateral): vídeo para **mulheres → rosa** (#F2A595), para **homens → azul** (#6BA9CF), **unissex → tanto faz** (o render escolhe a que mais contrasta com o fundo). Você decide o público lendo a copy/transcrição e escreve no plano `"publico": "feminino" | "masculino" | "unissex"`. Pistas: "cheirosa", "linda", "poderosa", perfume feminino, falar com "amiga" → feminino; "cheiroso", "homem", perfume masculino → masculino; nenhuma pista ou as duas → unissex. Se o plano não disser, o render conta essas pistas sozinho (linha `público:` no terminal). `"cta_cor"` força a cor e só se usa se o usuário pedir;
+- aparece **logo abaixo da legenda** (sem encostar nela), acima da marca d'água, saltando da tela, quase sem inclinação, com sombra de contato e sombra no "chão", e **fica até o fim** pulsando devagar no ritmo da fala e flutuando de leve.
 
 O render cria o CTA **sozinho** sempre que a legenda tiver "Saiba mais" (depois das correções de grafia). Garanta só a grafia: `{"de": "salha mais", "para": "Saiba mais"}`.
 

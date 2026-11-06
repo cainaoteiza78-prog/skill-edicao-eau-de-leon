@@ -15,7 +15,7 @@ Estudo feito quadro a quadro, com recorte em resolução nativa, nos reels da **
 | **Nome de perfume** no corpo | o nome em CAIXA ALTA dentro da própria legenda (`destaques` com estilo `caps`) | Poppins Bold | igual à legenda | branca | "esse aqui é o CREED AVENTUS", "Esse aqui é o LE MALE LE PARFUM" (anúncios) |
 | **Oferta / número** | texto de impacto digitado | Bebas Neue engrossada | grande, no peito; 2ª linha a 78% | branca | "30% DE DESCONTO / EM TODOS OS PERFUMES", "COM DECANTS A PARTIR DE 2ML" |
 | **Palavra-chave** (QUANTO / EM QUÊ / ATÉ QUANDO / FORTE) | **sozinha**, depois da frase comum: a legenda cresce, com pop e zoom de ênfase centrado no rosto | Bebas Neue engrossada, CAIXA ALTA | no peito | branca, borda escura mais grossa, sombra maior | "10% DE DESCONTO", "TODOS OS PERFUMES", "DIA 10", "IMPERDÍVEL" |
-| **CTA** (fim) | legenda normal + **placa de vidro 3D "SAIBA MAIS"** (único glassmorphism), pulsando até o fim | Poppins Bold (texto de vidro: degradê, grão, glow) | abaixo da legenda, maior que os outros textos | SEMPRE rosa ou azul da marca com fade lateral; vidro da mesma cor, mais suave; cor escolhida pelo contraste | "clica aqui embaixo", "e faça seu pedido" |
+| **CTA** (fim) | legenda normal (inclusive "clica aqui") + **UMA placa de vidro "SAIBA MAIS"** (único glassmorphism), pulsando até o fim | Poppins Bold (texto de vidro: degradê, grão, glow) | logo abaixo da legenda, **do tamanho da legenda comum**, acima da marca d'água | letras rosa (público feminino) ou azul (masculino); vidro **transparente e borrado**, quase sem cor | "clica aqui embaixo", "e faça seu pedido" |
 | **POV / rótulos** (sem fala) | texto nativo do TikTok/Instagram | TikTok Sans SemiBold | topo (y 12–15%) | branca, contorno preto fino + emoji | "POV: você descobriu um jeito de usar os melhores perfumes…", "Acessível x Caro", "Bom 🤗" |
 | **Marca d'água** | logo Eau de Leon pequeno | — | **180 px de largura, centralizado, 70 px acima da borda de baixo, o vídeo inteiro** | logo branco (o "E" rosa/azul) | pedido do dono |
 
@@ -29,7 +29,7 @@ Estudo feito quadro a quadro, com recorte em resolução nativa, nos reels da **
 | azul | #6BA9CF | CTA de vidro (fundo quente/rosado) |
 | branco | #FFFFFF | toda legenda e texto grande |
 
-Legenda e texto grande são **sempre brancos**. Cor só existe no CTA de vidro (rosa ou azul da marca).
+Legenda e texto grande são **sempre brancos**. Cor só existe nas letras do CTA de vidro: **rosa se o vídeo é para mulheres, azul se é para homens**, qualquer uma das duas se for unissex (ver 03).
 
 ## Os 3 formatos do perfil
 

@@ -111,6 +111,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             tam = caber(txt, L['arquivo'], L['tamanho'])
             ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(txt), L['sombra'])
             continue
+        if estilo == 'botao' and CTAS:
+            # UMA placa de vidro por vídeo, nunca duas pulsando uma em cima da outra
+            # (06/11, dono). Um 2º "saiba mais" vira legenda comum.
+            txt = ' '.join(x for x in (l['texto'], l['destaque'].lower().capitalize()) if x)
+            tam = caber(txt, L['arquivo'], L['tamanho'])
+            ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(txt), L['sombra'])
+            continue
         if estilo == 'botao':
             # CTA: a frase segue normal no peito; o botão de vidro 3D (cta.py) fica abaixo,
             # do instante do "saiba mais" até o fim, pulsando. O render desenha quadro a quadro.
@@ -118,7 +125,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                 tam = caber(l['texto'], L['arquivo'], L['tamanho'])
                 ev += _par(1, l['ini'], l['fim'], 'Leg', W // 2, y_legenda, tam, esc(l['texto']), L['sombra'])
             CTAS.append({'texto': l['destaque'], 'a': l.get('ini_destaque', l['ini']), 'b': max(fim_video, l['fim']),
-                         'cy': min(H - 360, y_legenda + 200), 'periodo': periodo})
+                         'cy': min(H - 250, y_legenda + 150), 'periodo': periodo})
             continue
         # palavra-chave: a PRÓPRIA legenda aumentada, como a Eau de Leon faz
         # ("QUE UM DECANT DE 2 ML / RENDE MUITO"): Bebas Neue engrossada, CAIXA ALTA,

@@ -45,7 +45,8 @@ Você escreve `<trabalho>/plano.json`. **Todo tempo é da take original**: `take
   ],
 
   "divisorias": [ {"take": 1, "ini": 0, "fim": 12, "y0": 0.23, "y1": 0.62} ],   // linha branca do "Dia X Noite"
-  "cta_cor": "azul",                 // opcional: rosa | azul (padrão: automático pelo contraste)
+  "publico": "feminino",             // feminino (SAIBA MAIS rosa) | masculino (azul) | unissex (pelo contraste) — leia da copy (ver 03)
+  "cta_cor": "azul",                 // opcional, só se o usuário pedir: força rosa | azul
   "legenda_y": 0.58,                 // opcional: força a altura da legenda (padrão = automático pelo rosto)
 
   "musica": "auto"                   // padrão "auto" (rodízio/gerada) | "caminho/da/trilha.mp3" | null (sem música)

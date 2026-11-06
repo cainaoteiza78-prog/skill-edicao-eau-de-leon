@@ -12,7 +12,7 @@
 4. **Um evento grande de cada vez.** Nunca dois textos grandes juntos, nem destaque em cima de texto de impacto, nem perfume em cima de destaque. Depois de um momento cheio, deixe ~1 s só de legenda normal pra respirar. O render já evita punch colado numa ênfase.
 5. **Zero tempo morto.** Sem pausa > 0,15 s, sem "é…", sem silêncio no fim. O `conferir.py` mede.
 6. **O CTA pulsa no ritmo da fala.** O botão "SAIBA MAIS" pulsa uma vez a cada ~2–3 palavras faladas (calculado pela velocidade da fala do vídeo, entre 0,8 e 1,3 s por pulso). Lento e constante, como se pedisse o clique.
-7. **A música empurra, a voz manda.** Música animada (104–124 bpm) dá energia, mas fica ~13 dB abaixo da voz.
+7. **A música empurra, a voz manda.** Música animada (104–124 bpm) dá energia, mas fica ~15 dB abaixo da voz (baixinha, ver 06).
 
 ## Curva do vídeo (formato `leo`, 15–30 s)
 

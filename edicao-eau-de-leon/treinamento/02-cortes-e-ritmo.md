@@ -19,6 +19,11 @@ Você decide e tira pelo plano:
 3. Gaguejo ou palavra repetida por erro ("o o perfume").
 4. Muleta longa no começo ("então assim…"), quando dá pra começar o trecho depois dela sem cortar palavra.
 5. Bastidor que não está isolado ("corta isso aí que eu errei o nome"): o filtro automático não pega, então tire pelo plano.
+6. **Voz de fora do quadro / bastidor que o Whisper transcreveu errado.** Erro real (06/11, reprovado pelo dono): no começo de uma take, alguém atrás da câmera disse "Pode ir. Pode?" e o Whisper escreveu **"É um"**, grudado na fala de verdade ("é um clássico italiano…"). O trecho começou em 0 s e o "Pode ir. Pode?" foi pro vídeo. Como evitar:
+   - o `transcrever.py` gera **`alertas.txt`** (e marca com ⚠ no `transcricao.txt`) todo **som curto e isolado no começo ou no fim de cada take**, dizendo quantos dB ele está abaixo da voz principal (≥ 8 dB mais baixo = provável OUTRA PESSOA);
+   - **leia o `alertas.txt` antes de escrever o plano.** Para cada alerta, compare com a **copy** (o roteiro que o usuário mandou): se aquilo não está na copy, é bastidor → o trecho começa **depois** dele (ou termina antes). Ex.: alerta 0,48→1,01 s e a fala real começa em 1,61 s → `"ini": 1.55`;
+   - se o usuário mandou a copy, **toda fala que não está na copy é suspeita**, mesmo que o Whisper tenha escrito uma palavra que existe na copy ("É um");
+   - ao cortar o bastidor, o Whisper pode ter levado junto palavras reais (o "é" de "é um clássico"): o áudio fica certo, mas a legenda perde a palavra. Confira o `legenda.srt` contra a copy e devolva a palavra com `correcoes` (`{"de": "um clássico", "para": "é um clássico"}`) — é só restaurar o que foi falado.
 
 ## O que fica
 

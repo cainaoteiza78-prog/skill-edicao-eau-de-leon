@@ -31,7 +31,7 @@ Caminho relativo é a partir da pasta de trabalho.
 - **Música de fundo: sempre, animada e sempre diferente** (padrão `"musica": "auto"`). Tem que passar uma sensação **divertida** e dinâmica, sem roubar a cena da fala.
   - Se houver faixas **licenciadas** em `assets/musicas/` (mp3/wav/m4a), o render usa uma delas em **rodízio** e não repete a do vídeo anterior. Coloque lá só músicas alegres (pop, funk leve, house, tropical).
   - Se a pasta estiver vazia, o render **compõe uma trilha nova** (`scripts/trilha.py`): tom maior, 104–124 bpm, bumbo + palma + chimbal, baixo sincopado, acordes no contratempo e arpejo brilhante (marimba/pluck), com partes que mudam a cada 4 compassos. O clima (`pop`, `funk`, `house`, `tropical`), o tom, o andamento e os acordes são sorteados a cada vídeo. É feita na hora: sem direito autoral e sem custo.
-  - Volume: perceptível, ~13 dB abaixo da voz, e abaixa um pouco quando alguém fala (sem sumir). Entra com fade de 0,8 s e sai com fade de 1 s no fim.
+  - Volume: **~15 dB abaixo da voz** (`musica_volume` 0,13 no render; era 0,171 e o dono pediu pra abaixar pelo menos 20% em 06/11). Dá pra perceber a música, mas ela nunca disputa com a voz; abaixa um pouco quando alguém fala (sem sumir). Não suba esse volume. Entra com fade de 0,8 s e sai com fade de 1 s no fim.
   - `"musica": "caminho/trilha.mp3"` usa uma faixa específica; `"musica": null` tira a música (só se o usuário pedir).
   - O terminal mostra qual foi usada (`música: gerada: funk, 110 bpm (semente …)`). Para repetir uma trilha gerada: `python scripts/trilha.py trilha.wav --duracao 30 --semente <número> --clima funk` e use o caminho em `"musica"`.
 - Não adicione efeito sonoro (whoosh, pop, ding). O estilo não usa.

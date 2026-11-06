@@ -63,7 +63,7 @@ ESTILO = {
     # como marca d'água pequena, centralizada na borda de baixo, o vídeo todo.
     'marca_dagua': {'largura': 180, 'margem_baixo': 70, 'opacidade': 0.9},
     'cauda': 0.35,  # sobra parada no fim (o anúncio do Meta come os últimos quadros)
-    'musica_volume': 0.171,   # trilha (normalizada ~-12 LUFS) fica ~13 dB abaixo da voz
+    'musica_volume': 0.13,    # trilha (normalizada ~-12 LUFS) fica ~15 dB abaixo da voz (06/11: dono pediu -20% ou mais; era 0.171)
     'whip': 0.10,
 }
 
@@ -284,6 +284,32 @@ def sem_redundancia(words, textos):
             else:
                 break
     return [w for k, w in enumerate(words) if k not in fora]
+
+
+PUBLICO_FEM = {'cheirosa', 'linda', 'maravilhosa', 'poderosa', 'gata', 'diva', 'mulher', 'mulheres', 'feminino',
+               'feminina', 'femininos', 'amiga', 'amigas', 'sozinha', 'princesa', 'rainha'}
+PUBLICO_MASC = {'cheiroso', 'lindo', 'poderoso', 'gato', 'homem', 'homens', 'masculino', 'masculinos', 'amigo',
+                'amigos', 'sozinho', 'cara', 'mano', 'parceiro', 'barba', 'rei'}
+
+
+def publico_da_fala(plano, words):
+    """Fallback quando o plano não diz o `publico`: conta marcas de gênero na fala e
+    nos perfumes do plano (femininos/ x masculinos/). Empate ou nada → unissex."""
+    import unicodedata
+    def n(s):
+        return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower().strip('.,!?;:')
+    toks = [n(w['p']) for w in words]
+    fem = sum(t in {n(x) for x in PUBLICO_FEM} for t in toks)
+    masc = sum(t in {n(x) for x in PUBLICO_MASC} for t in toks)
+    for g in plano.get('perfumes', []):
+        for it in g.get('itens', []):
+            fem += it['id'].startswith('femininos/')
+            masc += it['id'].startswith('masculinos/')
+    if fem > masc:
+        return 'feminino'
+    if masc > fem:
+        return 'masculino'
+    return 'unissex'
 
 
 def blocos_legenda(plano, words):
@@ -663,12 +689,24 @@ def main():
             return 'azul' if dist((107, 169, 207)) > dist((242, 165, 149)) else 'rosa'   # senão: a mais distante do fundo
         except Exception:
             return 'azul'
+    # cor do "Saiba mais" pelo PÚBLICO da copy (06/11, dono): mulheres → rosa,
+    # homens → azul, unissex → a que mais contrasta com o fundo.
+    publico = (plano.get('publico') or publico_da_fala(plano, words)).lower()
+    print(f'público: {publico}', flush=True)
+    tam_cta = cta_mod.tam_por_cap(letreiros.CAP * textos_mod.ESTILO_TEXTO['legenda']['tamanho'])
     for k, c in enumerate(textos_mod.CTAS):
-        cor_cta = plano.get('cta_cor') or cor_por_contraste(c)
+        if plano.get('cta_cor'):
+            cor_cta = plano['cta_cor']
+        elif publico.startswith('fem'):
+            cor_cta = 'rosa'
+        elif publico.startswith('masc'):
+            cor_cta = 'azul'
+        else:
+            cor_cta = cor_por_contraste(c)
         pasta = os.path.join(tmp, f'cta{k}')
         os.makedirs(pasta, exist_ok=True)
         dur = max(0.5, c['b'] - c['a'])
-        qw, qh = cta_mod.quadros(c['texto'], dur, c['periodo'], pasta, cor_cta)
+        qw, qh = cta_mod.quadros(c['texto'], dur, c['periodo'], pasta, cor_cta, tam=tam_cta)
         x = (W - qw) // 2
         y = int(min(max(0, c['cy'] - qh / 2), H - qh))
         print(f"CTA de vidro: {c['texto'].upper()} ({cor_cta}) {c['a']:.2f}s → {c['b']:.2f}s", flush=True)

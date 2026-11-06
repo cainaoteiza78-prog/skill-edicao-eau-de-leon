@@ -21,7 +21,9 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] Modo certo: `frase` (leo) ou `palavra` (creator).
 - [ ] Legenda não aparece junto com texto de impacto.
 - [ ] Destaque **só** nas palavras que vendem (QUANTO / EM QUÊ / ATÉ QUANDO / FORTE): "10% DE DESCONTO", "TODOS OS PERFUMES", "DIA 10", "IMPERDÍVEL". Nunca em "liberamos", "ouviu", "até o". O destaque aparece **sozinho**, depois da palavra comum anterior. Nome de perfume em CAIXA ALTA (`caps`).
-- [ ] "SAIBA MAIS" é a **placa de vidro 3D** (rosa ou azul da marca, contrastando com o fundo), com o fundo desfocado de verdade, texto de vidro com glow, pulsando devagar até o fim. É o único glassmorphism do vídeo.
+- [ ] **Só UMA placa de vidro, e só "SAIBA MAIS"**. "Clica aqui", "link na bio" etc. estão na legenda comum. Nunca duas placas, nunca uma pulsando em cima da outra.
+- [ ] A placa é do **tamanho da legenda comum**, logo abaixo dela (sem encostar), acima da marca d'água.
+- [ ] O vidro é **transparente e borrado** (dá pra ver o fundo desfocado), quase sem cor; letras **rosa se o público é feminino, azul se masculino** (linha `público:` do render).
 - [ ] **Nenhuma redundância:** nada do que um texto grande mostrou reaparece na legenda logo depois (leia o `legenda.srt`).
 - [ ] Nos zooms a pessoa continua **centralizada** (não escorrega pro lado).
 - [ ] **Pacing:** algo muda na tela a cada 2–3 s (linha `pacing:` do render), um evento grande de cada vez.
@@ -42,6 +44,8 @@ Rode `python scripts/conferir.py <trabalho>/editado.mp4`, abra **todas** as folh
 - [ ] **Nenhum cartão final** (o vídeo acaba na última palavra + 0,35 s).
 - [ ] Logo pequeno no centro da borda de baixo, do primeiro ao último quadro.
 - [ ] Voz clara, sem estalo nos cortes, volume constante.
+- [ ] Música baixinha (~15 dB abaixo da voz, `musica_volume` 0,13), sem disputar com a fala.
+- [ ] **Nenhuma voz de bastidor** ("pode ir", "pode?", "gravando", outra pessoa falando). Todos os itens do `alertas.txt` foram conferidos contra a copy, e os que não são da copy ficaram fora dos trechos.
 - [ ] Música **animada** e perceptível, diferente da do vídeo anterior, sem competir com a voz.
 
 ## Técnico

@@ -108,6 +108,53 @@ def sugerir_destaques(saida, pasta):
         f.write('\n'.join(linhas) if linhas else 'Nenhuma palavra-chave da lista encontrada.')
 
 
+def pontas_suspeitas(wav, palavras):
+    """Som curto e ISOLADO no começo ou no fim da take (antes/depois da fala principal):
+    quase sempre bastidor ("pode ir", "pode?", "gravando", outra pessoa falando).
+    O Whisper costuma escrever OUTRA coisa por cima (ex.: "É um" no lugar de "Pode ir.
+    Pode?"), então o filtro de bastidor não pega. Devolve [(ini, fim, texto_whisper)]."""
+    from cortes import energia_db
+    db, voz = energia_db(wav)
+    passo = 0.01
+    piso = float(np.percentile(db, 10))
+    som = db > max(voz - 30, piso + 12)          # pega também voz de fora do quadro (mais baixa)
+    ilhas, k, n = [], 0, len(som)
+    while k < n:
+        if som[k]:
+            j = k
+            while j < n and som[j]:
+                j += 1
+            if (j - k) * passo >= 0.06:
+                ilhas.append([k * passo, j * passo, float(db[k:j].max())])
+            k = j
+        else:
+            k += 1
+    # agrupa sons separados por menos de 0,4 s (uma "fala"); entre falas, pausa >= 0,4 s
+    grupos = []
+    for x, y, pico in ilhas:
+        if grupos and x - grupos[-1][1] < 0.40:
+            grupos[-1][1] = y
+            grupos[-1][2] = max(grupos[-1][2], pico)
+        else:
+            grupos.append([x, y, pico])
+    ilhas = grupos
+    alertas = []
+    def texto(a, b):
+        return ' '.join(w['p'] for w in palavras if w['ini'] < b + 0.05 and w['fim'] > a - 0.05) or '(nada transcrito)'
+    for lado in (0, 1):
+        seq = ilhas if lado == 0 else ilhas[::-1]
+        for i in range(min(2, len(seq) - 1)):
+            a, b, pico = seq[i]
+            viz = seq[i + 1]
+            gap = (viz[0] - b) if lado == 0 else (a - viz[1])
+            if b - a <= 1.3 and gap >= 0.40:
+                nota = f' | {voz - pico:.0f} dB mais baixo que a voz principal: provável OUTRA PESSOA' if voz - pico >= 8 else ''
+                alertas.append((round(a, 2), round(b, 2), texto(a, b), 'começo' if lado == 0 else 'fim', nota))
+            else:
+                break
+    return alertas
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('trabalho')
@@ -121,6 +168,7 @@ def main():
     modelo = WhisperModel(a.modelo, device='cpu', compute_type='int8')
     saida = {'takes': []}
     linhas = []
+    alertas = []
     for k, arq in enumerate(a.takes, 1):
         arq = os.path.abspath(arq)
         wav = os.path.join(a.trabalho, f'take{k}.wav')
@@ -138,8 +186,15 @@ def main():
             for w in s.words or []:
                 if w.word.strip():
                     palavras.append({'p': w.word.strip(), 'ini': round(w.start, 3), 'fim': round(w.end, 3)})
+        susp = pontas_suspeitas(wav, palavras)
+        for a0, b0, txt, lado, nota in susp:
+            alertas.append(f'take {k} ({os.path.basename(arq)}) | {lado} | som isolado {a0:.2f}s → {b0:.2f}s{nota} | '
+                           f'Whisper escreveu: "{txt}" → confira com a copy; se não está na copy, é bastidor: '
+                           f'comece/termine o trecho fora dele')
         saida['takes'].append({'n': k, 'arquivo': arq, 'duracao': round(duracao(arq), 3), 'palavras': palavras, 'falas': falas})
         linhas.append(f'── TAKE {k}  ({os.path.basename(arq)}, {saida["takes"][-1]["duracao"]:.1f}s) ──')
+        for a0, b0, txt, lado, nota in susp:
+            linhas.append(f'  ⚠ SOM ISOLADO no {lado} {a0:.2f}→{b0:.2f}s (Whisper: "{txt}"){nota} — bastidor/outra voz? ver alertas.txt')
         # Uma linha por FRASE (corta no . ? ! ou em pausa > 0,6 s), com o tempo
         # de cada palavra entre parênteses: é o que permite cortar um "corta,
         # vou de novo" no meio de um bloco longo.
@@ -161,6 +216,10 @@ def main():
     with open(os.path.join(a.trabalho, 'transcricao.txt'), 'w', encoding='utf8') as f:
         f.write('\n'.join(linhas))
 
+    with open(os.path.join(a.trabalho, 'alertas.txt'), 'w', encoding='utf8') as f:
+        f.write(chr(10).join(alertas) if alertas else 'Nenhum som isolado nas pontas das takes.')
+    if alertas:
+        print(f'{len(alertas)} alerta(s) de som isolado nas pontas (bastidor?) em alertas.txt', flush=True)
     sugerir_destaques(saida, a.trabalho)
     cat = carregar()
     cit = achar_citacoes(saida, cat)

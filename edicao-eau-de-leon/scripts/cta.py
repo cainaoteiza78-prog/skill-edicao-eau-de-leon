@@ -5,8 +5,8 @@ quadro a quadro (PIL), porque textura e brilho não existem em legenda ASS.
 A peça é uma placa de VIDRO flutuando em 3D:
   - fundo: o vídeo atrás fica desfocado de verdade (render.py recorta, desfoca
     e aplica a máscara que este módulo gera pra cada quadro);
-  - placa: película da MESMA cor do texto, só que bem mais suave e
-    translúcida (contraste), borda de luz mais clara no topo, reflexo
+  - placa: vidro TRANSPARENTE e borrado, quase sem cor (só um véu leve da
+    cor da marca), do tamanho da legenda comum; borda de luz no topo, reflexo
     diagonal, espessura (lateral 3D) e sombra difusa no "chão";
   - perspectiva: a placa está levemente inclinada (topo mais estreito), como
     um cartão flutuando na frente da pessoa;
@@ -131,89 +131,98 @@ def _perspectiva(im, inclina=0.018, giro=0.0):
     return im.transform((w, h), Image.PERSPECTIVE, coef, Image.BICUBIC)
 
 
-def montar(txt, larg_max=640, paleta='rosa'):
-    """Peça base (RGBA) + máscara da face de vidro (L), no tamanho máximo."""
+def tam_por_cap(cap_px):
+    """Tamanho PIL da Poppins Bold cuja maiúscula tem `cap_px` de altura (= a da legenda comum)."""
+    f = ImageFont.truetype(os.path.join(FONTES, 'Poppins-Bold.ttf'), 100)
+    b = f.getbbox('H')
+    return max(30, int(round(cap_px / ((b[3] - b[1]) / 100))))
+
+
+def montar(txt, larg_max=640, paleta='rosa', tam=None):
+    """Peça base (RGBA) + máscara da face de vidro (L).
+
+    TAMANHO (06/11, dono): o elemento inteiro é do tamanho da legenda comum. As letras
+    têm a mesma altura da legenda (`tam`, vindo do render) e a placa só abraça o texto.
+    VIDRO (06/11, dono): transparente e borrado; quase sem cor — só um véu leve da cor
+    da marca pra dar a sensação de vidro. A cor forte fica só nas letras.
+    """
     pal = PALETAS[paleta]
-    tam = 128
+    tam = tam or 128
     tx = _texto_vidro(txt.upper(), tam, pal)
-    while tx.width - tam > larg_max - 140 and tam > 60:
-        tam -= 6
+    while tx.width - tam > larg_max - 80 and tam > 40:
+        tam -= 4
         tx = _texto_vidro(txt.upper(), tam, pal)
+    k = tam / 128                  # tudo proporcional ao tamanho da letra
     tb = tx.getbbox()
     tw, th = tb[2] - tb[0], tb[3] - tb[1]
-    bw, bh = int(tw + 110), int(th + 84)
+    bw, bh = int(tw + 110 * k), int(th + 84 * k)
     r = int(bh * 0.32)
-    esp = 22                       # espessura (lateral 3D)
-    marg = 100                     # espaço pra sombra/glow
+    esp = max(6, int(22 * k))      # espessura (lateral 3D)
+    marg = max(40, int(100 * k))   # espaço pra sombra/glow
     W_, H_ = bw + 2 * marg, bh + esp + 2 * marg
     peca = Image.new('RGBA', (W_, H_), (0, 0, 0, 0))
     x0, y0 = marg, marg
-    # sombra no chão (flutuando)
+    # sombra no chão (flutuando) — mais leve: a placa é pequena e transparente
     sh = Image.new('RGBA', (W_, H_), (0, 0, 0, 0))
-    sh.paste((0, 0, 0, 215), (x0 + 6, y0 + esp + 44), _arredondado(bw - 12, bh - 4, r))
-    sh.paste((0, 0, 0, 120), (x0 + 30, y0 + esp + 80), _arredondado(bw - 60, int(bh * 0.6), r))
-    peca.alpha_composite(sh.filter(ImageFilter.GaussianBlur(30)))
-    # sombra de contato, curta e escura, colada na base (dá o volume)
+    sh.paste((0, 0, 0, 150), (x0 + int(6 * k), y0 + esp + int(44 * k)), _arredondado(max(4, bw - int(12 * k)), max(4, bh - 4), r))
+    peca.alpha_composite(sh.filter(ImageFilter.GaussianBlur(max(8, 30 * k))))
     sc = Image.new('RGBA', (W_, H_), (0, 0, 0, 0))
-    sc.paste((0, 0, 0, 170), (x0 + 4, y0 + esp + 6), _arredondado(bw - 8, bh, r))
-    peca.alpha_composite(sc.filter(ImageFilter.GaussianBlur(9)))
+    sc.paste((0, 0, 0, 110), (x0 + 3, y0 + esp + int(6 * k)), _arredondado(bw - 6, bh, r))
+    peca.alpha_composite(sc.filter(ImageFilter.GaussianBlur(max(4, 9 * k))))
     fm = _arredondado(bw, bh, r)
     fa = np.asarray(fm, float) / 255
-    # espessura do vidro: SÓ a aresta que sobra embaixo da face (não tapa o fundo),
-    # translúcida e mais clara, como a borda de uma placa de vidro grossa
+    # espessura: só a aresta clara que sobra embaixo da face, quase branca e translúcida
     aresta = np.zeros((bh + esp, bw))
-    for k in range(1, esp + 1):
-        aresta[k:k + bh] = np.maximum(aresta[k:k + bh], fa)
+    for j in range(1, esp + 1):
+        aresta[j:j + bh] = np.maximum(aresta[j:j + bh], fa)
     aresta[:bh] = aresta[:bh] * (1 - fa)
-    claro = tuple(min(255, int(v * 0.35 + 255 * 0.65)) for v in pal['meio'])
+    claro = tuple(min(255, int(v * 0.15 + 255 * 0.85)) for v in pal['meio'])
     edge = np.zeros((bh + esp, bw, 4))
     edge[:, :, :3] = np.array(claro, float)
-    edge[:, :, 3] = aresta * np.linspace(1.0, 0.55, bh + esp)[:, None] * 150
+    edge[:, :, 3] = aresta * np.linspace(1.0, 0.55, bh + esp)[:, None] * 90
     peca.alpha_composite(Image.fromarray(edge.clip(0, 255).astype('uint8'), 'RGBA'), (x0, y0))
-    # face: vidro FOSCO e translúcido — branco gelo + um véu da cor da marca com fade
-    # lateral. O fundo desfocado de verdade aparece através dela.
+    # face: vidro TRANSPARENTE — branco gelo com um véu bem leve da cor da marca
+    # (fade lateral). O fundo borrado de verdade (render.py) é o que se vê através.
     face = np.zeros((bh, bw, 4))
-    vx = np.linspace(1.0, 0.0, bw)[None, :, None]                   # fade lateral
-    cor_viva = np.array(pal['meio'], float)
-    cor_suave = np.array(pal['claro'], float)
-    face[:, :, :3] = cor_suave * vx + cor_viva * (1 - vx)
-    face[:, :, 3] = (np.linspace(0.42, 0.30, bh)[:, None] * 255) * fa
-    face[:, :, :3] += _ruido(bw, bh, 6, 7)[:, :, None]               # grão fosco
+    vx = np.linspace(1.0, 0.0, bw)[None, :, None]
+    tinta = np.array(pal['meio'], float) * 0.30 + 255 * 0.70        # pouca cor
+    branco = np.array((255, 255, 255), float)
+    face[:, :, :3] = branco * vx + tinta * (1 - vx)
+    face[:, :, 3] = (np.linspace(0.16, 0.10, bh)[:, None] * 255) * fa
+    face[:, :, :3] += _ruido(bw, bh, 5, 7)[:, :, None]              # grão fosco
     peca.alpha_composite(Image.fromarray(face.clip(0, 255).astype('uint8'), 'RGBA'), (x0, y0))
     # reflexo diagonal (luz batendo no vidro)
     refl = Image.new('L', (bw, bh), 0)
-    ImageDraw.Draw(refl).polygon([(bw * 0.08, 0), (bw * 0.34, 0), (bw * 0.18, bh), (-bw * 0.08, bh)], fill=60)
-    refl = Image.fromarray((np.asarray(refl.filter(ImageFilter.GaussianBlur(18)), float) * np.asarray(fm) / 255).astype('uint8'))
+    ImageDraw.Draw(refl).polygon([(bw * 0.08, 0), (bw * 0.34, 0), (bw * 0.18, bh), (-bw * 0.08, bh)], fill=45)
+    refl = Image.fromarray((np.asarray(refl.filter(ImageFilter.GaussianBlur(max(4, 18 * k))), float) * np.asarray(fm) / 255).astype('uint8'))
     rl = Image.new('RGBA', (bw, bh), (255, 255, 255, 0))
     rl.putalpha(refl)
     peca.alpha_composite(rl, (x0, y0))
-    # brilho no topo (luz vindo de cima)
+    # brilho no topo
     topo = Image.new('L', (bw, bh), 0)
-    ImageDraw.Draw(topo).rounded_rectangle((6, 4, bw - 7, int(bh * 0.42)), radius=max(4, r - 6), fill=46)
-    topo = topo.filter(ImageFilter.GaussianBlur(8))
+    ImageDraw.Draw(topo).rounded_rectangle((4, 3, bw - 5, int(bh * 0.42)), radius=max(4, r - 4), fill=34)
+    topo = topo.filter(ImageFilter.GaussianBlur(max(3, 8 * k)))
     tl = Image.new('RGBA', (bw, bh), (255, 255, 255, 0))
     tl.putalpha(Image.fromarray((np.asarray(topo, float) * np.asarray(fm) / 255).astype('uint8')))
     peca.alpha_composite(tl, (x0, y0))
-    # borda de luz: mais forte em cima, some embaixo
+    # borda de luz branca: mais forte em cima, some embaixo
     bd = Image.new('L', (bw, bh), 0)
-    ImageDraw.Draw(bd).rounded_rectangle((1, 1, bw - 2, bh - 2), radius=r, outline=255, width=3)
-    grad_b = np.linspace(0.85, 0.25, bh)[:, None]
+    ImageDraw.Draw(bd).rounded_rectangle((1, 1, bw - 2, bh - 2), radius=r, outline=255, width=max(2, int(3 * k)))
+    grad_b = np.linspace(0.75, 0.20, bh)[:, None]
     bl = Image.new('RGBA', (bw, bh), (255, 255, 255, 0))
     bl.putalpha(Image.fromarray((np.asarray(bd, float) * grad_b).astype('uint8')))
     peca.alpha_composite(bl, (x0, y0))
-    # texto de vidro, centralizado (um tico acima: a face "pesa" embaixo)
-    peca.alpha_composite(tx, (int(x0 + bw / 2 - (tb[0] + tw / 2)), int(y0 + bh / 2 - (tb[1] + th / 2)) - 2))
-    # perspectiva da peça inteira e da máscara do vidro
+    peca.alpha_composite(tx, (int(x0 + bw / 2 - (tb[0] + tw / 2)), int(y0 + bh / 2 - (tb[1] + th / 2)) - 1))
     mask = Image.new('L', (W_, H_), 0)
     mask.paste(fm, (x0, y0))
     peca, mask = _perspectiva(peca), _perspectiva(mask)
     return peca, mask.filter(ImageFilter.GaussianBlur(2))
 
 
-def quadros(txt, dur, periodo, pasta, paleta='rosa', larg_max=640):
+def quadros(txt, dur, periodo, pasta, paleta='rosa', larg_max=640, tam=None):
     """Grava cta_####.png (peça) e ctam_####.png (máscara) pra cada quadro de `dur` s.
     Devolve (largura, altura) do quadro — todos do mesmo tamanho (escala máx.)."""
-    peca, mask = montar(txt, larg_max, paleta)
+    peca, mask = montar(txt, larg_max, paleta, tam)
     esc_max = 1.10
     W_, H_ = int(peca.width * esc_max) // 2 * 2, int(peca.height * esc_max) // 2 * 2
     n = max(1, int(round(dur * FPS)))

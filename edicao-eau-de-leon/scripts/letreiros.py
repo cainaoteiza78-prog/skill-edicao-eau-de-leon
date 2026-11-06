@@ -30,7 +30,8 @@ FONTES = os.path.normpath(os.path.join(AQUI, '..', 'assets', 'fontes'))
 MARCA = {'rosa': '#F2A595', 'azul': '#6BA9CF', 'escuro': '#151A22', 'branco': '#FFFFFF'}
 # película do vidro (cor, opacidade 0..1) em rodízio
 PELICULAS = [('#FFFFFF', 0.16), ('#6BA9CF', 0.22), ('#F2A595', 0.22)]
-CTA_BOTAO = ['saiba mais', 'clique aqui', 'clica aqui', 'link na bio', 'compre agora', 'garanta o seu', 'garante o seu']
+# SÓ "saiba mais" vira a placa de vidro (06/11, dono): "clica aqui", "link na bio" etc. ficam na legenda comum.
+CTA_BOTAO = ['saiba mais']
 
 ARQ = 'Poppins-Bold.ttf'
 FATOR = 0.559      # largura libass / largura PIL (Poppins, medido)

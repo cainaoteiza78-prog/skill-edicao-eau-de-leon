@@ -29,13 +29,13 @@ BASTIDOR = {
     'gravando', 'grava', 'gravou', 'valendo', 'acao', 'ok', 'okay', 'beleza', 'bora', 'pronto', 'foi',
     'ta', 'tá', 'e', 'ai', 'aí', 'um', 'dois', 'tres', '1', '2', '3', 'again', 'calma', 'deixa', 'eu',
     'ver', 'hum', 'hm', 'ah', 'eh', 'é', 'uh', 'tipo', 'entao', 'então', 'assim', 'mais', 'uma', 'vez',
-    'comecar', 'começar', 'comeco', 'começo', 'desde', 'o', 'do',
+    'comecar', 'começar', 'comeco', 'começo', 'desde', 'o', 'do', 'pode', 'ir', 'posso', 'ja', 'já',
 }
 # Pelo menos uma destas tem que estar no trecho isolado pra ele ser bastidor
 # (evita apagar um "e aí" ou "então" que é parte da fala).
 FORTES = {'corta', 'corte', 'cortar', 'cortou', 'vai', 'parou', 'pera', 'perai', 'espera', 'novo', 'denovo',
           'repete', 'repetir', 'repetindo', 'errei', 'gravando', 'grava', 'gravou', 'valendo', 'acao',
-          'ok', 'okay', 'bora', 'droga', 'again', 'calma', 'hum', 'hm', 'uh', 'eh', 'ah', 'vez'}
+          'ok', 'okay', 'bora', 'droga', 'again', 'calma', 'hum', 'hm', 'uh', 'eh', 'ah', 'vez', 'pode', 'posso'}
 PAUSA_ISOLA = 0.30
 
 

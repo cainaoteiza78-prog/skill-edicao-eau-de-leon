@@ -28,7 +28,8 @@ Abra **todas** as folhas `conferir/conferir_XX.png` (8 quadros cada, um a cada 0
 - [ ] Destaque aparece **sozinho**, depois da palavra comum anterior.
 - [ ] Grafia certa (Eau de Leon, Saiba mais, nomes de perfume, "10%").
 - [ ] Nenhum texto cortado na borda da tela.
-- [ ] CTA "SAIBA MAIS": vidro translúcido (dá pra ver o fundo desfocado através), cor da marca **contrastando** com o fundo, não tapa o rosto, fica acima da marca d'água.
+- [ ] CTA: **uma** placa só, "SAIBA MAIS", do tamanho da legenda, logo abaixo dela; vidro transparente e borrado (quase sem cor); letras rosa (feminino) / azul (masculino); não tapa o rosto, fica acima da marca d'água.
+- [ ] Pontas das takes: nenhuma voz de bastidor no vídeo final. Se houve alerta, re-transcreva 2–3 s em volta do corte entre as takes e confira.
 - [ ] Marca d'água no rodapé do primeiro ao último quadro; sem cartão final.
 - [ ] Algo muda a cada 2–3 s (pacing), sem quadros "parados" seguidos.
 

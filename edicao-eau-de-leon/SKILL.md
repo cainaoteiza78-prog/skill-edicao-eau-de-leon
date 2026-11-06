@@ -48,13 +48,16 @@ Leia `exemplos/LEIA-ME.md` antes da 1ª edição: tem o output aprovado, as refe
 ```
 python <skill>/scripts/transcrever.py <trabalho> take1.mp4 take2.mp4 ...
 ```
-Gera `transcricao.txt` (frases com tempo de cada palavra), `transcricao.json`, `perfumes_citados.txt` e `destaques_sugeridos.txt` (palavras-chave candidatas a destaque).
+Gera `transcricao.txt` (frases com tempo de cada palavra), `transcricao.json`, `perfumes_citados.txt`, `destaques_sugeridos.txt` (palavras-chave candidatas a destaque) e **`alertas.txt`** (sons curtos e isolados no começo/fim de cada take: bastidor ou outra pessoa falando, mesmo quando o Whisper escreveu outra coisa por cima).
+Se o usuário mandou a **copy** (roteiro), salve em `<trabalho>/copy.txt`: ela é a referência pra achar bastidor, ordem das takes e grafia.
 Se o áudio tiver muito ruído ou nome errado demais, rode de novo com `--modelo medium`.
 
 **3. Entenda o vídeo.** Leia `transcricao.txt` inteiro e `perfumes_citados.txt`. Responda pra você mesmo:
 - Qual o formato? (`leo` = apresentador falando com legenda em frase / `creator` = criadora falando de perfumes com legenda palavra a palavra). Ver treinamento/01.
 - Qual o gancho (primeira frase forte)? Qual a oferta/CTA no fim?
 - Quais falas são erro, repetição, "corta", "de novo", gaguejo → **saem**.
+- Qual o **público** (mulheres / homens / unissex)? Vai no plano como `"publico"` e decide a cor do SAIBA MAIS (rosa / azul).
+- O que o `alertas.txt` apontou nas pontas das takes, e o que disso **não está na copy** → fica fora dos trechos.
 - Quais perfumes são citados → **entram na tela** no instante exato da fala. Confirme cada id com `python <skill>/scripts/catalogo.py buscar "nome"`.
 - Quais são as **palavras-chave** que vendem (QUANTO / EM QUÊ / ATÉ QUANDO / FORTE; nunca verbos como "liberamos" ou "ouviu") → viram **legenda aumentada**. O CTA "Saiba mais" vira botão sozinho. Comece pelo `destaques_sugeridos.txt` (ver treinamento/03).
 
@@ -89,7 +92,9 @@ Depois **assista** você mesmo: abra com a ferramenta Read **todas** as folhas `
 - **Nunca** coloque cartão final com o logo (fundo preto no fim). Proibido pelo dono.
 - **Nunca** entregue sem a verificação limpa (passo 5): `revisar.py` e `conferir.py` todos OK **e** você olhou todos os quadros.
 - Palavras-chave da oferta (QUANTO, EM QUÊ, ATÉ QUANDO) com a **legenda aumentada** em Bebas, toda vez que forem faladas (ver 03).
-- "Saiba mais" (e todo CTA de clique) é **sempre a placa de vidro 3D** (único glassmorphism), rosa ou azul da marca, pulsando até o fim. O render cria sozinho.
+- **Só "Saiba mais"** vira placa de vidro (único glassmorphism), e **uma placa por vídeo**. "Clica aqui", "link na bio" etc. ficam na legenda comum. A placa é do **tamanho da legenda**, vidro **transparente e borrado** (quase sem cor), letras **rosa se o público é feminino, azul se masculino** (`"publico"` no plano, decidido pela copy). O render cria sozinho.
+- **Música baixinha**: ~15 dB abaixo da voz (`musica_volume` 0,13). Não suba.
+- **Bastidor e voz de fora do quadro saem sempre.** Leia o `alertas.txt` (sons isolados nas pontas das takes) e confira cada um contra a copy antes de fechar os trechos (ver 02, item 6).
 - **Nunca** repita na legenda o que um texto grande acabou de mostrar (redundância, ver 03).
 - **Pacing** (ver 10): algo muda na tela a cada 2–3 s, um evento grande de cada vez, zero tempo morto.
 - Se faltar algo que só o usuário sabe (ex.: qual take é a boa quando as duas estão perfeitas e dizem coisas diferentes), pergunte **uma vez**, objetivo. O resto, decida pelo treinamento.
