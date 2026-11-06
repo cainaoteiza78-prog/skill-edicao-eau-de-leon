@@ -1,6 +1,6 @@
 # Exemplos e referências (o parâmetro de qualidade do dono)
 
-- `promocao-10-10/editado.mp4` — **OUTPUT APROVADO**. É o padrão a atingir (takes e plano na mesma pasta).
+- `promocao-10-10/editado.mp4` — **OUTPUT APROVADO**. É o padrão a atingir (takes e plano na mesma pasta). **Exceção: o botão SAIBA MAIS desse exemplo é o ANTIGO** (grande, vidro colorido). O padrão atual (06/11) é placa do tamanho da legenda, vidro transparente e borrado, cor pelo público, e só "Saiba mais" vira vidro (ver treinamento/03). A música desse exemplo também está mais alta que o padrão atual.
 - `referencias/aprovado-estilo/` — prints que o dono mandou como referência: legenda comum (Poppins com contorno), destaque = legenda aumentada (Bebas, "QUE UM DECANT DE 2 ML"), e o glass + texto com glow/textura que inspirou o CTA "SAIBA MAIS".
 - `referencias/erros-apontados/` — erros reais reprovados pelo dono (nome do arquivo = regra): zoom tirou o Leo do centro; "imperdível" devia ter destaque; "liberamos" e "ouviu" NÃO são destaque; em "até o dia 10" só "DIA 10" é destaque.
 - `contraexemplos/` — edições de outra ferramenta: texto amarelo no topo, legenda pequena. **Não fazer assim.**

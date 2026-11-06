@@ -1,6 +1,6 @@
 # Skill de edição — padrão Eau de Leon (Claude Code)
 
-Skill para o **Claude Code** editar Reels/TikTok no estilo da [@eau.de.leon](https://www.instagram.com/eau.de.leon/): você passa as takes na ordem, ele entrega o MP4 1080×1920 pronto — cortes sem respiro, legenda padrão, textos de impacto, **fotos sem fundo dos perfumes citados** entrando na hora da fala, b-roll, whip/fade/slide/drop/pop e o cartão final com o logo.
+Skill para o **Claude Code** editar Reels/TikTok no estilo da [@eau.de.leon](https://www.instagram.com/eau.de.leon/): você passa as takes na ordem, ele entrega o MP4 1080×1920 pronto — cortes sem respiro, legenda padrão, textos de impacto, **fotos sem fundo dos perfumes citados** entrando na hora da fala, b-roll, whip/fade/slide/drop/pop, botão "Saiba mais" em vidro, música animada e o logo como marca d'água. **Ela aprende com você:** toda alteração que você pedir vira regra guardada na sua máquina, pra não repetir o erro.
 
 Tudo roda **local e grátis** (ffmpeg + Whisper local). Nenhuma API paga.
 
@@ -9,7 +9,8 @@ Tudo roda **local e grátis** (ffmpeg + Whisper local). Nenhuma API paga.
 ```
 edicao-eau-de-leon/            ← a skill (é essa pasta que vai pro Claude)
   SKILL.md                     ← o que o Claude lê primeiro (fluxo)
-  treinamento/                 ← o treinamento completo do estilo (01 a 09)
+  treinamento/                 ← o treinamento completo do estilo (01 a 12)
+  aprendizados/                ← o que VOCÊ já ensinou à skill (fica na sua máquina, sobrevive às atualizações)
   scripts/                     ← transcrever, render, conferir, catálogo, remover fundo
   assets/perfumes/             ← 445 fotos de perfume SEM FUNDO (PNG transparente) + perfumes.json
   assets/fontes/               ← as fontes do perfil: Poppins, Bebas Neue, Bungee, TikTok Sans + emoji Noto (OFL)
@@ -63,6 +64,14 @@ Abra o Claude Code na pasta onde estão os vídeos e peça, por exemplo:
 Ou chame direto: `/edicao-eau-de-leon take1.mp4 take2.mp4`.
 
 O Claude vai: transcrever → decidir cortes, legenda, destaques, textos e perfumes → renderizar um rascunho → conferir os quadros → renderizar o final. Sai `edicao/editado.mp4` + `edicao/legenda.srt`.
+
+## A skill aprende com você
+
+Sempre que você pedir uma alteração ("abaixa a música", "isso devia ter sido cortado", "o botão tá grande"), o Claude corrige o vídeo **e** grava a lição em `~/.claude/skills/edicao-eau-de-leon/aprendizados/aprendizados.md`. Antes de toda edição ele lê essas lições, então o mesmo erro não volta. Se você pedir a mesma coisa de novo, a lição ganha prioridade ("pedido 2 vezes").
+
+- As lições ficam **só na sua máquina** e são mantidas quando você atualiza a skill.
+- Ver o que ela já aprendeu: peça *"me mostra os aprendizados da skill de edição"*.
+- Mandar pro dono da skill incorporar no treinamento oficial: peça *"exporta os aprendizados da skill de edição"* e envie o texto.
 
 ## Requisitos
 

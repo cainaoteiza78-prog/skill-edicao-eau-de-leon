@@ -11,3 +11,6 @@ edicao-eau-de-leon/assets/musicas/.rodizio.json
 edicao-eau-de-leon/ferramentas/
 Microsoft/
 edicao-eau-de-leon/exemplos/*/trabalho/
+
+# base de aprendizados é de cada máquina (instalador preserva)
+edicao-eau-de-leon/aprendizados/aprendizados.md

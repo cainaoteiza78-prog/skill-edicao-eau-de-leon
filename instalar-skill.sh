@@ -18,8 +18,12 @@ fi
 mkdir -p "$HOME/.claude/skills"
 GUARDA=""
 if [ -d "$DEST/ferramentas" ]; then GUARDA="$HOME/.claude/skills/_ferramentas_eau"; rm -rf "${GUARDA:?}"; mv "$DEST/ferramentas" "$GUARDA"; fi
+# atualização: guarda a base de aprendizados DESTA máquina (o que o usuário já ensinou à skill)
+APREND=""
+if [ -f "$DEST/aprendizados/aprendizados.md" ]; then APREND="$HOME/.claude/skills/_aprendizados_eau.md"; cp -f "$DEST/aprendizados/aprendizados.md" "$APREND"; fi
 rm -rf "${DEST:?}"
 cp -R "$ORIGEM" "$DEST"
 [ -n "$GUARDA" ] && mv "$GUARDA" "$DEST/ferramentas"
+if [ -n "$APREND" ]; then mkdir -p "$DEST/aprendizados"; mv -f "$APREND" "$DEST/aprendizados/aprendizados.md"; echo "Aprendizados desta máquina preservados."; fi
 echo "Skill copiada para $DEST"
 bash "$DEST/scripts/preparar.sh"

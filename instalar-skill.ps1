@@ -31,8 +31,20 @@ if (Test-Path (Join-Path $destino 'ferramentas')) {
   if (Test-Path $guarda) { Remove-Item -Recurse -Force $guarda }
   Move-Item (Join-Path $destino 'ferramentas') $guarda
 }
+# atualizacao: guarda a base de aprendizados DESTA maquina (o que o usuario ja ensinou a skill)
+$aprend = Join-Path $destino 'aprendizados\aprendizados.md'
+$guardaAprend = $null
+if (Test-Path $aprend) {
+  $guardaAprend = Join-Path (Split-Path $destino) '_aprendizados_eau.md'
+  Copy-Item -Force $aprend $guardaAprend
+}
 if (Test-Path $destino) { Remove-Item -Recurse -Force $destino }
 Copy-Item -Recurse $origem $destino
 if ($guarda) { Move-Item $guarda (Join-Path $destino 'ferramentas') }
+if ($guardaAprend) {
+  New-Item -ItemType Directory -Force (Join-Path $destino 'aprendizados') | Out-Null
+  Move-Item -Force $guardaAprend $aprend
+  Write-Host 'Aprendizados desta maquina preservados.'
+}
 Write-Host "Skill copiada para $destino"
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $destino 'scripts\preparar.ps1')

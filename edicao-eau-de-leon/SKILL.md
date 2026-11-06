@@ -1,6 +1,6 @@
 ---
 name: edicao-eau-de-leon
-description: Edita vídeos (Reels/TikTok 9:16) no padrão visual da Eau de Leon a partir das takes brutas na ordem certa — corta erros e respirações, põe legenda padrão com palavras-chave com a legenda aumentada (padrão Eau de Leon), CTA "Saiba mais" em vidro 3D pulsando, pacing dinâmico, textos de impacto, música animada de fundo (sempre diferente), marca d'água, fotos sem fundo dos perfumes citados, b-roll, transições (whip, fade, slide, drop, pop) e o logo como marca d'água. Use quando pedirem "edita esse vídeo", "edição Eau de Leon", "monta o reels com essas takes", "editar no estilo da Eau de Leon", "/edicao-eau-de-leon", ou quando receber arquivos de vídeo (.mp4/.mov) de gravação para virar post. Roda tudo local e grátis (ffmpeg + Whisper local), sem API paga.
+description: Edita vídeos (Reels/TikTok 9:16) no padrão visual da Eau de Leon a partir das takes brutas na ordem certa — corta erros e respirações, põe legenda padrão com palavras-chave com a legenda aumentada (padrão Eau de Leon), CTA "Saiba mais" em vidro 3D pulsando, pacing dinâmico, textos de impacto, música animada de fundo (sempre diferente), marca d'água, fotos sem fundo dos perfumes citados, b-roll, transições (whip, fade, slide, drop, pop) e o logo como marca d'água. Use quando pedirem "edita esse vídeo", "edição Eau de Leon", "monta o reels com essas takes", "editar no estilo da Eau de Leon", "/edicao-eau-de-leon", ou quando receber arquivos de vídeo (.mp4/.mov) de gravação para virar post. Também use quando o usuário pedir QUALQUER alteração numa edição já entregue ("abaixa a música", "isso devia ter sido cortado", "o botão tá grande"): a skill corrige e grava o aprendizado na base local pra não repetir o erro. Roda tudo local e grátis (ffmpeg + Whisper local), sem API paga.
 ---
 
 # Edição de vídeo no padrão Eau de Leon
@@ -22,6 +22,8 @@ Todas as ferramentas (ffmpeg, Python 3.12, bibliotecas, modelo de transcrição)
 
 ## Leia primeiro (obrigatório, nesta ordem)
 
+0. **Os aprendizados desta máquina:** rode `python <skill>/scripts/aprender.py listar` e leia tudo. São os erros que o usuário já pediu pra corrigir. **Valem mais que o treinamento** e entram como itens da verificação (passo 5).
+
 1. `treinamento/01-estilo-eau-de-leon.md` — o que é o estilo, os 3 formatos e as medidas
 2. `treinamento/02-cortes-e-ritmo.md` — o que cortar, ritmo, enquadramento, transições
 3. `treinamento/03-legendas.md` — legenda padrão (fonte, tamanho, posição, quebra, caixa)
@@ -33,6 +35,7 @@ Todas as ferramentas (ffmpeg, Python 3.12, bibliotecas, modelo de transcrição)
 9. `treinamento/09-exemplo-completo.md` — uma edição inteira, do bruto ao plano
 10. `treinamento/10-pacing.md` — ritmo: o que muda na tela e quando (punch, ênfase, CTA)
 11. `treinamento/11-verificacao.md` — como assistir e corrigir o próprio vídeo antes de entregar
+12. `treinamento/12-aprendizados.md` — como a skill aprende com cada pedido de alteração (base local)
 
 ## Referência visual
 
@@ -80,7 +83,19 @@ Depois **assista** você mesmo: abra com a ferramenta Read **todas** as folhas `
 
 **6. Render final** (sem `--rapido`) e entregue: caminho do MP4, duração, o que foi cortado (em linguagem simples), perfumes e destaques que entraram, a música usada, e `legenda.srt` (pra colar como legenda do post se quiserem).
 
+**7. Pedido de alteração = aprendizado (SEMPRE).** Quando o usuário pedir para mudar qualquer coisa no vídeo entregue (ou em qualquer momento da conversa), para **cada** item pedido:
+1. corrija o vídeo (plano e, se for um padrão que o render aplica em todo vídeo, o valor no script; ver tabela no `treinamento/12`);
+2. **grave a lição** como regra geral, que vale pra todo vídeo futuro:
+   ```
+   python <skill>/scripts/aprender.py adicionar --area <área> --pedido "<palavras do usuário>" --regra "<regra geral>" --como "<como aplicar/conferir>" --video "<vídeo>" [--mudou "<script/parâmetro alterado>"]
+   ```
+3. refaça o render e a verificação completa (passo 5), conferindo também todas as lições já gravadas;
+4. na entrega, diga em uma linha quais aprendizados foram guardados.
+Nunca pule o passo 2: é ele que impede o mesmo erro no próximo vídeo.
+
 ## Regras que não mudam
+
+- **A skill aprende com o usuário.** Todo pedido de alteração vira lição em `aprendizados/aprendizados.md` (passo 7), e as lições são lidas antes de toda edição. Lição gravada vale mais que o treinamento.
 
 - **A única voz do vídeo é a das takes.** Nunca gere, adicione ou troque voz (nada de TTS, locução ou narração).
 - **Nunca** chame API paga (OpenAI, ElevenLabs, etc.). Transcrição é o Whisper local do `transcrever.py`.
